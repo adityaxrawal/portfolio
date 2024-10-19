@@ -1,0 +1,16 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width:auto;
+    padding: 2.5% 7%;
+    background-color: green;
+}
+
+.nav-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+}
