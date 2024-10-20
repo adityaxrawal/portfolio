@@ -1,16 +1,66 @@
-.nav-bar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width:auto;
-    padding: 2.5% 7%;
-    background-color: green;
+@font-face {
+  font-family: "Heavy"; /*Can be any text*/
+  src: local("StiffStaff-Heavy.ttf"),
+    url("../../share/font/StiffStaff-Heavy.ttf") format("truetype");
 }
 
-.nav-right{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 50%;
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding: .5% 0%;
+  background-color: green;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.nav-left{
+    font-family: Heavy;
+    font-size: 3rem;
+}
+
+/* Letter animation for the text "rawal" */
+
+.animated-letter {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    display: inline-block;
+}
+
+.animated-letter:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.animated-letter:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.animated-letter:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.animated-letter:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.animated-letter:nth-child(5) {
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-25px); /* Optional: Makes it look like it’s coming up */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

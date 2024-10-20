@@ -1,8 +1,11 @@
 import React from 'react'
+import HeroSection from './HeroSection/heroSection.component'
 
 const Content = () => {
   return (
-    <div>Content</div>
+    <React.Fragment>
+      <HeroSection />
+    </React.Fragment>
   )
 }
 
