@@ -1,11 +1,13 @@
 import React from 'react'
+import { useState } from 'react'
 // css
 import './header.component.css'
 // font
 import '../../share/font/StiffStaff-Heavy.ttf'
-import { Switch } from 'antd'
 
 const Header = () => {
+    const [isDarkMode, setDarkMode] = useState(false)
+
     return (
         <React.Fragment>
             <nav className='nav-bar'>
@@ -27,7 +29,18 @@ const Header = () => {
                         <span>Contact</span>
                     </div>
                     <div>
-                        <Switch defaultChecked/>
+                        <label
+                            className='container-dark-mode'
+                            title={isDarkMode ? "Activate light mode" : "Activate dark mode"}
+                            aria-label={isDarkMode ? "Activate light mode" : "Activate dark mode"}
+                        >
+                            <input
+                                type="checkbox"
+                                defaultChecked={false ? !isDarkMode : isDarkMode}
+                                onChange={setDarkMode(!isDarkMode)}
+                            />
+                            <div />
+                        </label>
                     </div>
                 </div>
             </nav>
