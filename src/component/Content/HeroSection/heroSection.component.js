@@ -6,6 +6,7 @@ import './heroSection.component.css'
 import { Button } from 'antd'
 
 const HeroSection = () => {
+    console.log("herosection")
     return (
         <div className='hero-section'>
             <div className='headline'>
@@ -26,8 +27,8 @@ const HeroSection = () => {
                     </span>
                 </span>
                 <div className='headline-button'>
-                    <Button type='primary' className=''>View LinkedIn</Button>
-                    <Button type='primary'>View Github</Button>
+                    <button type='primary' className='buttons linkedin'>View LinkedIn</button>
+                    <button type='primary' className='buttons github'>View Github</button>
                 </div>
             </div>
             <div className='image-container'>

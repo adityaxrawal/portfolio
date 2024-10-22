@@ -5,3 +5,7 @@
   min-height: 100vh;
   padding: 0% 10%;
 }
+
+.App {
+  transition: background-color 0.5s ease, color 0.5s ease-in-out;
+}

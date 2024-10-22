@@ -1,13 +1,13 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useContext } from 'react'
 // css
 import './header.component.css'
 // font
 import '../../share/font/StiffStaff-Heavy.ttf'
+import { SharedStateContext } from '../shared-state-context-api'
 
 const Header = () => {
-    const [isDarkMode, setDarkMode] = useState(false)
-
+    const { isDarkTheme, setDarkTheme } = useContext(SharedStateContext)
+    console.log('header', isDarkTheme)
     return (
         <React.Fragment>
             <nav className='nav-bar'>
@@ -31,13 +31,13 @@ const Header = () => {
                     <div>
                         <label
                             className='container-dark-mode'
-                            title={isDarkMode ? "Activate light mode" : "Activate dark mode"}
-                            aria-label={isDarkMode ? "Activate light mode" : "Activate dark mode"}
+                            title={isDarkTheme ? "Activate light mode" : "Activate dark mode"}
+                            aria-label={isDarkTheme ? "Activate light mode" : "Activate dark mode"}
                         >
                             <input
                                 type="checkbox"
-                                defaultChecked={false ? !isDarkMode : isDarkMode}
-                                onChange={setDarkMode(!isDarkMode)}
+                                defaultChecked={false ? !isDarkTheme : isDarkTheme}
+                                onChange={() => setDarkTheme(!isDarkTheme)}
                             />
                             <div />
                         </label>

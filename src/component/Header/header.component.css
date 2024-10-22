@@ -1,138 +1,144 @@
 @font-face {
-    font-family: "Heavy";
-    /*Can be any text*/
-    src: local("StiffStaff-Heavy.ttf"),
-        url("../../share/font/StiffStaff-Heavy.ttf") format("truetype");
+  font-family: "Heavy";
+  /*Can be any text*/
+  src: local("StiffStaff-Heavy.ttf"),
+    url("../../share/font/StiffStaff-Heavy.ttf") format("truetype");
 }
 
 .nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: auto;
-    padding: .5% 0%;
-    background-color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding: 0.5% 0%;
+  background-color: green;
 }
 
 .nav-right {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+  padding-right: 5%;
+  background-color: aqua;
 }
 
 .nav-left {
-    font-family: Heavy;
-    font-size: 3rem;
+  width: 55%;
+  font-family: Heavy;
+  font-size: 3rem;
+  background-color: lavender;
 }
 
 /* Letter animation for the text "rawal" */
 
 .animated-letter {
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-    display: inline-block;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  display: inline-block;
 }
 
 .animated-letter:nth-child(1) {
-    animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .animated-letter:nth-child(2) {
-    animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 .animated-letter:nth-child(3) {
-    animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .animated-letter:nth-child(4) {
-    animation-delay: 0.8s;
+  animation-delay: 0.8s;
 }
 
 .animated-letter:nth-child(5) {
-    animation-delay: 1s;
+  animation-delay: 1s;
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-25px);
-        /* Optional: Makes it look like it’s coming up */
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-25px);
+    /* Optional: Makes it look like it’s coming up */
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-
-
 /* Dark Mode Switch */
+:root {
+  --color-toggle-light: orange;
+  --color-toggle-dark: bisque;
+}
 .container-dark-mode {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .container-dark-mode input {
-    display: none;
+  display: none;
 }
 
-.container-dark-mode input+div {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    position: relative;
-    box-shadow: inset 14px -14px 0 0 var(--color-toggle-dark, #000);
-    transform: scale(1) rotate(-2deg);
-    transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
+.container-dark-mode input + div {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  position: relative;
+  box-shadow: inset 14px -14px 0 0 var(--color-toggle-dark, #000);
+  transform: scale(1) rotate(-2deg);
+  transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
 }
 
-.container-dark-mode input+div::before {
-    content: "";
-    width: inherit;
-    height: inherit;
-    border-radius: inherit;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: background 0.3s ease;
+.container-dark-mode input + div::before {
+  content: "";
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: background 0.3s ease;
 }
 
-.container-dark-mode input+div::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin: -4px 0 0 -4px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    box-shadow: 0 -23px 0 var(--color-toggle-light, #eee),
-        0 23px 0 var(--color-toggle-light, #eee),
-        23px 0 0 var(--color-toggle-light, #eee),
-        -23px 0 0 var(--color-toggle-light, #eee),
-        15px 15px 0 var(--color-toggle-light, #eee),
-        -15px 15px 0 var(--color-toggle-light, #eee),
-        15px -15px 0 var(--color-toggle-light, #eee),
-        -15px -15px 0 var(--color-toggle-light, #eee);
-    transform: scale(0);
-    transition: all 0.3s ease;
+.container-dark-mode input + div::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: -4px 0 0 -4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0 -23px 0 var(--color-toggle-light, #eee),
+    0 23px 0 var(--color-toggle-light, #eee),
+    23px 0 0 var(--color-toggle-light, #eee),
+    -23px 0 0 var(--color-toggle-light, #eee),
+    15px 15px 0 var(--color-toggle-light, #eee),
+    -15px 15px 0 var(--color-toggle-light, #eee),
+    15px -15px 0 var(--color-toggle-light, #eee),
+    -15px -15px 0 var(--color-toggle-light, #eee);
+  transform: scale(0);
+  transition: all 0.3s ease;
 }
 
-.container-dark-mode input:checked+div {
-    box-shadow: inset 32px -32px 0 0 #fff;
-    transform: scale(0.5) rotate(0deg);
-    transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+.container-dark-mode input:checked + div {
+  box-shadow: inset 32px -32px 0 0 #fff;
+  transform: scale(0.5) rotate(0deg);
+  transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
 }
 
-.container-dark-mode input:checked+div::before {
-    background: var(--color-toggle-light, #eee);
-    transition: background 0.3s ease 0.1s;
+.container-dark-mode input:checked + div::before {
+  background: var(--color-toggle-light, #eee);
+  transition: background 0.3s ease 0.1s;
 }
 
-.container-dark-mode input:checked+div::after {
-    transform: scale(1.5);
-    transition: transform 0.5s ease 0.15s;
+.container-dark-mode input:checked + div::after {
+  transform: scale(1.5);
+  transition: transform 0.5s ease 0.15s;
 }
