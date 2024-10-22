@@ -1,11 +1,31 @@
-.App-header {
+:root{
+  --font-size-text: 1.5rem;
+  --font-size-heading: 2.5rem;
+  --std-border-radius: 0.5rem;
+}
+
+@font-face {
+  font-family: "Campton-Font-Regular";
+  /*Can be any text*/
+  src: local("ColorTube-Regular.ttf"),
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Campton-Font-Bold";
+  /*Can be any text*/
+  src: local("ColorTube-Regular.ttf"),
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf") format("truetype");
+}
+
+
+.App {
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   min-height: 100vh;
   padding: 0% 10%;
-}
-
-.App {
+  font-family: Campton-Font-Regular;
+  background-color: aqua;
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }

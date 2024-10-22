@@ -26,9 +26,7 @@ function ThemedApp() {
 
   return (
     <div className="App" style={isDarkTheme ? darkTheme : lightTheme}>
-      <header className="App-header">
         <Page />
-      </header>
     </div>
   );
 }
