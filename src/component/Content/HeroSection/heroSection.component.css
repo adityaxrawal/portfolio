@@ -42,6 +42,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.headline-btn a{
+  text-decoration: none;
+}
 
 .headline-btn{
   width: 15rem;
@@ -50,6 +53,7 @@
   border: 1px solid black;
   border-radius: 0.5rem;
   font-size: var(--font-size-text);
+  cursor: pointer;
 }
 
 .linkedin{
