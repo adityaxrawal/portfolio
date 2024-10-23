@@ -16,7 +16,7 @@ const HeroSection = () => {
                     <span className='headline-title'>Hola! I am Aditya, a <RoughNotation type='highlight' order='1' color='#cddafd'>developer</RoughNotation> based in India</span>
                     <span className='headline-text'>
                         <span className='headline-sub-text'>
-                            I love building tools that are <RoughNotation type='highlight' order='2' color='#fde2e4'>user-friendly, simple</RoughNotation> and <RoughNotation type='highlight' order='3' color='#bee1e6'>delightful</RoughNotation>.
+                            I love building tools that are <RoughNotation type='highlight' order='2' color='#fde2e4'>user-friendly, simple</RoughNotation> and <RoughNotation type='highlight' order='3' color='#bee1e6'>delightful.</RoughNotation>
                         </span>
                         <span className='headline-sub-text'>
                             I am currently a Software Engineer at Leadsquared, where I develop scalable
@@ -29,7 +29,7 @@ const HeroSection = () => {
                             the company’s website using <RoughNotation type='highlight' order='5' color='#faedcd'>Next.js</RoughNotation> and created a Resume Builder tool that
                             significantly improved users' job placement prospects. These experiences have
                             allowed me to collaborate with diverse teams and refine my skills in
-                            <RoughNotation type='highlight' order='6' color='#ffd7ba'>full-stack development</RoughNotation>.
+                            <RoughNotation type='highlight' order='6' color='#ffd7ba'> full-stack development</RoughNotation>.
                         </span>
                         <span className='headline-sub-text'>
                             I am now seeking new opportunities to further my career as a developer.
