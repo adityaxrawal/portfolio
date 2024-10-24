@@ -19,16 +19,16 @@ const Header = () => {
                     <span className='animated-letter'>l</span>
                 </div>
                 <div className='nav-right'>
-                    <div>
+                    <div className='nav-text'>
                         <span>About</span>
                     </div>
-                    <div>
+                    <div className='nav-text'>
                         <span>Projects</span>
                     </div>
-                    <div>
+                    <div className='nav-text'>
                         <span>Contact</span>
                     </div>
-                    <div>
+                    <div className='nav-switch'>
                         <label
                             className='container-dark-mode'
                             title={isDarkTheme ? "Activate light mode" : "Activate dark mode"}

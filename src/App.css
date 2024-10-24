@@ -1,6 +1,7 @@
 :root{
-  --font-size-text: 1.5rem;
+  --font-size-text: 1.25rem;
   --font-size-heading: 2.5rem;
+  --font-size-subHeading: 1.5rem;
   --std-border-radius: 0.5rem;
 }
 
@@ -22,10 +23,16 @@
 .App {
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  min-height: 100vh;
+  font-size: var(--font-size-text);
   padding: 0% 10%;
   font-family: Campton-Font-Regular;
   background-color: aqua;
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
+}
+
+
+@media only screen and (orientation: portrait) {
+  .App{
+    width: 100%;
+  }
 }
