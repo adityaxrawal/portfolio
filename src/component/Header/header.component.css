@@ -153,10 +153,17 @@
 
 
 @media only screen and (orientation: portrait) {
+  .nav-bar{
+    padding: 5% 0%;
+  }
   .nav-right{
     justify-content: flex-end;
   }
+  .nav-left{
+    font-size: 2.5rem;
+  }
   .nav-text{
     display: none;
+    font-size: var(--font-size-subHeading-mobile);
   }
 }
