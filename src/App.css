@@ -35,10 +35,12 @@
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
 
-
+/* Portrait means -> width <= height */
 @media only screen and (orientation: portrait) {
   .App{
     width: auto;
     padding: 0% 5%;
   }
 }
+
+/* Still need to add responsiveness for tablets */
