@@ -1,38 +1,38 @@
+:root{
+  --font-size-text: 1.25rem;
+  --font-size-heading: 2.5rem;
+  --font-size-subHeading: 1.5rem;
+  --std-border-radius: 0.5rem;
+}
+
+@font-face {
+  font-family: "Campton-Font-Regular";
+  /*Can be any text*/
+  src: local("ColorTube-Regular.ttf"),
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Campton-Font-Bold";
+  /*Can be any text*/
+  src: local("ColorTube-Regular.ttf"),
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf") format("truetype");
+}
+
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: var(--font-size-text);
+  padding: 0% 10%;
+  font-family: Campton-Font-Regular;
+  background-color: aqua;
+  transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media only screen and (orientation: portrait) {
+  .App{
+    width: 100%;
   }
 }

@@ -1,0 +1,110 @@
+.hero-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: auto;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
+  height: 100%;
+  padding: 2% 0%;
+  gap: 2rem;
+}
+
+.headline-title {
+  font-size: var(--font-size-heading);
+  font-weight: 900;
+  font-family: Campton-Font-Bold;
+}
+
+.headline-text {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-text);
+  line-height: 150%;
+  gap: 0.5rem;
+}
+
+.headline-sub-text {
+  font-size: var(--font-size-text);
+}
+
+.headline-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.highlighted-text{
+  white-space: nowrap;
+}
+
+.headline-btn a {
+  text-decoration: none;
+}
+
+.headline-btn {
+  width: 15rem;
+  height: 4rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  font-size: var(--font-size-text);
+  cursor: pointer;
+}
+
+.linkedin {
+  background-color: white;
+  color: black;
+}
+
+.github {
+  background-color: rgb(21, 19, 19);
+  color: white;
+}
+
+.image-container {
+  display: flex;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 0%;
+}
+
+.image-subcontainer {
+  display: flex;
+  flex-direction: row;
+  width: 15.5rem;
+  height: 28rem;
+  border-radius: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.image {
+  width: 18rem;
+  height: 32rem;
+  border-radius: 1rem;
+}
+
+@media only screen and (orientation: portrait) {
+  .image-container {
+    display: none;
+  }
+  .headline {
+    width: 100%;
+  }
+  .headline-btn {
+    width: 12rem;
+    height: 3rem;
+  }
+}
