@@ -3,6 +3,11 @@
   --font-size-heading: 2.5rem;
   --font-size-subHeading: 1.5rem;
   --std-border-radius: 0.5rem;
+  /* Standard for responsive design (mobile) */
+  --font-size-text-mobile: 1rem;
+  --font-size-heading-mobile: 1.75rem;
+  --font-size-subHeading-mobile:1.25rem;
+  --std-border-radius-mobile: 0.25rem;
 }
 
 @font-face {
@@ -30,9 +35,12 @@
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
 
-
+/* Portrait means -> width <= height */
 @media only screen and (orientation: portrait) {
   .App{
-    width: 100%;
+    width: auto;
+    padding: 0% 5%;
   }
 }
+
+/* Still need to add responsiveness for tablets */

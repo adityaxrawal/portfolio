@@ -102,9 +102,23 @@
   }
   .headline {
     width: 100%;
+    gap: 0.5rem;
+  }
+  .headline-title{
+    font-size: var(--font-size-heading-mobile);
+  }
+  .headline-sub-text{
+    font-size: var(--font-size-text-mobile);
+  }
+  .headline-buttons{
+    padding-top: 5%;
   }
   .headline-btn {
-    width: 12rem;
+    width: 9rem;
     height: 3rem;
+    font-size: var(--font-size-text-mobile);
   }
 }
+
+
+/* Still need to add responsiveness for tablets */
