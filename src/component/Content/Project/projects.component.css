@@ -1,12 +1,11 @@
 .project-section {
   width: 100%;
   height: 100%;
-  background-color: lightseagreen;
+  transition: background-color 0.5s ease;
 }
 
 .project-heading {
   display: flex;
-  background-color: lightblue;
   font-size: var(--font-size-heading);
 }
 
@@ -22,7 +21,6 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: lightsalmon;
 }
 
 .project-container-text {
@@ -33,7 +31,6 @@
   justify-content: flex-start; /* or space-around */
   align-items: flex-start; /* Ensure this has a value, like 'center' */
   border: 1px solid blue;
-  background-color: purple;
   overflow: hidden;
 }
 
@@ -44,7 +41,6 @@
   width: 100%;
   min-height: 100vh;
   border: 1px solid yellow;
-  background-color: darkgoldenrod;
 }
 
 .project-container-images {
@@ -55,7 +51,6 @@
   width: 50%;
   height: 100vh;
   border: 1px solid green;
-  background-color: lightgreen;
 }
 
 .project-images {
@@ -68,7 +63,6 @@
   height: 28rem;
   flex-wrap: wrap;
   left: 10%;
-  background-color: darkorange;
 }
 .project-images::-webkit-scrollbar{
 display: none;
@@ -78,8 +72,27 @@ display: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 30rem;
+  height: 28rem;
   border: 1px solid black;
   color: white;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.relative {
+  position: relative;
+  top: 0;
+}
+
+/* Overflow style when pinned */
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
