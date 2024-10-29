@@ -6,7 +6,7 @@ const Content = () => {
   return (
     <React.Fragment>
       <HeroSection />
-      {/* <Projects /> */}
+      <Projects />
     </React.Fragment>
   )
 }
