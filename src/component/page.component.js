@@ -6,11 +6,13 @@ import Content from './Content/content.component'
 
 const Page = () => {
     return (
-        <div className='page'>
-            <Header />
-            <Content />
-            <Footer />
-        </div>
+        <React.Fragment>
+            <div className='page'>
+                <Header />
+                <Content />
+                <Footer />
+            </div>
+        </React.Fragment>
     )
 }
 

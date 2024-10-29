@@ -3,15 +3,7 @@ import './App.css';
 import Page from './component/page.component';
 import { SharedStateContext, SharedStateProvider } from './component/shared-state-context-api';
 
-const darkTheme = {
-  backgroundColor: 'black',
-  color: 'white'
-}
 
-const lightTheme = {
-  backgroundColor: 'white',
-  color: 'black'
-}
 
 function App() {
   return (
@@ -22,11 +14,21 @@ function App() {
 }
 
 function ThemedApp() {
-  const { isDarkTheme } = useContext(SharedStateContext);
+  const { isDarkTheme, backgroundColor } = useContext(SharedStateContext);
+  
+  const darkTheme = {
+    backgroundColor: 'black',
+    color: 'white'
+  }
+  
+  const lightTheme = {
+    backgroundColor: backgroundColor,
+    color: 'black'
+  }
 
   return (
     <div className="App" style={isDarkTheme ? darkTheme : lightTheme}>
-        <Page />
+      <Page />
     </div>
   );
 }
