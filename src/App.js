@@ -17,7 +17,7 @@ function ThemedApp() {
   const { isDarkTheme, backgroundColor } = useContext(SharedStateContext);
   
   const darkTheme = {
-    backgroundColor: 'black',
+    backgroundColor: backgroundColor,
     color: 'white'
   }
   
@@ -28,6 +28,7 @@ function ThemedApp() {
 
   return (
     <div className="App" style={isDarkTheme ? darkTheme : lightTheme}>
+      <span style={{position: 'sticky', top: 0, backgroundColor: 'white', color: 'black', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>current BCG: {backgroundColor}</span>
       <Page />
     </div>
   );
