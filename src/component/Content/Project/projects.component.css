@@ -63,6 +63,7 @@
   height: 28rem;
   flex-wrap: wrap;
   left: 10%;
+  overflow: hidden;
 }
 .project-images::-webkit-scrollbar{
 display: none;
@@ -75,7 +76,7 @@ display: none;
   width: 30rem;
   height: 28rem;
   border: 1px solid black;
-  color: white;
+  color: darkgoldenrod;
 }
 
 .sticky {
@@ -86,13 +87,4 @@ display: none;
 .relative {
   position: relative;
   top: 0;
-}
-
-/* Overflow style when pinned */
-.overflow-scroll {
-  overflow: scroll;
-}
-
-.overflow-hidden {
-  overflow: hidden;
 }

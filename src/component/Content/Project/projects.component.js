@@ -1,15 +1,17 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import './projects.component.css'
 import { SharedStateContext } from '../../shared-state-context-api';
+import { darkModeColorList, lightModeColorList } from '../../../share/utils/constant';
 
 const Projects = () => {
     const sectionRef = useRef(null);
     const imagesRef = useRef(null);
     const textRef = useRef(null);
     const [isPinned, setIsPinned] = useState(false);
-    const { backgroundColor, setBackgroundColor } = useContext(SharedStateContext)
+    const { isDarkTheme, backgroundColor, setBackgroundColor } = useContext(SharedStateContext)
 
-    const handleScroll = () => {
+    const handleScroll = async (e) => {
+        console.log('e', e)
         if (!sectionRef.current || !imagesRef.current) return;
 
         const sectionTop = sectionRef.current.getBoundingClientRect().top;
@@ -20,8 +22,7 @@ const Projects = () => {
             setIsPinned(true)
             imagesRef.current.scrollTop = parseInt(Math.abs(textTop) / 1.75);
             // IMC = image container percentage -> how is image container covered : returns percentage
-            const currentICP = calculateICP();
-            console.log('currentt iCP', currentICP)
+            const currentICP = await calculateICP();
             updateBackgroundColor(currentICP)
         } else if (sectionTop === -sectionOffSetHeight) {
             setIsPinned(false)
@@ -30,15 +31,15 @@ const Projects = () => {
         }
     }
 
-    const colorRanges = [
-        { range: [0, 33], color: '#F8F4E1' },
-        { range: [34, 49], color: '#AF8F6F' },
-        { range: [50, 100], color: '#74512D' },
+    const LightModeColorRanges = [
+        { range: [-33, 5], color: isDarkTheme ? darkModeColorList[0] : lightModeColorList[0] },
+        { range: [5, 33], color: isDarkTheme ? darkModeColorList[1] : lightModeColorList[1] },
+        { range: [34, 49], color: isDarkTheme ? darkModeColorList[2] : lightModeColorList[2] },
+        { range: [50, 100], color: isDarkTheme ? darkModeColorList[3] : lightModeColorList[3] },
     ];
 
     const getColorForCurrentICP = (currentICP) => {
-        for (const { range, color } of colorRanges) {
-            console.log('rangee', range, currentICP)
+        for (const { range, color } of LightModeColorRanges) {
             if (currentICP >= range[0] && currentICP <= range[1]) {
                 return color;
             }
@@ -53,16 +54,16 @@ const Projects = () => {
         }
     };
 
-    const calculateICP = useCallback(() => {
+    const calculateICP = useCallback(async () => {
         if (!imagesRef.current) return 0;
         return parseInt((Math.abs(imagesRef.current.scrollTop) / imagesRef.current.scrollHeight) * 100);
     }, []);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", (e) => handleScroll(e));
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", (e) => handleScroll(e));
         };
     });
 
@@ -79,7 +80,7 @@ const Projects = () => {
                         <span className='project-text'>Text 3</span>
                     </div>
                     <div className={`project-container-images ${isPinned ? 'sticky' : 'relative'}`}>
-                        <div className={`project-images ${isPinned ? 'overflow-scroll' : 'overflow-hidden'}`} ref={imagesRef}>
+                        <div className={`project-images`} ref={imagesRef} onWheel={() => { return false }}>
                             <span className='project-images-items'>image 1</span>
                             <span className='project-images-items'>image 2</span>
                             <span className='project-images-items'>image 3</span>

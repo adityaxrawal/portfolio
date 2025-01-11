@@ -31,7 +31,6 @@
   font-size: var(--font-size-text);
   padding: 0% 10%;
   font-family: Campton-Font-Regular;
-  background-color: aqua;
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
 

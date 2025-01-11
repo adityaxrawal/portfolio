@@ -4,10 +4,16 @@ import './header.component.css'
 // font
 import '../../share/font/StiffStaff-Heavy.ttf'
 import { SharedStateContext } from '../shared-state-context-api'
+import { darkModeColorList, lightModeColorList } from '../../share/utils/constant'
 
 const Header = () => {
-    const { isDarkTheme, setDarkTheme } = useContext(SharedStateContext)
-    console.log('header', isDarkTheme)
+    const { isDarkTheme, setDarkTheme, setBackgroundColor } = useContext(SharedStateContext)
+
+    const handleDarkMode = () => {
+        console.log('dark theemeeee', !isDarkTheme)
+        setDarkTheme(!isDarkTheme)
+        setBackgroundColor(!isDarkTheme === true ? darkModeColorList[0] : lightModeColorList[0])
+    }
     return (
         <React.Fragment>
             <nav className='nav-bar'>
@@ -37,7 +43,7 @@ const Header = () => {
                             <input
                                 type="checkbox"
                                 defaultChecked={false ? !isDarkTheme : isDarkTheme}
-                                onChange={() => setDarkTheme(!isDarkTheme)}
+                                onChange={handleDarkMode}
                             />
                             <div />
                         </label>
