@@ -28,7 +28,7 @@ function ThemedApp() {
 
   return (
     <div className="App" style={isDarkTheme ? darkTheme : lightTheme}>
-      <span style={{position: 'sticky', top: 0, backgroundColor: 'white', color: 'black', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>current BCG: {backgroundColor}</span>
+      {/* <span style={{position: 'sticky', top: 0, backgroundColor: 'white', color: 'black', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>current BCG: {backgroundColor}</span> */}
       <Page />
     </div>
   );
