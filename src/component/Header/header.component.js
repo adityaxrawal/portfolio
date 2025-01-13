@@ -18,28 +18,20 @@ const Header = () => {
                 <div className='nav-left'>
                     <span className='animated-letters'>
                         {Array.from("ar.adityarawal@gmail.com").map((char, index) => (
-                            <div key={index} className='cube' style={{ animationDelay: `${index * 100}ms` }}>
+                            <div key={index} className='cube-flip' style={{ animationDelay: `${index * 10}ms` }}>
                                 {char}
                             </div>
                         ))}
                     </span>
-                    {/* https://www.jhosuemesias.com/ */}
-                    {/* <span className='animated-letter'>R</span>
-                    <span className='animated-letter'>a</span>
-                    <span className='animated-letter'>w</span>
-                    <span className='animated-letter'>a</span>
-                    <span className='animated-letter'>l</span> */}
+                    <span className='animated-letters'>
+                        {Array.from("ar.adityarawal@gmail.com").map((char, index) => (
+                            <div key={index} className='cube-flop' style={{ animationDelay: `${index * 10}ms` }}>
+                                {char}
+                            </div>
+                        ))}
+                    </span>
                 </div>
                 <div className='nav-right'>
-                    {/* <div className='nav-text'>
-                        <span>About</span>
-                    </div>
-                    <div className='nav-text'>
-                        <span>Projects</span>
-                    </div>
-                    <div className='nav-text'>
-                        <span>Contact</span>
-                    </div> */}
                     <div className='nav-switch'>
                         <label
                             className='container-dark-mode'
