@@ -11,8 +11,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 10vh;
-  padding: 0% 0%;
+  height: 7vh;
+  margin: 2.5% 0% 0% 0%;
 }
 
 .nav-right {
@@ -33,9 +33,13 @@
 }
 
 .nav-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   font-family: Logo-Font;
   font-size: 2rem;
-  height: 100%;
+  height: 70%;
+  overflow: hidden;
 }
 
 .animated-letters {
@@ -45,43 +49,45 @@
   height: 100%;
 }
 
-.cube {
+.cube-flip,
+.cube-flop {
   display: inline-block;
+  position: relative;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: auto;
   transition: transform 0.6s ease-in-out;
   transform-style: preserve-3d;
 }
 
-.flip,
-.flop {
-  width: 100%;
-  height: 100%;
+.nav-left:hover .cube-flip,
+.nav-left:hover .cube-flop {
+  animation: cube 1s forwards;
 }
 
-.flip {
-  transform: translateZ(25px);
+.nav-left:not(:hover) .cube-flip,
+.nav-left:not(:hover) .cube-flop {
+  animation: cube-reverse 1s forwards;
 }
 
-.flop {
-  transform: rotateX(-90deg) translateZ(-25px);
-}
-
-/* .nav-left:hover .cube {
-  animation: cubeFlip 0.6s ease-in-out forwards;
-} */
-
-@keyframes cubeFlip {
+@keyframes cube {
   0% {
-    transform: rotateX(0deg);
+    transform: translateY(0px);
   }
   100% {
-    transform: rotateX(89deg);
+    transform: translateY(-3rem);
   }
 }
 
+@keyframes cube-reverse {
+  0% {
+    transform: translateY(-3rem);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 
 /* Dark Mode Switch */
 :root {
