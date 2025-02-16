@@ -1,7 +1,8 @@
 :root{
   --font-size-text: 1.25rem;
+  --font-size-subtext: 1rem;
   --font-size-heading: 2.5rem;
-  --font-size-subHeading: 1.5rem;
+  --font-size-subHeading: 1.75rem;
   --std-border-radius: 0.5rem;
   /* Standard for responsive design (mobile) */
   --font-size-text-mobile: 1rem;
@@ -22,6 +23,15 @@
   /*Can be any text*/
   src: local("ColorTube-Regular.ttf"),
     url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf") format("truetype");
+}
+
+
+/* Second font for higlights */
+@font-face {
+  font-family: "ShadowsIntoLightTwo-Regular";
+  /*Can be any text*/
+  src: local("StiffStaff-Heavy.ttf"),
+    url("./share/font/ShadowsIntoLightTwo-Regular.ttf") format("truetype");
 }
 
 

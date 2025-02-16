@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "ShadowsIntoLightTwo-Font-Regular";
-  /*Can be any text*/
-  src: local("ColorTube-Regular.ttf"),
-    url("../../../share/font/ShadowsIntoLightTwo-Regular.ttf")
-      format("truetype");
-}
-
 .hero-section {
   display: flex;
   flex-direction: row;
@@ -119,7 +111,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: ShadowsIntoLightTwo-Font-Regular;
+  font-family: ShadowsIntoLightTwo-Regular;
   font-size: 1.5rem;
 }
 
