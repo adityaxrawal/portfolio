@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 // image
-import mainImage from '../../../share/img/me-cropped-blurred.png'
+import heroImage from '../../../share/img/me-cropped-blurred.png'
 // css
 import './heroSection.component.css'
 // Rough Notation for react
@@ -79,7 +79,7 @@ const HeroSection = () => {
             >
                 <div className='image-card'>
                     <div className='image-card-part-one'>
-                        <img src={mainImage} alt='my-image' className='image' />
+                        <img src={heroImage} alt='my-image' className='image' />
                     </div>
                     <div className='image-card-part-two'>
                         <span>Aditya Rawal</span>
