@@ -130,6 +130,11 @@
 }
 
 @media only screen and (orientation: portrait) {
+  .hero-section {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 84vh;
+  }
   .image-container {
     display: none;
   }
