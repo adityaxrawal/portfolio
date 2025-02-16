@@ -1,0 +1,39 @@
+/* DESKTOP FIRST APPROACH */
+
+/* Big desktops (default) */
+.container-desktop-first {
+  padding: 50px;
+  font-size: 22px;
+}
+
+/* Desktop and smaller screens */
+@media (max-width: 1800px) {
+  .container-desktop-first {
+    padding: 40px;
+    font-size: 20px;
+  }
+}
+
+/* Landscape tablets and smaller screens */
+@media (max-width: 1200px) {
+  .container-desktop-first {
+    padding: 30px;
+    font-size: 18px;
+  }
+}
+
+/* Portrait tablets and smaller screens */
+@media (max-width: 900px) {
+  .container-desktop-first {
+    padding: 20px;
+    font-size: 16px;
+  }
+}
+
+/* Most phones and smaller screens */
+@media (max-width: 600px) {
+  .container-desktop-first {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

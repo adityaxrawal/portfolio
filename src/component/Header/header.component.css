@@ -63,12 +63,12 @@
 
 .nav-left:hover .cube-flip,
 .nav-left:hover .cube-flop {
-  animation: cube 1s forwards;
+  animation: cube 0.5s forwards;
 }
 
 .nav-left:not(:hover) .cube-flip,
 .nav-left:not(:hover) .cube-flop {
-  animation: cube-reverse 1s forwards;
+  animation: cube-reverse 0.5s forwards;
 }
 
 @keyframes cube {
@@ -168,7 +168,7 @@
     justify-content: flex-end;
   }
   .nav-left {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
   }
   .nav-text {
     display: none;
