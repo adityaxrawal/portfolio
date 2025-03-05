@@ -1,22 +1,26 @@
 import { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Page from './component/page.component';
 import { SharedStateContext, SharedStateProvider } from './component/shared-state-context-api';
-import { useSmoothScroll } from './share/hooks/smoothScroll.customHook';
-
-
+import { ViewProvider } from './context/ViewContext';
 
 function App() {
   return (
-    <SharedStateProvider>
-      <ThemedApp />
-    </SharedStateProvider>
+    <Router>
+      <SharedStateProvider>
+        <ViewProvider>
+          <ThemedApp />
+        </ViewProvider>
+      </SharedStateProvider>
+    </Router>
   );
 }
 
 function ThemedApp() {
   const { isDarkTheme, backgroundColor } = useContext(SharedStateContext);
-  const scrollRef = useSmoothScroll();
+  // const scrollRef = useSmoothScroll();
+  const scrollRef = null;
 
   const darkTheme = {
     backgroundColor: backgroundColor,
@@ -31,7 +35,10 @@ function ThemedApp() {
   return (
     <div ref={scrollRef} className="App" style={isDarkTheme ? darkTheme : lightTheme}>
       {/* <span style={{position: 'sticky', top: 0, backgroundColor: 'white', color: 'black', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>current BCG: {backgroundColor}</span> */}
-      <Page />
+      <Routes>
+        <Route path="/aditya-rawal" element={<Page />} />
+        <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
+      </Routes>
     </div>
   );
 }
