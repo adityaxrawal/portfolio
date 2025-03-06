@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 // css
 import './header.component.css'
 // context
-import { SharedStateContext } from '../shared-state-context-api'
 import { darkModeColorList, lightModeColorList } from '../../share/utils/constant'
+import { useSharedState } from '../../context/app-context'
 
 const Header = () => {
-    const { isDarkTheme, setDarkTheme, setBackgroundColor } = useContext(SharedStateContext)
+    const { isDarkTheme, setDarkTheme, setBackgroundColor } = useSharedState();
 
     const handleDarkMode = () => {
         setDarkTheme(!isDarkTheme)
