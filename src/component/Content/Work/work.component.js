@@ -1,6 +1,6 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import './work.component.css'
-import { SharedStateContext } from '../../shared-state-context-api';
+import { useSharedState } from '../../../context/app-context';
 import { darkModeColorList, lightModeColorList } from '../../../share/utils/constant';
 
 // images
@@ -13,7 +13,23 @@ const Work = () => {
     const imagesRef = useRef(null);
     const textRef = useRef(null);
     const [isPinned, setIsPinned] = useState(false);
-    const { isDarkTheme, backgroundColor, setBackgroundColor } = useContext(SharedStateContext)
+    const [imageDimensions, setImageDimensions] = useState({
+        width: 0,
+        height: 0
+    })
+    const { isDarkTheme, backgroundColor, setBackgroundColor } = useSharedState();
+
+    const calculateImageDimensions = useCallback(() => {
+        const width = (window.innerWidth * 0.9) / 2; // (innerWidth - 10%)/2
+        const height = width /1.8; // height = width/2.2
+        setImageDimensions({ width, height });
+    }, []);
+
+    useEffect(() => {
+        calculateImageDimensions();
+        window.addEventListener('resize', calculateImageDimensions);
+        return () => window.removeEventListener('resize', calculateImageDimensions);
+    }, [calculateImageDimensions]);
 
     const handleScroll = async (e) => {
         console.log('e', e)
@@ -97,7 +113,7 @@ const Work = () => {
                             </div>
                         </div>
                         <div className='project-text'>
-                        <div className='project-text-details'>
+                            <div className='project-text-details'>
                                 <span className='project-text-heading'>
                                     DevelUp
                                 </span>
@@ -112,7 +128,7 @@ const Work = () => {
                             </div>
                         </div>
                         <div className='project-text'>
-                        <div className='project-text-details'>
+                            <div className='project-text-details'>
                                 <span className='project-text-heading'>
                                     Wipro
                                 </span>
@@ -128,15 +144,37 @@ const Work = () => {
                         </div>
                     </div>
                     <div className={`project-container-images ${isPinned ? 'sticky' : 'relative'}`}>
-                        <div className={`project-images`} ref={imagesRef} onWheel={() => { return false }}>
+                        <div
+                            className={`project-images-list`}
+                            ref={imagesRef}
+                            onWheel={() => { return false }}
+                            style={{
+                                width: imageDimensions.width,
+                                height: imageDimensions.height
+                            }}>
                             <span className='project-images-items'>
-                                <img src={leadsquaredLogo} alt='Leadsquared-Logo' className='project-images' />
+                                <img
+                                    src={leadsquaredLogo}
+                                    alt='Leadsquared-Logo'
+                                    className='project-images'
+
+                                />
                             </span>
                             <span className='project-images-items'>
-                                <img src={develUpLogo} alt='DevelUp-Logo' className='project-images' />
+                                <img
+                                    src={develUpLogo}
+                                    alt='DevelUp-Logo'
+                                    className='project-images'
+
+                                />
                             </span>
                             <span className='project-images-items'>
-                                <img src={wiproLogo} alt='Wipro-Logo' className='project-images' />
+                                <img
+                                    src={wiproLogo}
+                                    alt='Wipro-Logo'
+                                    className='project-images'
+
+                                />
                             </span>
                         </div>
                     </div>

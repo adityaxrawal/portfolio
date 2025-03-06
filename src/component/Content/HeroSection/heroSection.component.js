@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // image
 import heroImage from '../../../share/img/me-cropped-blurred.png'
 // css
@@ -7,10 +7,10 @@ import './heroSection.component.css'
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 // constants
 import { links } from '../../../share/utils/constant';
-import { SharedStateContext } from '../../shared-state-context-api';
+import { useSharedState } from '../../../context/app-context';
 
 const HeroSection = () => {
-    const { isDarkTheme } = useContext(SharedStateContext)
+    const { isDarkTheme } = useSharedState();
 
     const [isImageOverflowing, setImageOverflowing] = useState(false);
     const imageContainerRef = useRef(null);
@@ -48,7 +48,7 @@ const HeroSection = () => {
                         </span>
                         <span className='headline-sub-text'>
                             Prior to this, I worked as a Software Developer at DevelUp, where I maintained
-                            the company’s website using <RoughNotation type='highlight' order='5' color='#faedcd'><span style={{ color: isDarkTheme ? 'black' : 'initial' }}>Next.js</span></RoughNotation> and created a Resume Builder tool that
+                            the company's website using <RoughNotation type='highlight' order='5' color='#faedcd'><span style={{ color: isDarkTheme ? 'black' : 'initial' }}>Next.js</span></RoughNotation> and created a Resume Builder tool that
                             significantly improved users job placement prospects. These experiences have
                             allowed me to collaborate with diverse teams and refine my skills in &nbsp;<RoughNotation type='highlight' order='6' color='#ffd7ba'><span className='highlighted-text' style={{ color: isDarkTheme ? 'black' : 'initial' }}>full-stack development</span></RoughNotation>.
                         </span>

@@ -1,25 +1,20 @@
-import { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Page from './component/page.component';
-import { SharedStateContext, SharedStateProvider } from './component/shared-state-context-api';
-import { ViewProvider } from './context/ViewContext';
+import { AppProvider, useSharedState } from './context/app-context';
 
 function App() {
   return (
     <Router>
-      <SharedStateProvider>
-        <ViewProvider>
-          <ThemedApp />
-        </ViewProvider>
-      </SharedStateProvider>
+      <AppProvider>
+        <ThemedApp />
+      </AppProvider>
     </Router>
   );
 }
 
 function ThemedApp() {
-  const { isDarkTheme, backgroundColor } = useContext(SharedStateContext);
-  // const scrollRef = useSmoothScroll();
+  const { isDarkTheme, backgroundColor } = useSharedState();
   const scrollRef = null;
 
   const darkTheme = {

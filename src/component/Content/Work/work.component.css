@@ -38,7 +38,7 @@
   height: 100%;
   justify-content: flex-start; /* or space-around */
   align-items: flex-start; /* Ensure this has a value, like 'center' */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   overflow: hidden;
 }
 
@@ -49,7 +49,7 @@
   justify-content: center;
   width: 100%;
   min-height: 100vh;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 
 .project-text-details {
@@ -61,12 +61,11 @@
   gap: 1rem;
 }
 
-.project-text-heading{
+.project-text-heading {
   font-size: var(--font-size-subHeading);
   font-family: Campton-Font-Bold;
-  
 }
-.project-text-description{
+.project-text-description {
   font-size: var(--font-size-text);
   font-family: Campton-Font-Regular;
 }
@@ -78,39 +77,32 @@
   align-items: center;
   width: 50%;
   height: 100vh;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
-.project-images {
+.project-images-list {
   position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-content: flex-start;
-  width: auto;
-  height: auto;
   flex-wrap: wrap;
   overflow: hidden;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* border-radius: var(--std-border-radius); */
-}
-.project-images::-webkit-scrollbar {
-  display: none;
+  border-radius: 0.5rem;
 }
 
 .project-images-items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 36rem;
-  height: 22rem;
-  /* border: 1px solid black; */
-  /* color: darkgoldenrod; */
+  width: 100%;
+  height: 100%;
 }
 
 .project-images {
-  width: 36rem;
-  height: 22rem;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.project-images::-webkit-scrollbar {
+  display: none;
 }
 
 .sticky {
