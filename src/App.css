@@ -1,12 +1,16 @@
-:root{
+:root {
   --font-size-text: 1.25rem;
+  --font-size-subtext: 1rem;
+  --font-size-subSubtext: 0.75rem;
   --font-size-heading: 2.5rem;
-  --font-size-subHeading: 1.5rem;
+  --font-size-subHeading: 1.75rem;
   --std-border-radius: 0.5rem;
   /* Standard for responsive design (mobile) */
   --font-size-text-mobile: 1rem;
   --font-size-heading-mobile: 1.75rem;
-  --font-size-subHeading-mobile:1.25rem;
+  --font-size-subtext: 1rem;
+  --font-size-subSubtext: 0.75rem;
+  --font-size-subHeading-mobile: 1.25rem;
   --std-border-radius-mobile: 0.25rem;
 }
 
@@ -14,30 +18,38 @@
   font-family: "Campton-Font-Regular";
   /*Can be any text*/
   src: local("ColorTube-Regular.ttf"),
-    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf") format("truetype");
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf")
+      format("truetype");
 }
 
 @font-face {
   font-family: "Campton-Font-Bold";
   /*Can be any text*/
   src: local("ColorTube-Regular.ttf"),
-    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf") format("truetype");
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf")
+      format("truetype");
 }
 
+/* Second font for higlights */
+@font-face {
+  font-family: "ShadowsIntoLightTwo-Regular";
+  /*Can be any text*/
+  src: local("StiffStaff-Heavy.ttf"),
+    url("./share/font/ShadowsIntoLightTwo-Regular.ttf") format("truetype");
+}
 
 .App {
   display: flex;
   flex-direction: column;
   font-size: var(--font-size-text);
-  padding: 0% 10%;
+  padding: 0% 5%;
   font-family: Campton-Font-Regular;
-  background-color: aqua;
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
 
 /* Portrait means -> width <= height */
 @media only screen and (orientation: portrait) {
-  .App{
+  .App {
     width: auto;
     padding: 0% 5%;
   }

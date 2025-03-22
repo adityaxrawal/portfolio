@@ -1,33 +1,37 @@
-import React, { useContext } from 'react'
+import React from 'react'
 // css
 import './header.component.css'
-// font
-import '../../share/font/StiffStaff-Heavy.ttf'
-import { SharedStateContext } from '../shared-state-context-api'
+// context
+import { darkModeColorList, lightModeColorList } from '../../share/utils/constant'
+import { useSharedState } from '../../context/app-context'
 
 const Header = () => {
-    const { isDarkTheme, setDarkTheme } = useContext(SharedStateContext)
-    console.log('header', isDarkTheme)
+    const { isDarkTheme, setDarkTheme, setBackgroundColor } = useSharedState();
+
+    const handleDarkMode = () => {
+        setDarkTheme(!isDarkTheme)
+        setBackgroundColor(!isDarkTheme === true ? darkModeColorList[0] : lightModeColorList[0])
+    }
     return (
         <React.Fragment>
             <nav className='nav-bar'>
                 <div className='nav-left'>
-                    <span className='animated-letter'>R</span>
-                    <span className='animated-letter'>a</span>
-                    <span className='animated-letter'>w</span>
-                    <span className='animated-letter'>a</span>
-                    <span className='animated-letter'>l</span>
+                    <span className='animated-letters'>
+                        {Array.from("ar.adityarawal@gmail.com").map((char, index) => (
+                            <div key={index} className='cube-flip' style={{ animationDelay: `${index * 10}ms` }}>
+                                {char}
+                            </div>
+                        ))}
+                    </span>
+                    <span className='animated-letters'>
+                        {Array.from("ar.adityarawal@gmail.com").map((char, index) => (
+                            <div key={index} className='cube-flop' style={{ animationDelay: `${index * 10}ms` }}>
+                                {char}
+                            </div>
+                        ))}
+                    </span>
                 </div>
                 <div className='nav-right'>
-                    <div className='nav-text'>
-                        <span>About</span>
-                    </div>
-                    <div className='nav-text'>
-                        <span>Projects</span>
-                    </div>
-                    <div className='nav-text'>
-                        <span>Contact</span>
-                    </div>
                     <div className='nav-switch'>
                         <label
                             className='container-dark-mode'
@@ -37,7 +41,7 @@ const Header = () => {
                             <input
                                 type="checkbox"
                                 defaultChecked={false ? !isDarkTheme : isDarkTheme}
-                                onChange={() => setDarkTheme(!isDarkTheme)}
+                                onChange={handleDarkMode}
                             />
                             <div />
                         </label>
