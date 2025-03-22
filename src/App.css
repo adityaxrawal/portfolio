@@ -1,4 +1,4 @@
-:root{
+:root {
   --font-size-text: 1.25rem;
   --font-size-subtext: 1rem;
   --font-size-subSubtext: 0.75rem;
@@ -8,7 +8,9 @@
   /* Standard for responsive design (mobile) */
   --font-size-text-mobile: 1rem;
   --font-size-heading-mobile: 1.75rem;
-  --font-size-subHeading-mobile:1.25rem;
+  --font-size-subtext: 1rem;
+  --font-size-subSubtext: 0.75rem;
+  --font-size-subHeading-mobile: 1.25rem;
   --std-border-radius-mobile: 0.25rem;
 }
 
@@ -16,16 +18,17 @@
   font-family: "Campton-Font-Regular";
   /*Can be any text*/
   src: local("ColorTube-Regular.ttf"),
-    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf") format("truetype");
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf")
+      format("truetype");
 }
 
 @font-face {
   font-family: "Campton-Font-Bold";
   /*Can be any text*/
   src: local("ColorTube-Regular.ttf"),
-    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf") format("truetype");
+    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf")
+      format("truetype");
 }
-
 
 /* Second font for higlights */
 @font-face {
@@ -34,7 +37,6 @@
   src: local("StiffStaff-Heavy.ttf"),
     url("./share/font/ShadowsIntoLightTwo-Regular.ttf") format("truetype");
 }
-
 
 .App {
   display: flex;
@@ -47,7 +49,7 @@
 
 /* Portrait means -> width <= height */
 @media only screen and (orientation: portrait) {
-  .App{
+  .App {
     width: auto;
     padding: 0% 5%;
   }

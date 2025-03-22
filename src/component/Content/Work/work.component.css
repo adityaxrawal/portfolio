@@ -1,4 +1,4 @@
-.project-section {
+.work-section {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -7,7 +7,7 @@
   transition: background-color 0.5s ease;
 }
 
-.project-heading {
+.work-heading {
   display: flex;
   width: 100%;
   font-size: var(--font-size-heading);
@@ -15,12 +15,12 @@
   transition: all ease-in-out 0.8s;
 }
 
-.project-heading-text {
+.work-heading-text {
   width: 40%;
   font-family: Campton-Font-Bold;
   font-size: var(--font-size-heading);
 }
-.project-heading-subtext {
+.work-heading-subtext {
   max-width: 30%;
   font-family: Campton-Font-Regular;
   font-style: italic;
@@ -40,7 +40,7 @@
 .heading-text-spining {
   rotate: -90deg;
   transition: all ease-in-out 0.8s;
-  translate: calc(-40%) -3rem;
+  translate: calc(-40%) calc(-50%);
 }
 .heading-subtext-spining {
   transition: all ease-in-out 0.8s;
@@ -53,7 +53,7 @@
   translate: 0rem 0rem;
 }
 
-.project-container {
+.work-container {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -65,46 +65,71 @@
   scroll-behavior: smooth;
 }
 
-.project-container-text {
+.work-container-text {
   display: flex;
   flex-direction: column;
   width: 50%;
   height: 100%;
   justify-content: flex-start; /* or space-around */
   align-items: flex-start; /* Ensure this has a value, like 'center' */
-  /* border: 1px solid blue; */
   overflow: hidden;
 }
 
-.project-text {
+.work-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   min-height: 70vh;
-  /* border: 1px solid yellow; */
 }
 
-.project-text-details {
+.work-text-details {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 70%;
+  width: 80%;
   gap: 1rem;
 }
 
-.project-text-heading {
+.work-details-headings{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.work-details-heading-container{
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.work-text-details-heading {
   font-size: var(--font-size-subHeading);
   font-family: Campton-Font-Bold;
 }
-.project-text-description {
+
+.work-text-details-heading-subtext {
+  font-size: var(--font-size-subtext);
+  font-family: Campton-Font-Regular;
+  font-style: italic;
+  /* padding-bottom: 2px; */
+}
+.work-text-heading-years{
+  font-size: var(--font-size-subSubtext);
+  font-family: Campton-Font-Regular;
+}
+.work-text-description {
   font-size: var(--font-size-text);
   font-family: Campton-Font-Regular;
 }
 
-.project-container-images {
+.work-container-images {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -114,7 +139,7 @@
   /* border: 1px solid green; */
 }
 
-.project-images-list {
+.work-images-list {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -125,16 +150,51 @@
   border-radius: 0.5rem;
 }
 
-.project-images-items {
+.work-images-items {
   width: 100%;
   height: 100%;
 }
 
-.project-images {
+.work-images {
   width: 100%;
   height: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.project-images::-webkit-scrollbar {
+.work-images::-webkit-scrollbar {
   display: none;
+}
+
+@media only screen and (orientation: portrait) {
+  .work-heading-subtext {
+    min-width: 100%;
+  }
+  .work-container-text {
+    width: 100%;
+  }
+  .work-text {
+    min-height: 100%;
+  }
+  .work-text-details {
+    width: 85%;
+    padding: 2.5rem 0rem;
+  }
+  .work-details-headings{
+    align-items: flex-end;
+  }
+  .work-details-heading-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .work-text-details-heading{
+    font-size: var(--font-size-subHeading-mobile);
+  }
+  .work-container-images {
+    display: none;
+  }
+  .heading-text-spining {
+    rotate: -90deg;
+    transition: all ease-in-out 0.8s;
+    translate: calc(-40%) 8rem;
+  }
 }
