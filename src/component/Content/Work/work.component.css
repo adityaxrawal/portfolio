@@ -40,7 +40,7 @@
 .heading-text-spining {
   rotate: -90deg;
   transition: all ease-in-out 0.8s;
-  translate: calc(-40%) calc(-50%);
+  translate: calc(-42%) calc(-50%);
 }
 .heading-subtext-spining {
   transition: all ease-in-out 0.8s;
