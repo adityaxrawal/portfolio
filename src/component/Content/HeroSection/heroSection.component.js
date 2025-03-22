@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 // image
 import heroImage from '../../../share/img/me-cropped-blurred.png'
 // css
@@ -13,6 +13,10 @@ const HeroSection = () => {
     const { isDarkTheme } = useSharedState();
 
     const [isImageOverflowing, setImageOverflowing] = useState(false);
+    const [imageSize, setImageSize] = useState({
+        width: 0,
+        height: 0
+    });
     const imageContainerRef = useRef(null);
 
     useEffect(() => {
@@ -28,6 +32,22 @@ const HeroSection = () => {
 
         return () => window.removeEventListener('resize', checkOverflow);
     }, []);
+
+    // Maintain Aspect Ratio (Original ratio from the given image)
+    const aspectRatio = 0.6; // Replace with your actual width/height ratio
+
+    const calculateImageSize = useCallback(() => {
+        let newWidth = window.innerWidth * 0.205; // Image takes 30% of screen width
+        let newHeight = newWidth / aspectRatio; // Maintain aspect ratio
+
+        setImageSize({ width: newWidth, height: newHeight });
+    }, []);
+
+    useEffect(() => {
+        calculateImageSize();
+        window.addEventListener('resize', calculateImageSize);
+        return () => window.removeEventListener('resize', calculateImageSize);
+    }, [calculateImageSize]);
 
     return (
         <div className='hero-section'>
@@ -79,7 +99,12 @@ const HeroSection = () => {
             >
                 <div className='image-card'>
                     <div className='image-card-part-one'>
-                        <img src={heroImage} alt='my-image' className='image' />
+                        <img
+                            src={heroImage}
+                            alt='my-image'
+                            className='image'
+                            style={{ width: imageSize.width, height: imageSize.height }}
+                        />
                     </div>
                     <div className='image-card-part-two'>
                         <span>Aditya Rawal</span>

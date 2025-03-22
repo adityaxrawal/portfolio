@@ -1,6 +1,7 @@
 :root{
   --font-size-text: 1.25rem;
   --font-size-subtext: 1rem;
+  --font-size-subSubtext: 0.75rem;
   --font-size-heading: 2.5rem;
   --font-size-subHeading: 1.75rem;
   --std-border-radius: 0.5rem;
