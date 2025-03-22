@@ -1,32 +1,45 @@
-import { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Page from './component/page.component';
-import { SharedStateContext, SharedStateProvider } from './component/shared-state-context-api';
-
-const darkTheme = {
-  backgroundColor: 'black',
-  color: 'white'
-}
-
-const lightTheme = {
-  backgroundColor: 'white',
-  color: 'black'
-}
+import { AppProvider, useSharedState } from './context/app-context';
+import { ReactLenis, useLenis } from 'lenis/react';
+import tinycolor from 'tinycolor2';
 
 function App() {
   return (
-    <SharedStateProvider>
-      <ThemedApp />
-    </SharedStateProvider>
+    <Router>
+      <AppProvider>
+        <ReactLenis root>
+          <ThemedApp />
+        </ReactLenis>
+      </AppProvider>
+    </Router>
   );
 }
 
 function ThemedApp() {
-  const { isDarkTheme } = useContext(SharedStateContext);
+  const { isDarkTheme, backgroundColor } = useSharedState();
+
+  useLenis(({ scroll }) => {
+  });
+
+  // Function to determine text color based on background brightness
+  const getContrastColor = (bgColor) => {
+    return tinycolor(bgColor).isDark() ? '#FFFFFF' : '#000000';
+  };
+
+
+  const themeStyles = {
+    backgroundColor: backgroundColor,
+    color: getContrastColor(backgroundColor), // Dynamically set text color
+  };
 
   return (
-    <div className="App" style={isDarkTheme ? darkTheme : lightTheme}>
-        <Page />
+    <div className="App" style={themeStyles}>
+      <Routes>
+        <Route path="/aditya-rawal" element={<Page />} />
+        <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
+      </Routes>
     </div>
   );
 }
