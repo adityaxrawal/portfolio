@@ -2,12 +2,15 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 import Page from './component/page.component';
 import { AppProvider, useSharedState } from './context/app-context';
+import { ReactLenis, useLenis } from 'lenis/react';
 
 function App() {
   return (
     <Router>
       <AppProvider>
-        <ThemedApp />
+        <ReactLenis root>
+          <ThemedApp />
+        </ReactLenis>
       </AppProvider>
     </Router>
   );
@@ -15,21 +18,17 @@ function App() {
 
 function ThemedApp() {
   const { isDarkTheme, backgroundColor } = useSharedState();
-  const scrollRef = null;
 
-  const darkTheme = {
-    backgroundColor: backgroundColor,
-    color: 'white'
-  }
+  useLenis(({ scroll }) => {
+  });
 
-  const lightTheme = {
+  const themeStyles = {
     backgroundColor: backgroundColor,
-    color: 'black'
-  }
+    color: isDarkTheme ? 'white' : 'black',
+  };
 
   return (
-    <div ref={scrollRef} className="App" style={isDarkTheme ? darkTheme : lightTheme}>
-      {/* <span style={{position: 'sticky', top: 0, backgroundColor: 'white', color: 'black', display: 'flex', justifyContent: 'center', alignContent: 'center'}}>current BCG: {backgroundColor}</span> */}
+    <div className="App" style={themeStyles}>
       <Routes>
         <Route path="/aditya-rawal" element={<Page />} />
         <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />

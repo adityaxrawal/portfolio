@@ -13,6 +13,7 @@ const Work = () => {
     const imagesRef = useRef(null);
     const textRef = useRef(null);
     const [isPinned, setIsPinned] = useState(false);
+    const [isHeadingOverflowing, setHeadingOverflowing] = useState(false)
     const [imageDimensions, setImageDimensions] = useState({
         width: 0,
         height: 0
@@ -21,7 +22,7 @@ const Work = () => {
 
     const calculateImageDimensions = useCallback(() => {
         const width = (window.innerWidth * 0.9) / 2; // (innerWidth - 10%)/2
-        const height = width /1.8; // height = width/2.2
+        const height = width / 1.8; // height = width/2.2
         setImageDimensions({ width, height });
     }, []);
 
@@ -32,22 +33,30 @@ const Work = () => {
     }, [calculateImageDimensions]);
 
     const handleScroll = async (e) => {
-        console.log('e', e)
         if (!sectionRef.current || !imagesRef.current) return;
 
         const sectionTop = sectionRef.current.getBoundingClientRect().top;
         const sectionOffSetHeight = sectionRef.current.offsetHeight;
         const textTop = textRef.current.getBoundingClientRect().top;
+        const sectionBottom = sectionRef.current.getBoundingClientRect().bottom;
+        const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
 
+        setHeadingOverflowing((prev) => {
+            return sectionBottom + (windowWidth / 4) < windowHeight;
+        });
         if (sectionTop < 0) {
             setIsPinned(true)
-            imagesRef.current.scrollTop = parseInt(Math.abs(textTop) / 1.75);
-            // IMC = image container percentage -> how is image container covered : returns percentage
+            const dynamicDivisor = 2.75 * (windowHeight / windowWidth);
+            imagesRef.current.scrollTop = parseInt(Math.abs(textTop) / dynamicDivisor);
+            console.log('imageref current', windowWidth, windowHeight, textTop, imagesRef.current.scrollTop)
+            // ICP = image container percentage -> how is image container covered : returns percentage
             const currentICP = await calculateICP();
-            updateBackgroundColor(currentICP)
+            updateBackgroundColor(currentICP);
         } else if (sectionTop === -sectionOffSetHeight) {
-            setIsPinned(false)
+            setIsPinned(false);
         } else {
+            setIsPinned(false);
             imagesRef.current.scrollTop = 0;
         }
     }
@@ -88,12 +97,19 @@ const Work = () => {
         };
     });
 
+    console.log('current isheadingOverflowing', isHeadingOverflowing)
+
     return (
         <React.Fragment>
             <section ref={sectionRef} className='project-section' >
-                <div className={`project-heading ${isPinned ? 'sticky' : 'relative'}`}>
-                    <span className='project-heading-text'>Grindstory</span>
-                    <span className='project-heading-subtext'>The tale of endless grind</span>
+                <div className={`project-heading ${isPinned ? 'sticky' : 'relative'}`} >
+                    <span
+                        className={`project-heading-text 
+                            ${(isPinned && !isHeadingOverflowing) ? 'heading-text-spining' : 'heading-spining-reset'}                            `}
+                    >
+                        Laborhood
+                    </span>
+                    <span className={`project-heading-subtext ${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>Where Paychecks Meet Perseverance!</span>
                 </div>
                 <div className='project-container'>
                     <div className='project-container-text' ref={textRef}>
