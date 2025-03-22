@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 // image
 import heroImage from '../../../share/img/me-cropped-blurred.png'
 // css
@@ -12,32 +12,17 @@ import { useSharedState } from '../../../context/app-context';
 const HeroSection = () => {
     const { isDarkTheme } = useSharedState();
 
-    const [isImageOverflowing, setImageOverflowing] = useState(false);
     const [imageSize, setImageSize] = useState({
         width: 0,
         height: 0
     });
-    const imageContainerRef = useRef(null);
 
-    useEffect(() => {
-        const checkOverflow = () => {
-            const container = imageContainerRef.current;
-            if (container) {
-                setImageOverflowing(container.scrollWidth > container.clientWidth);
-            }
-        };
-
-        checkOverflow();
-        window.addEventListener('resize', checkOverflow); // Recheck on window resize
-
-        return () => window.removeEventListener('resize', checkOverflow);
-    }, []);
 
     // Maintain Aspect Ratio (Original ratio from the given image)
     const aspectRatio = 0.6; // Replace with your actual width/height ratio
 
     const calculateImageSize = useCallback(() => {
-        let newWidth = window.innerWidth * 0.205; // Image takes 30% of screen width
+        let newWidth = window.innerWidth * 0.20; // Image takes 30% of screen width
         let newHeight = newWidth / aspectRatio; // Maintain aspect ratio
 
         setImageSize({ width: newWidth, height: newHeight });
@@ -53,7 +38,7 @@ const HeroSection = () => {
         <div className='hero-section'>
             <RoughNotationGroup show={true}>
                 <div className='headline'
-                    style={{ width: isImageOverflowing ? '100%' : '60%' }}
+                    // style={{ width: isImageOverflowing ? '100%' : '60%' }}
                 >
                     <span className='headline-title'>Hola! I am Aditya, a <RoughNotation type='highlight' order='1' color='#cddafd'><span style={{ color: isDarkTheme ? 'black' : 'initial' }}>developer</span></RoughNotation> based in India</span>
                     <span className='headline-text'>
@@ -94,10 +79,11 @@ const HeroSection = () => {
             </RoughNotationGroup>
             <div
                 className='image-container'
-                ref={imageContainerRef}
-                style={{ display: isImageOverflowing ? 'none' : 'flex' }}
+                // style={{ display: isImageOverflowing ? 'none' : 'flex' }}
             >
-                <div className='image-card'>
+                <div className='image-card'
+                    style={{ width: (imageSize.width + 16), height: (imageSize.height + 48)}}
+                >
                     <div className='image-card-part-one'>
                         <img
                             src={heroImage}

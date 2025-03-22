@@ -161,10 +161,20 @@
     justify-content: flex-end;
   }
   .nav-left {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
   .nav-text {
     display: none;
     font-size: var(--font-size-subHeading-mobile);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .nav-bar{
+    padding: 2.5% 0%;
+  }
+  .nav-left{
+    font-size: var(--font-size-heading-mobile);
+    height: 50%;
   }
 }

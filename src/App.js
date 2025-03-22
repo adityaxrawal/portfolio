@@ -3,6 +3,7 @@ import './App.css';
 import Page from './component/page.component';
 import { AppProvider, useSharedState } from './context/app-context';
 import { ReactLenis, useLenis } from 'lenis/react';
+import tinycolor from 'tinycolor2';
 
 function App() {
   return (
@@ -22,9 +23,15 @@ function ThemedApp() {
   useLenis(({ scroll }) => {
   });
 
+  // Function to determine text color based on background brightness
+  const getContrastColor = (bgColor) => {
+    return tinycolor(bgColor).isDark() ? '#FFFFFF' : '#000000';
+  };
+
+
   const themeStyles = {
     backgroundColor: backgroundColor,
-    color: isDarkTheme ? 'white' : 'black',
+    color: getContrastColor(backgroundColor), // Dynamically set text color
   };
 
   return (

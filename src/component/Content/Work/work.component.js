@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import './work.component.css'
 import { useSharedState } from '../../../context/app-context';
-import { darkModeColorList, lightModeColorList } from '../../../share/utils/constant';
+import { darkModeColorList, lightModeColorList, WorkExperience } from '../../../share/utils/constant';
 
 // images
 import leadsquaredLogo from '../../../share/img/lsq.png'
@@ -42,8 +42,11 @@ const Work = () => {
         const windowHeight = window.innerHeight;
         const windowWidth = window.innerWidth;
 
+        const currentScreenSize = window.screen.width;
+        const dynamicOverflowDivisor = currentScreenSize < 500 ? 0.75 : 4
+
         setHeadingOverflowing((prev) => {
-            return sectionBottom + (windowWidth / 4) < windowHeight;
+            return sectionBottom + (windowWidth / dynamicOverflowDivisor) < windowHeight;
         });
         if (sectionTop < 0) {
             setIsPinned(true)
@@ -101,94 +104,67 @@ const Work = () => {
 
     return (
         <React.Fragment>
-            <section ref={sectionRef} className='project-section' >
-                <div className={`project-heading ${isPinned ? 'sticky' : 'relative'}`} >
+            <section ref={sectionRef} className='work-section' >
+                <div className={`work-heading ${isPinned ? 'sticky' : 'relative'}`} >
                     <span
-                        className={`project-heading-text 
+                        className={`work-heading-text 
                             ${(isPinned && !isHeadingOverflowing) ? 'heading-text-spining' : 'heading-spining-reset'}                            `}
                     >
                         Laborhood
                     </span>
-                    <span className={`project-heading-subtext ${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>Where Paychecks Meet Perseverance!</span>
+                    <span className={`work-heading-subtext ${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>Where Paychecks Meet Perseverance!</span>
                 </div>
-                <div className='project-container'>
-                    <div className='project-container-text' ref={textRef}>
-                        <div className='project-text'>
-                            <div className='project-text-details'>
-                                <span className='project-text-heading'>
-                                    Leadsquared
-                                </span>
-                                <span className='project-text-description'>
-
-                                    Develop scalable web apps using Node.js, React.js, and AWS Lambda.
-                                    Conduct code reviews, resolve issues, and maintain technical documentation.
-                                    Collaborate with clients to gather and document project requirements clearly.
-                                    Implement efficient solutions with strong analytical and problem-solving skills.
-                                    Design REST APIs for seamless system and platform integrations.
-                                </span>
+                <div className='work-container'>
+                    <div className='work-container-text' ref={textRef}>
+                        {WorkExperience.map(({ companyLink, companyName, title, years, description }) => {
+                            return <div className='work-text'>
+                                <div className='work-text-details'>
+                                    <div className='work-details-headings'>
+                                        <div className='work-details-heading-container'>
+                                            <span className='work-text-details-heading'>{companyName}&nbsp;</span>
+                                            <span className='work-text-details-heading-subtext'>{title}</span>
+                                        </div>
+                                        <span className='work-text-heading-years'>
+                                            {years}
+                                        </span>
+                                    </div>
+                                    <span className='work-text-description'>
+                                        {description}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div className='project-text'>
-                            <div className='project-text-details'>
-                                <span className='project-text-heading'>
-                                    DevelUp
-                                </span>
-                                <span className='project-text-description'>
-
-                                    Develop scalable web apps using Node.js, React.js, and AWS Lambda.
-                                    Conduct code reviews, resolve issues, and maintain technical documentation.
-                                    Collaborate with clients to gather and document project requirements clearly.
-                                    Implement efficient solutions with strong analytical and problem-solving skills.
-                                    Design REST APIs for seamless system and platform integrations.
-                                </span>
-                            </div>
-                        </div>
-                        <div className='project-text'>
-                            <div className='project-text-details'>
-                                <span className='project-text-heading'>
-                                    Wipro
-                                </span>
-                                <span className='project-text-description'>
-
-                                    Develop scalable web apps using Node.js, React.js, and AWS Lambda.
-                                    Conduct code reviews, resolve issues, and maintain technical documentation.
-                                    Collaborate with clients to gather and document project requirements clearly.
-                                    Implement efficient solutions with strong analytical and problem-solving skills.
-                                    Design REST APIs for seamless system and platform integrations.
-                                </span>
-                            </div>
-                        </div>
+                        })}
                     </div>
-                    <div className={`project-container-images ${isPinned ? 'sticky' : 'relative'}`}>
+                    <div className={`work-container-images ${isPinned ? 'sticky' : 'relative'}`}>
                         <div
-                            className={`project-images-list`}
+                            className={`work-images-list`}
                             ref={imagesRef}
                             onWheel={() => { return false }}
                             style={{
                                 width: imageDimensions.width,
                                 height: imageDimensions.height
                             }}>
-                            <span className='project-images-items'>
+                            <span className='work-images-items'>
                                 <img
                                     src={leadsquaredLogo}
                                     alt='Leadsquared-Logo'
-                                    className='project-images'
+                                    className='work-images'
 
                                 />
                             </span>
-                            <span className='project-images-items'>
+                            <span className='work-images-items'>
                                 <img
                                     src={develUpLogo}
                                     alt='DevelUp-Logo'
-                                    className='project-images'
+                                    className='work-images'
 
                                 />
                             </span>
-                            <span className='project-images-items'>
+                            <span className='work-images-items'>
                                 <img
                                     src={wiproLogo}
                                     alt='Wipro-Logo'
-                                    className='project-images'
+                                    className='work-images'
 
                                 />
                             </span>
