@@ -110,9 +110,9 @@ const Work = () => {
                         className={`work-heading-text 
                             ${(isPinned && !isHeadingOverflowing) ? 'heading-text-spining' : 'heading-spining-reset'}                            `}
                     >
-                        Laborhood
+                        Devenanigans
                     </span>
-                    <span className={`work-heading-subtext ${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>Where Paychecks Meet Perseverance!</span>
+                    <span className={`work-heading-subtext ${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>Code. Debug. Shenanigans. Repeat.!!</span>
                 </div>
                 <div className='work-container'>
                     <div className='work-container-text' ref={textRef}>
