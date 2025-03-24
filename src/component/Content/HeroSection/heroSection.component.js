@@ -53,7 +53,7 @@ const HeroSection = () => {
                         </span>
                         <span className='headline-sub-text'>
                             Prior to this, I worked as a Software Developer at DevelUp, where I maintained
-                            the company's website using <RoughNotation type='highlight' order='5' color='#faedcd'><span style={{ color: isDarkTheme ? 'black' : 'initial' }}>Next.js</span></RoughNotation> and created a Resume Builder tool that
+                            the company website using <RoughNotation type='highlight' order='5' color='#faedcd'><span style={{ color: isDarkTheme ? 'black' : 'initial' }}>Next.js</span></RoughNotation> and created a Resume Builder tool that
                             significantly improved users job placement prospects. These experiences have
                             allowed me to collaborate with diverse teams and refine my skills in &nbsp;<RoughNotation type='highlight' order='6' color='#ffd7ba'><span className='highlighted-text' style={{ color: isDarkTheme ? 'black' : 'initial' }}>full-stack development</span></RoughNotation>.
                         </span>
