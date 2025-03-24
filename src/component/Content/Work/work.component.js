@@ -52,7 +52,6 @@ const Work = () => {
             setIsPinned(true)
             const dynamicDivisor = 2.75 * (windowHeight / windowWidth);
             imagesRef.current.scrollTop = parseInt(Math.abs(textTop) / dynamicDivisor);
-            console.log('imageref current', windowWidth, windowHeight, textTop, imagesRef.current.scrollTop)
             // ICP = image container percentage -> how is image container covered : returns percentage
             const currentICP = await calculateICP();
             updateBackgroundColor(currentICP);
@@ -100,7 +99,6 @@ const Work = () => {
         };
     });
 
-    console.log('current isheadingOverflowing', isHeadingOverflowing)
 
     return (
         <React.Fragment>
