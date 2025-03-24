@@ -162,7 +162,7 @@ export const TechnicalSkills = [
         skillImage: 'python.png'
     },
     {
-        skillName: 'DSA',
+        skillName: 'Data Structure and Algorithms (DSA)',
         skillLevel: 7,
         skillColor: '#2196F3',
         skillDesc: 'Implementing optimized algorithms and efficient data structures for high-performance applications.',
@@ -171,16 +171,16 @@ export const TechnicalSkills = [
         skillImage: 'dsa.png'
     },
     {
-        skillName: 'AWS',
+        skillName: 'AWS (EC2, Lambda, API Gateway)',
         skillLevel: 6,
         skillColor: '#FF9900',
-        skillDesc: ' AWS(EC2, Lambda, API Gateway) Deploying and managing cloud infrastructure with serverless functions, cost-effective computing, and scalable API solutions.',
+        skillDesc: 'Deploying and managing cloud infrastructure with serverless functions, cost-effective computing, and scalable API solutions.',
         skillIcon: '☁️',
         extra: 'Serverless: Deploy first, ask questions later!',
         skillImage: 'aws.png'
     },
     {
-        skillName: 'CI/CD',
+        skillName: 'CI/CD Pipelines',
         skillLevel: 5,
         skillColor: '#2196F3',
         skillDesc: 'Automating deployment pipelines, ensuring smooth integrations, and optimizing development workflows with CI/CD tools.',
