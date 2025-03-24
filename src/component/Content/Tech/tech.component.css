@@ -1,52 +1,226 @@
-.section-technology{
-    width: 100%;
-    height: 100%;
-    position: relative;
+.section-technology {
+  position: relative;
+  width: auto;
+  /* height: 350vw; */
 }
 
-.container {
+.technology-container {
+  position: sticky;
+  width: auto;
+  height: 100vh;
+  top: 0;
+}
+
+.tech-heading {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.tech-heading-text {
+  font-family: Campton-Font-Bold;
+  font-size: var(--font-size-heading);
+}
+
+.tech-heading-subText {
+  font-family: Campton-Font-Regular;
+  font-size: var(--font-size-subSubtext);
+  font-style: italic;
+}
+
+.tech-boxes-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  /* gap: 2rem; */
   overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  background-color: #999;
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.container .box {
-  width: 100vw;
-  height: 100vh;
-  display: inline-block;
-  position: relative;
+.tech-boxes-container {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer & Edge */
 }
 
-.container .box > div {
-  width: 100px;
-  height: 100px;
-  font-size: 96px;
-  color: #fff;
+.tech-boxes-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari*/
+}
+
+.tech-boxes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 50vw;
+  height: 60vh;
+}
+
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.box-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 98%;
+  height: 95%;
+  /* border-radius: 0.5rem; */
+}
+
+.box-first {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 90%;
+}
+
+.box-first-left {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  height: 100%;
+  padding: 0%;
+}
+
+.box-skill-name-desc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-skill-name {
+  width: 100%;
+  font-size: var(--font-size-subHeading);
+  font-family: Campton-Font-Bold;
+}
+
+.box-skill-desc {
+  font-size: var(--font-size-text);
+  font-family: Campton-Font-Regular;
+  font-style: italic;
+}
+
+.box-first-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 100%;
+}
+
+.box-skill-image {
+  position: relative;
+  display: inline;
+  width: 100%;
+  height: 100%;
+}
+
+.rotating-svg {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  animation: rotate-svg 10s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotate-svg {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skill-image {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -50px 0 0 -50px;
-  line-height: 0.7;
-  font-weight: bold;
+  transform: translate(-50%, -50%);
+  width: 8rem; /* Adjust size as needed */
+  height: 8rem;
 }
 
-.container2 {
+.box-second {
+  position: relative;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
 }
 
-.one {
-  background-color: #45ccff;
+.box-third {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
 }
-.two {
-  background-color: #49e83e;
+
+.box-skill-bar-container {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 0.5%;
 }
-.three {
-  background-color: #edde05;
+
+.box-skill-bar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid black;
 }
-.four {
-  background-color: #e84b30;
+
+@media only screen and (orientation: portrait) {
+  .tech-boxes {
+    min-width: 100vw;
+    height: 50vh;
+  }
+  .tech-heading-subText{
+    font-size: var(--font-size-text-mobile);
+  }
+  .box-skill-name-desc {
+    height: 100%;
+    justify-content: center;
+  }
+  .skill-image{
+    width: 5rem;
+    height: 5rem;
+  }
+  .box-second{
+    font-size: var(--font-size-subSubtext);
+  }
 }

@@ -8,7 +8,7 @@ const Content = () => {
     <React.Fragment>
       <HeroSection />
       <Work />
-      {/* <Technology/> */}
+      <Technology/>
     </React.Fragment>
   )
 }

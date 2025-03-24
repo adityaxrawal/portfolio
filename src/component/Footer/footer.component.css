@@ -9,7 +9,7 @@
 }
 
 .footer-free-space{
-    margin-top: 80%;
+    margin-top: 20%;
 }
 
 .footer-coming-soon{
@@ -17,4 +17,10 @@
     flex-direction: column;
     font-weight: 900;
     opacity: 0.5;
+}
+
+@media only screen and (orientation: portrait) {
+    .footer-section{
+        font-size: 2rem;
+    }
 }
