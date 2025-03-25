@@ -61,7 +61,7 @@ const Technology = () => {
                                             <div className='box-absolute'>
                                                 <div className='box-skill-image'>
                                                     {/* Static Image */}
-                                                    <img src={require(`../../../share/img/skillsets/resized/${skillImage}`)} className='skill-image' alt='skill-logo' />
+                                                    <img src={require(`../../../share/img/skills/${skillImage}`)} className='skill-image' alt='skill-logo' />
 
                                                     {/* Rotating SVG */}
                                                     <div className="rotating-svg">
