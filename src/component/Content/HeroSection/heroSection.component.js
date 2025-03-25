@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 // image
-import heroImage from '../../../share/img/me-cropped-blurred.png'
+import heroImage from '../../../share/img/my/me.png'
 // css
 import './heroSection.component.css'
 // Rough Notation for react
@@ -38,7 +38,7 @@ const HeroSection = () => {
         <div className='hero-section'>
             <RoughNotationGroup show={true}>
                 <div className='headline'
-                    // style={{ width: isImageOverflowing ? '100%' : '60%' }}
+                // style={{ width: isImageOverflowing ? '100%' : '60%' }}
                 >
                     <span className='headline-title'>Hola! I am Aditya, a <RoughNotation type='highlight' order='1' color='#cddafd'><span style={{ color: isDarkTheme ? 'black' : 'initial' }}>developer</span></RoughNotation> based in India</span>
                     <span className='headline-text'>
@@ -79,10 +79,10 @@ const HeroSection = () => {
             </RoughNotationGroup>
             <div
                 className='image-container'
-                // style={{ display: isImageOverflowing ? 'none' : 'flex' }}
+            // style={{ display: isImageOverflowing ? 'none' : 'flex' }}
             >
                 <div className='image-card'
-                    style={{ width: (imageSize.width + 16), height: (imageSize.height + 48)}}
+                    style={{ width: (imageSize.width + 16), height: (imageSize.height + 48) }}
                 >
                     <div className='image-card-part-one'>
                         <img

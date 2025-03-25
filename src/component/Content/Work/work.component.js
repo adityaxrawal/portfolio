@@ -4,9 +4,9 @@ import { useSharedState } from '../../../context/app-context';
 import { darkModeColorList, lightModeColorList, WorkExperience } from '../../../share/utils/constant';
 
 // images
-import leadsquaredLogo from '../../../share/img/lsq.png'
-import develUpLogo from '../../../share/img/develup.png'
-import wiproLogo from '../../../share/img/wipro.png'
+import leadsquaredLogo from '../../../share/img/companies/lsq.png'
+import develUpLogo from '../../../share/img/companies/develup.png'
+import wiproLogo from '../../../share/img/companies/wipro.png'
 
 const Work = () => {
     const sectionRef = useRef(null);
@@ -114,8 +114,8 @@ const Work = () => {
                 </div>
                 <div className='work-container'>
                     <div className='work-container-text' ref={textRef}>
-                        {WorkExperience.map(({ companyLink, companyName, title, years, description }) => {
-                            return <div className='work-text'>
+                        {WorkExperience.map(({ companyLink, companyName, title, years, description }, index) => {
+                            return <div className='work-text' key={index}>
                                 <div className='work-text-details'>
                                     <div className='work-details-headings'>
                                         <div className='work-details-heading-container'>
