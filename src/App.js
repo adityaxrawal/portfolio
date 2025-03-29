@@ -4,6 +4,7 @@ import Page from './component/page.component';
 import { AppProvider, useSharedState } from './context/app-context';
 import { ReactLenis, useLenis } from 'lenis/react';
 import tinycolor from 'tinycolor2';
+import Companies from './component/Companies/companies.component';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function ThemedApp() {
       <Routes>
         <Route path="/aditya-rawal" element={<Page />} />
         <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
+        <Route path='/companies' element={<Companies/>}/>
       </Routes>
     </div>
   );

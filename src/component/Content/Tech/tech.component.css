@@ -39,6 +39,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding-top: 10%;
+  overflow-x: hidden;
 }
 
 .tech-boxes-container {
@@ -67,7 +68,7 @@
   align-items: center;
   width: 80%;
   height: 80%;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
