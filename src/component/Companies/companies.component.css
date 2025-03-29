@@ -1,0 +1,54 @@
+.table-container {
+  margin: 0rem;
+  padding: 2.5rem;
+  overflow: scroll;
+  height: 100%;
+  width: auto;
+  background-color: #f9f7f7;
+  border-radius: 2.5rem;
+}
+.table-container::-webkit-scrollbar {
+  display: none;
+}
+
+.companies-table {
+  width: 100%;
+  height: 100%;
+}
+
+.company-cell {
+  display: flex;
+  background-color: lightgreen;
+  height: 2.5rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px black solid;
+  border-radius: 0.5rem;
+}
+
+/* Optional: add a hover effect for the table cells */
+.company-cell:hover {
+  background-color: lightskyblue !important;
+  cursor: pointer;
+}
+
+/* Ensure the link inherits the parent's background */
+.company-cell a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: black;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+/* Optional: Add text color change on hover */
+.company-cell:hover a {
+  color: white; /* Change text color on hover */
+  background-color: lightskyblue !important;
+}
