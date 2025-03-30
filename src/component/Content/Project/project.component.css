@@ -1,0 +1,159 @@
+/* src/component/Content/Projects/projects.component.css */
+
+.projects-section {
+  padding: 50px 0; /* Add padding */
+  width: 100%;
+  overflow: hidden; /* Hide overflow to prevent scrollbars during animation */
+  min-height: 60vh; /* Ensure section has some height */
+}
+
+.projects-section h2 {
+  font-size: var(--font-size-heading);
+  font-family: Campton-Font-Bold;
+  text-align: center;
+  margin-bottom: 40px;
+  opacity: 0; /* Start hidden for animation */
+  animation: fadeInHeading 1s ease-out forwards;
+  animation-delay: 0.2s; /* Delay heading fade-in */
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px; /* Spacing between cards */
+  perspective: 1000px; /* Enable 3D space for child elements */
+}
+
+.project-card {
+  background-color: var(
+    --background-card,
+    #ffffff
+  ); /* Use a variable for theme compatibility */
+  color: var(--text-card, #333333); /* Use a variable */
+  padding: 25px;
+  border-radius: var(--std-border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.4s ease;
+  transform-style: preserve-3d; /* Needed for 3D hover effect */
+  opacity: 0; /* Start hidden */
+  transform: translateY(50px); /* Start slightly lower */
+  /* Staggered animation definition */
+  animation: slideInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* Stagger the animation delay for each card */
+/* You might need more if you fetch more projects */
+.project-card:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.project-card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.project-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.project-card:nth-child(4) {
+  animation-delay: 0.7s;
+}
+.project-card:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.project-card:nth-child(6) {
+  animation-delay: 0.9s;
+}
+/* Add more nth-child rules if needed */
+
+.project-card:hover {
+  transform: rotateX(5deg) rotateY(-5deg) scale(1.03); /* 3D Tilt effect */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: Campton-Font-Bold;
+  font-size: var(--font-size-subHeading);
+}
+
+.project-card h3 a {
+  text-decoration: none;
+  color: inherit; /* Inherit color from card */
+  transition: color 0.3s ease;
+}
+
+.project-card h3 a:hover {
+  color: var(--link-hover-color, #007bff); /* Example hover color */
+}
+
+.project-card p {
+  font-size: var(--font-size-subtext);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.project-language {
+  display: inline-block;
+  background-color: var(--language-bg, #e9ecef); /* Variable for background */
+  color: var(--language-text, #495057); /* Variable for text */
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem; /* Slightly smaller font */
+  font-weight: bold;
+}
+
+/* Keyframes for animations */
+@keyframes fadeInHeading {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 600px) {
+  .projects-section h2 {
+    font-size: var(--font-size-heading-mobile);
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr; /* Stack cards on mobile */
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-card h3 {
+    font-size: var(--font-size-subHeading-mobile);
+  }
+
+  .project-card p {
+    font-size: var(--font-size-text-mobile);
+  }
+
+  /* Disable hover tilt on potentially touch devices if desired */
+  .project-card:hover {
+    transform: scale(1.02); /* Simpler scale effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+}
