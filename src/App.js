@@ -19,7 +19,7 @@ function App() {
 }
 
 function ThemedApp() {
-  const { isDarkTheme, backgroundColor } = useSharedState();
+  const { backgroundColor } = useSharedState();
 
   useLenis(({ scroll }) => {
   });
