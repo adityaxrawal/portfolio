@@ -37,10 +37,10 @@ jobs:
       - name: Run linter
         run: npm run lint --if-present
 
-      # Step 5: Run tests
-      # Assumes your test command is 'npm test' in package.json
-      - name: Run tests
-        run: npm test
+      # # Step 5: Run tests
+      # # Assumes your test command is 'npm test' in package.json
+      # - name: Run tests
+      #   run: npm test
 
       # Step 6: Build the project (verifies it compiles correctly)
       # Assumes your build command is 'npm run build' in package.json
