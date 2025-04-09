@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test (pull_request) # <- matches required status check name
+    name: Build and Test # <- Clean, no (pull_request)
     runs-on: ubuntu-latest
 
     steps:
