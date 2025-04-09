@@ -1,48 +1,34 @@
-name: React CI Checks # Name of the workflow displayed on GitHub
+name: React CI Checks
 
-# When this workflow should run:
 on:
   push:
-    branches: [ "**" ] # Run on pushes to *any* branch
+    branches: [ "**" ]
   pull_request:
-    branches: [ main, development ] # Run on pull requests targeting 'main' or 'development'
+    branches: [ main, development ]
 
 jobs:
-  # Define a job named 'build-and-test'
   build-and-test:
-    name: Build and Test # Display name for this job in GitHub UI
-    runs-on: ubuntu-latest # Use a standard Linux runner environment
+    name: React CI Checks / Build and Test # <- Clean, no (pull_request)
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Get your repository code onto the runner
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          # --- IMPORTANT: Change '20' to the Node.js version your project uses! ---
           node-version: '20'
-          cache: 'npm' # Enable caching for npm dependencies for faster runs
+          cache: 'npm'
 
-      # Step 3: Install project dependencies
       - name: Install dependencies
-        # Use 'npm ci' which is generally recommended for CI environments
-        # It uses package-lock.json for exact versions and is faster.
         run: npm ci
 
-      # Step 4: Run linters (Optional - if you have one configured)
-      # '--if-present' makes it run only if 'lint' script exists in your package.json
       - name: Run linter
         run: npm run lint --if-present
 
-      # # Step 5: Run tests
-      # # Assumes your test command is 'npm test' in package.json
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test -- --passWithNoTests
 
-      # Step 6: Build the project (verifies it compiles correctly)
-      # Assumes your build command is 'npm run build' in package.json
       - name: Build project
         run: npm run build --if-present
