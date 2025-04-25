@@ -10,7 +10,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-rough-notation": "^1.0.5",
-    "react-router-dom": "^7.2.0",
+    "react-router-dom": "^7.5.2",
     "react-scripts": "5.0.1",
     "tinycolor2": "^1.6.0",
     "web-vitals": "^2.1.4"
