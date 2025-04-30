@@ -17,12 +17,12 @@
 
 .work-heading-text {
   width: 40%;
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold;
   font-size: var(--font-size-heading);
 }
 .work-heading-subtext {
   max-width: 30%;
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
   font-style: italic;
   font-size: var(--font-size-subSubtext);
 }
@@ -111,22 +111,22 @@
 
 .work-text-details-heading {
   font-size: var(--font-size-subHeading);
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold;
 }
 
 .work-text-details-heading-subtext {
   font-size: var(--font-size-subtext);
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
   font-style: italic;
   /* padding-bottom: 2px; */
 }
 .work-text-heading-years{
   font-size: var(--font-size-subSubtext);
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
 }
 .work-text-description {
   font-size: var(--font-size-text);
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
 }
 
 .work-container-images {

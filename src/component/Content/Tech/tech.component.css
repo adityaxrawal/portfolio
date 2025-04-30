@@ -18,12 +18,12 @@
 }
 
 .tech-heading-text {
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold;
   font-size: var(--font-size-heading);
 }
 
 .tech-heading-subText {
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
   font-size: var(--font-size-subSubtext);
   font-style: italic;
 }
@@ -110,12 +110,12 @@
 .box-skill-name {
   width: 100%;
   font-size: var(--font-size-subHeading);
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold;
 }
 
 .box-skill-desc {
   font-size: var(--font-size-text);
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
   font-style: italic;
 }
 
