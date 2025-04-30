@@ -9,7 +9,7 @@
 
 .projects-section h2 {
   font-size: var(--font-size-heading);
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold;
   text-align: center;
   margin-bottom: 40px;
   opacity: 0; /* Start hidden for animation */
@@ -75,7 +75,7 @@
 .project-card h3 {
   margin-top: 0;
   margin-bottom: 10px;
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold;
   font-size: var(--font-size-subHeading);
 }
 
