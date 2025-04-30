@@ -1,6 +1,9 @@
+// src/share/utils/constant.js
+
 export const links = {
     linkedInLink: 'https://www.linkedin.com/in/adityaxrawal',
-    githubLink: 'https://www.github.com/adityaxrawal'
+    githubLink: 'https://www.github.com/adityaxrawal',
+    portfolioRepoLink: 'https://github.com/adityaxrawal/YOUR_PORTFOLIO_REPO_NAME' // <<-- ADD LINK TO THIS PORTFOLIO'S REPO IF PUBLIC
 }
 
 
@@ -23,42 +26,31 @@ export const lightModeColorList = {
     5: '#112D4E'  // Darkest blue
 }
 
-
+// --- Enhanced Work Experience Descriptions ---
 export const WorkExperience = [
     {
         companyName: 'Leadsquared',
         companyLink: 'https://www.leadsquared.com/',
         title: 'Software Engineer',
         years: 'Dec 2023 - Present',
-        description: `
-            Developed a serverless web app using AWS Lambda, cutting costs and boosting speed. 
-            Built RESTful APIs in Node.js and Express.js, handling 500K requests monthly. 
-            Integrated third-party APIs for scalability. 
-            Led code reviews for security and maintainability. 
-            Worked with teams to enhance features and client satisfaction.`
+        description: `Currently wrangling serverless functions and APIs! Developed a cost-saving, speedy web app using AWS Lambda. Built and maintain robust RESTful APIs in Node.js & Express.js, handling the chaos of ~500K monthly requests (and surviving!). Regularly integrate third-party APIs – because why build it if someone else already did? Participate in code reviews, ensuring our digital creations are secure, maintainable, and don't spontaneously combust. Collaborating across teams to enhance features and keep clients happy (mostly).`,
+        techHighlights: ['AWS Lambda', 'Node.js', 'Express.js', 'REST APIs', 'Serverless', 'Third-Party APIs']
     },
     {
         companyName: 'Uniq Global Labs',
         companyLink: 'https://www.develup.com/',
         title: 'Software Engineer',
         years: 'Jan 2023 - Dec 2023',
-        description: `
-            Built and maintained DevelUp’s site using Next.js, React.js, and Express.js, improving page load by 45%. 
-            Created web pages boosting engagement by 30%. 
-            Designed a job search board, enhancing accuracy by 40%. 
-            Built a Resume Builder used by 5,000+ users. 
-            Developed a dashboard integrating job listings, enrollments, and profiles for retention.`
+        description: `Helped build and maintain DevelUp's main site using the dynamic trio: Next.js, React.js, and Express.js, achieving a 45% boost in page load speed (faster than my morning coffee). Crafted engaging web pages leading to a 30% jump in user interaction. Designed and implemented a job search board that actually found relevant jobs (40% accuracy improvement!). Developed a Resume Builder used by over 5,000 users – hoping it helped them land great gigs! Also built an internal dashboard integrating job listings, enrollments, and profiles to improve retention.`,
+        techHighlights: ['Next.js', 'React.js', 'Express.js', 'Performance Optimization', 'UI/UX', 'Feature Development']
     },
     {
         companyName: 'Wipro',
         companyLink: 'https://www.wipro.com/',
         title: 'Software Engineer',
         years: 'Feb 2022 - Aug 2022',
-        description: `
-            Developed an e-commerce platform with MEAN stack, handling database and frontend. 
-            Designed a coupon microservice for sales tracking. 
-            Created REST APIs for user authentication and product management. 
-            Focused on secure and scalable architecture, ensuring seamless integration across features for enhanced user experience.`
+        description: `Dived into the e-commerce world, developing a platform with the MEAN stack (MongoDB, Express, Angular, Node.js) - handling both database schemas and frontend logic. Designed a coupon microservice for tracking sales (everyone loves a discount!). Created essential REST APIs for user authentication and product management. Focused heavily on building a secure, scalable architecture to ensure smooth integration and a non-frustrating user experience.`,
+        techHighlights: ['MEAN Stack', 'Angular', 'Node.js', 'MongoDB', 'Microservices', 'REST APIs', 'E-commerce']
     }
 ]
 
@@ -70,8 +62,9 @@ export const PROGRESS_COLORS = [
     { max: 10, color: "#B39DDB" }  // 10: Pastel Purple (Completed)
 ];
 
+// --- Technical Skills (No changes needed here unless you want to adjust descriptions/levels) ---
 export const TechnicalSkills = [
-    {
+     {
         skillName: 'React.js',
         skillLevel: 10,
         skillColor: '#61DAFB',
@@ -95,7 +88,7 @@ export const TechnicalSkills = [
         skillColor: '#E34F26',
         skillDesc: 'Designing pixel-perfect, responsive web interfaces with modern styling techniques and framework-based UI components.',
         skillIcon: '🎨',
-        extra: 'CSS is magic, Bootstrap is speed!',
+        extra: 'CSS is magic, sometimes dark magic!',
         skillImage: 'html_css.jpg'
     },
     {
@@ -149,7 +142,7 @@ export const TechnicalSkills = [
         skillColor: '#FF9800',
         skillDesc: 'Architecting modular, scalable, and independently deployable services for flexibility and performance.',
         skillIcon: '📦',
-        extra: 'Breaking monoliths, one service at a time!',
+        extra: 'Breaking monoliths, one function at a time!',
         skillImage: 'serverless.png'
     },
     {
@@ -176,7 +169,7 @@ export const TechnicalSkills = [
         skillColor: '#FF9900',
         skillDesc: 'Deploying and managing cloud infrastructure with serverless functions, cost-effective computing, and scalable API solutions.',
         skillIcon: '☁️',
-        extra: 'Serverless: Deploy first, ask questions later!',
+        extra: 'Serverless: Pay for what you use!',
         skillImage: 'aws.png'
     },
     {
@@ -186,7 +179,7 @@ export const TechnicalSkills = [
         skillDesc: 'Automating deployment pipelines, ensuring smooth integrations, and optimizing development workflows with CI/CD tools.',
         skillIcon: '⚙️',
         extra: 'Automate everything, ship faster!',
-        skillImage: 'serverless.png'
+        skillImage: 'serverless.png' // Consider changing image if needed
     },
     {
         skillName: 'Jira',
@@ -194,7 +187,7 @@ export const TechnicalSkills = [
         skillColor: '#0052CC',
         skillDesc: 'Managing Agile workflows, tracking sprints, and enhancing team collaboration for seamless software development.',
         skillIcon: '📊',
-        extra: 'Turning tasks into milestones!',
+        extra: 'Turning tasks into... more tasks!',
         skillImage: 'jira.png'
     }
 ];

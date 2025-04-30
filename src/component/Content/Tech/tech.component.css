@@ -1,7 +1,6 @@
 .section-technology {
   position: relative;
   width: auto;
-  /* height: 350vw; */
 }
 
 .technology-container {
@@ -39,16 +38,14 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding-top: 10%;
-  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  will-change: scroll-position; /* Hint for hardware acceleration */
 }
 
-.tech-boxes-container {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer & Edge */
-}
 
 .tech-boxes-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari*/
+  display: none; /* For Chrome, Safari */
 }
 
 .tech-boxes {
@@ -69,7 +66,7 @@
   width: 80%;
   height: 80%;
   border-radius: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
 
 .box-container {
@@ -80,7 +77,6 @@
   align-items: center;
   width: 98%;
   height: 95%;
-  /* border-radius: 0.5rem; */
 }
 
 .box-first {
@@ -98,7 +94,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0%;
+  padding: 0;
 }
 
 .box-skill-name-desc {
@@ -143,8 +139,8 @@
 
 .rotating-svg {
   position: absolute;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
@@ -153,12 +149,8 @@
 }
 
 @keyframes rotate-svg {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .skill-image {
@@ -166,20 +158,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 8rem; /* Adjust size as needed */
+  width: 8rem;
   height: 8rem;
 }
 
-.box-second {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-}
-
+.box-second,
 .box-third {
   position: relative;
   display: flex;
@@ -206,20 +189,20 @@
 }
 
 @media only screen and (orientation: portrait) {
-  .tech-boxes-container{
+  .tech-boxes-container {
     padding-top: 40%;
   }
   .tech-boxes {
     min-width: 140vw;
   }
-  .tech-heading-subText{
+  .tech-heading-subText {
     font-size: var(--font-size-text-mobile);
   }
   .box-skill-name-desc {
     height: 100%;
     justify-content: center;
   }
-  .skill-image{
+  .skill-image {
     width: 5rem;
     height: 5rem;
   }

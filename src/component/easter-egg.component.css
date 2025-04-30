@@ -1,0 +1,43 @@
+/* src/component/EasterEgg/EasterEgg.css */
+.easter-egg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999; /* Highest z-index */
+    pointer-events: none; /* Allow clicks through */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .easter-egg-container.visible {
+    opacity: 1;
+  }
+  
+  .easter-egg-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      text-align: center;
+      font-family: 'Campton-Font-Bold', sans-serif;
+      opacity: 0;
+      animation: fadeInMessage 0.5s ease-out 0.5s forwards;
+  }
+  
+  @keyframes fadeInMessage {
+      to { opacity: 1;}
+  }
+  
+  @media (max-width: 600px) {
+      .easter-egg-message {
+          font-size: 1.2rem;
+          padding: 15px 20px;
+      }
+  }

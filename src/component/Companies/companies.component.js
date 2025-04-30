@@ -1,6 +1,26 @@
 import React, { useState } from "react";
 import "./companies.component.css";
 // Constant array combining company name and career page URL.
+
+const company_hr_list = {
+    "company": "<Company_Name>",
+    "company_career_link": "<Company_Career_Link>",
+
+    "hr_list": [
+        {
+            "hr_name": "<HR_Name>",
+            "hr_email": "<HR_Email>"
+        },
+        {
+            "hr_name": "<HR_Name>",
+            "hr_email": "<HR_Email>"
+        },
+        {
+            "hr_name": "<HR_Name>",
+            "hr_email": "<HR_Email>"
+        }
+    ]
+}
 const companiesData = [
     [
         { "name": "Walmart", "careerLink": "https://one.walmart.com/content/globaltechindia/en_in/results.html?job_function=&job_function=Technology&loc_filter=Bangalore&country=india", "employees": 2100000 },
