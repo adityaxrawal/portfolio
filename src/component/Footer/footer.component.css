@@ -1,26 +1,123 @@
-.footer-section{
+.footer {
+    position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 0% 5%;
+    text-align: center;
+    width: 100%;
+    height: 35vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: black;
+    color: #F9F7F7;
+}
+
+/* Wave at the top */
+.footer-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer-wave svg {
+    display: block;
+    width: 100%;
     height: 100%;
-    font-size: 5rem;
+}
+
+.wave-path {
+    fill: #F9F7F7;
+    stroke: black;
+    stroke-width: 2;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
     gap: 1rem;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 75%;
+    margin: 0 auto;
+    text-align: left;
 }
 
-.footer-free-space{
-    margin-top: 20%;
+.footer-left,
+.footer-right {
+    flex: 1;
+    min-width: 50%;
 }
 
-.footer-coming-soon{
+.footer-left {
     display: flex;
     flex-direction: column;
-    font-weight: 900;
-    opacity: 0.5;
+    gap: 0rem;
 }
 
-@media only screen and (orientation: portrait) {
-    .footer-section{
-        font-size: 2rem;
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.8rem;
+}
+
+.motto {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    opacity: 0.85;
+}
+
+/* Neon hover on social icons */
+.social-links a {
+    color: var(--text-color);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.back-to-top:hover {
+    font-size: 2rem ;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-right {
+        align-items: center;
     }
 }
