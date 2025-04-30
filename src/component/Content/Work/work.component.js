@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import './work.component.css'
-import { useSharedState } from '../../../context/app-context';
-import { darkModeColorList, lightModeColorList, WorkExperience } from '../../../share/utils/constant';
+// import { useSharedState } from '../../../context/app-context';
+// import { darkModeColorList, lightModeColorList, WorkExperience } from '../../../share/utils/constant';
+import { WorkExperience } from '../../../share/utils/constant';
 
 // images
 import leadsquaredLogo from '../../../share/img/companies/lsq.png'
@@ -18,7 +19,7 @@ const Work = () => {
         width: 0,
         height: 0
     })
-    const { isDarkTheme, backgroundColor, setBackgroundColor } = useSharedState();
+    // const { isDarkTheme, backgroundColor, setBackgroundColor } = useSharedState();
 
     const calculateImageDimensions = useCallback(() => {
         const width = (window.innerWidth * 0.9) / 2; // (innerWidth - 10%)/2
@@ -53,8 +54,8 @@ const Work = () => {
             const dynamicDivisor = 2.75 * (windowHeight / windowWidth);
             imagesRef.current.scrollTop = parseInt(Math.abs(textTop) / dynamicDivisor);
             // ICP = image container percentage -> how is image container covered : returns percentage
-            const currentICP = await calculateICP();
-            updateBackgroundColor(currentICP);
+            // const currentICP = await calculateICP();
+            // updateBackgroundColor(currentICP);
         } else if (sectionTop === -sectionOffSetHeight) {
             setIsPinned(false);
         } else {
@@ -63,33 +64,33 @@ const Work = () => {
         }
     }
 
-    const LightModeColorRanges = [
-        { range: [-33, 5], color: isDarkTheme ? darkModeColorList[0] : lightModeColorList[0] },
-        { range: [5, 33], color: isDarkTheme ? darkModeColorList[1] : lightModeColorList[1] },
-        { range: [34, 49], color: isDarkTheme ? darkModeColorList[2] : lightModeColorList[2] },
-        { range: [50, 100], color: isDarkTheme ? darkModeColorList[3] : lightModeColorList[3] },
-    ];
+    // const LightModeColorRanges = [
+    //     { range: [-33, 5], color: isDarkTheme ? darkModeColorList[0] : lightModeColorList[0] },
+    //     { range: [5, 33], color: isDarkTheme ? darkModeColorList[1] : lightModeColorList[1] },
+    //     { range: [34, 49], color: isDarkTheme ? darkModeColorList[2] : lightModeColorList[2] },
+    //     { range: [50, 100], color: isDarkTheme ? darkModeColorList[3] : lightModeColorList[3] },
+    // ];
 
-    const getColorForCurrentICP = (currentICP) => {
-        for (const { range, color } of LightModeColorRanges) {
-            if (currentICP >= range[0] && currentICP <= range[1]) {
-                return color;
-            }
-        }
-        return backgroundColor; // fallback to current color if no match found
-    };
+    // const getColorForCurrentICP = (currentICP) => {
+    //     for (const { range, color } of LightModeColorRanges) {
+    //         if (currentICP >= range[0] && currentICP <= range[1]) {
+    //             return color;
+    //         }
+    //     }
+    //     return backgroundColor; // fallback to current color if no match found
+    // };
 
-    const updateBackgroundColor = (currentICP) => {
-        const newColor = getColorForCurrentICP(currentICP);
-        if (newColor !== backgroundColor) {
-            setBackgroundColor(newColor);
-        }
-    };
+    // const updateBackgroundColor = (currentICP) => {
+    //     const newColor = getColorForCurrentICP(currentICP);
+    //     if (newColor !== backgroundColor) {
+    //         setBackgroundColor(newColor);
+    //     }
+    // };
 
-    const calculateICP = useCallback(async () => {
-        if (!imagesRef.current) return 0;
-        return parseInt((Math.abs(imagesRef.current.scrollTop) / imagesRef.current.scrollHeight) * 100);
-    }, []);
+    // const calculateICP = useCallback(async () => {
+    //     if (!imagesRef.current) return 0;
+    //     return parseInt((Math.abs(imagesRef.current.scrollTop) / imagesRef.current.scrollHeight) * 100);
+    // }, []);
 
     useEffect(() => {
         window.addEventListener("scroll", (e) => handleScroll(e));
@@ -174,4 +175,4 @@ const Work = () => {
     )
 }
 
-export default Work
+export default React.memo(Work)
