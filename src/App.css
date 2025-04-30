@@ -15,18 +15,18 @@
 }
 
 @font-face {
-  font-family: "Campton-Font-Regular";
+  font-family: "Alegreya-Font-Regular";
   /*Can be any text*/
-  src: local("ColorTube-Regular.ttf"),
-    url("./share/font/Campton/Campton/Commercial/TTF/Campton-LightDEMO.ttf")
+  src: local("Alegreya-Regular.ttf"),
+    url("./share/font/Alegreya/static/Alegreya-Regular.ttf")
       format("truetype");
 }
 
 @font-face {
-  font-family: "Campton-Font-Bold";
+  font-family: "Alegreya-Font-Bold";
   /*Can be any text*/
-  src: local("ColorTube-Regular.ttf"),
-    url("./share/font/Campton/Campton/Commercial/TTF/Campton-BoldDEMO.ttf")
+  src: local("Alegreya-Bold.ttf"),
+    url("./share/font/Alegreya//static/Alegreya-Bold.ttf")
       format("truetype");
 }
 
@@ -43,7 +43,7 @@
   flex-direction: column;
   font-size: var(--font-size-text);
   padding: 0% 5%;
-  font-family: Campton-Font-Regular;
+  font-family: Alegreya-Font-Regular;
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
 
