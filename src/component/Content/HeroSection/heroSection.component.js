@@ -12,7 +12,7 @@ import { useSharedState } from '../../../context/app-context';
 import Confetti from 'react-confetti'; // Import Confetti
 
 const HeroSection = () => {
-    const { isDarkTheme } = useSharedState();
+  const { isDarkTheme } = useSharedState();
 
     const [imageSize, setImageSize] = useState({
         width: 0,
@@ -22,8 +22,8 @@ const HeroSection = () => {
     const [confettiDimensions, setConfettiDimensions] = useState({ width: 0, height: 0 });
 
 
-    // Maintain Aspect Ratio (Original ratio from the given image)
-    const aspectRatio = 0.6; // Replace with your actual width/height ratio
+  // Maintain Aspect Ratio (Original ratio from the given image)
+  const aspectRatio = 0.6; // Replace with your actual width/height ratio
 
     const calculateImageSize = useCallback(() => {
         if (window.innerWidth <= 600) { // Hide image on mobile
