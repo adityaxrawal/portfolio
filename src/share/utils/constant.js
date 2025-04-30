@@ -172,22 +172,22 @@ export const TechnicalSkills = [
         extra: 'Serverless: Pay for what you use!',
         skillImage: 'aws.png'
     },
-    {
-        skillName: 'CI/CD Pipelines',
-        skillLevel: 5,
-        skillColor: '#2196F3',
-        skillDesc: 'Automating deployment pipelines, ensuring smooth integrations, and optimizing development workflows with CI/CD tools.',
-        skillIcon: '⚙️',
-        extra: 'Automate everything, ship faster!',
-        skillImage: 'serverless.png' // Consider changing image if needed
-    },
-    {
-        skillName: 'Jira',
-        skillLevel: 4,
-        skillColor: '#0052CC',
-        skillDesc: 'Managing Agile workflows, tracking sprints, and enhancing team collaboration for seamless software development.',
-        skillIcon: '📊',
-        extra: 'Turning tasks into... more tasks!',
-        skillImage: 'jira.png'
-    }
+    // {
+    //     skillName: 'CI/CD Pipelines',
+    //     skillLevel: 5,
+    //     skillColor: '#2196F3',
+    //     skillDesc: 'Automating deployment pipelines, ensuring smooth integrations, and optimizing development workflows with CI/CD tools.',
+    //     skillIcon: '⚙️',
+    //     extra: 'Automate everything, ship faster!',
+    //     skillImage: 'serverless.png' // Consider changing image if needed
+    // },
+    // {
+    //     skillName: 'Jira',
+    //     skillLevel: 4,
+    //     skillColor: '#0052CC',
+    //     skillDesc: 'Managing Agile workflows, tracking sprints, and enhancing team collaboration for seamless software development.',
+    //     skillIcon: '📊',
+    //     extra: 'Turning tasks into... more tasks!',
+    //     skillImage: 'jira.png'
+    // }
 ];
