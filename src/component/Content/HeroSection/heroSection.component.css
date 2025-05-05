@@ -151,3 +151,28 @@
 }
 
 /* Still need to add responsiveness for tablets */
+/* Add this at the end of src/component/Content/HeroSection/heroSection.component.css */
+
+.hire-me-line span {
+  display: inline-block; /* Needed for click area */
+  transition: transform 0.2s ease-out;
+}
+
+.hire-me-line span:hover {
+   transform: scale(1.1); /* Slight grow on hover */
+}
+
+/* Add styles for mobile buttons if not already sufficient */
+@media only screen and (max-width: 600px) {
+ .headline-buttons {
+   display: flex;
+   flex-direction: row; /* Keep side-by-side */
+   justify-content: space-around; /* Space out better */
+   width: 100%; /* Full width */
+   padding-top: 1.5rem; /* Adjust spacing */
+ }
+ .headline-btn {
+   height: 3rem;
+   font-size: var(--font-size-text-mobile);
+ }
+}
