@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './tech.component.css';
+import { useSharedState } from '../../../context/app-context';
 import { PROGRESS_COLORS, TechnicalSkills } from '../../../share/utils/constant';
 
 const Technology = () => {
+  const {isDarkTheme} = useSharedState();
   const horizontalScroll = useRef(null);
   const techSection = useRef(null);
   const [dimensions, setDimensions] = useState({ section: 50, box: 45 });
@@ -31,7 +33,7 @@ const Technology = () => {
     const newDimensions =
       window.innerWidth < 600
         ? { section: 150, box: 30 }
-        : { section: 50, box: 45 };
+        : { section: 32, box: 30 };
     setDimensions(newDimensions);
   }, []);
 
@@ -61,7 +63,7 @@ const Technology = () => {
               <div className="tech-boxes" key={index}>
                 <div
                   className="box"
-                  style={{ backgroundColor: 'white', height: `${dimensions.box}vh` }}
+                  style={{ backgroundColor: isDarkTheme ? '#FAF0E6' : 'white', height: `${dimensions.box}vh`, color: 'black' }}
                 >
                   <div className="box-container">
                     <div className="box-absolute">

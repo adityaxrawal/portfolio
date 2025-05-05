@@ -3,12 +3,12 @@
 export const links = {
     linkedInLink: 'https://www.linkedin.com/in/adityaxrawal',
     githubLink: 'https://www.github.com/adityaxrawal',
-    portfolioRepoLink: 'https://github.com/adityaxrawal/YOUR_PORTFOLIO_REPO_NAME' // <<-- ADD LINK TO THIS PORTFOLIO'S REPO IF PUBLIC
+    portfolioRepoLink: 'https://github.com/adityaxrawal/portfolio' // <<-- ADD LINK TO THIS PORTFOLIO'S REPO IF PUBLIC
 }
 
 
 export const darkModeColorList = {
-    0: '#222831',  // Darkest shade (near-black with a hint of blue)
+    0: '#0C0C0C',  // Darkest shade (near-black with a hint of blue)
     1: '#31363F',  // Dark blue-gray, similar depth to light mode's shade 5
     2: '#76ABAE',  // Muted mid-tone blue-gray
     3: '#EEEEEE',  // Softer blue-gray, matches light mode’s mid-tones
