@@ -1,4 +1,4 @@
-// src/component/Content/PortfolioDeepDive/PortfolioDeepDive.js
+// src/component/Content/PortfolioDetail/PortfolioDetail.js
 import React, { useEffect, useReducer, useCallback } from "react";
 import "./portfolio.component.css";
 import { RoughNotation } from "react-rough-notation";
