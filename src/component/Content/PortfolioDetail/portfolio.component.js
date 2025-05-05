@@ -84,12 +84,12 @@ const Portfolio = () => {
 
   const linesOfCode = useAnimatedCounter(gitStats.linesOfCode, 2000);
   const gitCommits = useAnimatedCounter(gitStats.commits, 1800);
-  const debuggingSessions = useAnimatedCounter(247, 1800);
-  const stackOverflowVisits = useAnimatedCounter(184, 2000);
+  const debuggingSessions = useAnimatedCounter(287, 1800);
+  const stackOverflowVisits = useAnimatedCounter(394, 2000);
 
   const MemoizedCard = useCallback(
     ({ title, content }) => (
-      <div className="detail-card">
+      <div className="detail-card" style={{color: 'black'}}>
         <h3>{title}</h3>
         {content}
       </div>
