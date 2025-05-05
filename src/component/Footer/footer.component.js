@@ -1,6 +1,5 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import "./footer.component.css";
 import { useSharedState } from "../../context/app-context";
 
@@ -8,9 +7,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { isDarkTheme } = useSharedState();
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <footer
@@ -143,7 +139,7 @@ const Footer = () => {
               <button
               style={{
                 background: isDarkTheme? "black" : "white",
-                border: isDarkTheme? "2px solid #000" : "1px solid #fff",
+                border: isDarkTheme? "1px solid #000" : "1px solid #fff",
               }}
               >
                 <span 
@@ -151,19 +147,12 @@ const Footer = () => {
                 style={{
                     color: isDarkTheme ? "black" : "white",
                     background: isDarkTheme ? "white" : 'black',
-                    border: isDarkTheme ? "2px solid white" : "2px solid black",
+                    border: isDarkTheme ? "1px solid white" : "1px solid black",
                 }}
                 > Email Me </span>
               </button>
             </a>
           </div>
-          {/* <button
-            className="back-to-top"
-            onClick={scrollToTop}
-            aria-label="Back to top"
-          >
-            <FaArrowUp />
-          </button> */}
         </div>
       </div>
     </footer>
