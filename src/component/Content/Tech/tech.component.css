@@ -6,7 +6,7 @@
 .technology-container {
   position: sticky;
   width: auto;
-  height: 100vh;
+  height: 85vh;
   top: 0;
 }
 
@@ -15,6 +15,7 @@
   flex-direction: column;
   width: 100%;
   height: 10%;
+  padding-top: 2.5%;
 }
 
 .tech-heading-text {
@@ -40,6 +41,7 @@
   padding-top: 10%;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overflow-x: hidden;
   will-change: scroll-position; /* Hint for hardware acceleration */
 }
 
@@ -54,7 +56,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 50vw;
+  min-width: 35vw;
+  max-height: 30vh;
 }
 
 .box {
@@ -83,7 +86,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  height: 90%;
+  height: 80%;
 }
 
 .box-first-container {
@@ -102,7 +105,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 60%;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
 }

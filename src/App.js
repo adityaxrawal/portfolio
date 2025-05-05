@@ -7,7 +7,7 @@ import { AppProvider, useSharedState } from './context/app-context';
 import { ReactLenis, useLenis } from 'lenis/react';
 import tinycolor from 'tinycolor2';
 import { useKonamiCode } from './hooks/useKonamiCode.hook';
-import EasterEgg from './component/easter-egg.component';
+import EasterEgg from './component/EasterEgg/easter-egg.component';
 import Loader from './component/Loader/loader.component';
 // Import Easter Egg components and hook
 
