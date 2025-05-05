@@ -42,7 +42,7 @@
   display: flex;
   flex-direction: column;
   font-size: var(--font-size-text);
-  padding: 0% 5%;
+  padding: 0% 0%;
   font-family: Alegreya-Font-Regular;
   transition: background-color 0.5s ease, color 0.5s ease-in-out;
 }
@@ -51,7 +51,7 @@
 @media only screen and (orientation: portrait) {
   .App {
     width: auto;
-    padding: 0% 5%;
+    padding: 0% 0%;
   }
 }
 

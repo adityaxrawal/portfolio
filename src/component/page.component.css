@@ -5,6 +5,17 @@
   width: auto;
   height: auto;
   gap: 1rem;
+  padding: 0% 5%;
+}
+
+.page-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  height: auto;
+  gap: 1rem;
+  padding: 0% 0%;
 }
 
 
