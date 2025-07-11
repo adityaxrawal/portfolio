@@ -8,13 +8,13 @@ export const links = {
 
 
 export const darkModeColorList = {
-    0: '#0C0C0C',  // Darkest shade (near-black with a hint of blue)
-    1: '#31363F',  // Dark blue-gray, similar depth to light mode's shade 5
-    2: '#76ABAE',  // Muted mid-tone blue-gray
-    3: '#EEEEEE',  // Softer blue-gray, matches light mode’s mid-tones
-    4: '#B8E0E3',  // Lighter muted blue, for highlights
-    5: '#F0F5F7'   // Lightest shade, off-white with a hint of blue
-}
+  0: "#151515", // Darkest shade (near-black with a hint of blue)
+  1: "#31363F", // Dark blue-gray, similar depth to light mode's shade 5
+  2: "#76ABAE", // Muted mid-tone blue-gray
+  3: "#EEEEEE", // Softer blue-gray, matches light mode’s mid-tones
+  4: "#B8E0E3", // Lighter muted blue, for highlights
+  5: "#F0F5F7", // Lightest shade, off-white with a hint of blue
+};
 
 
 export const lightModeColorList = {

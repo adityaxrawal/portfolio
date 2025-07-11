@@ -1,122 +1,119 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import './tech.component.css';
-import { useSharedState } from '../../../context/app-context';
-import { PROGRESS_COLORS, TechnicalSkills } from '../../../share/utils/constant';
+import { useEffect, useRef, useState } from "react";
+import "./tech.component.css";
+import { useSharedState } from "../../../context/app-context";
+import {
+  darkModeColorList,
+  lightModeColorList,
+  PROGRESS_COLORS,
+  TechnicalSkills,
+} from "../../../share/utils/constant";
+import TechnologyBox from "./Boxes/tech-box.component";
 
 const Technology = () => {
-  const {isDarkTheme} = useSharedState();
+  const { isDarkTheme } = useSharedState();
   const horizontalScroll = useRef(null);
   const techSection = useRef(null);
-  const [dimensions, setDimensions] = useState({ section: 50, box: 45 });
-  const lastKnownTechTop = useRef(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isHeadingOverflowing, setHeadingOverflowing] = useState(false);
 
-  const handleScroll = useCallback(() => {
-    if (horizontalScroll.current && techSection.current) {
-      const techSectionTop = techSection.current.getBoundingClientRect().top;
-      // Only update if the change is significant to reduce unnecessary repaints.
-      if (Math.abs(techSectionTop - lastKnownTechTop.current) > 2) {
-        lastKnownTechTop.current = techSectionTop;
-        if (techSectionTop < 0) {
-          horizontalScroll.current.scrollLeft = Math.abs(techSectionTop - 14);
-        }
-      }
+  // const handleScroll = useCallback(() => {
+  //   if (horizontalScroll.current && techSection.current) {
+  //     const techSectionTop = techSection.current.getBoundingClientRect().top;
+  //     // Only update if the change is significant to reduce unnecessary repaints.
+  //     if (Math.abs(techSectionTop - lastKnownTechTop.current) > 2) {
+  //       lastKnownTechTop.current = techSectionTop;
+  //       if (techSectionTop < 0) {
+  //         horizontalScroll.current.scrollLeft = Math.abs(techSectionTop - 14);
+  //       }
+  //     }
+  //   }
+  // }, []);
+
+  const handleScroll = (e) => {
+    if (!techSection.current) return;
+
+    const sectionTop = techSection.current.getBoundingClientRect().top;
+    const sectionBottom = techSection.current.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+
+    const currentScreenSize = window.screen.width;
+    const dynamicOverflowDivisor = currentScreenSize < 500 ? 0.75 : 4;
+
+    setHeadingOverflowing((prev) => {
+      return sectionBottom + (windowWidth / dynamicOverflowDivisor) < windowHeight;
+    });
+
+    console.log('calc', sectionBottom + (windowWidth / dynamicOverflowDivisor));
+
+    console.log('heading top -tech', isHeadingOverflowing, windowHeight);
+
+    if (sectionTop < 0) {
+      setIsPinned(true);
+    } else {
+      setIsPinned(false);
     }
-  }, []);
+  };
+
 
   useEffect(() => {
-    const onScroll = () => window.requestAnimationFrame(handleScroll);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [handleScroll]);
-
-  useEffect(() => {
-    const newDimensions =
-      window.innerWidth < 600
-        ? { section: 150, box: 30 }
-        : { section: 32, box: 30 };
-    setDimensions(newDimensions);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // useEffect(() => {
+  //   const newDimensions =
+  //     window.innerWidth < 600
+  //       ? { section: 150, box: 30 }
+  //       : { section: 32, box: 30 };
+  //   setDimensions(newDimensions);
+  // }, []);
 
   const getProgressColor = (barIndex, skillLevel) => {
-    const colorEntry = PROGRESS_COLORS.find(entry => skillLevel <= entry.max);
-    return barIndex < skillLevel ? (colorEntry?.color || 'white') : 'white';
+    const colorEntry = PROGRESS_COLORS.find((entry) => skillLevel <= entry.max);
+    return barIndex < skillLevel ? colorEntry?.color || "white" : "white";
   };
 
   return (
-    <div
-      ref={techSection}
-      className="section-technology"
-      style={{ height: `${dimensions.section * TechnicalSkills.length}vw` }}
-    >
+    <div ref={techSection} className="section-technology">
       <div className="technology-container">
-        <div className="tech-heading">
+        <div className={`tech-heading ${isPinned ? 'sticky' : 'relative'}`} style={{backgroundColor: isDarkTheme ? darkModeColorList[0] : lightModeColorList[0]}}>
           <div className="tech-heading-text">
-            <span>Scriptology</span>
+            <span className={`${(isPinned) ? 'heading-text-spining' : 'heading-spining-reset'}`}>
+              Scriptology
+            </span>
           </div>
           <div className="tech-heading-subText">
-            <span>The Science of Making Computers Obey.</span>
+            <span className={`${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>
+              The Science of Making Computers Obey.
+            </span>
           </div>
         </div>
         <div ref={horizontalScroll} className="tech-boxes-container">
           {TechnicalSkills.map(
-            ({ skillName, skillLevel, skillIcon, skillDesc, extra, skillImage }, index) => (
-              <div className="tech-boxes" key={index}>
-                <div
-                  className="box"
-                  style={{ backgroundColor: isDarkTheme ? '#FAF0E6' : 'white', height: `${dimensions.box}vh`, color: 'black' }}
-                >
-                  <div className="box-container">
-                    <div className="box-absolute">
-                      <div className="box-skill-image">
-                        <img
-                          src={require(`../../../share/img/skills/${skillImage}`)}
-                          className="skill-image"
-                          alt="skill-logo"
-                        />
-                        <div className="rotating-svg">
-                          <svg width="100%" height="100%" viewBox="0 0 200 200">
-                            <defs>
-                              <path
-                                id={`circlePath${index}`}
-                                d="M 100,100 m -75,0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
-                              />
-                            </defs>
-                            <text fontSize="16" fill="black">
-                              <textPath
-                                href={`#circlePath${index}`}
-                                startOffset="50%"
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                              >
-                                {Array(26).fill(skillIcon).join(' ')}
-                              </textPath>
-                            </text>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="box-first">
-                      <div className="box-first-container">
-                        <div className="box-skill-name-desc">
-                          <div className="box-skill-name">{skillName}</div>
-                          <div className="box-skill-desc">{skillDesc}</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="box-second">{extra}</div>
-                    <div className="box-third">
-                      {[...Array(10)].map((_, barIndex) => (
-                        <div className="box-skill-bar-container" key={barIndex}>
-                          <span
-                            className="box-skill-bar"
-                            style={{ backgroundColor: getProgressColor(barIndex, skillLevel) }}
-                          ></span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            (
+              {
+                skillName,
+                skillLevel,
+                skillIcon,
+                skillDesc,
+                extra,
+                skillImage,
+              },
+              index
+            ) => (
+              <TechnologyBox
+                key={index}
+                skillName={skillName}
+                skillLevel={skillLevel}
+                skillIcon={skillIcon}
+                skillDesc={skillDesc}
+                extra={extra}
+                skillImage={skillImage}
+                isDarkTheme={isDarkTheme}
+                getProgressColor={getProgressColor}
+                index={index}
+              />
             )
           )}
         </div>
