@@ -1,4 +1,4 @@
-import { darkModeColorList, lightModeColorList } from "../../../../share/utils/constant";
+import { lightModeColorList } from "../../../../share/utils/constant";
 import "../tech.component.css";
 
 const TechnologyBox = ({
