@@ -80,7 +80,7 @@
 }
 
 .tech-boxes-container::-webkit-scrollbar {
-  /* display: none; */
+  display: none;
   /* For Chrome, Safari */
 }
 

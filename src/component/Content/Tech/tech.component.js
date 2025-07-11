@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback} from "react";
 import "./tech.component.css";
 import { useSharedState } from "../../../context/app-context";
 import {
@@ -29,7 +29,8 @@ const Technology = () => {
   //   }
   // }, []);
 
-  const handleScroll = (e) => {
+
+  const handleScroll = useCallback(() => {
     if (!techSection.current) return;
 
     const sectionTop = techSection.current.getBoundingClientRect().top;
@@ -40,7 +41,7 @@ const Technology = () => {
     const currentScreenSize = window.screen.width;
     const dynamicOverflowDivisor = currentScreenSize < 500 ? 0.75 : 4;
 
-    setHeadingOverflowing((prev) => {
+    setHeadingOverflowing(() => {
       return sectionBottom + (windowWidth / dynamicOverflowDivisor) < windowHeight;
     });
 
@@ -53,13 +54,13 @@ const Technology = () => {
     } else {
       setIsPinned(false);
     }
-  };
+  }, [isHeadingOverflowing]);
 
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   // useEffect(() => {
   //   const newDimensions =
