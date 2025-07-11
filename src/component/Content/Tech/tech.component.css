@@ -238,11 +238,11 @@
 
 @media only screen and (orientation: portrait) {
   .tech-boxes-container {
-    padding-top: 40%;
+    padding-top: 5%;
   }
 
   .tech-boxes {
-    min-width: 140vw;
+    width: 100%;
   }
 
   .tech-heading-subText {
