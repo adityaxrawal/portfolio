@@ -1,16 +1,16 @@
-import React, { createContext, useContext, useState } from 'react';
-import { lightModeColorList } from '../share/utils/constant';
+import { createContext, useContext, useState } from 'react';
+import { darkModeColorList } from '../share/utils/constant';
 
 // Create contexts
 export const SharedStateContext = createContext();
 export const ViewContext = createContext(undefined);
 
 // Initial values
-const initialBackgroundColor = lightModeColorList[0];
+const initialBackgroundColor = darkModeColorList[0];
 
 // Combined provider component
 export const AppProvider = ({ children }) => {
-    const [isDarkTheme, setDarkTheme] = useState(false);
+    const [isDarkTheme, setDarkTheme] = useState(true);
     const [backgroundColor, setBackgroundColor] = useState(initialBackgroundColor);
     const [currentClassName, setCurrentClassName] = useState('');
 
