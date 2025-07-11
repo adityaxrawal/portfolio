@@ -46,7 +46,7 @@ const Work = () => {
         const currentScreenSize = window.screen.width;
         const dynamicOverflowDivisor = currentScreenSize < 500 ? 0.75 : 4
 
-        setHeadingOverflowing((prev) => {
+        setHeadingOverflowing(() => {
             return sectionBottom + (windowWidth / dynamicOverflowDivisor) < windowHeight;
         });
         if (sectionTop < 0) {

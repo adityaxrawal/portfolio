@@ -1,21 +1,50 @@
 .section-technology {
   position: relative;
-  width: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .technology-container {
-  position: sticky;
-  width: auto;
-  height: 85vh;
-  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10%;
 }
 
 .tech-heading {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  height: 10%;
+  font-size: var(--font-size-heading);
+  flex-direction: column;
+  transition: all ease-in-out 0.8s;
   padding-top: 2.5%;
+  z-index: 999;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.relative {
+  position: relative;
+  top: 0;
+}
+
+.heading-text-spining {
+  rotate: -90deg;
+  transition: all ease-in-out 0.8s;
+  translate: calc(-42%) calc(-50%);
+}
+
+.heading-subtext-spining {
+  transition: all ease-in-out 0.8s;
+  font-size: 0rem;
+}
+
+.heading-spining-reset {
+  rotate: 0deg;
+  transition: all ease-in-out 0.8s;
+  translate: 0rem 0rem;
 }
 
 .tech-heading-text {
@@ -30,34 +59,51 @@
 }
 
 .tech-boxes-container {
-  position: relative;
+  /* position: relative; */
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+  /* grid-template-rows: auto; */
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   width: 100%;
-  height: 100%;
-  overflow-x: scroll;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-top: 10%;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overflow-x: hidden;
-  will-change: scroll-position; /* Hint for hardware acceleration */
+  height: auto;
+  /* overflow-x: hidden; */
+  /* overflow-y: scroll; */
+  overflow: scroll;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  padding-top: 2.5%;
+  /* background-color: red; */
+  /* will-change: scroll-position; */
+  /* Hint for hardware acceleration */
 }
-
 
 .tech-boxes-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari */
+  display: none;
+  /* For Chrome, Safari */
 }
 
+/* ---- Technology Box CSS ---- */
 .tech-boxes {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 35vw;
-  max-height: 30vh;
+  width: 32%;
+  min-height: 20vh;
+}
+
+.box-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* background-color: yellow; */
 }
 
 .box {
@@ -69,23 +115,16 @@
   width: 80%;
   height: 80%;
   border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-}
-
-.box-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 98%;
-  height: 95%;
 }
 
 .box-first {
   position: relative;
   display: flex;
   flex-direction: row;
+  width: 100%;
   height: 80%;
 }
 
@@ -93,8 +132,8 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -103,11 +142,12 @@
 .box-skill-name-desc {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   height: 100%;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .box-skill-name {
@@ -117,9 +157,9 @@
 }
 
 .box-skill-desc {
-  font-size: var(--font-size-text);
+  font-size: var(--font-size-subtext);
   font-family: Alegreya-Font-Regular;
-  font-style: italic;
+  font-style: normal;
 }
 
 .box-absolute {
@@ -130,7 +170,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  opacity: 0.35;
+  opacity: 0.15;
 }
 
 .box-skill-image {
@@ -152,8 +192,13 @@
 }
 
 @keyframes rotate-svg {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .skill-image {
@@ -195,18 +240,28 @@
   .tech-boxes-container {
     padding-top: 40%;
   }
+
   .tech-boxes {
     min-width: 140vw;
   }
+
   .tech-heading-subText {
     font-size: var(--font-size-text-mobile);
   }
+
   .box-skill-name-desc {
     height: 100%;
     justify-content: center;
   }
+
   .skill-image {
     width: 5rem;
     height: 5rem;
+  }
+
+  .heading-text-spining {
+    rotate: -90deg;
+    transition: all ease-in-out 0.8s;
+    translate: calc(-40%) 8rem;
   }
 }
