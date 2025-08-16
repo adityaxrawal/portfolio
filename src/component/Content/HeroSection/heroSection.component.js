@@ -55,7 +55,7 @@ const HeroSection = () => {
 
     // Function to trigger confetti for "Hire Me"
     const handleHireMeClick = () => {
-         console.log("Hire me clicked!");
+        console.log("Hire me clicked!");
         setShowHireConfetti(true);
         // Hide confetti after a few seconds
         setTimeout(() => setShowHireConfetti(false), 4000);
