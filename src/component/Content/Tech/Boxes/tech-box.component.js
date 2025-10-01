@@ -1,3 +1,4 @@
+import React from "react";
 import { lightModeColorList } from "../../../../share/utils/constant";
 import "../tech.component.css";
 
@@ -18,9 +19,7 @@ const TechnologyBox = ({
       <div
         className="box"
         style={{
-          backgroundColor: isDarkTheme
-            ? lightModeColorList[0]
-            : "white",
+          backgroundColor: isDarkTheme ? lightModeColorList[0] : "white",
           color: "black",
         }}
       >
@@ -30,40 +29,22 @@ const TechnologyBox = ({
               <img
                 src={require(`../../../../share/img/skills/${skillImage}`)}
                 className="skill-image"
-                alt="skill-logo"
+                alt={`${skillName} technology logo`}
+                loading="lazy"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.nextElementSibling.style.display = "flex";
+                }}
               />
-              {/* <div className="rotating-svg">
-                <svg width="100%" height="100%" viewBox="0 0 200 200">
-                  <defs>
-                    <path
-                      id={`circlePath${index}`}
-                      d="M 100,100 m -75,0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
-                    />
-                  </defs>
-                  <text fontSize="16" fill="black">
-                    <textPath
-                      href={`#circlePath${index}`}
-                      startOffset="50%"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                    >
-                      {Array(26).fill(skillIcon).join(" ")}
-                    </textPath>
-                  </text>
-                </svg>
-              </div> */}
+              <div className="image-fallback" style={{ display: "none" }}>
+                <span>{skillIcon}</span>
+              </div>
             </div>
           </div>
           <div className="box-first">
             <div className="box-first-container">
               <div className="box-skill-name-desc">
                 <div className="box-skill-name">{skillName}</div>
-                {/* <div className="box-skill-marquee-effect">
-                  <div className="marquee">
-                   
-                  </div>
-                </div> */}
-                {/* <div className="box-skill-desc">{skillDesc}</div> */}
               </div>
             </div>
           </div>
@@ -86,4 +67,4 @@ const TechnologyBox = ({
   );
 };
 
-export default TechnologyBox;
+export default React.memo(TechnologyBox);

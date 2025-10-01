@@ -1,25 +1,63 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Aditya Portfolio",
+  "name": "Aditya Rawal - Full Stack Developer Portfolio",
+  "description": "Portfolio showcasing full stack development skills with React.js, Node.js, and AWS",
+  "lang": "en-US",
   "icons": [
     {
       "src": "dark_sunglasses.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "dark_sunglasses.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "dark_sunglasses.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#667eea",
+  "background_color": "#ffffff",
+  "categories": ["portfolio", "developer", "technology"],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "View my latest projects",
+      "url": "/#projects",
+      "icons": [{ "src": "dark_sunglasses.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact Me",
+      "short_name": "Contact",
+      "description": "Get in touch",
+      "url": "/#contact",
+      "icons": [{ "src": "dark_sunglasses.png", "sizes": "96x96" }]
+    }
+  ]
 }

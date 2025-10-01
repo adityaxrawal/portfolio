@@ -1,0 +1,87 @@
+{
+  "budgets": [
+    {
+      "path": "/",
+      "resourceSizes": [
+        {
+          "resourceType": "script",
+          "maximumWarning": "500kb",
+          "maximumError": "1mb"
+        },
+        {
+          "resourceType": "total",
+          "maximumWarning": "1mb",
+          "maximumError": "2mb"
+        },
+        {
+          "resourceType": "initial",
+          "maximumWarning": "500kb",
+          "maximumError": "1mb"
+        },
+        {
+          "resourceType": "anyComponentStyle",
+          "maximumWarning": "50kb",
+          "maximumError": "100kb"
+        },
+        {
+          "resourceType": "font",
+          "maximumWarning": "100kb",
+          "maximumError": "200kb"
+        },
+        {
+          "resourceType": "image",
+          "maximumWarning": "300kb",
+          "maximumError": "500kb"
+        }
+      ],
+      "resourceCounts": [
+        {
+          "resourceType": "script",
+          "maximumWarning": 10,
+          "maximumError": 15
+        },
+        {
+          "resourceType": "font",
+          "maximumWarning": 5,
+          "maximumError": 8
+        }
+      ]
+    }
+  ],
+  "performanceMetrics": {
+    "first-contentful-paint": {
+      "budgetType": "timing",
+      "warning": 2000,
+      "error": 4000
+    },
+    "largest-contentful-paint": {
+      "budgetType": "timing",
+      "warning": 2500,
+      "error": 4000
+    },
+    "cumulative-layout-shift": {
+      "budgetType": "metric",
+      "warning": 0.1,
+      "error": 0.25
+    },
+    "first-input-delay": {
+      "budgetType": "timing",
+      "warning": 100,
+      "error": 300
+    },
+    "total-blocking-time": {
+      "budgetType": "timing",
+      "warning": 300,
+      "error": 600
+    }
+  },
+  "checks": {
+    "lighthouse": {
+      "performance": 90,
+      "accessibility": 95,
+      "best-practices": 90,
+      "seo": 95,
+      "pwa": 90
+    }
+  }
+}

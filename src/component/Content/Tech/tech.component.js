@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback} from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import "./tech.component.css";
 import { useSharedState } from "../../../context/app-context";
 import {
@@ -14,7 +14,6 @@ const Technology = () => {
   const horizontalScroll = useRef(null);
   const techSection = useRef(null);
   const [isPinned, setIsPinned] = useState(false);
-  const [isHeadingOverflowing, setHeadingOverflowing] = useState(false);
 
   // const handleScroll = useCallback(() => {
   //   if (horizontalScroll.current && techSection.current) {
@@ -29,33 +28,17 @@ const Technology = () => {
   //   }
   // }, []);
 
-
   const handleScroll = useCallback(() => {
     if (!techSection.current) return;
 
     const sectionTop = techSection.current.getBoundingClientRect().top;
-    const sectionBottom = techSection.current.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-    const windowWidth = window.innerWidth;
-
-    const currentScreenSize = window.screen.width;
-    const dynamicOverflowDivisor = currentScreenSize < 500 ? 0.75 : 4;
-
-    setHeadingOverflowing(() => {
-      return sectionBottom + (windowWidth / dynamicOverflowDivisor) < windowHeight;
-    });
-
-    console.log('calc', sectionBottom + (windowWidth / dynamicOverflowDivisor));
-
-    console.log('heading top -tech', isHeadingOverflowing, windowHeight);
 
     if (sectionTop < 0) {
       setIsPinned(true);
     } else {
       setIsPinned(false);
     }
-  }, [isHeadingOverflowing]);
-
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -78,14 +61,29 @@ const Technology = () => {
   return (
     <div ref={techSection} className="section-technology">
       <div className="technology-container">
-        <div className={`tech-heading ${isPinned ? 'sticky' : 'relative'}`} style={{backgroundColor: isDarkTheme ? darkModeColorList[0] : lightModeColorList[0]}}>
+        <div
+          className={`tech-heading ${isPinned ? "sticky" : "relative"}`}
+          style={{
+            backgroundColor: isDarkTheme
+              ? darkModeColorList[0]
+              : lightModeColorList[0],
+          }}
+        >
           <div className="tech-heading-text">
-            <span className={`${(isPinned) ? 'heading-text-spining' : 'heading-spining-reset'}`}>
+            <span
+              className={`${
+                isPinned ? "heading-text-spining" : "heading-spining-reset"
+              }`}
+            >
               Scriptology
             </span>
           </div>
           <div className="tech-heading-subText">
-            <span className={`${isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'}`}>
+            <span
+              className={`${
+                isPinned ? "heading-subtext-spining" : "heading-spining-reset"
+              }`}
+            >
               The Science of Making Computers Obey.
             </span>
           </div>
