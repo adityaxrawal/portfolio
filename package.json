@@ -18,11 +18,21 @@
     "tinycolor2": "^1.6.0",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.10.1",
+    "serve": "^14.2.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:ci": "CI=true react-scripts test --coverage --watchAll=false --passWithNoTests",
+    "eject": "react-scripts eject",
+    "analyze": "npm run build && npx serve -s build",
+    "analyze:bundle": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "build:analyze": "npm run build && echo 'Build completed! Run npm run analyze:bundle to analyze bundle size'"
   },
   "eslintConfig": {
     "extends": [
