@@ -21,13 +21,23 @@ const Alert = ({ message, type = "info", onClose, duration = 3000 }) => {
   if (!message) return null;
 
   return (
-    <div className={`alert alert-${type} ${closing ? "fade-out" : ""}`}>
+    <div
+      className={`alert alert-${type} ${closing ? "fade-out" : ""}`}
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       <span>{message}</span>
-      <button className="close-btn" onClick={() => setClosing(true)}>
+      <button
+        className="close-btn"
+        onClick={() => setClosing(true)}
+        aria-label="Close alert"
+        type="button"
+      >
         &times;
       </button>
     </div>
   );
 };
 
-export default Alert;
+export default React.memo(Alert);
