@@ -4,7 +4,7 @@ import "./portfolio.component.css";
 import { RoughNotation } from "react-rough-notation";
 import { useSharedState } from "../../../context/app-context";
 import { Octokit } from "@octokit/core";
-import { useAnimatedCounter } from "../../../hooks/useAnimatoedCounter.hook";
+import { useAnimatedCounter } from "../../../hooks/useAnimatedCounter.hook";
 
 const initialGitStats = {
   commits: 0,
@@ -89,7 +89,7 @@ const Portfolio = () => {
 
   const MemoizedCard = useCallback(
     ({ title, content }) => (
-      <div className="detail-card" style={{color: 'black'}}>
+      <div className="detail-card" style={{ color: "black" }}>
         <h3>{title}</h3>
         {content}
       </div>

@@ -1,27 +1,29 @@
 // src/App.js
-import React, { useState, useCallback, Suspense } from 'react'; // Import useState, useCallback
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
-import Page from './component/page.component';
-import { AppProvider, useSharedState } from './context/app-context';
-import { ReactLenis, useLenis } from 'lenis/react';
-import tinycolor from 'tinycolor2';
-import { useKonamiCode } from './hooks/useKonamiCode.hook';
-import EasterEgg from './component/EasterEgg/easter-egg.component';
-import Loader from './component/Loader/loader.component';
+import React, { useState, useCallback, Suspense } from "react"; // Import useState, useCallback
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
+import Page from "./component/page.component";
+import { AppProvider, useSharedState } from "./context/app-context";
+import { ReactLenis, useLenis } from "lenis/react";
+import tinycolor from "tinycolor2";
+import { useKonamiCode } from "./hooks/useKonamiCode.hook";
+import EasterEgg from "./component/EasterEgg/easter-egg.component";
+import Loader from "./component/Loader/loader.component";
 // Import Easter Egg components and hook
-
 
 // Keep Companies import if you still use the route, otherwise remove
 // import Companies from './component/Companies/companies.component';
-
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
 
   // Callback function to trigger Easter egg
   const triggerEasterEgg = useCallback(() => {
-    console.log("Konami Code Activated!");
     setShowEasterEgg(true);
   }, []);
 
@@ -51,12 +53,12 @@ function ThemedApp() {
   const { backgroundColor } = useSharedState(); // isDarkTheme removed if not used directly here
 
   // Lenis usage remains the same
-  useLenis(({ scroll }) => { });
+  useLenis(({ scroll }) => {});
 
   const getContrastColor = (bgColor) => {
     // Added check for undefined bgColor
-    if (!bgColor) return '#000000'; // Default to black if undefined
-    return tinycolor(bgColor).isDark() ? '#FFFFFF' : '#000000';
+    if (!bgColor) return "#000000"; // Default to black if undefined
+    return tinycolor(bgColor).isDark() ? "#FFFFFF" : "#000000";
   };
 
   const themeStyles = {
@@ -65,7 +67,7 @@ function ThemedApp() {
   };
 
   return (
-    <Suspense fallback={<Loader/>} >
+    <Suspense fallback={<Loader />}>
       <div className="App" style={themeStyles}>
         <Routes>
           <Route path="/aditya-rawal" element={<Page />} />

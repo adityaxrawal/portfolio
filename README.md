@@ -1,23 +1,98 @@
-# Getting Started with Create React App
+# 🚀 Aditya Rawal - Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website built with React.js, showcasing full-stack development skills and professional experience.
 
-## Available Scripts
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](#)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](#)
+[![License](https://img.shields.io/badge/license-MIT-green)](#)
+[![PWA Ready](https://img.shields.io/badge/PWA-ready-purple)](#)
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- **🎨 Modern Design**: Clean, professional UI with dark/light theme support
+- **📱 Responsive**: Optimized for all devices and screen sizes
+- **⚡ Performance**: Optimized with React.memo, lazy loading, and Web Vitals monitoring
+- **🔄 PWA Ready**: Progressive Web App with offline support and installable
+- **🎪 Interactive**: Smooth animations, Easter eggs, and engaging user experience
+- **♿ Accessible**: WCAG compliant with proper ARIA labels and keyboard navigation
+- **📊 Analytics**: Built-in Web Vitals tracking and performance monitoring
+- **🛡️ Reliable**: Comprehensive error handling and fallbacks
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
 
-### `npm test`
+- **React 18.3.1** - Component-based UI library
+- **React Router 7.5.2** - Client-side routing
+- **React Confetti 6.4.0** - Interactive celebrations
+- **React Rough Notation 1.0.5** - Hand-drawn annotations
+- **Lenis 1.2.3** - Smooth scrolling experience
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tools & Libraries
+
+- **TinyColor2** - Color manipulation
+- **React Icons** - Icon library
+- **Web Vitals** - Performance monitoring
+- **Webpack Bundle Analyzer** - Bundle optimization
+
+### Development
+
+- **ESLint** - Code linting
+- **Jest & React Testing Library** - Testing framework
+- **Service Workers** - PWA functionality
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 16+ and npm/yarn
+- Git
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/adityaxrawal/portfolio.git
+
+# Navigate to project directory
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+The app will open at [http://localhost:3000](http://localhost:3000)
+
+## 📜 Available Scripts
+
+### Development
+
+```bash
+npm start              # Start development server
+npm test               # Run tests in watch mode
+npm run test:coverage  # Generate test coverage report
+npm run test:ci        # Run tests for CI/CD pipeline
+```
+
+### Production
+
+```bash
+npm run build          # Create production build
+npm run analyze        # Serve production build locally
+npm run analyze:bundle # Analyze bundle size
+npm run build:analyze  # Build and prepare for analysis
+```
+
+### Testing
+
+```bash
+npm test                    # Interactive test runner
+npm run test:coverage      # Test with coverage report
+npm run test:ci           # CI/CD friendly test run
+```
 
 ### `npm run build`
 
