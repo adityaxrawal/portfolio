@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./footer.component.css";
 // App Context
 import { useSharedState } from "../../context/app-context";
@@ -5,10 +6,13 @@ import { useSharedState } from "../../context/app-context";
 import { DarkFooterSVG, LightFooterSVG } from "../../share/utils/svg";
 // React Icons
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+// ContactInfo Modal
+import ContactInfo from "../Content/Modal/contactInfo.component";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { isDarkTheme } = useSharedState();
-
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <footer
@@ -19,11 +23,7 @@ const Footer = () => {
       }}
     >
       <div className="footer-wave">
-        {isDarkTheme === true ? (
-          <DarkFooterSVG />
-        ) : (
-          <LightFooterSVG />
-        )}
+        {isDarkTheme === true ? <DarkFooterSVG /> : <LightFooterSVG />}
       </div>
 
       <div className="footer-content">
@@ -56,31 +56,34 @@ const Footer = () => {
         </div>
         <div className="footer-right">
           <div className="email-me">
-            <a
-              href="mailto:ar.adityarawal@gmail.com"
-              className="email-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button
+            <button
+              className="contact-button"
+              onClick={() => setIsContactModalOpen(true)}
               style={{
-                background: isDarkTheme? "black" : "white",
-                border: isDarkTheme? "1px solid #000" : "1px solid #fff",
+                background: isDarkTheme ? "black" : "white",
+                border: isDarkTheme ? "1px solid #000" : "1px solid #fff",
               }}
-              >
-                <span 
+            >
+              <span
                 className="button_top"
                 style={{
-                    color: isDarkTheme ? "black" : "white",
-                    background: isDarkTheme ? "white" : 'black',
-                    border: isDarkTheme ? "1px solid white" : "1px solid black",
+                  color: isDarkTheme ? "black" : "white",
+                  background: isDarkTheme ? "white" : "black",
+                  border: isDarkTheme ? "1px solid white" : "1px solid black",
                 }}
-                > Email Me </span>
-              </button>
-            </a>
+              >
+                Contact Me
+              </span>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Contact Info Modal */}
+      <ContactInfo
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </footer>
   );
 };
