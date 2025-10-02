@@ -1,0 +1,5 @@
+com/backend/portfolio/dto/ContactRequest.class
+com/backend/portfolio/config/MailConfig.class
+com/backend/portfolio/service/EmailService.class
+com/backend/portfolio/controller/ContactController.class
+com/backend/portfolio/PortfolioApplication.class
