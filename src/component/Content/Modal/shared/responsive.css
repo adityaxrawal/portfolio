@@ -1,0 +1,200 @@
+/* Responsive Design - Mobile First */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 36rem) {
+  .contact-modal-backdrop {
+    padding: var(--modal-space-lg);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .contact-modal-backdrop {
+    padding: clamp(8px, 2vw, 16px);
+  }
+
+  .contact-info-modal {
+    width: min(95vw, 480px);
+    margin: 0;
+    max-height: min(80vh, 550px);
+    min-height: 350px;
+  }
+
+  .form-legend {
+    padding: 10px 14px;
+  }
+
+  .modal-content {
+    padding: clamp(16px, 4vw, 24px);
+  }
+
+  .contact-form {
+    gap: clamp(20px, 4vw, 28px);
+  }
+
+  .form-group {
+    gap: clamp(8px, 2vw, 12px);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-info-modal {
+    width: 96vw;
+    max-width: none;
+    margin: 0;
+  }
+
+  .modal-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .close-button {
+    order: 2;
+    margin-left: auto;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .contact-modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .contact-info-modal {
+    width: 100vw;
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+    max-height: 85vh;
+    min-height: 60vh;
+    animation: slideInFromBottom var(--modal-transition-slow);
+  }
+
+  .modal-header {
+    border-radius: 20px 20px 0 0;
+    padding: 16px 20px;
+  }
+
+  .modal-content {
+    padding: 16px 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .modal-header .back-button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .modal-header .back-button-placeholder {
+    width: 40px;
+    height: 40px;
+  }
+
+  .form-legend {
+    margin: 0 0 16px 0;
+    padding: 8px 12px;
+  }
+
+  .contact-form {
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .modal-content {
+    padding: 16px;
+  }
+
+  .contact-form {
+    gap: 14px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 12px;
+  }
+}
+
+/* Large screens optimization */
+@media (min-width: 1200px) {
+  .contact-info-modal {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .contact-info-modal {
+    max-width: 680px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .contact-option,
+  .form-group input,
+  .form-group textarea {
+    border-width: 2px;
+  }
+
+  .required-asterisk {
+    font-size: 1.1em;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .contact-option,
+  .close-button,
+  .back-button,
+  .submit-button {
+    min-height: 48px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    min-height: 48px;
+    font-size: max(16px, 1rem); /* Prevents zoom on iOS */
+  }
+
+  .modal-content {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Landscape orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+  .contact-info-modal {
+    max-height: 95vh;
+    width: min(90vw, 700px);
+  }
+
+  .modal-content {
+    padding: clamp(16px, 3vh, 24px) clamp(20px, 4vw, 28px);
+  }
+
+  .contact-form {
+    gap: clamp(12px, 2vh, 18px);
+  }
+}
+
+/* Print styles */
+@media print {
+  .contact-modal-backdrop,
+  .contact-info-modal {
+    display: none !important;
+  }
+}

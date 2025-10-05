@@ -1,0 +1,68 @@
+/* CSS Variables - Design System */
+:root {
+  /* Colors */
+  --modal-primary: #3b82f6;
+  --modal-primary-dark: #1d4ed8;
+  --modal-primary-light: #60a5fa;
+  --modal-success: #059669;
+  --modal-error: #ef4444;
+  --modal-warning: #f59e0b;
+
+  /* Neutral Colors */
+  --modal-neutral-50: #f9fafb;
+  --modal-neutral-100: #f3f4f6;
+  --modal-neutral-200: #e5e7eb;
+  --modal-neutral-300: #d1d5db;
+  --modal-neutral-400: #9ca3af;
+  --modal-neutral-500: #6b7280;
+  --modal-neutral-600: #4b5563;
+  --modal-neutral-700: #374151;
+  --modal-neutral-800: #1f2937;
+  --modal-neutral-900: #111827;
+
+  /* Dark Theme */
+  --modal-dark-bg: #1b1b1b;
+  --modal-dark-surface: #374151;
+  --modal-dark-border: rgba(156, 163, 175, 0.2);
+
+  /* Spacing */
+  --modal-space-xs: 0.25rem;
+  --modal-space-sm: 0.5rem;
+  --modal-space-md: 1rem;
+  --modal-space-lg: 1.5rem;
+  --modal-space-xl: 2rem;
+  --modal-space-2xl: 3rem;
+
+  /* Typography */
+  --modal-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --modal-font-xs: clamp(0.75rem, 2vw, 0.85rem);
+  --modal-font-sm: clamp(0.85rem, 2.5vw, 0.95rem);
+  --modal-font-base: clamp(1rem, 3vw, 1.1rem);
+  --modal-font-lg: clamp(1.1rem, 3.5vw, 1.25rem);
+  --modal-font-xl: clamp(1.25rem, 4vw, 1.5rem);
+
+  /* Border Radius */
+  --modal-radius-sm: clamp(4px, 1vw, 6px);
+  --modal-radius-md: clamp(6px, 1.5vw, 10px);
+  --modal-radius-lg: clamp(8px, 2vw, 14px);
+  --modal-radius-xl: clamp(8px, 2vw, 16px);
+
+  /* Shadows */
+  --modal-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --modal-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --modal-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --modal-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Transitions */
+  --modal-transition-fast: 0.15s ease-out;
+  --modal-transition-base: 0.2s ease-out;
+  --modal-transition-slow: 0.3s ease-out;
+
+  /* Z-Index */
+  --modal-z-backdrop: 1000;
+  --modal-z-content: 1010;
+  --modal-z-header: 1020;
+}
