@@ -3,7 +3,7 @@ import "./contactInfo.component.css";
 import { useSharedState } from "../../../context/app-context";
 import { useModalState } from "../../../hooks/useModalState.hook";
 import { useAlert } from "../../../hooks/useAlert.hook";
-import { createFormSubmitter } from "../../../utils/validation";
+import { createFormSubmitter } from "../../../service/validation";
 import { MODAL_STEPS, MODAL_TITLES } from "../../../share/utils/constant";
 import Alert from "../../Alert/alert.component";
 import ModalHeader from "./ModalHeader/ModalHeader.component";

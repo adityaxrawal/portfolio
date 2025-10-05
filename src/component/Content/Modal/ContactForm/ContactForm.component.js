@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormField from "./FormField.component";
 import SubmitButton from "./SubmitButton.component";
-import { validateContactForm } from "../../../../utils/validation";
+import { validateContactForm } from "../../../../service/validation";
 import "./ContactForm.component.css";
 
 const ContactForm = ({ onSubmit, isSubmitting }) => {
