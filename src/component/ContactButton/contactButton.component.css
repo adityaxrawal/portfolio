@@ -1,0 +1,192 @@
+/* Contact Button Component Styles */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.contact-button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Sizes */
+.contact-button--small {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  min-height: 36px;
+}
+
+.contact-button--medium {
+  padding: 12px 24px;
+  font-size: 1rem;
+  min-height: 44px;
+}
+
+.contact-button--large {
+  padding: 16px 32px;
+  font-size: 1.125rem;
+  min-height: 52px;
+}
+
+/* Variants */
+.contact-button--primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+}
+
+.contact-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.35);
+}
+
+.contact-button--primary:active {
+  transform: translateY(0);
+}
+
+.contact-button--secondary {
+  background: transparent;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+}
+
+.contact-button--secondary:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
+
+.contact-button--secondary.contact-button--dark {
+  color: #f3f4f6;
+  border-color: #4b5563;
+}
+
+.contact-button--secondary.contact-button--dark:hover {
+  background: rgba(55, 65, 81, 0.3);
+  border-color: #6b7280;
+}
+
+.contact-button--outline {
+  background: transparent;
+  color: #3b82f6;
+  border: 1.5px solid #3b82f6;
+}
+
+.contact-button--outline:hover {
+  background: #3b82f6;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.contact-button--ghost {
+  background: transparent;
+  color: #374151;
+  border: none;
+}
+
+.contact-button--ghost:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+.contact-button--ghost.contact-button--dark {
+  color: #f3f4f6;
+}
+
+.contact-button--ghost.contact-button--dark:hover {
+  background: rgba(55, 65, 81, 0.3);
+}
+
+/* Text wrapper for better control */
+.contact-button__text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Disabled state */
+.contact-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Ripple effect for better UX */
+.contact-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.contact-button:active::before {
+  width: 120%;
+  height: 120%;
+}
+
+/* Special styling for dark mode */
+.contact-button--primary.contact-button--dark {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .contact-button--large {
+    padding: 14px 28px;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  .contact-button--medium {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    min-height: 40px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .contact-button--primary {
+    background: #1d4ed8;
+    border: 2px solid #1d4ed8;
+  }
+
+  .contact-button--secondary,
+  .contact-button--outline,
+  .contact-button--ghost {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .contact-button,
+  .contact-button::before {
+    transition: none;
+  }
+
+  .contact-button:hover,
+  .contact-button:active {
+    transform: none;
+  }
+}

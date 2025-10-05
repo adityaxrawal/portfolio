@@ -1,0 +1,117 @@
+/* Modal Container Styles */
+.contact-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--modal-z-backdrop);
+  animation: fadeIn var(--modal-transition-slow);
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.contact-info-modal {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: var(--modal-radius-xl);
+  padding: 0;
+  width: 50vw;
+  max-width: 600px;
+  height: 80vh;
+  max-height: 700px;
+  box-shadow: var(--modal-shadow-xl);
+  animation: slideIn var(--modal-transition-slow);
+  position: relative;
+  font-family: var(--modal-font-family);
+  overflow: hidden;
+}
+
+.contact-info-modal.dark {
+  background: var(--modal-dark-bg);
+  color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.contact-info-modal.light {
+  background: white;
+  color: var(--modal-neutral-900);
+}
+
+/* Modal Content Container */
+.modal-content {
+  padding: clamp(20px, 5vw, 28px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+  transition: background-color var(--modal-transition-base);
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+.dark .modal-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.4);
+}
+
+.dark .modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.6);
+}
+
+.modal-content > p {
+  margin: 0 0 clamp(20px, 4vw, 24px) 0;
+  font-size: var(--modal-font-base);
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-modal-backdrop {
+    padding: 10px;
+  }
+
+  .contact-info-modal {
+    width: 95vw;
+    height: 90vh;
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-modal-backdrop {
+    padding: 5px;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .contact-info-modal {
+    width: 100vw;
+    height: calc(100vh - 40px);
+    border-radius: 12px;
+  }
+}
