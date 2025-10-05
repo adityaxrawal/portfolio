@@ -10,7 +10,8 @@ export const links = {
 
 // API Endpoints
 export const API_ENDPOINTS = {
-  CONTACT_FORM: "https://portfolio-373822582459.asia-south1.run.app/contact",
+  CONTACT_FORM:
+    "https://portfolio-backend-v1-373822582459.europe-west1.run.app/contact",
 };
 
 export const darkModeColorList = {
