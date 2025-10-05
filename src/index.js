@@ -47,5 +47,5 @@ if (process.env.NODE_ENV === "development") {
     import("./service/reportWebVitals").then(({ monitorMemoryUsage }) => {
       monitorMemoryUsage();
     });
-  }, 30000); // Check every 30 seconds
+  }, 30000);
 }
