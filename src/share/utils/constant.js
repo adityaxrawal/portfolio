@@ -8,6 +8,11 @@ export const links = {
   twitterLink: "https://www.twitter.com/adityaxrawal", // Optional: Add Twitter if available
 };
 
+// API Endpoints
+export const API_ENDPOINTS = {
+  CONTACT_FORM: "https://portfolio-373822582459.asia-south1.run.app/contact",
+};
+
 export const darkModeColorList = {
   0: "#151515", // Darkest shade (near-black with a hint of blue)
   1: "#31363F", // Dark blue-gray, similar depth to light mode's shade 5

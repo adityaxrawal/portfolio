@@ -1,3 +1,5 @@
+import { API_ENDPOINTS } from "../share/utils/constant";
+
 export const validateContactForm = (formData) => {
   const errors = {};
 
@@ -25,7 +27,7 @@ export const validateContactForm = (formData) => {
 export const createFormSubmitter = (showSuccess, showError, onClose) => {
   return async (formData) => {
     try {
-      const response = await fetch("http://localhost:8080/contact", {
+      const response = await fetch(API_ENDPOINTS.CONTACT_FORM, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
