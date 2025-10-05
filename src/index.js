@@ -5,11 +5,11 @@ import App from "./App";
 import {
   reportWebVitalsWithAnalytics,
   setupPerformanceObserver,
-} from "./utils/reportWebVitals";
+} from "./service/reportWebVitals";
 import {
   register as registerSW,
   setupPWAInstallPrompt,
-} from "./utils/serviceWorkerRegistration";
+} from "./service/serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === "production") {
 // Monitor memory usage periodically in development
 if (process.env.NODE_ENV === "development") {
   setInterval(() => {
-    import("./utils/reportWebVitals").then(({ monitorMemoryUsage }) => {
+    import("./service/reportWebVitals").then(({ monitorMemoryUsage }) => {
       monitorMemoryUsage();
     });
   }, 30000); // Check every 30 seconds

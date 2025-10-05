@@ -1,0 +1,71 @@
+/* Contact Options Styles */
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 20px);
+}
+
+.contact-option {
+  display: flex;
+  align-items: center;
+  padding: clamp(14px, 4vw, 22px) clamp(18px, 5vw, 28px);
+  text-decoration: none;
+  border-radius: var(--modal-radius-lg);
+  transition: all var(--modal-transition-base);
+  border: clamp(1px, 0.3vw, 2px) solid rgba(156, 163, 175, 0.2);
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  font-size: var(--modal-font-base);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 56px;
+}
+
+.contact-option:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--modal-shadow-lg);
+}
+
+.contact-option:focus {
+  outline: 2px solid var(--modal-primary);
+  outline-offset: 2px;
+}
+
+.contact-option:active {
+  transform: translateY(-1px);
+}
+
+/* Platform-specific hover states */
+.contact-option.linkedin:hover {
+  border-color: #0077b5;
+  background-color: rgba(0, 119, 181, 0.08);
+}
+
+.contact-option.github:hover {
+  border-color: #333;
+  background-color: rgba(51, 51, 51, 0.08);
+}
+
+.contact-option.send-message:hover {
+  border-color: var(--modal-success);
+  background-color: rgba(5, 150, 105, 0.08);
+}
+
+.dark .contact-option.github:hover {
+  border-color: #f0f0f0;
+  background-color: rgba(240, 240, 240, 0.08);
+}
+
+.contact-option .icon {
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  margin-right: clamp(12px, 3vw, 20px);
+  flex-shrink: 0;
+}
+
+.contact-option span:last-child {
+  font-weight: 500;
+  font-size: var(--modal-font-lg);
+  line-height: 1.4;
+}

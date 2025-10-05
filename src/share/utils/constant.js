@@ -8,6 +8,12 @@ export const links = {
   twitterLink: "https://www.twitter.com/adityaxrawal", // Optional: Add Twitter if available
 };
 
+// API Endpoints
+export const API_ENDPOINTS = {
+  CONTACT_FORM:
+    "https://portfolio-backend-v1-373822582459.europe-west1.run.app/contact",
+};
+
 export const darkModeColorList = {
   0: "#151515", // Darkest shade (near-black with a hint of blue)
   1: "#31363F", // Dark blue-gray, similar depth to light mode's shade 5
@@ -83,6 +89,30 @@ export const PROGRESS_COLORS = [
   { max: 9, color: "#A5D6A7" }, // 8-9: Soft Mint Green
   { max: 10, color: "#B39DDB" }, // 10: Pastel Purple (Completed)
 ];
+
+// --- Modal Constants ---
+export const MODAL_STEPS = Object.freeze({
+  OPTIONS: "options",
+  FORM: "form",
+});
+
+export const MODAL_TITLES = Object.freeze({
+  [MODAL_STEPS.OPTIONS]: "Get In Touch 🤝",
+  [MODAL_STEPS.FORM]: "Contact Form 📜",
+});
+
+export const FORM_SUBMISSION_STATES = Object.freeze({
+  IDLE: "idle",
+  SUBMITTING: "submitting",
+  SUCCESS: "success",
+  ERROR: "error",
+});
+
+export const ALERT_DURATION = Object.freeze({
+  SUCCESS: 2000,
+  ERROR: 4000,
+  WARNING: 3000,
+});
 
 // --- Technical Skills (No changes needed here unless you want to adjust descriptions/levels) ---
 export const TechnicalSkills = [

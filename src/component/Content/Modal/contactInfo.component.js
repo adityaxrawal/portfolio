@@ -1,98 +1,102 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import "./contactInfo.component.css";
 import { useSharedState } from "../../../context/app-context";
-import { links } from "../../../share/utils/constant";
+import { useModalState } from "../../../hooks/useModalState.hook";
+import { useAlert } from "../../../hooks/useAlert.hook";
+import { createFormSubmitter } from "../../../service/validation";
+import { MODAL_STEPS, MODAL_TITLES } from "../../../share/utils/constant";
+import Alert from "../../Alert/alert.component";
+import ModalHeader from "./ModalHeader/ModalHeader.component";
+import ContactOptions from "./ContactOptions/ContactOptions.component";
+import ContactForm from "./ContactForm/ContactForm.component";
 
-const ContactInfo = ({ open, onClose }) => {
+const ContactInfo = React.memo(({ open, onClose }) => {
   const { isDarkTheme } = useSharedState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle ESC key press to close modal
-  const handleKeyDown = useCallback(
-    (event) => {
-      if (event.key === "Escape") {
-        onClose();
+  const { currentStep, setCurrentStep, handleBackdropClick } = useModalState(
+    open,
+    onClose
+  );
+  const { alert, showSuccess, showError, clearAlert, getAlertDuration } =
+    useAlert();
+
+  // Clear alert when modal closes
+  React.useEffect(() => {
+    if (!open) {
+      clearAlert();
+    }
+  }, [open, clearAlert]);
+
+  // Memoize the modal title to avoid recalculation
+  const modalTitle = useMemo(() => {
+    return MODAL_TITLES[currentStep] || "Contact";
+  }, [currentStep]);
+
+  // Memoize the form submit handler to prevent unnecessary re-renders
+  const handleFormSubmit = useCallback(
+    async (formData) => {
+      setIsSubmitting(true);
+      try {
+        const submitForm = createFormSubmitter(showSuccess, showError, onClose);
+        await submitForm(formData);
+      } finally {
+        setIsSubmitting(false);
       }
     },
-    [onClose]
+    [showSuccess, showError, onClose]
   );
 
-  useEffect(() => {
-    if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden"; // Prevent background scrolling
+  // Memoize the back handler to prevent ContactForm re-renders
+  const handleBackToOptions = useCallback(() => {
+    setCurrentStep(MODAL_STEPS.OPTIONS);
+  }, [setCurrentStep]);
+
+  // Memoize the content renderer
+  const renderContent = useCallback(() => {
+    if (currentStep === MODAL_STEPS.OPTIONS) {
+      return <ContactOptions onSelectOption={setCurrentStep} />;
     }
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "unset";
-    };
-  }, [open, handleKeyDown]);
+    return (
+      <ContactForm onSubmit={handleFormSubmit} isSubmitting={isSubmitting} />
+    );
+  }, [currentStep, setCurrentStep, handleFormSubmit, isSubmitting]);
 
   if (!open) return null;
 
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
   return (
-    <div className="contact-modal-backdrop" onClick={handleBackdropClick}>
-      <div
-        className={`contact-info-modal ${isDarkTheme ? "dark" : "light"}`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-title"
-      >
-        <div className="modal-header">
-          <h2 id="contact-title">Get In Touch</h2>
-          <button
-            className="close-button"
-            onClick={onClose}
-            aria-label="Close modal"
-          >
-            ×
-          </button>
-        </div>
+    <>
+      {alert.message && (
+        <Alert
+          message={alert.message}
+          type={alert.type}
+          onClose={clearAlert}
+          duration={getAlertDuration(alert.type)}
+        />
+      )}
 
-        <div className="modal-content">
-          <p>Let's connect and discuss opportunities!</p>
+      <div className="contact-modal-backdrop" onClick={handleBackdropClick}>
+        <div
+          className={`contact-info-modal ${isDarkTheme ? "dark" : "light"}`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-title"
+        >
+          <ModalHeader
+            title={modalTitle}
+            onClose={onClose}
+            showBackButton={currentStep === MODAL_STEPS.FORM}
+            onBack={handleBackToOptions}
+          />
 
-          <div className="contact-options">
-            <a
-              href={`mailto:${links.email || "contact@adityarawal.dev"}`}
-              className="contact-option email"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">📧</span>
-              <span>Email Me</span>
-            </a>
-
-            <a
-              href={links.linkedInLink}
-              className="contact-option linkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">💼</span>
-              <span>LinkedIn</span>
-            </a>
-
-            <a
-              href={links.githubLink}
-              className="contact-option github"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="icon">🐙</span>
-              <span>GitHub</span>
-            </a>
-          </div>
+          {renderContent()}
         </div>
       </div>
-    </div>
+    </>
   );
-};
+});
+
+ContactInfo.displayName = "ContactInfo";
 
 export default ContactInfo;
