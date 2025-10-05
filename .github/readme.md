@@ -1,89 +1,152 @@
-<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
+# Portfolio API Spring Boot Application
 
-- [x] Verify that the copilot-instructions.md file in the .github directory is created.
+A Spring Boot application that provides a contact form API endpoint with Gmail integration for sending emails.
 
-- [x] Clarify Project Requirements
-<!-- Spring Boot contact API application with Gmail SMTP integration, Java 17, Maven specified by user -->
+## Features
 
-- [x] Scaffold the Project
-<!-- Created complete Spring Boot project structure with Maven pom.xml, Java source files, and configuration -->
+- POST `/contact` endpoint for contact form submissions
+- Input validation for required fields
+- Gmail SMTP integration for email sending
+- Proper error handling and response formatting
+- Java 17 and Maven support
 
-- [x] Customize the Project
-<!-- Project customized with contact API endpoint, Gmail SMTP integration, validation, and error handling as requested -->
+## Project Structure
 
-- [x] Install Required Extensions
-<!-- No additional extensions needed for Spring Boot Maven project -->
+```
+src/
+├── main/
+│   ├── java/com/backend/portfolio/
+│   │   ├── PortfolioApplication.java
+│   │   ├── controller/ContactController.java
+│   │   ├── dto/ContactRequest.java
+│   │   ├── service/EmailService.java
+│   │   └── config/MailConfig.java
+│   └── resources/
+│       └── application.properties
+└── test/
+    └── java/com/backend/portfolio/
+        └── PortfolioApplicationTests.java
+```
 
-- [x] Compile the Project
-<!--
-Verify that all previous steps have been completed.
-Install any missing dependencies.
-Run diagnostics and resolve any issues.
-Check for markdown files in project folder for relevant instructions on how to do this.
--->
+## Configuration
 
-- [x] Create and Run Task
-<!--
-Verify that all previous steps have been completed.
-Check https://code.visualstudio.com/docs/debugtest/tasks to determine if the project needs a task. If so, use the create_and_run_task to create and launch a task based on package.json, README.md, and project structure.
-Skip this step otherwise.
- -->
+Before running the application, update the following properties in `src/main/resources/application.properties`:
 
-- [x] Launch the Project
-<!-- Application successfully launched and tested. API endpoints working correctly with proper validation. -->
+```properties
+# Replace with your Gmail credentials
+spring.mail.username=your-email@gmail.com
+spring.mail.password=your-app-password
 
-- [x] Ensure Documentation is Complete
-<!-- README.md created with comprehensive setup and usage instructions. All project files documented. -->
+# The recipient email (currently set to aditya@gmail.com)
+app.email.recipient=aditya@gmail.com
+```
 
-<!--
-## Execution Guidelines
-PROGRESS TRACKING:
-- If any tools are available to manage the above todo list, use it to track progress through this checklist.
-- After completing each step, mark it complete and add a summary.
-- Read current todo list status before starting each new step.
+### Gmail Setup
 
-COMMUNICATION RULES:
-- Avoid verbose explanations or printing full command outputs.
-- If a step is skipped, state that briefly (e.g. "No extensions needed").
-- Do not explain project structure unless asked.
-- Keep explanations concise and focused.
+1. Enable 2-Factor Authentication on your Gmail account
+2. Generate an App Password:
+   - Go to Google Account settings
+   - Security → 2-Step Verification → App passwords
+   - Generate a new app password for "Mail"
+   - Use this app password in the `spring.mail.password` field
 
-DEVELOPMENT RULES:
-- Use '.' as the working directory unless user specifies otherwise.
-- Avoid adding media or external links unless explicitly requested.
-- Use placeholders only with a note that they should be replaced.
-- Use VS Code API tool only for VS Code extension projects.
-- Once the project is created, it is already opened in Visual Studio Code—do not suggest commands to open this project in Visual Studio again.
-- If the project setup information has additional rules, follow them strictly.
+## API Usage
 
-FOLDER CREATION RULES:
-- Always use the current directory as the project root.
-- If you are running any terminal commands, use the '.' argument to ensure that the current working directory is used ALWAYS.
-- Do not create a new folder unless the user explicitly requests it besides a .vscode folder for a tasks.json file.
-- If any of the scaffolding commands mention that the folder name is not correct, let the user know to create a new folder with the correct name and then reopen it again in vscode.
+### POST /contact
 
-EXTENSION INSTALLATION RULES:
-- Only install extension specified by the get_project_setup_info tool. DO NOT INSTALL any other extensions.
+Submit a contact form with the following JSON structure:
 
-PROJECT CONTENT RULES:
-- If the user has not specified project details, assume they want a "Hello World" project as a starting point.
-- Avoid adding links of any type (URLs, files, folders, etc.) or integrations that are not explicitly required.
-- Avoid generating images, videos, or any other media files unless explicitly requested.
-- If you need to use any media assets as placeholders, let the user know that these are placeholders and should be replaced with the actual assets later.
-- Ensure all generated components serve a clear purpose within the user's requested workflow.
-- If a feature is assumed but not confirmed, prompt the user for clarification before including it.
-- If you are working on a VS Code extension, use the VS Code API tool with a query to find relevant VS Code API references and samples related to that query.
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "+1234567890",
+  "subject": "Inquiry about services",
+  "message": "I would like to know more about your services."
+}
+```
 
-TASK COMPLETION RULES:
-- Your task is complete when:
-  - Project is successfully scaffolded and compiled without errors
-  - copilot-instructions.md file in the .github directory exists in the project
-  - README.md file exists and is up to date
-  - User is provided with clear instructions to debug/launch the project
+#### Required Fields:
 
-Before starting a new task in the above plan, update progress in the plan.
--->
+- `name` (string)
+- `email` (string, must be valid email format)
+- `subject` (string)
+- `message` (string)
 
-- Work through each checklist item systematically.
-- Keep communication concise and focused.
-- Follow development best practices.
+#### Optional Fields:
+
+- `phone` (string)
+
+#### Response Examples:
+
+**Success (200 OK):**
+
+```json
+{
+  "success": true,
+  "message": "Contact form submitted successfully. We will get back to you soon!"
+}
+```
+
+**Validation Error (400 Bad Request):**
+
+```json
+{
+  "success": false,
+  "message": "Validation failed",
+  "errors": ["name: Name is required", "email: Email must be valid"]
+}
+```
+
+**Server Error (500 Internal Server Error):**
+
+```json
+{
+  "success": false,
+  "message": "Failed to send email: [error details]"
+}
+```
+
+## Running the Application
+
+### Prerequisites
+
+- Java 17
+- Maven 3.6+
+
+### Build and Run
+
+```bash
+mvn clean install
+mvn spring-boot:run
+```
+
+The application will start on `http://localhost:8080`
+
+### Test the API
+
+```bash
+curl -X POST http://localhost:8080/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "subject": "Test Subject",
+    "message": "This is a test message"
+  }'
+```
+
+## Dependencies
+
+- Spring Boot Starter Web
+- Spring Boot Starter Validation
+- Spring Boot Starter Mail
+- Spring Boot Starter Test
+
+## Notes
+
+- The application uses Gmail SMTP for sending emails
+- All emails are sent to the configured recipient address (`aditya@gmail.com`)
+- The sender's email is set as the reply-to address for easy response
+- Input validation is handled using Bean Validation annotations
+- Proper error handling and logging is implemented
