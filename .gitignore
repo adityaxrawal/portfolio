@@ -9,6 +9,7 @@
 /coverage
 
 # production
+/dist
 /build
 
 # misc
@@ -19,6 +20,7 @@
 .env.production.local
 
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
@@ -27,3 +29,8 @@ yarn-error.log*
 .env
 .env.*
 !env.local
+
+# local files
+pending.md
+notes.md
+me.jpeg

@@ -1,15 +1,16 @@
 // src/hooks/__tests__/useAnimatedCounter.test.js
 import { renderHook } from "@testing-library/react";
+import { vi } from "vitest";
 import { useAnimatedCounter } from "../useAnimatedCounter.hook";
 
 // Mock requestAnimationFrame
-global.requestAnimationFrame = jest.fn((cb) => {
+global.requestAnimationFrame = vi.fn((cb) => {
   return setTimeout(cb, 0);
 });
 
 describe("useAnimatedCounter Hook", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("initializes counter with 0", () => {

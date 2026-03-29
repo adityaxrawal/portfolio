@@ -27,7 +27,7 @@ const TechnologyBox = ({
           <div className="box-absolute">
             <div className="box-skill-image">
               <img
-                src={require(`../../../../share/img/skills/${skillImage}`)}
+                src={new URL(`../../../../share/img/skills/${skillImage}`, import.meta.url).href}
                 className="skill-image"
                 alt={`${skillName} technology logo`}
                 loading="lazy"
