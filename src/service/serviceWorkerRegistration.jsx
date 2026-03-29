@@ -130,48 +130,66 @@ export function setupPWAInstallPrompt() {
   function showInstallPromotion() {
     const installBanner = document.createElement("div");
     installBanner.id = "install-banner";
-    installBanner.innerHTML = `
-      <div style="
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #667eea;
-        color: white;
-        padding: 16px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
-        max-width: 300px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-      ">
-        <div style="margin-bottom: 8px; font-weight: 600;">
-          📱 Install Portfolio App
-        </div>
-        <div style="font-size: 14px; margin-bottom: 12px; opacity: 0.9;">
-          Get quick access to my portfolio on your home screen
-        </div>
-        <div>
-          <button id="install-btn" style="
-            background: white;
-            color: #667eea;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-right: 8px;
-          ">Install</button>
-          <button id="dismiss-btn" style="
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-          ">Not now</button>
-        </div>
-      </div>
-    `;
+    
+    const bannerContainer = document.createElement("div");
+    Object.assign(bannerContainer.style, {
+      position: "fixed",
+      bottom: "20px",
+      right: "20px",
+      background: "#667eea",
+      color: "white",
+      padding: "16px 20px",
+      borderRadius: "8px",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+      zIndex: "1000",
+      maxWidth: "300px",
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif"
+    });
+
+    const titleDiv = document.createElement("div");
+    Object.assign(titleDiv.style, { marginBottom: "8px", fontWeight: "600" });
+    titleDiv.textContent = "📱 Install Portfolio App";
+
+    const descDiv = document.createElement("div");
+    Object.assign(descDiv.style, { fontSize: "14px", marginBottom: "12px", opacity: "0.9" });
+    descDiv.textContent = "Get quick access to my portfolio on your home screen";
+
+    const btnContainer = document.createElement("div");
+    
+    const installBtn = document.createElement("button");
+    installBtn.id = "install-btn";
+    Object.assign(installBtn.style, {
+      background: "white",
+      color: "#667eea",
+      border: "none",
+      padding: "8px 16px",
+      borderRadius: "4px",
+      fontWeight: "600",
+      cursor: "pointer",
+      marginRight: "8px"
+    });
+    installBtn.textContent = "Install";
+
+    const dismissBtn = document.createElement("button");
+    dismissBtn.id = "dismiss-btn";
+    Object.assign(dismissBtn.style, {
+      background: "transparent",
+      color: "white",
+      border: "1px solid rgba(255,255,255,0.3)",
+      padding: "8px 16px",
+      borderRadius: "4px",
+      cursor: "pointer"
+    });
+    dismissBtn.textContent = "Not now";
+
+    btnContainer.appendChild(installBtn);
+    btnContainer.appendChild(dismissBtn);
+
+    bannerContainer.appendChild(titleDiv);
+    bannerContainer.appendChild(descDiv);
+    bannerContainer.appendChild(btnContainer);
+
+    installBanner.appendChild(bannerContainer);
 
     document.body.appendChild(installBanner);
 
