@@ -26,6 +26,9 @@ export const validateContactForm = (formData) => {
 
 export const createFormSubmitter = (showSuccess, showError, onClose) => {
   return async (formData) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
     try {
       const response = await fetch(API_ENDPOINTS.CONTACT_FORM, {
         method: "POST",
@@ -33,7 +36,10 @@ export const createFormSubmitter = (showSuccess, showError, onClose) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        signal: controller.signal
       });
+      
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         showSuccess("Message sent successfully!");
@@ -49,7 +55,11 @@ export const createFormSubmitter = (showSuccess, showError, onClose) => {
         );
       }
     } catch (error) {
-      showError("Network error. Please check your connection and try again.");
+      if (error.name === 'AbortError') {
+        showError("Request timed out. Please try again later.");
+      } else {
+        showError("Network error. Please check your connection and try again.");
+      }
     }
   };
 };
