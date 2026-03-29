@@ -1,0 +1,181 @@
+.hero-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  height: 90vh;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 60%;
+  gap: 2rem;
+}
+
+.headline-title {
+  font-size: var(--font-size-heading);
+  font-weight: 900;
+  font-family: Alegreya-Font-Bold;
+}
+
+.headline-text {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-text);
+  line-height: 150%;
+  gap: 0.5rem;
+}
+
+.headline-sub-text {
+  font-size: var(--font-size-text);
+}
+
+.headline-buttons {
+  display: none;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.highlighted-text {
+  white-space: nowrap;
+}
+
+.headline-btn a {
+  text-decoration: none;
+}
+
+.headline-btn {
+  width: 15rem;
+  height: 4rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  font-size: var(--font-size-text);
+  cursor: pointer;
+}
+
+.linkedin {
+  background-color: rgb(21, 19, 19);
+  color: white;
+}
+
+.github {
+  background-color: rgb(21, 19, 19);
+  color: white;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  transition: rotate 0.5s ease-in-out;
+  padding: 1% 2%;
+  border-radius: 0rem;
+  justify-content: center;
+  align-items: center;
+  /* rotate: z 7deg; */
+}
+
+.image-card-part-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90%;
+}
+
+.image-card-part-two {
+  display: flex;
+  width: 100%;
+  height: 5%;
+  /* background-color: green; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: ShadowsIntoLightTwo-Regular;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.image {
+  width: 85%;
+  height: 100%;
+  border-radius: 0rem;
+}
+
+@media only screen and (orientation: portrait) {
+  .hero-section {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    padding-bottom: 2.5rem;
+  }
+  .image-container {
+    display: none;
+  }
+  .headline {
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .headline-title {
+    font-size: var(--font-size-heading-mobile);
+  }
+  .headline-sub-text {
+    font-size: var(--font-size-text-mobile);
+  }
+  .headline-buttons {
+    display: flex;
+    padding-top: 5%;
+  }
+  .headline-btn {
+    width: 9rem;
+    height: 3rem;
+    font-size: var(--font-size-text-mobile);
+  }
+}
+
+/* Still need to add responsiveness for tablets */
+/* Add this at the end of src/component/Content/HeroSection/heroSection.component.css */
+
+.hire-me-line span {
+  display: inline-block; /* Needed for click area */
+  transition: transform 0.2s ease-out;
+}
+
+.hire-me-line span:hover {
+  transform: scale(1.1); /* Slight grow on hover */
+}
+
+/* Add styles for mobile buttons if not already sufficient */
+@media only screen and (max-width: 600px) {
+  .headline-buttons {
+    display: flex;
+    flex-direction: row; /* Keep side-by-side */
+    justify-content: space-around; /* Space out better */
+    width: 100%; /* Full width */
+    padding-top: 1.5rem; /* Adjust spacing */
+  }
+  .headline-btn {
+    height: 3rem;
+    font-size: var(--font-size-text-mobile);
+  }
+}
