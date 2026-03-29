@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "sideEffects": false,
   "dependencies": {
     "lenis": "^1.3.21",
     "octokit": "^5.0.5",
@@ -24,11 +25,20 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^6.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-no-secrets": "^1.0.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "husky": "^9.1.7",
     "jsdom": "^29.0.1",
+    "lint-staged": "^15.4.1",
+    "msw": "^2.7.0",
+    "prettier": "^3.5.1",
+    "rollup-plugin-visualizer": "latest",
     "serve": "^14.2.6",
     "vite": "^8.0.3",
-    "vitest": "^4.1.2",
-    "webpack-bundle-analyzer": "^5.3.0"
+    "vitest": "^4.1.2"
   },
   "scripts": {
     "start": "vite",
@@ -38,14 +48,81 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest run --passWithNoTests",
-    "analyze": "pnpm run build && pnpm dlx serve -s dist",
-    "analyze:bundle": "pnpm run build && pnpm dlx webpack-bundle-analyzer dist/assets/*.js",
-    "build:analyze": "pnpm run build && echo 'Build completed! Run pnpm run analyze:bundle to analyze bundle size'"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,md}\"",
+    "analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,css}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2020": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "plugins": [
+      "import",
+      "no-secrets"
+    ],
+    "rules": {
+      "no-secrets/no-secrets": "error",
+      "import/order": [
+        "warn",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal"
+          ],
+          "newlines-between": "always"
+        }
+      ],
+      "react/prop-types": "off",
+      "no-unused-vars": "warn"
+    },
+    "overrides": [
+      {
+        "files": ["src/shared/components/CompaniesData.jsx"],
+        "rules": {
+          "no-secrets/no-secrets": "off",
+          "no-unused-vars": "off"
+        }
+      },
+      {
+        "files": ["src/**/*.test.jsx", "src/**/*.test.js"],
+        "globals": {
+          "describe": "readonly",
+          "test": "readonly",
+          "expect": "readonly",
+          "beforeEach": "readonly",
+          "afterEach": "readonly",
+          "vi": "readonly"
+        }
+      }
     ]
   },
   "browserslist": {
