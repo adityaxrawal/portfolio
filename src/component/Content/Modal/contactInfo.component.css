@@ -1,7 +1,0 @@
-/* Contact Modal - Modular CSS Architecture */
-@import "./shared/variables.css";
-@import "./shared/animations.css";
-@import "./ModalContainer/ModalContainer.css";
-@import "./ModalHeader/ModalHeader.css";
-@import "./ContactOptions/ContactOptions.css";
-@import "./shared/responsive.css";
