@@ -23,7 +23,7 @@ reportWebVitalsWithAnalytics();
 setupPerformanceObserver();
 
 // Register service worker for PWA functionality
-if (process.env.NODE_ENV === "production") {
+if (import.meta.env.MODE === "production") {
   registerSW({
     onSuccess: (registration) => {
       console.log("🎉 Service worker registration successful:", registration);
@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Monitor memory usage periodically in development
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.DEV) {
   setInterval(() => {
     import("./service/reportWebVitals").then(({ monitorMemoryUsage }) => {
       monitorMemoryUsage();

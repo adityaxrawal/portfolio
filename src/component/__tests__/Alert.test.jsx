@@ -2,10 +2,11 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 import Alert from "../Alert/alert.component";
 
 describe("Alert Component", () => {
-  const mockOnClose = jest.fn();
+  const mockOnClose = vi.fn();
 
   beforeEach(() => {
     mockOnClose.mockClear();

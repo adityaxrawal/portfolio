@@ -2,12 +2,11 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 import TechnologyBox from "../Content/Tech/Boxes/tech-box.component";
 
 // Mock the image require
-jest.mock("../../../../share/img/skills/react.png", () => "test-image.png", {
-  virtual: true,
-});
+vi.mock("../../../../share/img/skills/react.png", () => ({ default: "test-image.png" }));
 
 describe("TechnologyBox Component", () => {
   const defaultProps = {
@@ -19,7 +18,7 @@ describe("TechnologyBox Component", () => {
     skillImage: "react.png",
     isDarkTheme: false,
     dimensions: { width: 300, height: 400 },
-    getProgressColor: jest.fn(() => "#61DAFB"),
+    getProgressColor: vi.fn(() => "#61DAFB"),
     index: 0,
   };
 

@@ -1,15 +1,15 @@
 // src/utils/reportWebVitals.js
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from "web-vitals";
+import { onCLS, onINP, onFCP, onLCP, onTTFB } from "web-vitals";
 
 // Enhanced Web Vitals reporting with multiple analytics integration
 const reportWebVitals = (onPerfEntry) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     // Core Web Vitals
-    getCLS(onPerfEntry); // Cumulative Layout Shift
-    getFID(onPerfEntry); // First Input Delay
-    getFCP(onPerfEntry); // First Contentful Paint
-    getLCP(onPerfEntry); // Largest Contentful Paint
-    getTTFB(onPerfEntry); // Time to First Byte
+    onCLS(onPerfEntry); // Cumulative Layout Shift
+    onINP(onPerfEntry); // Interaction to Next Paint
+    onFCP(onPerfEntry); // First Contentful Paint
+    onLCP(onPerfEntry); // Largest Contentful Paint
+    onTTFB(onPerfEntry); // Time to First Byte
   }
 };
 
@@ -17,7 +17,7 @@ const reportWebVitals = (onPerfEntry) => {
 export const reportWebVitalsWithAnalytics = () => {
   reportWebVitals((metric) => {
     // Console logging for development
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.DEV) {
       console.log("📊 Web Vitals:", metric);
     }
 
@@ -34,7 +34,7 @@ export const reportWebVitalsWithAnalytics = () => {
     }
 
     // Send to custom analytics endpoint
-    if (process.env.NODE_ENV === "production") {
+    if (import.meta.env.PROD) {
       sendToAnalytics(metric);
     }
   });
@@ -43,7 +43,7 @@ export const reportWebVitalsWithAnalytics = () => {
 // Custom analytics function - replace with your preferred analytics service
 const sendToAnalytics = (metric) => {
   // Example: Send to your own analytics endpoint
-  const analyticsEndpoint = process.env.REACT_APP_ANALYTICS_ENDPOINT;
+  const analyticsEndpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
 
   if (analyticsEndpoint) {
     fetch(analyticsEndpoint, {
