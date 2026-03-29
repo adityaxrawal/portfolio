@@ -11,22 +11,33 @@ const repo = "portfolio";
 
 // Stable promise created once at module level — no useEffect/useReducer needed.
 // React 19's `use` suspends the component until this resolves.
-const gitStatsPromise = (async () => {
-  const octokit = new Octokit({ auth: import.meta.env.VITE_GITHUB_TOKEN || "" });
-  const [userRes, repoRes, commitRes, langRes] = await Promise.all([
-    octokit.request("GET /users/{username}", { username }),
-    octokit.request("GET /repos/{owner}/{repo}", { owner: username, repo }),
-    octokit.request("GET /repos/{owner}/{repo}/commits", { owner: username, repo }),
-    octokit.request("GET /repos/{owner}/{repo}/languages", { owner: username, repo }),
-  ]);
-  return {
-    commits: commitRes.data.length,
-    issues: repoRes.data.open_issues_count,
-    pullRequests: 15,
-    repos: userRes.data.public_repos,
-    linesOfCode: Object.values(langRes.data).reduce((acc, val) => acc + val, 0),
-  };
-})();
+const fetchGitStats = async () => {
+  try {
+    const octokit = new Octokit({ auth: import.meta.env.VITE_GITHUB_TOKEN || "" });
+    const [userRes, repoRes, commitRes, langRes] = await Promise.all([
+      octokit.request("GET /users/{username}", { username }),
+      octokit.request("GET /repos/{owner}/{repo}", { owner: username, repo }),
+      octokit.request("GET /repos/{owner}/{repo}/commits", { owner: username, repo }),
+      octokit.request("GET /repos/{owner}/{repo}/languages", { owner: username, repo }),
+    ]);
+    return {
+      commits: commitRes.data.length,
+      issues: repoRes.data.open_issues_count,
+      pullRequests: 15,
+      repos: userRes.data.public_repos,
+      linesOfCode: Object.values(langRes.data).reduce((acc, val) => acc + val, 0),
+    };
+  } catch (error) {
+    let msg = "Failed to fetch GitHub data";
+    const status = error?.status;
+    if (status === 401) msg = "GitHub token invalid.";
+    else if (status === 403) msg = "Rate limit exceeded.";
+    else if (status === 404) msg = "User or repo not found.";
+    throw new Error(msg);
+  }
+};
+
+const gitStatsPromise = fetchGitStats();
 
 // Error boundary to catch API failures (401, 403, 404, etc.)
 class PortfolioErrorBoundary extends React.Component {
@@ -38,15 +49,10 @@ class PortfolioErrorBoundary extends React.Component {
 
   render() {
     if (this.state.error) {
-      let msg = "Failed to fetch GitHub data";
-      const status = this.state.error?.status;
-      if (status === 401) msg = "GitHub token invalid.";
-      else if (status === 403) msg = "Rate limit exceeded.";
-      else if (status === 404) msg = "User or repo not found.";
-
+      console.error("ErrorBoundary caught an api error:", this.state.error);
       return (
         <div className="api-error-message">
-          <p>{msg}</p>
+          <p>{this.state.error.message || "An unexpected error occurred."}</p>
         </div>
       );
     }
@@ -66,10 +72,15 @@ const DetailCard = ({ title, content }) => (
 function GitStats() {
   const gitStats = use(gitStatsPromise);
 
-  const linesOfCode = useAnimatedCounter(gitStats.linesOfCode, 2000);
-  const gitCommits = useAnimatedCounter(gitStats.commits, 1800);
-  const debuggingSessions = useAnimatedCounter(287, 1800);
-  const stackOverflowVisits = useAnimatedCounter(394, 2000);
+  const ANIMATION_DURATION_LONG = 2000;
+  const ANIMATION_DURATION_SHORT = 1800;
+  const DEBUG_HOURS_ESTIMATE = 287;
+  const SO_VISITS_ESTIMATE = 394;
+
+  const linesOfCode = useAnimatedCounter(gitStats.linesOfCode, ANIMATION_DURATION_LONG);
+  const gitCommits = useAnimatedCounter(gitStats.commits, ANIMATION_DURATION_SHORT);
+  const debuggingSessions = useAnimatedCounter(DEBUG_HOURS_ESTIMATE, ANIMATION_DURATION_SHORT);
+  const stackOverflowVisits = useAnimatedCounter(SO_VISITS_ESTIMATE, ANIMATION_DURATION_LONG);
 
   return (
     <div className="detail-card fun-stats">

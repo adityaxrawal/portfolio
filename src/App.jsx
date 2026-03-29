@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState, useCallback, Suspense } from "react"; // Import useState, useCallback
+import React, { useState, useCallback, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,24 +16,11 @@ import EasterEgg from "./component/EasterEgg/easter-egg.component";
 import Loader from "./component/Loader/loader.component";
 // Import Easter Egg components and hook
 
-// Keep Companies import if you still use the route, otherwise remove
-// import Companies from './component/Companies/companies.component';
-
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
-
-  // Callback function to trigger Easter egg
-  const triggerEasterEgg = useCallback(() => {
-    setShowEasterEgg(true);
-  }, []);
-
-  // Attach the Konami code listener
+  const triggerEasterEgg = useCallback(() => setShowEasterEgg(true), []);
   useKonamiCode(triggerEasterEgg);
-
-  // Callback to hide Easter egg after it finishes
-  const handleEasterEggComplete = () => {
-    setShowEasterEgg(false);
-  };
+  const handleEasterEggComplete = useCallback(() => setShowEasterEgg(false), []);
 
   return (
     <Router>
@@ -50,10 +37,10 @@ function App() {
 
 // Keep ThemedApp function as is
 function ThemedApp() {
-  const { backgroundColor } = useSharedState(); // isDarkTheme removed if not used directly here
+  const { backgroundColor } = useSharedState();
 
   // Lenis usage remains the same
-  useLenis(({ scroll }) => {});
+  useLenis();
 
   const getContrastColor = (bgColor) => {
     // Added check for undefined bgColor
