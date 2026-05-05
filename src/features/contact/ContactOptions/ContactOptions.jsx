@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 
-import {  links, MODAL_STEPS } from '../../../../shared/utils/constants';
+import {  links, MODAL_STEPS } from '../../../shared/utils/constants';
 import './ContactOptions.css';
 
 const ContactOptions = memo(({ onSelectOption }) => {

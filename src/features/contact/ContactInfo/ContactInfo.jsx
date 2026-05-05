@@ -1,12 +1,12 @@
 import { useEffect, memo, useState, useCallback, useMemo } from 'react';
 
 import './ContactInfo.css';
-import {  useSharedState } from '../../../../shared/context/AppContext';
-import {  useModalState } from '../../../../shared/hooks/useModalState';
-import {  useAlert } from '../../../../shared/hooks/useAlert';
-import {  createFormSubmitter } from '../../../../shared/services/validation';
-import {  MODAL_STEPS, MODAL_TITLES } from '../../../../shared/utils/constants';
-import Alert from '../../../../shared/components/Alert';
+import {  useSharedState } from '../../../shared/context/AppContext';
+import {  useModalState } from '../../../shared/hooks/useModalState';
+import {  useAlert } from '../../../shared/hooks/useAlert';
+import {  createFormSubmitter } from '../../../shared/services/validation';
+import {  MODAL_STEPS, MODAL_TITLES } from '../../../shared/utils/constants';
+import Alert from '../../../shared/components/Alert';
 import ModalHeader from '../Modal/ModalHeader';
 import ContactOptions from '../ContactOptions';
 import ContactForm from '../ContactForm';

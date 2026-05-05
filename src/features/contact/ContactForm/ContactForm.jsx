@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import FormField from './FormField';
 import SubmitButton from './SubmitButton';
-import { validateContactForm } from '../../../../shared/services/validation';
+import { validateContactForm } from '../../../shared/services/validation';
 import './ContactForm.css';
 
 const ContactForm = ({ onSubmit, isSubmitting }) => {

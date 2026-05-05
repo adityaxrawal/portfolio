@@ -53,8 +53,8 @@
 .headline-btn {
   width: 15rem;
   height: 4rem;
-  background-color: white;
-  border: 1px solid black;
+  background-color: var(--theme-light);
+  border: 1px solid var(--theme-dark);
   border-radius: 0.5rem;
   font-size: var(--font-size-text);
   cursor: pointer;
@@ -62,12 +62,12 @@
 
 .linkedin {
   background-color: rgb(21, 19, 19);
-  color: white;
+  color: var(--theme-light);
 }
 
 .github {
   background-color: rgb(21, 19, 19);
-  color: white;
+  color: var(--theme-light);
 }
 
 .image-container {
@@ -85,7 +85,7 @@
   box-shadow:
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
+  background-color: var(--theme-light);
   transition: rotate 0.5s ease-in-out;
   padding: 1% 2%;
   border-radius: 0rem;
@@ -113,7 +113,7 @@
   justify-content: center;
   font-family: ShadowsIntoLightTwo-Regular;
   font-size: 1.5rem;
-  color: black;
+  color: var(--theme-dark);
 }
 
 .image {

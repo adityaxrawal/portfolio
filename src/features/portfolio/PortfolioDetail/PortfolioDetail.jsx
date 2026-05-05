@@ -4,8 +4,9 @@ import './PortfolioDetail.css';
 import { RoughNotation } from 'react-rough-notation';
 import { Octokit } from '@octokit/core';
 
-import { useSharedState } from '../../../../shared/context/AppContext';
-import { useAnimatedCounter } from '../../../../shared/hooks/useAnimatedCounter';
+import { useSharedState } from '../../../shared/context/AppContext';
+import { useAnimatedCounter } from '../../../shared/hooks/useAnimatedCounter';
+import { THEME_COLORS } from '../../../shared/utils/constants';
 
 const username = 'adityaxrawal';
 const repo = 'portfolio';
@@ -74,7 +75,7 @@ class PortfolioErrorBoundary extends Component {
 
 // Pure card component — no memo needed as it's not re-rendering frequently.
 const DetailCard = ({ title, content }) => (
-  <div className="detail-card" style={{ color: 'black' }}>
+  <div className="detail-card" style={{ color: THEME_COLORS.DARK }}>
     <h3>{title}</h3>
     {content}
   </div>

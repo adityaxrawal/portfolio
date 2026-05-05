@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef, useState, memo } from 'react';
 
 import './Work.css';
 // import { useSharedState } from '../../../shared/context/AppContext';
-import { WorkExperience } from '../../../../shared/utils/constants';
+import { WorkExperience } from '../../../shared/utils/constants';
 
 // images
-import leadsquaredLogo from '../../../../assets/images/companies/lsq.png';
-import develUpLogo from '../../../../assets/images/companies/develup.png';
-import wiproLogo from '../../../../assets/images/companies/wipro.png';
+import leadsquaredLogo from '../../../assets/images/companies/lsq.png';
+import develUpLogo from '../../../assets/images/companies/develup.png';
+import wiproLogo from '../../../assets/images/companies/wipro.png';
 
 const Work = () => {
   const sectionRef = useRef(null);
