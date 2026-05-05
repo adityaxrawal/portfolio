@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState, useCallback, Suspense } from 'react';
+import React, { useState, useCallback, Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,10 +13,11 @@ import tinycolor from 'tinycolor2';
 
 import Page from './shared/components/PageLayout';
 import { AppProvider, useSharedState } from './shared/context/AppContext';
+import { THEME_COLORS } from './shared/utils/constants';
 import { useKonamiCode } from './shared/hooks/useKonamiCode';
 import EasterEgg from './shared/components/EasterEgg';
 import Loader from './shared/components/Loader';
-// Import Easter Egg components and hook
+import MyLoveBhavi from './features/bu/BU';
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
@@ -49,21 +50,30 @@ function ThemedApp() {
 
   const getContrastColor = (bgColor) => {
     // Added check for undefined bgColor
-    if (!bgColor) return '#000000'; // Default to black if undefined
-    return tinycolor(bgColor).isDark() ? '#FFFFFF' : '#000000';
+    if (!bgColor) return THEME_COLORS.DARK; // Default to black if undefined
+    return tinycolor(bgColor).isDark() ? '#FFFFFF' : THEME_COLORS.DARK;
   };
 
-  const themeStyles = {
-    backgroundColor: backgroundColor,
+  const appStyles = {
     color: getContrastColor(backgroundColor),
+  };
+
+  const bgStyles = {
+    backgroundColor: backgroundColor,
+    '--grid-color': tinycolor(backgroundColor).isDark()
+      ? THEME_COLORS.DARK
+      : THEME_COLORS.LIGHT,
   };
 
   return (
     <Suspense fallback={<Loader />}>
-      <div className="App" style={themeStyles}>
+      <div className="App" style={appStyles}>
+        <div className="grid-background" style={bgStyles} />
         <Routes>
           <Route path="/aditya-rawal" element={<Page />} />
           <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
+          {/* Full immersive scroll-driven love letter page */}
+          {/* <Route path="/my-love-bhavi" element={<MyLoveBhavi />} /> */}
           {/* Keep companies route if needed */}
           {/* <Route path='/companies' element={<Companies/>}/> */}
         </Routes>
