@@ -1,14 +1,12 @@
 import { useState } from 'react';
 
 import './ContactButton.css';
-import ContactInfo from '../../../features/contact/components/ContactInfo';
-import { useSharedState } from '../../context/AppContext';
+import ContactInfo from '../../../../features/contact/ContactInfo';
+import { useSharedState } from '../../../context/AppContext';
 
 const ContactButton = ({
   children = 'Contact Me',
   className = '',
-  variant = 'primary',
-  size = 'medium',
   ...props
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,10 +18,8 @@ const ContactButton = ({
   };
 
   const buttonClasses = [
-    'contact-button',
-    `contact-button--${variant}`,
-    `contact-button--${size}`,
-    isDarkTheme ? 'contact-button--dark' : 'contact-button--light',
+    'contact-button-v2',
+    isDarkTheme ? 'contact-button-v2--dark' : '',
     className,
   ]
     .filter(Boolean)
@@ -32,7 +28,7 @@ const ContactButton = ({
   return (
     <>
       <button className={buttonClasses} onClick={handleClick} {...props}>
-        <span className="contact-button__text">{children}</span>
+        {children}
       </button>
 
       <ContactInfo open={isModalOpen} onClose={() => setIsModalOpen(false)} />
