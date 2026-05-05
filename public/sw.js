@@ -64,9 +64,12 @@ self.addEventListener("fetch", (event) => {
       fetch(event.request)
         .then((response) => {
           const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
+          // Only cache http/https requests, avoid chrome-extension:// etc.
+          if (event.request.url.startsWith("http")) {
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
           return response;
         })
         .catch(() => {
@@ -102,9 +105,12 @@ self.addEventListener("fetch", (event) => {
           // Clone the response
           const responseToCache = response.clone();
 
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
+          // Only cache http/https requests, avoid chrome-extension:// etc.
+          if (event.request.url.startsWith("http")) {
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
 
           return response;
         });
