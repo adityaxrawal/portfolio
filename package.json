@@ -7,6 +7,8 @@
   },
   "sideEffects": false,
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.14.2",
     "lenis": "^1.3.21",
     "octokit": "^5.0.5",
     "react": "^19.2.4",
@@ -15,6 +17,7 @@
     "react-icons": "^5.6.0",
     "react-rough-notation": "^1.0.8",
     "react-router-dom": "^7.13.2",
+    "roughjs": "^4.6.6",
     "tinycolor2": "^1.6.0",
     "web-vitals": "^5.2.0"
   },
@@ -106,14 +109,19 @@
     },
     "overrides": [
       {
-        "files": ["src/shared/components/CompaniesData.jsx"],
+        "files": [
+          "src/shared/components/CompaniesData.jsx"
+        ],
         "rules": {
           "no-secrets/no-secrets": "off",
           "no-unused-vars": "off"
         }
       },
       {
-        "files": ["src/**/*.test.jsx", "src/**/*.test.js"],
+        "files": [
+          "src/**/*.test.jsx",
+          "src/**/*.test.js"
+        ],
         "globals": {
           "describe": "readonly",
           "test": "readonly",

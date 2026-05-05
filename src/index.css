@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --theme-light: rgba(230, 230, 230, 1);
+  --theme-dark: rgba(35, 35, 35, 1);
+}
+
 html,
 body {
   margin: 0;
