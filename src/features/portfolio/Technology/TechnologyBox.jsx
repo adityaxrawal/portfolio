@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { lightModeColorList } from '../../../../shared/utils/constants';
+import { lightModeColorList, THEME_COLORS } from '../../../shared/utils/constants';
 import './TechnologyBox.css';
 
 const TechnologyBox = ({
@@ -20,8 +20,8 @@ const TechnologyBox = ({
       <div
         className="box"
         style={{
-          backgroundColor: isDarkTheme ? lightModeColorList[0] : 'white',
-          color: 'black',
+          backgroundColor: isDarkTheme ? lightModeColorList[0] : THEME_COLORS.LIGHT,
+          color: THEME_COLORS.DARK,
         }}
       >
         <div className="box-container">
@@ -30,7 +30,7 @@ const TechnologyBox = ({
               <img
                 src={
                   new URL(
-                    `../../../../assets/images/skills/${skillImage}`,
+                    `../../../assets/images/skills/${skillImage}`,
                     import.meta.url,
                   ).href
                 }

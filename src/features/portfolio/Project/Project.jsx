@@ -1,6 +1,6 @@
 // src/component/Content/Projects/projects.component.js
-import React, { use, Suspense } from 'react';
-import './project.component.css';
+import React, { use, Suspense, Component } from 'react';
+import './Project.css';
 
 const GITHUB_USERNAME = 'adityaxrawal';
 

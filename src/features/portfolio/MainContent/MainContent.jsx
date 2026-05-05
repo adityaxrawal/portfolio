@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HeroSection from '../../../hero/components/HeroSection';
+import HeroSection from '../../hero';
 import Work from '../Work';
 import Technology from '../Technology';
 import Portfolio from '../PortfolioDetail';

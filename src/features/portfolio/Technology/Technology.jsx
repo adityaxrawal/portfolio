@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 import './Technology.css';
-import { useSharedState } from '../../../../shared/context/AppContext';
+import { useSharedState } from '../../../shared/context/AppContext';
 import {
   darkModeColorList,
   lightModeColorList,
   PROGRESS_COLORS,
   TechnicalSkills,
-} from '../../../../shared/utils/constants';
+  THEME_COLORS,
+} from '../../../shared/utils/constants';
 import TechnologyBox from './TechnologyBox';
 
 const Technology = () => {
@@ -56,7 +57,7 @@ const Technology = () => {
 
   const getProgressColor = (barIndex, skillLevel) => {
     const colorEntry = PROGRESS_COLORS.find((entry) => skillLevel <= entry.max);
-    return barIndex < skillLevel ? colorEntry?.color || 'white' : 'white';
+    return barIndex < skillLevel ? colorEntry?.color || THEME_COLORS.LIGHT : THEME_COLORS.LIGHT;
   };
 
   return (
@@ -65,7 +66,7 @@ const Technology = () => {
         <div
           className={`tech-heading ${isPinned ? 'sticky' : 'relative'}`}
           style={{
-            backgroundColor: isDarkTheme
+            backgroundColor: !isPinned ? 'transparent' : isDarkTheme
               ? darkModeColorList[0]
               : lightModeColorList[0],
           }}

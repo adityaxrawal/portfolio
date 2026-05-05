@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 // image
-import heroImage from '../../../../assets/images/my/me.png';
+import heroImage from '../../assets/images/my/me.png';
 
 // css
 import './HeroSection.css';
@@ -10,8 +10,8 @@ import './HeroSection.css';
 import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
 
 // constants
-import { links } from '../../../../shared/utils/constants';
-import { useSharedState } from '../../../../shared/context/AppContext';
+import { links, THEME_COLORS } from '../../shared/utils/constants';
+import { useSharedState } from '../../shared/context/AppContext';
 
 import Confetti from 'react-confetti'; // Import Confetti
 
