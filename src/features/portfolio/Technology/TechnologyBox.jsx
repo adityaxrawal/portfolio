@@ -1,6 +1,9 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import { lightModeColorList, THEME_COLORS } from '../../../shared/utils/constants';
+import {
+  lightModeColorList,
+  THEME_COLORS,
+} from '../../../shared/utils/constants';
 import './TechnologyBox.css';
 
 const TechnologyBox = ({
@@ -10,18 +13,17 @@ const TechnologyBox = ({
   skillDesc,
   extra,
   skillImage,
+  category,
   isDarkTheme,
-  dimensions,
-  getProgressColor,
   index,
 } = {}) => {
   return (
-    <div className="tech-boxes" key={index}>
+    <div className={`tech-boxes ${isDarkTheme ? 'dark' : 'light'}`} key={index}>
       <div
-        className="box"
+        className={`box ${category}`}
         style={{
-          backgroundColor: isDarkTheme ? lightModeColorList[0] : THEME_COLORS.LIGHT,
-          color: THEME_COLORS.DARK,
+          color: isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.LIGHT_TEXT,
+          backgroundColor: 'var(--box-bg-color)',
         }}
       >
         <div className="box-container">
@@ -51,6 +53,7 @@ const TechnologyBox = ({
             <div className="box-first-container">
               <div className="box-skill-name-desc">
                 <div className="box-skill-name">{skillName}</div>
+                <div className="box-badge">{category}</div>
               </div>
             </div>
           </div>
@@ -59,10 +62,7 @@ const TechnologyBox = ({
             {[...Array(10)].map((_, barIndex) => (
               <div className="box-skill-bar-container" key={barIndex}>
                 <span
-                  className="box-skill-bar"
-                  style={{
-                    backgroundColor: getProgressColor(barIndex, skillLevel),
-                  }}
+                  className={`box-skill-bar ${barIndex < skillLevel ? 'filled' : ''}`}
                 ></span>
               </div>
             ))}

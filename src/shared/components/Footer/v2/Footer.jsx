@@ -8,7 +8,6 @@ import { links, THEME_COLORS } from '../../../utils/constants';
 import './Footer.css';
 
 const NEON = '#CCFF00';
-const WHITE = '#F0ECD8';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,9 +17,9 @@ const Footer = () => {
 
   // CSS custom properties drive all theme-dependent colors
   const themeVars = {
-    // '--footer-bg': isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
-    '--footer-text': isDarkTheme ? WHITE : THEME_COLORS.DARK,
-    '--footer-border': isDarkTheme ? '#2a2a2a' : '#ccc',
+    // '--footer-bg': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
+    '--footer-text': isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
+    '--footer-border': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.LIGHT_GRID,
   };
 
   return (

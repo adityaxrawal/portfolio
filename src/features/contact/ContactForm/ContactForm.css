@@ -91,14 +91,14 @@
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
-  background: var(--theme-light);
+  background: var(--theme-dark-text);
 }
 
 .dark .form-group input,
 .dark .form-group textarea {
   background: #374151;
   border-color: #4b5563;
-  color: var(--theme-light);
+  color: var(--theme-dark-text);
 }
 
 .form-group input:focus,

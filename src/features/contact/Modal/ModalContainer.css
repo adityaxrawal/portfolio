@@ -36,12 +36,12 @@
 
 .contact-info-modal.dark {
   background: var(--modal-dark-bg);
-  color: var(--theme-light);
+  color: var(--theme-dark-text);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .contact-info-modal.light {
-  background: var(--theme-light);
+  background: var(--theme-dark-text);
   color: var(--modal-neutral-900);
 }
 

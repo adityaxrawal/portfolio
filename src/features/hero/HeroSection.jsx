@@ -92,7 +92,7 @@ const HeroSection = () => {
           <span className="headline-title">
             Hola! I am Aditya, a{' '}
             <RoughNotation type="highlight" order="1" color="#cddafd">
-              <span style={{ color: isDarkTheme ? 'black' : 'initial' }}>
+              <span style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}>
                 developer
               </span>
             </RoughNotation>{' '}
@@ -104,14 +104,14 @@ const HeroSection = () => {
               <RoughNotation type="highlight" order="2" color="#fde2e4">
                 <span
                   className="highlighted-text"
-                  style={{ color: isDarkTheme ? 'black' : 'initial' }}
+                  style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}
                 >
                   user-friendly, simple
                 </span>
               </RoughNotation>{' '}
               and{' '}
               <RoughNotation type="highlight" order="3" color="#bee1e6">
-                <span style={{ color: isDarkTheme ? 'black' : 'initial' }}>
+                <span style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}>
                   delightful.
                 </span>
               </RoughNotation>
@@ -122,7 +122,7 @@ const HeroSection = () => {
               <RoughNotation type="highlight" order="4" color="#e9edc9">
                 <span
                   className="highlighted-text"
-                  style={{ color: isDarkTheme ? 'black' : 'initial' }}
+                  style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}
                 >
                   Node.js and React.js
                 </span>
@@ -134,7 +134,7 @@ const HeroSection = () => {
               Prior to this, I worked as a Software Developer at DevelUp, where
               I maintained the company website using{' '}
               <RoughNotation type="highlight" order="5" color="#faedcd">
-                <span style={{ color: isDarkTheme ? 'black' : 'initial' }}>
+                <span style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}>
                   Next.js
                 </span>
               </RoughNotation>{' '}
@@ -144,7 +144,7 @@ const HeroSection = () => {
               <RoughNotation type="highlight" order="6" color="#ffd7ba">
                 <span
                   className="highlighted-text"
-                  style={{ color: isDarkTheme ? 'black' : 'initial' }}
+                  style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}
                 >
                   full-stack development
                 </span>

@@ -17,19 +17,6 @@ const Technology = () => {
   const techSection = useRef(null);
   const [isPinned, setIsPinned] = useState(false);
 
-  // const handleScroll = useCallback(() => {
-  //   if (horizontalScroll.current && techSection.current) {
-  //     const techSectionTop = techSection.current.getBoundingClientRect().top;
-  //     // Only update if the change is significant to reduce unnecessary repaints.
-  //     if (Math.abs(techSectionTop - lastKnownTechTop.current) > 2) {
-  //       lastKnownTechTop.current = techSectionTop;
-  //       if (techSectionTop < 0) {
-  //         horizontalScroll.current.scrollLeft = Math.abs(techSectionTop - 14);
-  //       }
-  //     }
-  //   }
-  // }, []);
-
   const handleScroll = useCallback(() => {
     if (!techSection.current) return;
 
@@ -46,19 +33,6 @@ const Technology = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
-
-  // useEffect(() => {
-  //   const newDimensions =
-  //     window.innerWidth < 600
-  //       ? { section: 150, box: 30 }
-  //       : { section: 32, box: 30 };
-  //   setDimensions(newDimensions);
-  // }, []);
-
-  const getProgressColor = (barIndex, skillLevel) => {
-    const colorEntry = PROGRESS_COLORS.find((entry) => skillLevel <= entry.max);
-    return barIndex < skillLevel ? colorEntry?.color || THEME_COLORS.LIGHT : THEME_COLORS.LIGHT;
-  };
 
   return (
     <div ref={techSection} className="section-technology">
@@ -100,6 +74,7 @@ const Technology = () => {
                 skillDesc,
                 extra,
                 skillImage,
+                category,
               },
               index,
             ) => (
@@ -111,8 +86,8 @@ const Technology = () => {
                 skillDesc={skillDesc}
                 extra={extra}
                 skillImage={skillImage}
+                category={category}
                 isDarkTheme={isDarkTheme}
-                getProgressColor={getProgressColor}
                 index={index}
               />
             ),

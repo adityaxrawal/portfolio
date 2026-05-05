@@ -21,8 +21,8 @@ const Footer = () => {
     <footer
       className="footer"
       style={{
-        backgroundColor: isDarkTheme ? THEME_COLORS.LIGHT : THEME_COLORS.DARK,
-        color: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
+        backgroundColor: isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
+        color: isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
       }}
     >
       <div className="footer-wave">
@@ -63,16 +63,16 @@ const Footer = () => {
               className="contact-button"
               onClick={() => setIsContactModalOpen(true)}
               style={{
-                background: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
-                border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK}` : `1px solid ${THEME_COLORS.LIGHT}`,
+                background: isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
+                border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK_GRID}` : `1px solid ${THEME_COLORS.DARK_TEXT}`,
               }}
             >
               <span
                 className="button_top"
                 style={{
-                  color: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
-                  background: isDarkTheme ? THEME_COLORS.LIGHT : THEME_COLORS.DARK,
-                  border: isDarkTheme ? `1px solid ${THEME_COLORS.LIGHT}` : `1px solid ${THEME_COLORS.DARK}`,
+                  color: isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
+                  background: isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
+                  border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK_TEXT}` : `1px solid ${THEME_COLORS.DARK_GRID}`,
                 }}
               >
                 Contact Me
