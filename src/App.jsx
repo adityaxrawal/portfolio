@@ -50,8 +50,8 @@ function ThemedApp() {
 
   const getContrastColor = (bgColor) => {
     // Added check for undefined bgColor
-    if (!bgColor) return THEME_COLORS.DARK; // Default to black if undefined
-    return tinycolor(bgColor).isDark() ? '#FFFFFF' : THEME_COLORS.DARK;
+    if (!bgColor) return THEME_COLORS.DARK_GRID; // Default to dark if undefined
+    return tinycolor(bgColor).isDark() ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID;
   };
 
   const appStyles = {
@@ -61,8 +61,8 @@ function ThemedApp() {
   const bgStyles = {
     backgroundColor: backgroundColor,
     '--grid-color': tinycolor(backgroundColor).isDark()
-      ? THEME_COLORS.DARK
-      : THEME_COLORS.LIGHT,
+      ? THEME_COLORS.DARK_GRID
+      : THEME_COLORS.LIGHT_GRID,
   };
 
   return (

@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  --theme-light: rgba(230, 230, 230, 1);
-  --theme-dark: rgba(35, 35, 35, 1);
+  /* Matches THEME_COLORS.LIGHT_GRID — grid/border on light backgrounds */
+  --theme-light-grid: rgba(230, 230, 230, 1);
+  /* Matches THEME_COLORS.LIGHT_TEXT — off-white text on dark backgrounds */
+  --theme-light-text: rgb(0, 0, 0);
+  /* Matches THEME_COLORS.LIGHT_BG — light background */
+  --theme-light-bg: #ffffff;
+  /* Matches THEME_COLORS.DARK_GRID — grid/border on dark backgrounds */
+  --theme-dark-grid: rgba(35, 35, 35, 1);
+  /* Matches THEME_COLORS.DARK_TEXT — cream text on dark backgrounds */
+  --theme-dark-text: #F0ECD8;
+  /* Matches THEME_COLORS.DARK_BG — dark background */
+  --theme-dark-bg: rgba(35, 35, 35, 1);
 }
 
 html,

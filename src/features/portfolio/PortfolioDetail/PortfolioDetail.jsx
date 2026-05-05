@@ -2,7 +2,6 @@
 import React, { use, Suspense, Component } from 'react';
 import './PortfolioDetail.css';
 import { RoughNotation } from 'react-rough-notation';
-import { Octokit } from 'octokit';
 
 import { useSharedState } from '../../../shared/context/AppContext';
 import { useAnimatedCounter } from '../../../shared/hooks/useAnimatedCounter';
@@ -11,46 +10,53 @@ import { THEME_COLORS } from '../../../shared/utils/constants';
 const username = 'adityaxrawal';
 const repo = 'portfolio';
 
+const TECH_STACK = [
+  { name: 'React.js', color: '#61DAFB', detail: '(Hooks, Context API for state)' },
+  { name: 'CSS3', color: '#E34F26', detail: '(Flexbox, Grid, Custom Properties, Animations)' },
+  { name: 'React Router', color: 'orange', detail: '(for navigation)' },
+  { name: 'Lenis', color: 'green', detail: '(for that buttery smooth scroll)' },
+  { name: 'React Rough Notation', color: '#fde2e4', detail: '(for the sketchy highlights)' },
+];
+
+const ANIMATION_DURATION_LONG = 2000;
+const ANIMATION_DURATION_SHORT = 1800;
+const DEBUG_HOURS_ESTIMATE = 287;
+const SO_VISITS_ESTIMATE = 394;
+
 // Stable promise created once at module level — no useEffect/useReducer needed.
 // React 19's `use` suspends the component until this resolves.
+// Using standard fetch instead of Octokit to reduce bundle size.
+// Security: Token removed to prevent exposure in client bundle.
 const fetchGitStats = async () => {
+  const repoUrl = `https://api.github.com/repos/${username}/${repo}`;
+  const searchUrl = `https://api.github.com/search/issues?q=repo:${username}/${repo}+type:pr`;
+  const statsUrl = `https://api.github.com/repos/${username}/${repo}/stats/contributors`;
+  
   try {
-    const octokit = new Octokit({
-      auth: import.meta.env.VITE_GITHUB_TOKEN || '',
-    });
-    const [userRes, repoRes, commitRes, langRes] = await Promise.all([
-      octokit.request('GET /users/{username}', { username }),
-      octokit.request('GET /repos/{owner}/{repo}', { owner: username, repo }),
-      octokit.request('GET /repos/{owner}/{repo}/commits', {
-        owner: username,
-        repo,
-      }),
-      octokit.request('GET /repos/{owner}/{repo}/languages', {
-        owner: username,
-        repo,
-      }),
+    const [repoRes, prRes, statsRes, langRes] = await Promise.all([
+      fetch(repoUrl).then(r => r.json()),
+      fetch(searchUrl).then(r => r.json()),
+      fetch(statsUrl).then(r => r.json()),
+      fetch(`${repoUrl}/languages`).then(r => r.json())
     ]);
+
+    // Calculate total commits from all contributors
+    const totalCommits = Array.isArray(statsRes) 
+      ? statsRes.reduce((acc, contributor) => acc + contributor.total, 0)
+      : 0;
+
     return {
-      commits: commitRes.data.length,
-      issues: repoRes.data.open_issues_count,
-      pullRequests: 15,
-      repos: userRes.data.public_repos,
-      linesOfCode: Object.values(langRes.data).reduce(
-        (acc, val) => acc + val,
-        0,
-      ),
+      commits: totalCommits || 0,
+      issues: repoRes.open_issues_count || 0,
+      pullRequests: prRes.total_count || 0,
+      linesOfCode: Object.values(langRes || {}).reduce((acc, val) => acc + val, 0),
     };
   } catch (error) {
-    let msg = 'Failed to fetch GitHub data';
-    const status = error?.status;
-    if (status === 401) msg = 'GitHub token invalid.';
-    else if (status === 403) msg = 'Rate limit exceeded.';
-    else if (status === 404) msg = 'User or repo not found.';
-    throw new Error(msg);
+    throw new Error('Failed to fetch GitHub data. Please try again later.');
   }
 };
 
-const gitStatsPromise = fetchGitStats();
+let gitStatsPromise = fetchGitStats();
 
 // Error boundary to catch API failures (401, 403, 404, etc.)
 class PortfolioErrorBoundary extends Component {
@@ -60,12 +66,32 @@ class PortfolioErrorBoundary extends Component {
     return { error };
   }
 
+  handleRetry = () => {
+    gitStatsPromise = fetchGitStats();
+    this.setState({ error: null });
+  };
+
   render() {
     if (this.state.error) {
       console.error('ErrorBoundary caught an api error:', this.state.error);
       return (
-        <div className="api-error-message">
+        <div className="detail-card theme-light api-error-message" style={{ textAlign: 'center' }}>
+          <h3>Behind the Scenes</h3>
           <p>{this.state.error.message || 'An unexpected error occurred.'}</p>
+          <button 
+            onClick={this.handleRetry}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '4px',
+              border: 'none',
+              backgroundColor: '#76abae',
+              color: 'white',
+              cursor: 'pointer',
+              marginTop: '10px'
+            }}
+          >
+            Retry Loading Stats
+          </button>
         </div>
       );
     }
@@ -74,21 +100,20 @@ class PortfolioErrorBoundary extends Component {
 }
 
 // Pure card component — no memo needed as it's not re-rendering frequently.
-const DetailCard = ({ title, content }) => (
-  <div className="detail-card" style={{ color: THEME_COLORS.DARK }}>
+// Memoized card component to prevent unnecessary re-renders during theme toggles
+const DetailCard = React.memo(({ title, content, isDarkTheme, extraClass }) => (
+  <div className={`detail-card ${isDarkTheme ? 'theme-dark' : 'theme-light'} ${extraClass || ''}`}>
     <h3>{title}</h3>
     {content}
   </div>
-);
+));
+
+DetailCard.displayName = 'DetailCard';
 
 // Inner stats panel that suspends while fetching.
 function GitStats() {
   const gitStats = use(gitStatsPromise);
-
-  const ANIMATION_DURATION_LONG = 2000;
-  const ANIMATION_DURATION_SHORT = 1800;
-  const DEBUG_HOURS_ESTIMATE = 287;
-  const SO_VISITS_ESTIMATE = 394;
+  const { isDarkTheme } = useSharedState();
 
   const linesOfCode = useAnimatedCounter(
     gitStats.linesOfCode,
@@ -108,7 +133,7 @@ function GitStats() {
   );
 
   return (
-    <div className="detail-card fun-stats">
+    <div className={`detail-card ${isDarkTheme ? 'theme-dark' : 'theme-light'} card-stats fun-stats`}>
       <h3>Behind the Scenes</h3>
       <div className="stat-item">
         <span className="stat-number">{linesOfCode.toLocaleString()}</span>
@@ -143,7 +168,7 @@ const Portfolio = () => {
         <RoughNotation
           type="underline"
           show
-          color={isDarkTheme ? '#76ABAE' : '#A7BEDC'}
+          color={isDarkTheme ? "var(--theme-dark-text)" : "var(--theme-dark-grid)"}
           strokeWidth={3}
           order={1}
         >
@@ -154,75 +179,32 @@ const Portfolio = () => {
       <div className="details-grid">
         <DetailCard
           title="Tech Stack & Tools"
+          extraClass="card-tech"
           content={
             <ul>
-              <li>
-                <RoughNotation
-                  type="box"
-                  show
-                  color="#61DAFB"
-                  order="2"
-                  padding={[2, 5]}
-                >
-                  React.js
-                </RoughNotation>{' '}
-                (Hooks, Context API for state)
-              </li>
-              <li>
-                <RoughNotation
-                  type="box"
-                  show
-                  color="#E34F26"
-                  order="3"
-                  padding={[2, 5]}
-                >
-                  CSS3
-                </RoughNotation>{' '}
-                (Flexbox, Grid, Custom Properties, Animations)
-              </li>
-              <li>
-                <RoughNotation
-                  type="box"
-                  show
-                  color="orange"
-                  order="4"
-                  padding={[2, 5]}
-                >
-                  React Router
-                </RoughNotation>{' '}
-                (for navigation)
-              </li>
-              <li>
-                <RoughNotation
-                  type="box"
-                  show
-                  color="green"
-                  order="5"
-                  padding={[2, 5]}
-                >
-                  Lenis
-                </RoughNotation>{' '}
-                (for that buttery smooth scroll)
-              </li>
-              <li>
-                <RoughNotation
-                  type="box"
-                  show
-                  color="#fde2e4"
-                  order="6"
-                  padding={[2, 5]}
-                >
-                  React Rough Notation
-                </RoughNotation>{' '}
-                (for the sketchy highlights)
-              </li>
+              {TECH_STACK.map((tech, i) => (
+                <li key={tech.name}>
+                  <RoughNotation
+                    type="box"
+                    show
+                    color={tech.color}
+                    order={i + 2}
+                    padding={[2, 5]}
+                  >
+                    {tech.name}
+                  </RoughNotation>{' '}
+                  {tech.detail}
+                </li>
+              ))}
               <li>Various custom fonts for ✨ aesthetics ✨</li>
             </ul>
           }
+          isDarkTheme={isDarkTheme}
         />
 
         <DetailCard
           title="Key Features & Implementations"
+          extraClass="card-features"
           content={
             <ul>
               <li>
@@ -248,10 +230,12 @@ const Portfolio = () => {
               </li>
             </ul>
           }
+          isDarkTheme={isDarkTheme}
         />
 
         <DetailCard
           title="Challenges & Problem-Solving"
+          extraClass="card-challenges"
           content={
             <ul>
               <li>
@@ -266,12 +250,13 @@ const Portfolio = () => {
               </li>
             </ul>
           }
+          isDarkTheme={isDarkTheme}
         />
 
         <PortfolioErrorBoundary>
           <Suspense
             fallback={
-              <div className="detail-card fun-stats">
+              <div className={`detail-card card-stats fun-stats ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}>
                 <h3>Behind the Scenes</h3>
                 <div className="loading-message">
                   Loading GitHub statistics...

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .section-heading {
@@ -40,14 +40,66 @@
 .detail-card {
   padding: 25px;
   border-radius: var(--std-border-radius);
-  border: 1px solid rgba(128, 128, 128, 0.1);
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
-  background-color: white;
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
   opacity: 0;
   transform: scale(0.95) translateY(20px);
   animation: cardFadeIn 0.5s ease-out forwards;
+}
+
+.detail-card.theme-light {
+  background-color: var(--theme-light-bg);
+  color: var(--theme-light-text);
+  border: 1.5px solid transparent; /* Default border */
+}
+
+/* Specific Light Theme Card Styles */
+.detail-card.theme-light.card-tech {
+  background-color: #EAF0EA;
+  border-color: #C9D9C9;
+}
+.detail-card.theme-light.card-tech h3 {
+  color: #2D4F2D;
+}
+
+.detail-card.theme-light.card-features {
+  background-color: #E8EEF5;
+  border-color: #C5D3E3;
+}
+.detail-card.theme-light.card-features h3 {
+  color: #2B3A67;
+}
+
+.detail-card.theme-light.card-challenges {
+  background-color: #F5ECE8;
+  border-color: #E3CEBE;
+}
+.detail-card.theme-light.card-challenges h3 {
+  color: #6B4226;
+}
+
+.detail-card.theme-light.card-stats {
+  background-color: #F2EDE4;
+  border-color: #DDD3C2;
+}
+.detail-card.theme-light.card-stats h3 {
+  color: #4A4A4A;
+}
+
+.detail-card.theme-light.card-stats .stat-number {
+  color: #4A4A4A;
+}
+
+.detail-card.theme-light.card-stats .stat-label {
+  color: #666666;
+}
+
+.detail-card.theme-dark {
+  background-color: var(--theme-dark-bg);
+  color: var(--theme-dark-text);
 }
 
 /* Stagger animation delays */

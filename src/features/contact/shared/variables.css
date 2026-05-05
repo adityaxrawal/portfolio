@@ -21,7 +21,7 @@
   --modal-neutral-900: #111827;
 
   /* Dark Theme */
-  --modal-dark-bg: rgba(35, 35, 35, 1);
+  --modal-dark-bg: var(--theme-dark-grid); /* = THEME_COLORS.DARK_GRID */
   --modal-dark-surface: #374151;
   --modal-dark-border: rgba(156, 163, 175, 0.2);
 

@@ -15,8 +15,12 @@ export const API_ENDPOINTS = {
 };
 
 export const THEME_COLORS = {
-  LIGHT: 'rgba(230, 230, 230, 1)',
-  DARK: 'rgba(35, 35, 35, 1)',
+  DARK_GRID: 'rgba(35, 35, 35, 1)',
+  DARK_TEXT: '#F0ECD8',
+  DARK_BG: 'rgba(35, 35, 35, 1)',
+  LIGHT_GRID: 'rgba(230, 230, 230, 1)',
+  LIGHT_TEXT: 'rgba(0, 0, 0, 1)',
+  LIGHT_BG: '#F4F1EC',
 };
 
 export const darkModeColorList = {
@@ -130,6 +134,7 @@ export const TechnicalSkills = [
     skillIcon: '⚛️',
     extra: 'React is my superpower! 🚀',
     skillImage: 'react.png',
+    category: 'FRONTEND',
   },
   {
     skillName: 'JavaScript',
@@ -140,6 +145,7 @@ export const TechnicalSkills = [
     skillIcon: '📜',
     extra: 'JS + TS: The best of both worlds!',
     skillImage: 'JavaScript.png',
+    category: 'FRONTEND',
   },
   {
     skillName: 'HTML, CSS',
@@ -150,6 +156,7 @@ export const TechnicalSkills = [
     skillIcon: '🎨',
     extra: 'CSS is magic, sometimes dark magic!',
     skillImage: 'html_css.jpg',
+    category: 'FRONTEND',
   },
   {
     skillName: 'Next.js',
@@ -160,6 +167,7 @@ export const TechnicalSkills = [
     skillIcon: '🚀',
     extra: 'The future of React-powered web apps!',
     skillImage: 'nextjs.png',
+    category: 'FRONTEND',
   },
   {
     skillName: 'Node.js',
@@ -170,6 +178,7 @@ export const TechnicalSkills = [
     skillIcon: '🌿',
     extra: 'Backend speed meets scalability!',
     skillImage: 'Nodejs.png',
+    category: 'BACKEND',
   },
   {
     skillName: 'MongoDB',
@@ -180,6 +189,7 @@ export const TechnicalSkills = [
     skillIcon: '🍃',
     extra: 'Where data meets flexibility!',
     skillImage: 'mongodb.webp',
+    category: 'CLOUD',
   },
   {
     skillName: 'REST API & Postman',
@@ -190,6 +200,7 @@ export const TechnicalSkills = [
     skillIcon: '🔗',
     extra: 'APIs: The glue of the web!',
     skillImage: 'postman.png',
+    category: 'BACKEND',
   },
   {
     skillName: 'Express.js',
@@ -200,6 +211,7 @@ export const TechnicalSkills = [
     skillIcon: '🚏',
     extra: 'Minimal and powerful!',
     skillImage: 'Expressjs.png',
+    category: 'BACKEND',
   },
   {
     skillName: 'Serverless Architecture',
@@ -210,6 +222,7 @@ export const TechnicalSkills = [
     skillIcon: '📦',
     extra: 'Breaking monoliths, one function at a time!',
     skillImage: 'serverless.png',
+    category: 'CLOUD',
   },
   {
     skillName: 'Python',
@@ -220,6 +233,7 @@ export const TechnicalSkills = [
     skillIcon: '🐍',
     extra: 'From scripting to system programming!',
     skillImage: 'python.png',
+    category: 'LANG/CS',
   },
   {
     skillName: 'Data Structure and Algorithms (DSA)',
@@ -230,6 +244,7 @@ export const TechnicalSkills = [
     skillIcon: '🔢',
     extra: 'Optimizing code, one algorithm at a time!',
     skillImage: 'dsa.png',
+    category: 'LANG/CS',
   },
   {
     skillName: 'AWS (EC2, Lambda, API Gateway)',
@@ -240,6 +255,7 @@ export const TechnicalSkills = [
     skillIcon: '☁️',
     extra: 'Serverless: Pay for what you use!',
     skillImage: 'aws.png',
+    category: 'CLOUD',
   },
   // {
   //     skillName: 'CI/CD Pipelines',
