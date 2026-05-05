@@ -17,7 +17,7 @@ import { THEME_COLORS } from './shared/utils/constants';
 import { useKonamiCode } from './shared/hooks/useKonamiCode';
 import EasterEgg from './shared/components/EasterEgg';
 import Loader from './shared/components/Loader';
-import MyLoveBhavi from './features/bu/BU';
+// import MyLoveBhavi from './features/bu/BU';
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
