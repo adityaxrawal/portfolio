@@ -1,0 +1,94 @@
+import { useState } from 'react';
+import './Footer.css';
+// App Context
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+
+import { useSharedState } from '../../../context/AppContext';
+import { THEME_COLORS } from '../../../utils/constants';
+// SVG Component
+import { DarkFooterSVG, LightFooterSVG } from '../../../utils/svg';
+// React Icons
+// ContactInfo Modal
+import ContactInfo from '../../../../features/contact/ContactInfo';
+
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const { isDarkTheme } = useSharedState();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  return (
+    <footer
+      className="footer"
+      style={{
+        backgroundColor: isDarkTheme ? THEME_COLORS.LIGHT : THEME_COLORS.DARK,
+        color: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
+      }}
+    >
+      <div className="footer-wave">
+        {isDarkTheme === true ? <DarkFooterSVG /> : <LightFooterSVG />}
+      </div>
+
+      <div className="footer-content">
+        <div className="footer-left">
+          <p className="motto">Let’s build something great together 🚀</p>
+          <p className="copyright">© {currentYear} All rights reserved.</p>
+          <div className="social-links">
+            <a
+              href="https://www.github.com/adityaxrawal"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/adityaxrawal"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin />
+            </a>
+            <a
+              href="https://www.x.com/adityaxrawal"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter />
+            </a>
+          </div>
+        </div>
+        <div className="footer-right">
+          <div className="email-me">
+            <button
+              className="contact-button"
+              onClick={() => setIsContactModalOpen(true)}
+              style={{
+                background: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
+                border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK}` : `1px solid ${THEME_COLORS.LIGHT}`,
+              }}
+            >
+              <span
+                className="button_top"
+                style={{
+                  color: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
+                  background: isDarkTheme ? THEME_COLORS.LIGHT : THEME_COLORS.DARK,
+                  border: isDarkTheme ? `1px solid ${THEME_COLORS.LIGHT}` : `1px solid ${THEME_COLORS.DARK}`,
+                }}
+              >
+                Contact Me
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Info Modal */}
+      <ContactInfo
+        open={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+    </footer>
+  );
+};
+
+export default Footer;

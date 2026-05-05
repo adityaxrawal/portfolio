@@ -15,27 +15,29 @@
 }
 
 @font-face {
-  font-family: "Alegreya-Font-Regular";
+  font-family: 'Alegreya-Font-Regular';
   /*Can be any text*/
-  src: local("Alegreya-Regular.ttf"),
-    url("./share/font/Alegreya/static/Alegreya-Regular.ttf")
-      format("truetype");
+  src:
+    local('Alegreya-Regular.ttf'),
+    url('./assets/fonts/Alegreya/static/Alegreya-Regular.ttf')
+      format('truetype');
 }
 
 @font-face {
-  font-family: "Alegreya-Font-Bold";
+  font-family: 'Alegreya-Font-Bold';
   /*Can be any text*/
-  src: local("Alegreya-Bold.ttf"),
-    url("./share/font/Alegreya//static/Alegreya-Bold.ttf")
-      format("truetype");
+  src:
+    local('Alegreya-Bold.ttf'),
+    url('./assets/fonts/Alegreya/static/Alegreya-Bold.ttf') format('truetype');
 }
 
 /* Second font for higlights */
 @font-face {
-  font-family: "ShadowsIntoLightTwo-Regular";
+  font-family: 'ShadowsIntoLightTwo-Regular';
   /*Can be any text*/
-  src: local("StiffStaff-Heavy.ttf"),
-    url("./share/font/ShadowsIntoLightTwo-Regular.ttf") format("truetype");
+  src:
+    local('StiffStaff-Heavy.ttf'),
+    url('./assets/fonts/ShadowsIntoLightTwo-Regular.ttf') format('truetype');
 }
 
 .App {
@@ -44,7 +46,44 @@
   font-size: var(--font-size-text);
   padding: 0% 0%;
   font-family: Alegreya-Font-Regular;
-  transition: background-color 0.5s ease, color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+}
+
+.grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+}
+
+.grid-background::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: repeating-linear-gradient(
+      to bottom,
+      var(--grid-color) 0,
+      var(--grid-color) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--grid-color) 0,
+      var(--grid-color) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  background-size: 20px 20px;
+  transform: rotate(0deg);
 }
 
 /* Portrait means -> width <= height */

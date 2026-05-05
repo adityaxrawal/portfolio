@@ -1,0 +1,98 @@
+/* Modal Header Styles */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--modal-space-md);
+  border-bottom: 1px solid rgba(156, 163, 175, 0.2);
+  gap: var(--modal-space-md);
+  background: inherit;
+  z-index: var(--modal-z-header);
+  border-radius: var(--modal-radius-xl) var(--modal-radius-xl) 0 0;
+  flex-shrink: 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: var(--modal-font-xl);
+  font-weight: 600;
+  color: inherit;
+  line-height: 1.2;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  order: 2;
+}
+
+.modal-header .back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: clamp(6px, 2vw, 10px) clamp(10px, 3vw, 16px);
+  border-radius: var(--modal-radius-md);
+  transition: all var(--modal-transition-base);
+  color: inherit;
+  font-size: var(--modal-font-base);
+  font-weight: 500;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.modal-header .back-button:hover {
+  background-color: rgba(156, 163, 175, 0.15);
+  transform: translateX(-2px);
+}
+
+.modal-header .back-button:focus {
+  outline: 2px solid var(--modal-primary);
+  outline-offset: 2px;
+}
+
+.modal-header .back-button-placeholder {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: clamp(24px, 5vw, 32px);
+  cursor: pointer;
+  padding: clamp(6px, 2vw, 10px);
+  border-radius: var(--modal-radius-sm);
+  transition: all var(--modal-transition-base);
+  color: inherit;
+  line-height: 1;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  order: 3;
+}
+
+.close-button:hover {
+  background-color: rgba(156, 163, 175, 0.15);
+  transform: scale(1.1);
+}
+
+.close-button:focus {
+  outline: 2px solid var(--modal-primary);
+  outline-offset: 2px;
+}
+
+.close-button:active {
+  transform: scale(0.95);
+}
+
+/* Dark mode adjustments */
+.dark .modal-header .back-button:hover {
+  background-color: rgba(156, 163, 175, 0.1);
+}
