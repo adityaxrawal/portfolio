@@ -14,6 +14,11 @@ export const API_ENDPOINTS = {
     'https://portfolio-backend-v1-373822582459.europe-west1.run.app/contact',
 };
 
+export const THEME_COLORS = {
+  LIGHT: 'rgba(230, 230, 230, 1)',
+  DARK: 'rgba(35, 35, 35, 1)',
+};
+
 export const darkModeColorList = {
   0: '#151515', // Darkest shade (near-black with a hint of blue)
   1: '#31363F', // Dark blue-gray, similar depth to light mode's shade 5
