@@ -2,7 +2,7 @@
 import React, { use, Suspense, Component } from 'react';
 import './PortfolioDetail.css';
 import { RoughNotation } from 'react-rough-notation';
-import { Octokit } from '@octokit/core';
+import { Octokit } from 'octokit';
 
 import { useSharedState } from '../../../shared/context/AppContext';
 import { useAnimatedCounter } from '../../../shared/hooks/useAnimatedCounter';

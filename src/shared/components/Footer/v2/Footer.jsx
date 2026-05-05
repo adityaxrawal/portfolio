@@ -90,7 +90,7 @@ const Footer = () => {
         {/* ── BOTTOM BAR (Hero Text) ── */}
         <div className="footer-v2__bottom-bar">
           <div className="footer-v2__hero-container">
-            <span className="footer-v2__hero-text">LET'S BUILD</span>
+            <span className="footer-v2__hero-text">LET&apos;S BUILD</span>
           </div>
         </div>
       </footer>
