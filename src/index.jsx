@@ -7,10 +7,7 @@ import {
   reportWebVitalsWithAnalytics,
   setupPerformanceObserver,
 } from './shared/services/reportWebVitals';
-import {
-  register as registerSW,
-  setupPWAInstallPrompt,
-} from './shared/services/serviceWorkerRegistration';
+import { register as registerSW } from './shared/services/serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -38,8 +35,6 @@ if (import.meta.env.MODE === 'production') {
     },
   });
 
-  // Setup PWA install prompt
-  setupPWAInstallPrompt();
 }
 
 // Monitor memory usage periodically in development
