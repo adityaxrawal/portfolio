@@ -52,15 +52,40 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - use network first for navigation, cache first for others
 self.addEventListener("fetch", (event) => {
+  // For HTML documents (navigation), use Network First strategy
+  if (
+    event.request.mode === "navigate" ||
+    (event.request.headers.get("accept") &&
+      event.request.headers.get("accept").includes("text/html"))
+  ) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request).then((response) => {
+            if (response) return response;
+            return caches.match("/");
+          });
+        })
+    );
+    return;
+  }
+
+  // For other requests (assets), use Cache First strategy
   event.respondWith(
     caches
       .match(event.request)
       .then((response) => {
         // Return cached version or fetch from network
         if (response) {
-          console.log("Service Worker: Serving from cache", event.request.url);
           return response;
         }
 
@@ -86,9 +111,6 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(() => {
         // Offline fallback
-        if (event.request.destination === "document") {
-          return caches.match("/");
-        }
       })
   );
 });
