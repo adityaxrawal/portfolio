@@ -75,7 +75,7 @@ self.addEventListener("fetch", (event) => {
         .catch(() => {
           return caches.match(event.request).then((response) => {
             if (response) return response;
-            return caches.match("/");
+            return caches.match("/").then(res => res || new Response("Offline Mode", { status: 503, statusText: "Service Unavailable" }));
           });
         })
     );
@@ -117,6 +117,7 @@ self.addEventListener("fetch", (event) => {
       })
       .catch(() => {
         // Offline fallback
+        return new Response("Offline", { status: 503, statusText: "Service Unavailable" });
       })
   );
 });
