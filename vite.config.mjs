@@ -15,6 +15,26 @@ export default defineConfig({
     open: true,
     port: 3000,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'vendor';
+            if (id.includes('octokit')) return 'octokit';
+            if (
+              id.includes('gsap') ||
+              id.includes('lenis') ||
+              id.includes('tinycolor2')
+            ) {
+              return 'libs';
+            }
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
   resolve: {
     extensions: ['.jsx', '.js', '.ts', '.tsx', '.json'],
   },
