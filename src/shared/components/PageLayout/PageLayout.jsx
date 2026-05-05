@@ -2,8 +2,8 @@ import React from 'react';
 
 import './PageLayout.css';
 import Header from '../Header';
-import Footer from '../Footer';
-import Content from '../../../features/portfolio/components/MainContent';
+import Footer from '../Footer/v2';
+import Content from '../../../features/portfolio/MainContent';
 
 const Page = () => {
   return (

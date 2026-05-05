@@ -3,12 +3,14 @@ import './Footer.css';
 // App Context
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import { useSharedState } from '../../context/AppContext';
+import { useSharedState } from '../../../context/AppContext';
+import { THEME_COLORS } from '../../../utils/constants';
 // SVG Component
-import { DarkFooterSVG, LightFooterSVG } from '../../utils/svg';
+import { DarkFooterSVG, LightFooterSVG } from '../../../utils/svg';
 // React Icons
 // ContactInfo Modal
-import ContactInfo from '../../../features/contact/components/ContactInfo';
+import ContactInfo from '../../../../features/contact/ContactInfo';
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,8 +21,8 @@ const Footer = () => {
     <footer
       className="footer"
       style={{
-        backgroundColor: isDarkTheme ? 'white' : 'black',
-        color: isDarkTheme ? 'black' : 'white',
+        backgroundColor: isDarkTheme ? THEME_COLORS.LIGHT : THEME_COLORS.DARK,
+        color: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
       }}
     >
       <div className="footer-wave">
@@ -61,16 +63,16 @@ const Footer = () => {
               className="contact-button"
               onClick={() => setIsContactModalOpen(true)}
               style={{
-                background: isDarkTheme ? 'black' : 'white',
-                border: isDarkTheme ? '1px solid #000' : '1px solid #fff',
+                background: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
+                border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK}` : `1px solid ${THEME_COLORS.LIGHT}`,
               }}
             >
               <span
                 className="button_top"
                 style={{
-                  color: isDarkTheme ? 'black' : 'white',
-                  background: isDarkTheme ? 'white' : 'black',
-                  border: isDarkTheme ? '1px solid white' : '1px solid black',
+                  color: isDarkTheme ? THEME_COLORS.DARK : THEME_COLORS.LIGHT,
+                  background: isDarkTheme ? THEME_COLORS.LIGHT : THEME_COLORS.DARK,
+                  border: isDarkTheme ? `1px solid ${THEME_COLORS.LIGHT}` : `1px solid ${THEME_COLORS.DARK}`,
                 }}
               >
                 Contact Me
