@@ -44,13 +44,17 @@
 }
 .heading-subtext-spining {
   transition: all ease-in-out 0.8s;
-  font-size: 0rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
 .heading-spining-reset {
   rotate: 0deg;
   transition: all ease-in-out 0.8s;
   translate: 0rem 0rem;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .work-container {
