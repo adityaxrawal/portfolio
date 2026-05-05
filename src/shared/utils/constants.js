@@ -4,7 +4,7 @@ export const links = {
   linkedInLink: 'https://www.linkedin.com/in/adityaxrawal',
   githubLink: 'https://www.github.com/adityaxrawal',
   portfolioRepoLink: 'https://github.com/adityaxrawal/portfolio', // <<-- ADD LINK TO THIS PORTFOLIO'S REPO IF PUBLIC
-  email: 'contact@adityarawal.dev', // Primary contact email
+  email: 'contact@adityarawal.com', // Primary contact email
   twitterLink: 'https://www.twitter.com/adityaxrawal', // Optional: Add Twitter if available
 };
 

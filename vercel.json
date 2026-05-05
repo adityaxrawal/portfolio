@@ -1,5 +1,6 @@
 {
   "git": {
     "ignoreBuildStep": "[[ \"$VERCEL_GIT_COMMIT_REF\" != \"prod-fe\" ]]"
-  }
+  },
+  "outputDirectory": "dist"
 }
