@@ -2,7 +2,7 @@
 
 .contact-button-v2 {
   align-self: center;
-  background-color: var(--theme-light);
+  background-color: var(--theme-dark-text);
   background-image: none;
   background-position: 0 90%;
   background-repeat: repeat no-repeat;
@@ -44,7 +44,7 @@
 
 /* Dark Mode Support */
 .contact-button-v2--dark {
-  background-color: var(--theme-dark);
+  background-color: var(--theme-dark-grid);
   color: #f0f0f0;
   border-color: #f0f0f0;
   box-shadow: rgba(255, 255, 255, .1) 15px 28px 25px -18px;
