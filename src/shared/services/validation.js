@@ -39,17 +39,24 @@ export const createFormSubmitter = (showSuccess, showError, onClose) => {
         signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
-
       if (response.ok) {
-        showSuccess('Message sent successfully!');
+        showSuccess('Message sent successfully.');
 
         // Close modal after a short delay
         setTimeout(() => {
           onClose();
         }, 2000);
+
+        return true;
       } else {
-        const errorData = await response.json();
+        let errorData = {};
+
+        try {
+          errorData = await response.json();
+        } catch {
+          errorData = {};
+        }
+
         showError(
           errorData.message || 'Failed to send message. Please try again.',
         );
@@ -60,6 +67,10 @@ export const createFormSubmitter = (showSuccess, showError, onClose) => {
       } else {
         showError('Network error. Please check your connection and try again.');
       }
+    } finally {
+      clearTimeout(timeoutId);
     }
+
+    return false;
   };
 };

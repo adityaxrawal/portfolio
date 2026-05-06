@@ -3,11 +3,22 @@ import { useState, useCallback } from 'react';
 import { ALERT_DURATION } from '../utils/constants';
 
 export const useAlert = () => {
-  const [alert, setAlert] = useState({ message: '', type: '' });
+  const [alert, setAlert] = useState({ message: '', type: '', duration: 3000 });
 
-  const showAlert = useCallback((message, type = 'info') => {
-    setAlert({ message, type });
+  const getAlertDuration = useCallback((type) => {
+    return ALERT_DURATION[type.toUpperCase()] || ALERT_DURATION.WARNING;
   }, []);
+
+  const showAlert = useCallback(
+    (message, type = 'info', duration) => {
+      setAlert({
+        message,
+        type,
+        duration: duration || getAlertDuration(type),
+      });
+    },
+    [getAlertDuration],
+  );
 
   const showSuccess = useCallback(
     (message) => {
@@ -31,11 +42,7 @@ export const useAlert = () => {
   );
 
   const clearAlert = useCallback(() => {
-    setAlert({ message: '', type: '' });
-  }, []);
-
-  const getAlertDuration = useCallback((type) => {
-    return ALERT_DURATION[type.toUpperCase()] || ALERT_DURATION.WARNING;
+    setAlert({ message: '', type: '', duration: 3000 });
   }, []);
 
   return {
