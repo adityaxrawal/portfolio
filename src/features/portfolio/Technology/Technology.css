@@ -88,8 +88,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0.8rem;
   width: 100%;
   height: 100%;
   /* background-color: yellow; */
@@ -130,43 +131,43 @@
 }
 
 .dark .box {
-  --box-bg-color: #1a1a1a;
+  --box-bg-color: var(--theme-dark-bg);
   --box-hover-bg-color: #222222;
-  --box-border-color: rgba(255, 255, 255, 0.1);
+  --box-border-color: var(--theme-dark-bg);
 }
 
 /* Category Specific Dark Mode - Image Specs */
 .dark .box.FRONTEND {
-  --box-bg-color: #172430; /* Deep Ocean */
+  --box-bg-color: var(--theme-dark-bg);
   --box-hover-bg-color: #1c2c3a;
-  --box-border-color: #1e3a5f;
+  --box-border-color: var(--theme-dark-bg);
   --progress-fill-color: #38bdf8; /* Ocean Blue Accent */
   --badge-bg: rgba(56, 189, 248, 0.15);
   --badge-text: #7dd3fc;
 }
 
 .dark .box.BACKEND {
-  --box-bg-color: #1C2B22; /* Midnight Forest */
+  --box-bg-color: var(--theme-dark-bg);
   --box-hover-bg-color: #23362b;
-  --box-border-color: #2a4d35;
+  --box-border-color: var(--theme-dark-bg);
   --progress-fill-color: #4ade80; /* Forest Green Accent */
   --badge-bg: rgba(74, 222, 128, 0.15);
   --badge-text: #86efac;
 }
 
 .dark .box.CLOUD {
-  --box-bg-color: #1E1C30; /* Deep Indigo */
+  --box-bg-color: var(--theme-dark-bg);
   --box-hover-bg-color: #26233d;
-  --box-border-color: #312d4f;
+  --box-border-color: var(--theme-dark-bg);
   --progress-fill-color: #a78bfa; /* Indigo Purple Accent */
   --badge-bg: rgba(167, 139, 250, 0.15);
   --badge-text: #c4b5fd;
 }
 
 .dark .box.LANG\/CS {
-  --box-bg-color: #261E2A; /* Dark Plum */
+  --box-bg-color: var(--theme-dark-bg);
   --box-hover-bg-color: #312636;
-  --box-border-color: #3f2d40;
+  --box-border-color: var(--theme-dark-bg);
   --progress-fill-color: #f472b6; /* Plum Pink Accent */
   --badge-bg: rgba(244, 114, 182, 0.15);
   --badge-text: #f9a8d4;
@@ -215,9 +216,8 @@
 
 /* Badge Styles */
 .box-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: static;
+  flex-shrink: 0;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05rem;
@@ -248,7 +248,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 80%;
+  height: auto;
 }
 
 .box-first-container {
@@ -256,9 +256,10 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  gap: 0.85rem;
   width: 100%;
-  height: 100%;
+  height: auto;
   padding: 0;
 }
 
@@ -266,17 +267,23 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 100%;
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  height: auto;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .box-skill-name {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
+  width: auto;
   font-size: var(--font-size-subHeading);
   font-family: Alegreya-Font-Bold;
+  line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .box-skill-desc {
@@ -285,27 +292,18 @@
   font-style: normal;
 }
 
-.box-absolute {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  opacity: 0.08;
-  transition: opacity 0.3s ease;
-}
-
-.box:hover .box-absolute {
-  opacity: 0.12;
-}
-
 .box-skill-image {
   position: relative;
-  display: inline;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 4.75rem;
+  height: 4.75rem;
+  border: 1px solid var(--box-border-color, var(--theme-dark-grid));
+  border-radius: 0.75rem;
+  background-color: var(--box-hover-bg-color);
+  overflow: hidden;
 }
 
 .rotating-svg {
@@ -330,12 +328,17 @@
 }
 
 .skill-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 6rem;
-  height: 6rem;
+  width: 3.4rem;
+  height: 3.4rem;
+  object-fit: contain;
+}
+
+.image-fallback {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
 }
 
 .box-second,
@@ -389,14 +392,23 @@
     font-size: var(--font-size-text-mobile);
   }
 
+  .box-first-container {
+    gap: 0.75rem;
+  }
+
   .box-skill-name-desc {
-    height: 100%;
-    justify-content: center;
+    height: auto;
+    justify-content: space-between;
+  }
+
+  .box-skill-image {
+    width: 4.25rem;
+    height: 4.25rem;
   }
 
   .skill-image {
-    width: 5rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .heading-text-spining {
