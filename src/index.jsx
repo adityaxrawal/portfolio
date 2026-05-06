@@ -34,7 +34,8 @@ if (import.meta.env.MODE === 'production') {
   });
 
   // Setup PWA install prompt
-  setupPWAInstallPrompt();
+  // TODO: Implement setupPWAInstallPrompt function
+  // setupPWAInstallPrompt();
 }
 
 // Monitor memory usage periodically in development
