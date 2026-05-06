@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './index.css';
@@ -7,6 +7,7 @@ import {
   reportWebVitalsWithAnalytics,
   setupPerformanceObserver,
 } from './shared/services/reportWebVitals';
+import { notifyAppUpdateAvailable } from './shared/services/appUpdateEvents';
 import { register as registerSW } from './shared/services/serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -28,20 +29,21 @@ if (import.meta.env.MODE === 'production') {
     },
     onUpdate: (registration) => {
       console.log('🔄 New content is available, please refresh.');
-      // You could show a toast notification here
-      if (window.confirm('New version available! Refresh to update?')) {
-        window.location.reload();
-      }
+      notifyAppUpdateAvailable(registration);
     },
   });
 
+  // Setup PWA install prompt
+  setupPWAInstallPrompt();
 }
 
 // Monitor memory usage periodically in development
 if (import.meta.env.DEV) {
   setInterval(() => {
-    import('./shared/services/reportWebVitals').then(({ monitorMemoryUsage }) => {
-      monitorMemoryUsage();
-    });
+    import('./shared/services/reportWebVitals').then(
+      ({ monitorMemoryUsage }) => {
+        monitorMemoryUsage();
+      },
+    );
   }, 30000);
 }
