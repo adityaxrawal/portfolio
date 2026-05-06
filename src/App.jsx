@@ -7,6 +7,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import tinycolor from 'tinycolor2';
 
 import './App.css';
@@ -32,6 +33,7 @@ function App() {
   return (
     <Router>
       <AppProvider>
+        <Analytics />
         {/* Render Easter Egg conditionally */}
         {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
         <ReactLenis root>
