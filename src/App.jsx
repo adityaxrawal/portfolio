@@ -1,22 +1,23 @@
 // src/App.js
-import React, { useState, useCallback, Suspense, lazy } from 'react';
+import { Suspense, useCallback, useState } from 'react';
+import { ReactLenis, useLenis } from 'lenis/react';
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
   Navigate,
+  Route,
+  Routes,
 } from 'react-router-dom';
-
-import './App.css';
-import { ReactLenis, useLenis } from 'lenis/react';
 import tinycolor from 'tinycolor2';
 
-import Page from './shared/components/PageLayout';
-import { AppProvider, useSharedState } from './shared/context/AppContext';
-import { THEME_COLORS } from './shared/utils/constants';
-import { useKonamiCode } from './shared/hooks/useKonamiCode';
+import './App.css';
+
+import AppUpdatePrompt from './shared/components/AppUpdatePrompt';
 import EasterEgg from './shared/components/EasterEgg';
 import Loader from './shared/components/Loader';
+import Page from './shared/components/PageLayout';
+import { AppProvider, useSharedState } from './shared/context/AppContext';
+import { useKonamiCode } from './shared/hooks/useKonamiCode';
+import { THEME_COLORS } from './shared/utils/constants';
 // import MyLoveBhavi from './features/bu/BU';
 
 function App() {
@@ -51,7 +52,9 @@ function ThemedApp() {
   const getContrastColor = (bgColor) => {
     // Added check for undefined bgColor
     if (!bgColor) return THEME_COLORS.DARK_GRID; // Default to dark if undefined
-    return tinycolor(bgColor).isDark() ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID;
+    return tinycolor(bgColor).isDark()
+      ? THEME_COLORS.DARK_TEXT
+      : THEME_COLORS.DARK_GRID;
   };
 
   const appStyles = {
@@ -69,6 +72,7 @@ function ThemedApp() {
     <Suspense fallback={<Loader />}>
       <div className="App" style={appStyles}>
         <div className="grid-background" style={bgStyles} />
+        <AppUpdatePrompt />
         <Routes>
           <Route path="/aditya-rawal" element={<Page />} />
           <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
