@@ -4,7 +4,7 @@ export const links = {
   linkedInLink: 'https://www.linkedin.com/in/adityaxrawal',
   githubLink: 'https://www.github.com/adityaxrawal',
   portfolioRepoLink: 'https://github.com/adityaxrawal/portfolio', // <<-- ADD LINK TO THIS PORTFOLIO'S REPO IF PUBLIC
-  email: 'contact@adityarawal.com', // Primary contact email
+  email: 'ar.adityarawal@gmail.com', // Primary contact email
   twitterLink: 'https://www.twitter.com/adityaxrawal', // Optional: Add Twitter if available
 };
 
@@ -118,6 +118,7 @@ export const FORM_SUBMISSION_STATES = Object.freeze({
 });
 
 export const ALERT_DURATION = Object.freeze({
+  INFO: 3000,
   SUCCESS: 2000,
   ERROR: 4000,
   WARNING: 3000,
