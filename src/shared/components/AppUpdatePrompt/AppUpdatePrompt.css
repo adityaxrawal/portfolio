@@ -1,0 +1,204 @@
+.app-update-prompt {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 1200;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 1rem 1rem 1rem 0.95rem;
+  border: 1.5px solid currentColor;
+  border-radius: 15px 225px 255px 15px;
+  box-sizing: border-box;
+  font-family: 'Alegreya-Font-Regular', serif;
+  line-height: 1.35;
+  box-shadow: rgba(0, 0, 0, 0.28) 15px 28px 25px -18px;
+  backdrop-filter: blur(14px);
+  animation: app-update-slide-in 280ms ease-out;
+}
+
+.app-update-prompt--dark {
+  color: var(--theme-dark-text);
+  background: var(--theme-dark-grid);
+}
+
+.app-update-prompt--light {
+  color: var(--theme-dark-grid);
+  background: var(--theme-light-grid);
+}
+
+.app-update-prompt__icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 1.25rem;
+}
+
+.app-update-prompt--dark .app-update-prompt__icon {
+  background: var(--theme-dark-text);
+  color: var(--theme-dark-grid);
+}
+
+.app-update-prompt--light .app-update-prompt__icon {
+  background: var(--theme-dark-grid);
+  color: var(--theme-dark-text);
+}
+
+.app-update-prompt__content {
+  min-width: 0;
+  padding-right: 1.75rem;
+}
+
+.app-update-prompt__eyebrow,
+.app-update-prompt__title,
+.app-update-prompt__message {
+  margin: 0;
+}
+
+.app-update-prompt__eyebrow {
+  font-family: 'ShadowsIntoLightTwo-Regular', cursive;
+  font-size: 1.05rem;
+}
+
+.app-update-prompt__title {
+  margin-top: 0.1rem;
+  font-family: 'Alegreya-Font-Bold', serif;
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+.app-update-prompt__message {
+  margin-top: 0.25rem;
+  font-size: 0.98rem;
+  opacity: 0.84;
+}
+
+.app-update-prompt__actions {
+  display: flex;
+  align-items: center;
+  margin-top: 0.85rem;
+}
+
+.app-update-prompt__refresh,
+.app-update-prompt__dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid currentColor;
+  color: inherit;
+  cursor: pointer;
+  font-family: 'Alegreya-Font-Regular', serif;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+}
+
+.app-update-prompt__refresh {
+  gap: 0.45rem;
+  min-height: 2.55rem;
+  padding: 0.55rem 1rem;
+  border-radius: 15px 225px 255px 15px;
+  font-size: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 10px 16px 18px -14px;
+}
+
+.app-update-prompt--dark .app-update-prompt__refresh {
+  background: var(--theme-dark-text);
+  color: var(--theme-dark-grid);
+}
+
+.app-update-prompt--light .app-update-prompt__refresh {
+  background: var(--theme-dark-grid);
+  color: var(--theme-dark-text);
+}
+
+.app-update-prompt__refresh:hover:not(:disabled),
+.app-update-prompt__refresh:focus-visible {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.app-update-prompt__refresh:disabled {
+  cursor: wait;
+  opacity: 0.78;
+}
+
+.app-update-prompt__refresh:disabled svg {
+  animation: app-update-spin 820ms linear infinite;
+}
+
+.app-update-prompt__dismiss {
+  position: absolute;
+  top: -0.95rem;
+  left: -0.95rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1rem;
+  background: var(--theme-dark-text);
+  color: var(--theme-dark-grid);
+}
+
+.app-update-prompt__dismiss:hover,
+.app-update-prompt__dismiss:focus-visible {
+  box-shadow: rgba(0, 0, 0, 0.22) 2px 6px 8px -5px;
+}
+
+.app-update-prompt--dark .app-update-prompt__dismiss:hover,
+.app-update-prompt--dark .app-update-prompt__dismiss:focus-visible {
+  background: var(--theme-dark-text);
+  color: var(--theme-dark-grid);
+}
+
+.app-update-prompt--light .app-update-prompt__dismiss:hover,
+.app-update-prompt--light .app-update-prompt__dismiss:focus-visible {
+  background: var(--theme-dark-grid);
+  color: var(--theme-dark-text);
+}
+
+@keyframes app-update-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes app-update-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .app-update-prompt {
+    right: 1rem;
+    bottom: 1rem;
+    width: calc(100vw - 2rem);
+    padding: 0.9rem;
+  }
+
+  .app-update-prompt__content {
+    padding-right: 1.55rem;
+  }
+
+  .app-update-prompt__title {
+    font-size: 1.15rem;
+  }
+
+  .app-update-prompt__message,
+  .app-update-prompt__refresh {
+    font-size: 0.95rem;
+  }
+}
