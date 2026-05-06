@@ -30,10 +30,10 @@ const Header = () => {
             setAlert({
               message: '',
               type: '',
-              onClose: () => {},
             });
           }}
           duration={2500}
+          theme={isDarkTheme ? 'dark' : 'light'}
         />
       )}
       <nav className="nav-bar">

@@ -1,68 +1,99 @@
-import { useEffect, memo, useState, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 
 import './ContactInfo.css';
-import {  useSharedState } from '../../../shared/context/AppContext';
-import {  useModalState } from '../../../shared/hooks/useModalState';
-import {  useAlert } from '../../../shared/hooks/useAlert';
-import {  createFormSubmitter } from '../../../shared/services/validation';
-import {  MODAL_STEPS, MODAL_TITLES } from '../../../shared/utils/constants';
+import { useSharedState } from '../../../shared/context/AppContext';
+import { useAlert } from '../../../shared/hooks/useAlert';
+import { createFormSubmitter } from '../../../shared/services/validation';
 import Alert from '../../../shared/components/Alert';
-import ModalHeader from '../Modal/ModalHeader';
-import ContactOptions from '../ContactOptions';
 import ContactForm from '../ContactForm';
+import {
+  DAILY_CONTACT_LIMIT,
+  getContactRateStatus,
+  recordContactMailSent,
+} from '../services/contactRateLimit';
 
 const ContactInfo = memo(({ open, onClose }) => {
   const { isDarkTheme } = useSharedState();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const { currentStep, setCurrentStep, handleBackdropClick } = useModalState(
-    open,
-    onClose,
-  );
-  const { alert, showSuccess, showError, clearAlert, getAlertDuration } =
+  const { alert, showAlert, showSuccess, showError, showWarning, clearAlert } =
     useAlert();
 
-  // Clear alert when modal closes
   useEffect(() => {
     if (!open) {
       clearAlert();
     }
   }, [open, clearAlert]);
 
-  // Memoize the modal title to avoid recalculation
-  const modalTitle = useMemo(() => {
-    return MODAL_TITLES[currentStep] || 'Contact';
-  }, [currentStep]);
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
 
-  // Memoize the form submit handler to prevent unnecessary re-renders
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [onClose, open]);
+
+  const handleBackdropClick = useCallback(
+    (event) => {
+      if (event.target === event.currentTarget) {
+        onClose();
+      }
+    },
+    [onClose],
+  );
+
   const handleFormSubmit = useCallback(
     async (formData) => {
       setIsSubmitting(true);
+
       try {
+        const rateStatus = await getContactRateStatus();
+
+        if (!rateStatus.allowed) {
+          showWarning(
+            `Daily send limit reached. You can send ${DAILY_CONTACT_LIMIT} messages per day.`,
+          );
+          return;
+        }
+
         const submitForm = createFormSubmitter(showSuccess, showError, onClose);
-        await submitForm(formData);
+        const wasSent = await submitForm({
+          ...formData,
+          name: 'Portfolio visitor',
+          email: 'portfolio.visitor@adityarawal.com',
+          phone: '',
+          clientIp: rateStatus.ipAddress,
+          dailyLimit: rateStatus.limit,
+        });
+
+        if (wasSent) {
+          const nextLimit = recordContactMailSent(rateStatus.ipAddress);
+
+          if (nextLimit.remaining > 0) {
+            showSuccess(
+              `Message sent. ${nextLimit.remaining} sends left today.`,
+            );
+          }
+        }
       } finally {
         setIsSubmitting(false);
       }
     },
-    [showSuccess, showError, onClose],
+    [onClose, showError, showSuccess, showWarning],
   );
 
-  // Memoize the back handler to prevent ContactForm re-renders
-  const handleBackToOptions = useCallback(() => {
-    setCurrentStep(MODAL_STEPS.OPTIONS);
-  }, [setCurrentStep]);
-
-  // Memoize the content renderer
-  const renderContent = useCallback(() => {
-    if (currentStep === MODAL_STEPS.OPTIONS) {
-      return <ContactOptions onSelectOption={setCurrentStep} />;
-    }
-
-    return (
-      <ContactForm onSubmit={handleFormSubmit} isSubmitting={isSubmitting} />
-    );
-  }, [currentStep, setCurrentStep, handleFormSubmit, isSubmitting]);
+  const notify = useCallback(
+    (message, type = 'info') => {
+      showAlert(message, type);
+    },
+    [showAlert],
+  );
 
   if (!open) return null;
 
@@ -73,36 +104,40 @@ const ContactInfo = memo(({ open, onClose }) => {
           message={alert.message}
           type={alert.type}
           onClose={clearAlert}
-          duration={getAlertDuration(alert.type)}
+          duration={alert.duration}
+          theme={isDarkTheme ? 'dark' : 'light'}
         />
       )}
 
       <div
         className="contact-modal-backdrop"
         onClick={handleBackdropClick}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleBackdropClick(e);
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            handleBackdropClick(event);
           }
         }}
         role="button"
         tabIndex="0"
-        aria-label="Close modal"
+        aria-label="Close compose window"
       >
         <div
-          className={`contact-info-modal ${isDarkTheme ? 'dark' : 'light'}`}
+          className={`contact-info-modal contact-compose-modal ${
+            isDarkTheme ? 'dark' : 'light'
+          }`}
           role="dialog"
           aria-modal="true"
-          aria-labelledby="contact-title"
+          aria-labelledby="contact-compose-title"
         >
-          <ModalHeader
-            title={modalTitle}
+          <h2 id="contact-compose-title" className="sr-only">
+            Compose message
+          </h2>
+          <ContactForm
+            onSubmit={handleFormSubmit}
+            isSubmitting={isSubmitting}
             onClose={onClose}
-            showBackButton={currentStep === MODAL_STEPS.FORM}
-            onBack={handleBackToOptions}
+            notify={notify}
           />
-
-          {renderContent()}
         </div>
       </div>
     </>
