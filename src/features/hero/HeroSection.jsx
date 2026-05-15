@@ -1,47 +1,33 @@
 // src/component/Content/HeroSection/heroSection.component.js
 import React, { useCallback, useEffect, useState } from 'react';
 
-// image
-import heroImage from '../../assets/images/my/me.png';
-
 // css
 import './HeroSection.css';
 // Rough Notation for react
 import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
 
 // constants
+import Confetti from 'react-confetti'; // Import Confetti
+
 import { links, THEME_COLORS } from '../../shared/utils/constants';
 import { useSharedState } from '../../shared/context/AppContext';
 
-import Confetti from 'react-confetti'; // Import Confetti
+
+// ── Lanyard (physics rope + flip card) ───────────────────────
+import Lanyard from './Lanyard/Lanyard';
 
 const HeroSection = () => {
   const { isDarkTheme } = useSharedState();
 
-  const [imageSize, setImageSize] = useState({
-    width: 0,
-    height: 0,
-  });
   const [showHireConfetti, setShowHireConfetti] = useState(false); // State for confetti
   const [confettiDimensions, setConfettiDimensions] = useState({
     width: 0,
     height: 0,
   });
-
-  // Maintain Aspect Ratio (Original ratio from the given image)
-  const aspectRatio = 0.6; // Replace with your actual width/height ratio
-
-  const calculateImageSize = useCallback(() => {
-    if (window.innerWidth <= 600) {
-      // Hide image on mobile
-      setImageSize({ width: 0, height: 0 });
-      return;
-    }
-    let newWidth = window.innerWidth * 0.2; // Image takes 20% of screen width
-    let newHeight = newWidth / aspectRatio; // Maintain aspect ratio
-
-    setImageSize({ width: newWidth, height: newHeight });
-  }, [aspectRatio]); // Added dependency
+  // Track desktop vs mobile to show/hide lanyard
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth > 600,
+  );
 
   // Calculate confetti dimensions
   useEffect(() => {
@@ -54,16 +40,11 @@ const HeroSection = () => {
         width: window.innerWidth,
         height: window.innerHeight,
       });
+      setIsDesktop(window.innerWidth > 600);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  useEffect(() => {
-    calculateImageSize();
-    window.addEventListener('resize', calculateImageSize);
-    return () => window.removeEventListener('resize', calculateImageSize);
-  }, [calculateImageSize]);
 
   // Function to trigger confetti for "Hire Me"
   const handleHireMeClick = useCallback(() => {
@@ -92,7 +73,11 @@ const HeroSection = () => {
           <span className="headline-title">
             Hola! I am Aditya, a{' '}
             <RoughNotation type="highlight" order="1" color="#cddafd">
-              <span style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}>
+              <span
+                style={{
+                  color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial',
+                }}
+              >
                 developer
               </span>
             </RoughNotation>{' '}
@@ -104,14 +89,20 @@ const HeroSection = () => {
               <RoughNotation type="highlight" order="2" color="#fde2e4">
                 <span
                   className="highlighted-text"
-                  style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}
+                  style={{
+                    color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial',
+                  }}
                 >
                   user-friendly, simple
                 </span>
               </RoughNotation>{' '}
               and{' '}
               <RoughNotation type="highlight" order="3" color="#bee1e6">
-                <span style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}>
+                <span
+                  style={{
+                    color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial',
+                  }}
+                >
                   delightful.
                 </span>
               </RoughNotation>
@@ -122,7 +113,9 @@ const HeroSection = () => {
               <RoughNotation type="highlight" order="4" color="#e9edc9">
                 <span
                   className="highlighted-text"
-                  style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}
+                  style={{
+                    color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial',
+                  }}
                 >
                   Node.js and React.js
                 </span>
@@ -134,7 +127,11 @@ const HeroSection = () => {
               Prior to this, I worked as a Software Developer at DevelUp, where
               I maintained the company website using{' '}
               <RoughNotation type="highlight" order="5" color="#faedcd">
-                <span style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}>
+                <span
+                  style={{
+                    color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial',
+                  }}
+                >
                   Next.js
                 </span>
               </RoughNotation>{' '}
@@ -144,7 +141,9 @@ const HeroSection = () => {
               <RoughNotation type="highlight" order="6" color="#ffd7ba">
                 <span
                   className="highlighted-text"
-                  style={{ color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial' }}
+                  style={{
+                    color: isDarkTheme ? THEME_COLORS.DARK_GRID : 'initial',
+                  }}
                 >
                   full-stack development
                 </span>
@@ -205,29 +204,35 @@ const HeroSection = () => {
           </div>
         </div>
       </RoughNotationGroup>
-      {/* Conditionally render image based on screen size */}
-      {imageSize.width > 0 && (
-        <div className="image-container">
-          <div
-            className="image-card"
-            style={{
-              width: imageSize.width + 16,
-              height: imageSize.height + 48,
-            }}
-          >
-            <div className="image-card-part-one">
-              <img
-                src={heroImage}
-                alt="Aditya Rawal" // More descriptive alt text
-                className="image"
-                style={{ width: imageSize.width, height: imageSize.height }}
-                loading="lazy" // Add lazy loading
-              />
-            </div>
-            <div className="image-card-part-two">
-              <span>Aditya Rawal</span>
+      {/*
+        ── OLD image card (commented out, replaced by Lanyard below) ──
+        {imageSize.width > 0 && (
+          <div className="image-container">
+            <div
+              className="image-card"
+              style={{ width: imageSize.width + 16, height: imageSize.height + 48 }}
+            >
+              <div className="image-card-part-one">
+                <img
+                  src={heroImage}
+                  alt="Aditya Rawal"
+                  className="image"
+                  style={{ width: imageSize.width, height: imageSize.height }}
+                  loading="lazy"
+                />
+              </div>
+              <div className="image-card-part-two">
+                <span>Aditya Rawal</span>
+              </div>
             </div>
           </div>
+        )}
+      */}
+
+      {/* ── Lanyard: physics rope + interactive flip card ── */}
+      {isDesktop && (
+        <div className="image-container">
+          <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
         </div>
       )}
     </div>
