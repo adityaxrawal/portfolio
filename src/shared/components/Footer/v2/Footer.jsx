@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 import ContactInfo from '../../../../features/contact/ContactInfo';

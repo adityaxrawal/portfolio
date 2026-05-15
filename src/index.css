@@ -10,7 +10,7 @@
   /* Matches THEME_COLORS.DARK_GRID — grid/border on dark backgrounds */
   --theme-dark-grid: rgba(35, 35, 35, 1);
   /* Matches THEME_COLORS.DARK_TEXT — cream text on dark backgrounds */
-  --theme-dark-text: #F0ECD8;
+  --theme-dark-text: #f0ecd8;
   /* Matches THEME_COLORS.DARK_BG — dark background */
   --theme-dark-bg: rgba(35, 35, 35, 1);
 }
