@@ -184,4 +184,15 @@
     font-size: var(--font-size-heading-mobile);
     height: 50%;
   }
+  .nav-text {
+    display: none;
+    font-size: var(--font-size-subHeading-mobile);
+  }
 }
+
+@media only screen and (max-width: 400px) {
+  .nav-left {
+    font-size: 1.1rem; /* Further reduced for SE/Small devices */
+  }
+}
+
