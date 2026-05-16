@@ -98,13 +98,23 @@ const panelMeta = {
 };
 
 interface ContactFormProps {
-  onSubmit: (data: { recipient: string; subject: string; message: string; formattedMessage: string }) => Promise<void>;
+  onSubmit: (data: {
+    recipient: string;
+    subject: string;
+    message: string;
+    formattedMessage: string;
+  }) => Promise<void>;
   isSubmitting: boolean;
   onClose: () => void;
   notify?: (message: string, type?: string) => void;
 }
 
-const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }: ContactFormProps) => {
+const ContactForm = ({
+  onSubmit,
+  isSubmitting,
+  onClose,
+  notify,
+}: ContactFormProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const insertInputRef = useRef<HTMLInputElement>(null);
   const insertTextInputRef = useRef<HTMLInputElement>(null);
@@ -119,7 +129,9 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }: ContactFormPro
   const [selectedLinkText, setSelectedLinkText] = useState('');
 
   const messageRemaining = MESSAGE_LIMIT - messageLength;
-  const activePanelMeta = insertPanel ? (panelMeta as Record<string, typeof panelMeta.link>)[insertPanel] : null;
+  const activePanelMeta = insertPanel
+    ? (panelMeta as Record<string, typeof panelMeta.link>)[insertPanel]
+    : null;
   const hasSelectedLinkText = selectedLinkText.trim().length > 0;
 
   const canSend = useMemo(() => {
@@ -486,7 +498,9 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }: ContactFormPro
       <div className="gmail-compose__field">
         <input
           value={subject}
-          onBeforeInput={handleSubjectBeforeInput as unknown as React.FormEventHandler<HTMLInputElement>}
+          onBeforeInput={
+            handleSubjectBeforeInput as unknown as React.FormEventHandler<HTMLInputElement>
+          }
           onChange={handleSubjectChange}
           maxLength={SUBJECT_LIMIT}
           placeholder="Subject"
@@ -499,7 +513,9 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }: ContactFormPro
         className="gmail-compose__editor"
         contentEditable
         data-placeholder="Write your message"
-        onBeforeInput={handleEditorBeforeInput as unknown as React.FormEventHandler<HTMLDivElement>}
+        onBeforeInput={
+          handleEditorBeforeInput as unknown as React.FormEventHandler<HTMLDivElement>
+        }
         onInput={handleEditorInput}
         onKeyUp={saveEditorSelection}
         onMouseUp={saveEditorSelection}

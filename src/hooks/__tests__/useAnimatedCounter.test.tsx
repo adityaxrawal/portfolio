@@ -1,12 +1,14 @@
-import { vi, describe, test, expect, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { vi, describe, test, expect, beforeEach } from 'vitest';
 
 import { useAnimatedCounter } from '../useAnimatedCounter';
 
 // Mock requestAnimationFrame
-(globalThis as any).requestAnimationFrame = vi.fn((cb: FrameRequestCallback) => {
-  return setTimeout(cb, 0) as unknown as number;
-});
+(globalThis as any).requestAnimationFrame = vi.fn(
+  (cb: FrameRequestCallback) => {
+    return setTimeout(cb, 0) as unknown as number;
+  },
+);
 
 describe('useAnimatedCounter Hook', () => {
   beforeEach(() => {

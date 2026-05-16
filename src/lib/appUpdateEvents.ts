@@ -6,7 +6,9 @@ declare global {
 
 export const APP_UPDATE_AVAILABLE_EVENT = 'portfolio:update-available';
 
-export const notifyAppUpdateAvailable = (registration: ServiceWorkerRegistration) => {
+export const notifyAppUpdateAvailable = (
+  registration: ServiceWorkerRegistration,
+) => {
   window.__portfolioUpdateRegistration = registration;
 
   window.dispatchEvent(

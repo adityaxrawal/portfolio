@@ -1,8 +1,8 @@
 import { useState, MouseEvent } from 'react';
 
 import './ContactButton.css';
-import ContactInfo from '@/features/contact/ContactInfo';
 import { useSharedState } from '@/app/providers/AppContext';
+import ContactInfo from '@/features/contact/ContactInfo';
 
 export interface ContactButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;

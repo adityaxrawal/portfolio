@@ -5,16 +5,19 @@ import { interpolateColor } from '@/lib/colorUtils';
 /**
  * Maps scroll position to an interpolated background color between sections
  * and applies it directly to a DOM element ref for high performance.
- * 
+ *
  * @param {import('react').RefObject} wrapperRef - Ref to the root wrapper div
- * @param {Array<{ id: string, color: string }>} sections 
+ * @param {Array<{ id: string, color: string }>} sections
  */
 export interface ScrollSection {
   id: string;
   color: string;
 }
 
-export function useScrollColor(wrapperRef: React.RefObject<HTMLElement | null>, sections: ScrollSection[]) {
+export function useScrollColor(
+  wrapperRef: React.RefObject<HTMLElement | null>,
+  sections: ScrollSection[],
+) {
   useEffect(() => {
     if (!wrapperRef.current || sections.length === 0) return;
 
@@ -26,18 +29,23 @@ export function useScrollColor(wrapperRef: React.RefObject<HTMLElement | null>, 
       const viewportMid = scrollY + windowHeight / 2;
 
       // Map sections to their center positions
-      const sectionData = sections.map((sec, idx) => {
-        const el = document.getElementById(sec.id);
-        if (!el) return null;
-        const rect = el.getBoundingClientRect();
-        const top = rect.top + scrollY;
-        const height = rect.height;
-        return {
-          ...sec,
-          idx,
-          center: top + height / 2,
-        };
-      }).filter((item): item is (ScrollSection & { idx: number, center: number }) => item !== null);
+      const sectionData = sections
+        .map((sec, idx) => {
+          const el = document.getElementById(sec.id);
+          if (!el) return null;
+          const rect = el.getBoundingClientRect();
+          const top = rect.top + scrollY;
+          const height = rect.height;
+          return {
+            ...sec,
+            idx,
+            center: top + height / 2,
+          };
+        })
+        .filter(
+          (item): item is ScrollSection & { idx: number; center: number } =>
+            item !== null,
+        );
 
       if (sectionData.length === 0) return;
 
@@ -76,7 +84,7 @@ export function useScrollColor(wrapperRef: React.RefObject<HTMLElement | null>, 
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
-    
+
     // Initial calculation
     calculateColor();
     // Re-calculate after a slight delay in case fonts/images shift the layout

@@ -5,7 +5,11 @@
  * @param {number} t - Ratio between 0.0 and 1.0
  * @returns {string} - Interpolated color as an rgba string
  */
-export function interpolateColor(colorA: string, colorB: string, t: number): string {
+export function interpolateColor(
+  colorA: string,
+  colorB: string,
+  t: number,
+): string {
   // Clamp t between 0 and 1
   t = Math.max(0, Math.min(1, t));
 
@@ -13,12 +17,15 @@ export function interpolateColor(colorA: string, colorB: string, t: number): str
   const parseHex = (hex: string) => {
     let cleanHex = hex.replace('#', '');
     if (cleanHex.length === 3) {
-      cleanHex = cleanHex.split('').map(char => char + char).join('');
+      cleanHex = cleanHex
+        .split('')
+        .map((char) => char + char)
+        .join('');
     }
     return [
       parseInt(cleanHex.substring(0, 2), 16),
       parseInt(cleanHex.substring(2, 4), 16),
-      parseInt(cleanHex.substring(4, 6), 16)
+      parseInt(cleanHex.substring(4, 6), 16),
     ];
   };
 

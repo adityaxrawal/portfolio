@@ -58,39 +58,39 @@
 
 /* Specific Light Theme Card Styles */
 .detail-card.theme-light.card-tech {
-  background-color: #EAF0EA;
-  border-color: #C9D9C9;
+  background-color: #eaf0ea;
+  border-color: #c9d9c9;
 }
 .detail-card.theme-light.card-tech h3 {
-  color: #2D4F2D;
+  color: #2d4f2d;
 }
 
 .detail-card.theme-light.card-features {
-  background-color: #E8EEF5;
-  border-color: #C5D3E3;
+  background-color: #e8eef5;
+  border-color: #c5d3e3;
 }
 .detail-card.theme-light.card-features h3 {
-  color: #2B3A67;
+  color: #2b3a67;
 }
 
 .detail-card.theme-light.card-challenges {
-  background-color: #F5ECE8;
-  border-color: #E3CEBE;
+  background-color: #f5ece8;
+  border-color: #e3cebe;
 }
 .detail-card.theme-light.card-challenges h3 {
-  color: #6B4226;
+  color: #6b4226;
 }
 
 .detail-card.theme-light.card-stats {
-  background-color: #F2EDE4;
-  border-color: #DDD3C2;
+  background-color: #f2ede4;
+  border-color: #ddd3c2;
 }
 .detail-card.theme-light.card-stats h3 {
-  color: #4A4A4A;
+  color: #4a4a4a;
 }
 
 .detail-card.theme-light.card-stats .stat-number {
-  color: #4A4A4A;
+  color: #4a4a4a;
 }
 
 .detail-card.theme-light.card-stats .stat-label {

@@ -38,8 +38,14 @@ const readStore = () => {
   return { date: getTodayKey(), byIp: {} };
 };
 
-interface RateLimitRecord { count: number; sentAt: string[]; }
-interface RateLimitStore { date: string; byIp: Record<string, RateLimitRecord>; }
+interface RateLimitRecord {
+  count: number;
+  sentAt: string[];
+}
+interface RateLimitStore {
+  date: string;
+  byIp: Record<string, RateLimitRecord>;
+}
 
 const writeStore = (store: RateLimitStore) => {
   if (!isBrowser()) {

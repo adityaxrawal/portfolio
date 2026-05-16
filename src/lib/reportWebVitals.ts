@@ -10,7 +10,7 @@ declare global {
         event_label: string;
         value: number;
         non_interaction: boolean;
-      }
+      },
     ) => void;
   }
 

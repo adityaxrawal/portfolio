@@ -74,7 +74,9 @@
   border: none;
   cursor: pointer;
   outline: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   gap: 1.5rem;
 }
 
@@ -160,7 +162,9 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .footer-v2__social-icon:hover {
@@ -178,7 +182,6 @@
   justify-content: center;
   overflow: hidden;
 }
-
 
 .footer-v2__hero-container {
   width: 100%;

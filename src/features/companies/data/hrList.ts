@@ -5569,7 +5569,6 @@ export const hrList = [
       },
     ],
   },
-,
   {
     company: 'accoliteindia',
     company_career_link: null,
@@ -6414,7 +6413,6 @@ export const hrList = [
       },
     ],
   },
-,
   [
     {
       name: 'Walmart',

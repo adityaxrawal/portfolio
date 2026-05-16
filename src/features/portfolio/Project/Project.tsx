@@ -1,5 +1,6 @@
 // src/component/Content/Projects/projects.component.js
 import { use, Suspense, Component } from 'react';
+
 import './Project.css';
 import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
 // Remove unused GitHubRepo import
@@ -69,10 +70,15 @@ function RepoList() {
   );
 }
 
-interface ErrorBoundaryState { error: Error | null; }
+interface ErrorBoundaryState {
+  error: Error | null;
+}
 
 // Error boundary for graceful error handling (class component — no hook equivalent yet).
-class ProjectErrorBoundary extends Component<React.PropsWithChildren, ErrorBoundaryState> {
+class ProjectErrorBoundary extends Component<
+  React.PropsWithChildren,
+  ErrorBoundaryState
+> {
   state: ErrorBoundaryState = { error: null };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
@@ -104,9 +110,7 @@ const Project = () => (
   <section className="projects-section">
     <h2>My GitHub Projects</h2>
     <ProjectErrorBoundary>
-      <Suspense
-        fallback={<SectionLoader message="Syncing with GitHub..." />}
-      >
+      <Suspense fallback={<SectionLoader message="Syncing with GitHub..." />}>
         <RepoList />
       </Suspense>
     </ProjectErrorBoundary>

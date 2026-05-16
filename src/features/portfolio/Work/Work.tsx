@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useRef, useState, memo } from 'react';
 
 import './Work.css';
-// import { useSharedState } from '@/app/providers/AppContext';
-import { WorkExperience } from '../data/workExperience';
 
 // images
-import mathcoLogo from '../../../assets/images/companies/mathco.webp';
-import leadsquaredLogo from '../../../assets/images/companies/lsq.webp';
 import develUpLogo from '../../../assets/images/companies/develup.webp';
+import leadsquaredLogo from '../../../assets/images/companies/lsq.webp';
+import mathcoLogo from '../../../assets/images/companies/mathco.webp';
 import wiproLogo from '../../../assets/images/companies/wipro.webp';
+import { WorkExperience } from '../data/workExperience';
 
 const Work = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,7 +33,7 @@ const Work = () => {
     return () => window.removeEventListener('resize', calculateImageDimensions);
   }, [calculateImageDimensions]);
 
-  const handleScroll = async () => {
+  const handleScroll = useCallback(async () => {
     if (!sectionRef.current || !imagesRef.current || !textRef.current) return;
 
     const sectionTop = sectionRef.current.getBoundingClientRect().top;
@@ -58,16 +57,13 @@ const Work = () => {
       imagesRef.current.scrollTop = Math.floor(
         Math.abs(textTop) / dynamicDivisor,
       );
-      // ICP = image container percentage -> how is image container covered : returns percentage
-      // const currentICP = await calculateICP();
-      // updateBackgroundColor(currentICP);
     } else if (sectionTop === -sectionOffSetHeight) {
       setIsPinned(false);
     } else {
       setIsPinned(false);
       imagesRef.current.scrollTop = 0;
     }
-  };
+  }, []);
 
   useEffect(() => {
     const scrollHandler = () => handleScroll();
@@ -76,7 +72,7 @@ const Work = () => {
     return () => {
       window.removeEventListener('scroll', scrollHandler);
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
     <>
@@ -103,10 +99,7 @@ const Work = () => {
         <div className="work-container">
           <div className="work-container-text" ref={textRef}>
             {WorkExperience.map(
-              (
-                { companyName, title, years, description },
-                index,
-              ) => {
+              ({ companyName, title, years, description }, index) => {
                 return (
                   <article className="work-text" key={index}>
                     <div className="work-text-details">
@@ -121,9 +114,7 @@ const Work = () => {
                         </div>
                         <time className="work-text-heading-years">{years}</time>
                       </header>
-                      <p className="work-text-description">
-                        {description}
-                      </p>
+                      <p className="work-text-description">{description}</p>
                     </div>
                   </article>
                 );

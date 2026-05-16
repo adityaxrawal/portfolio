@@ -1,15 +1,13 @@
-// @ts-nocheck
+// @ts-nocheck - Legacy 3D physics implementation with complex Three.js and Rapier type interactions that require further refactoring.
 /* eslint-disable react/no-unknown-property */
 'use client';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Canvas, extend, useFrame } from '@react-three/fiber';
-import { useSharedState } from '@/app/providers/AppContext';
 import {
   useGLTF,
   useTexture,
   Environment,
   Lightformer,
 } from '@react-three/drei';
+import { Canvas, extend, useFrame } from '@react-three/fiber';
 import {
   BallCollider,
   CuboidCollider,
@@ -20,12 +18,16 @@ import {
 } from '@react-three/rapier';
 import type { RigidBody as RigidBodyType } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+
+import profilePic from '../../../assets/images/my/me-2.webp';
 
 import cardGLB from './card.glb';
 import lanyard from './lanyard.webp';
 import mathcoLogoPic from './mathco_logo.webp';
-import profilePic from '../../../assets/images/my/me-2.webp';
+
+import { useSharedState } from '@/app/providers/AppContext';
 
 import './Lanyard.css';
 

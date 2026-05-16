@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 import './Technology.css';
-import { useSharedState } from '@/app/providers/AppContext';
-import {
-  darkModeColorList,
-  lightModeColorList,
-} from '@/constants';
 import { TechnicalSkills } from '../data/technicalSkills';
+
 import TechnologyBox from './TechnologyBox';
+
+import { useSharedState } from '@/app/providers/AppContext';
+import { darkModeColorList, lightModeColorList } from '@/constants';
 
 const Technology = () => {
   const { isDarkTheme } = useSharedState();
@@ -25,7 +24,7 @@ const Technology = () => {
     } else {
       setIsPinned(false);
     }
-  }, []);
+  }, [techSection]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -38,9 +37,11 @@ const Technology = () => {
         <div
           className={`tech-heading ${isPinned ? 'sticky' : 'relative'}`}
           style={{
-            backgroundColor: !isPinned ? 'transparent' : isDarkTheme
-              ? darkModeColorList[0]
-              : lightModeColorList[0],
+            backgroundColor: !isPinned
+              ? 'transparent'
+              : isDarkTheme
+                ? darkModeColorList[0]
+                : lightModeColorList[0],
           }}
         >
           <div className="tech-heading-text">

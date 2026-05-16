@@ -3,7 +3,9 @@ import { memo, useCallback } from 'react';
 import { links, MODAL_STEPS } from '@/constants';
 import './ContactOptions.css';
 
-interface ContactOptionsProps { onSelectOption: (step: string) => void; }
+interface ContactOptionsProps {
+  onSelectOption: (step: string) => void;
+}
 
 const ContactOptions = memo(({ onSelectOption }: ContactOptionsProps) => {
   const handleSendMessage = useCallback(() => {

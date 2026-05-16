@@ -3,9 +3,9 @@ import { useState } from 'react';
 // css
 import './Header.css';
 // context
-import { darkModeColorList, lightModeColorList } from '@/constants';
 import { useSharedState } from '@/app/providers/AppContext';
 import Alert from '@/components/Alert';
+import { darkModeColorList, lightModeColorList } from '@/constants';
 
 const Header = () => {
   const [alert, setAlert] = useState({

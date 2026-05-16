@@ -4,7 +4,9 @@ interface SectionLoaderProps {
   message?: string;
 }
 
-const SectionLoader = ({ message = 'Loading experience...' }: SectionLoaderProps) => {
+const SectionLoader = ({
+  message = 'Loading experience...',
+}: SectionLoaderProps) => {
   return (
     <div className="section-loader">
       <div className="loader-content">
