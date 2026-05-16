@@ -2,15 +2,18 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import './index.css';
-import App from './App';
+import App from '@/app/App';
 import {
   reportWebVitalsWithAnalytics,
   setupPerformanceObserver,
-} from './shared/services/reportWebVitals';
-import { notifyAppUpdateAvailable } from './shared/services/appUpdateEvents';
-import { register as registerSW } from './shared/services/serviceWorkerRegistration';
+  monitorMemoryUsage,
+} from '@/lib/reportWebVitals';
+import { notifyAppUpdateAvailable } from '@/lib/appUpdateEvents';
+import { register as registerSW } from '@/lib/serviceWorkerRegistration';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <StrictMode>
     <App />
@@ -37,10 +40,6 @@ if (import.meta.env.MODE === 'production') {
 // Monitor memory usage periodically in development
 if (import.meta.env.DEV) {
   setInterval(() => {
-    import('./shared/services/reportWebVitals').then(
-      ({ monitorMemoryUsage }) => {
-        monitorMemoryUsage();
-      },
-    );
+    monitorMemoryUsage();
   }, 30000);
 }

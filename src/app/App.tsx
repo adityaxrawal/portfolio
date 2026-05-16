@@ -1,5 +1,5 @@
 // src/App.js
-import { Suspense, useCallback, useState } from 'react';
+import { Suspense, useCallback, useState, lazy } from 'react';
 import { ReactLenis, useLenis } from 'lenis/react';
 import {
   BrowserRouter as Router,
@@ -12,14 +12,14 @@ import tinycolor from 'tinycolor2';
 
 import './App.css';
 
-import AppUpdatePrompt from './shared/components/AppUpdatePrompt';
-import EasterEgg from './shared/components/EasterEgg';
-import Loader from './shared/components/Loader';
-import Page from './shared/components/PageLayout';
-import { AppProvider, useSharedState } from './shared/context/AppContext';
-import { useKonamiCode } from './shared/hooks/useKonamiCode';
-import { THEME_COLORS } from './shared/utils/constants';
-// import MyLoveBhavi from './features/bu/BU';
+import AppUpdatePrompt from '@/components/AppUpdatePrompt';
+import EasterEgg from '@/components/EasterEgg';
+import Loader from '@/components/Loader';
+import Page from '@/components/layout/PageLayout';
+import { AppProvider, useSharedState } from '@/app/providers/AppContext';
+import { useKonamiCode } from '@/hooks/useKonamiCode';
+import { THEME_COLORS } from '@/constants';
+const Companies = lazy(() => import('@/features/companies/Companies'));
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
@@ -51,7 +51,7 @@ function ThemedApp() {
   // Lenis usage remains the same
   useLenis();
 
-  const getContrastColor = (bgColor) => {
+  const getContrastColor = (bgColor: string) => {
     // Added check for undefined bgColor
     if (!bgColor) return THEME_COLORS.DARK_GRID; // Default to dark if undefined
     return tinycolor(bgColor).isDark()
@@ -82,6 +82,7 @@ function ThemedApp() {
           {/* <Route path="/my-love-bhavi" element={<MyLoveBhavi />} /> */}
           {/* Keep companies route if needed */}
           {/* <Route path='/companies' element={<Companies/>}/> */}
+          <Route path="/companies" element={<Companies />} />
         </Routes>
       </div>
     </Suspense>
