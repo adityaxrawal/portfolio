@@ -5,9 +5,9 @@ import './Work.css';
 import { WorkExperience } from '../data/workExperience';
 
 // images
-import leadsquaredLogo from '../../../assets/images/companies/lsq.png';
-import develUpLogo from '../../../assets/images/companies/develup.png';
-import wiproLogo from '../../../assets/images/companies/wipro.png';
+import leadsquaredLogo from '../../../assets/images/companies/lsq.webp';
+import develUpLogo from '../../../assets/images/companies/develup.webp';
+import wiproLogo from '../../../assets/images/companies/wipro.webp';
 
 const Work = () => {
   const sectionRef = useRef<HTMLElement>(null);

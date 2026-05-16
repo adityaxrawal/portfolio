@@ -23,9 +23,9 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
 import cardGLB from './card.glb';
-import lanyard from './lanyard.png';
-import mathcoLogoPic from './mathco_logo.png';
-import profilePic from '../../../assets/images/my/me-2.png';
+import lanyard from './lanyard.webp';
+import mathcoLogoPic from './mathco_logo.webp';
+import profilePic from '../../../assets/images/my/me-2.webp';
 
 import './Lanyard.css';
 
