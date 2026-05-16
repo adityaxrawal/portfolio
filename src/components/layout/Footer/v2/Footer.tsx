@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 import { useSharedState } from '@/app/providers/AppContext';
-import { links, THEME_COLORS } from '@/constants';
-import ContactInfo from '@/features/contact/ContactInfo';
+import { links, THEME_COLORS } from '@/config';
+import ContactInfo from '@/features/contact/components/ContactInfo';
 import './Footer.css';
 
 const Footer = () => {

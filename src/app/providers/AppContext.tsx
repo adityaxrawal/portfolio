@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 
-import { lightModeColorList } from '@/constants';
+import { lightModeColorList } from '@/config';
 
 interface SharedState {
   isDarkTheme: boolean;

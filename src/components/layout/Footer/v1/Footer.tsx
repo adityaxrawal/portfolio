@@ -4,12 +4,12 @@ import './Footer.css';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 import { useSharedState } from '@/app/providers/AppContext';
-import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/svg';
-import { THEME_COLORS } from '@/constants';
+import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/Icons/Icons';
+import { THEME_COLORS } from '@/config';
 // SVG Component
 // React Icons
 // ContactInfo Modal
-import ContactInfo from '@/features/contact/ContactInfo';
+import ContactInfo from '@/features/contact/components/ContactInfo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

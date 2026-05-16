@@ -2,7 +2,7 @@ import './PageLayout.css';
 import Footer from '../Footer/v2';
 import Header from '../Header';
 
-import Content from '@/features/portfolio/MainContent';
+import Content from '@/features/portfolio/components/MainContent';
 
 const Page = () => {
   return (

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import { ALERT_DURATION } from '@/constants';
+import { ALERT_DURATION } from '@/config';
 
 type AlertType = 'info' | 'success' | 'error' | 'warning';
 

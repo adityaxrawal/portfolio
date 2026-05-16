@@ -13,13 +13,13 @@ import tinycolor from 'tinycolor2';
 import './App.css';
 
 import { AppProvider, useSharedState } from '@/app/providers/AppContext';
-import AppUpdatePrompt from '@/components/AppUpdatePrompt';
+import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/EasterEgg';
 import Page from '@/components/layout/PageLayout';
-import Loader from '@/components/Loader';
-import { THEME_COLORS } from '@/constants';
+import Loader from '@/components/ui/Loader';
+import { THEME_COLORS } from '@/config';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
-const Companies = lazy(() => import('@/features/companies/Companies'));
+const Companies = lazy(() => import('@/features/companies'));
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);

@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from '@/constants';
+import { API_ENDPOINTS } from '@/config';
 
 export interface ContactFormData {
   name: string;
