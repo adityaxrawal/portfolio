@@ -1,7 +1,14 @@
 import { memo } from 'react';
 import './ModalHeader.css';
 
-const ModalHeader = memo(({ title, onClose, showBackButton, onBack }) => (
+interface ModalHeaderProps {
+  title: string;
+  onClose: () => void;
+  showBackButton?: boolean;
+  onBack?: () => void;
+}
+
+const ModalHeader = memo(({ title, onClose, showBackButton, onBack }: ModalHeaderProps) => (
   <div className="modal-header">
     {showBackButton ? (
       <button

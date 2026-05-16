@@ -1,10 +1,10 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
 import './ContactInfo.css';
-import { useSharedState } from '../../../shared/context/AppContext';
-import { useAlert } from '../../../shared/hooks/useAlert';
-import { createFormSubmitter } from '../../../shared/services/validation';
-import Alert from '../../../shared/components/Alert';
+import { useSharedState } from '@/app/providers/AppContext';
+import { useAlert } from '@/hooks/useAlert';
+import { createFormSubmitter } from '@/lib/validation';
+import Alert from '@/components/Alert';
 import ContactForm from '../ContactForm';
 import {
   DAILY_CONTACT_LIMIT,
@@ -12,7 +12,12 @@ import {
   recordContactMailSent,
 } from '../services/contactRateLimit';
 
-const ContactInfo = memo(({ open, onClose }) => {
+export interface ContactInfoProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const ContactInfo = memo(({ open, onClose }: ContactInfoProps) => {
   const { isDarkTheme } = useSharedState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { alert, showAlert, showSuccess, showError, showWarning, clearAlert } =
@@ -29,7 +34,7 @@ const ContactInfo = memo(({ open, onClose }) => {
       return undefined;
     }
 
-    const handleEscape = (event) => {
+    const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
       }
@@ -40,7 +45,7 @@ const ContactInfo = memo(({ open, onClose }) => {
   }, [onClose, open]);
 
   const handleBackdropClick = useCallback(
-    (event) => {
+    (event: React.MouseEvent | React.KeyboardEvent) => {
       if (event.target === event.currentTarget) {
         onClose();
       }
@@ -49,7 +54,7 @@ const ContactInfo = memo(({ open, onClose }) => {
   );
 
   const handleFormSubmit = useCallback(
-    async (formData) => {
+    async (formData: { recipient: string; subject: string; message: string; formattedMessage: string }) => {
       setIsSubmitting(true);
 
       try {
@@ -89,7 +94,7 @@ const ContactInfo = memo(({ open, onClose }) => {
   );
 
   const notify = useCallback(
-    (message, type = 'info') => {
+    (message: string, type = 'info') => {
       showAlert(message, type);
     },
     [showAlert],
@@ -118,7 +123,7 @@ const ContactInfo = memo(({ open, onClose }) => {
           }
         }}
         role="button"
-        tabIndex="0"
+        tabIndex={0}
         aria-label="Close compose window"
       >
         <div

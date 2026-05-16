@@ -1,4 +1,16 @@
-import { memo,  useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, ChangeEvent } from 'react';
+
+interface FormFieldProps {
+  id: string;
+  label: string;
+  type: string;
+  value: string;
+  onChange: (id: string, value: string) => void;
+  error?: string;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+}
 
 const FormField = memo(
   ({
@@ -11,9 +23,9 @@ const FormField = memo(
     placeholder,
     required = false,
     rows,
-  }) => {
+  }: FormFieldProps) => {
     const handleInputChange = useCallback(
-      (e) => {
+      (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         onChange(id, e.target.value);
       },
       [id, onChange],

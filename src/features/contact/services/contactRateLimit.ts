@@ -38,7 +38,10 @@ const readStore = () => {
   return { date: getTodayKey(), byIp: {} };
 };
 
-const writeStore = (store) => {
+interface RateLimitRecord { count: number; sentAt: string[]; }
+interface RateLimitStore { date: string; byIp: Record<string, RateLimitRecord>; }
+
+const writeStore = (store: RateLimitStore) => {
   if (!isBrowser()) {
     return;
   }
@@ -66,7 +69,7 @@ const getStoredDeviceId = () => {
   return nextDeviceId;
 };
 
-const fetchJsonWithTimeout = async (url) => {
+const fetchJsonWithTimeout = async (url: string) => {
   const controller = new AbortController();
   const timeoutId = window.setTimeout(() => controller.abort(), 2200);
 
@@ -116,7 +119,7 @@ export const getContactRateStatus = async () => {
   };
 };
 
-export const recordContactMailSent = (ipAddress) => {
+export const recordContactMailSent = (ipAddress: string) => {
   const store = readStore();
   const record = store.byIp[ipAddress] || { count: 0, sentAt: [] };
   const nextRecord = {

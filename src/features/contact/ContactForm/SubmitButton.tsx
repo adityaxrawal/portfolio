@@ -1,6 +1,8 @@
 import { memo } from 'react';
 
-const SubmitButton = memo(({ isFormValid, isSubmitting }) => (
+interface SubmitButtonProps { isFormValid: boolean; isSubmitting: boolean; }
+
+const SubmitButton = memo(({ isFormValid, isSubmitting }: SubmitButtonProps) => (
   <button
     type="submit"
     className="submit-button"

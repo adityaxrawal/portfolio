@@ -30,7 +30,7 @@ import {
   FaUndo,
 } from 'react-icons/fa';
 
-import { links } from '../../../shared/utils/constants';
+import { links } from '@/constants';
 import './ContactForm.css';
 
 const SUBJECT_LIMIT = 100;
@@ -59,10 +59,10 @@ const actionLabels = {
   more: 'More compose actions are not available in this form yet.',
 };
 
-const getEditorText = (editor) =>
+const getEditorText = (editor: HTMLElement | null) =>
   (editor?.textContent || '').replace(/\u00a0/g, ' ');
 
-const escapeHtml = (value) =>
+const escapeHtml = (value: string) =>
   value
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -70,7 +70,7 @@ const escapeHtml = (value) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 
-const normalizeUrl = (value) => {
+const normalizeUrl = (value: string) => {
   const trimmedValue = value.trim();
 
   if (!trimmedValue) {
@@ -97,22 +97,29 @@ const panelMeta = {
   },
 };
 
-const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
-  const editorRef = useRef(null);
-  const insertInputRef = useRef(null);
-  const insertTextInputRef = useRef(null);
-  const savedRangeRef = useRef(null);
-  const warningTimesRef = useRef({});
+interface ContactFormProps {
+  onSubmit: (data: { recipient: string; subject: string; message: string; formattedMessage: string }) => Promise<void>;
+  isSubmitting: boolean;
+  onClose: () => void;
+  notify?: (message: string, type?: string) => void;
+}
+
+const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }: ContactFormProps) => {
+  const editorRef = useRef<HTMLDivElement>(null);
+  const insertInputRef = useRef<HTMLInputElement>(null);
+  const insertTextInputRef = useRef<HTMLInputElement>(null);
+  const savedRangeRef = useRef<Range | null>(null);
+  const warningTimesRef = useRef<Record<string, number>>({});
   const [subject, setSubject] = useState('');
   const [messageLength, setMessageLength] = useState(0);
   const [isToolbarVisible, setIsToolbarVisible] = useState(true);
-  const [insertPanel, setInsertPanel] = useState(null);
+  const [insertPanel, setInsertPanel] = useState<string | null>(null);
   const [insertTextValue, setInsertTextValue] = useState('');
   const [insertValue, setInsertValue] = useState('');
   const [selectedLinkText, setSelectedLinkText] = useState('');
 
   const messageRemaining = MESSAGE_LIMIT - messageLength;
-  const activePanelMeta = insertPanel ? panelMeta[insertPanel] : null;
+  const activePanelMeta = insertPanel ? (panelMeta as Record<string, typeof panelMeta.link>)[insertPanel] : null;
   const hasSelectedLinkText = selectedLinkText.trim().length > 0;
 
   const canSend = useMemo(() => {
@@ -130,7 +137,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   }, [hasSelectedLinkText, insertPanel]);
 
   const showLimitedWarning = useCallback(
-    (key, message) => {
+    (key: string, message: string) => {
       const now = Date.now();
 
       if (now - (warningTimesRef.current[key] || 0) < LIMIT_WARNING_COOLDOWN) {
@@ -188,22 +195,23 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
     }
 
     const selection = window.getSelection();
+    if (!selection) return;
     selection.removeAllRanges();
-    selection.addRange(savedRangeRef.current);
+    selection.addRange(savedRangeRef.current!);
   }, []);
 
   const runEditorCommand = useCallback(
-    (command, value = null) => {
+    (command: string, value: string | null = null) => {
       restoreEditorSelection();
       editorRef.current?.focus();
-      document.execCommand(command, false, value);
+      document.execCommand(command, false, value ?? undefined);
       syncMessageState();
     },
     [restoreEditorSelection, syncMessageState],
   );
 
   const insertText = useCallback(
-    (text) => {
+    (text: string) => {
       editorRef.current?.focus();
       document.execCommand('insertText', false, text);
       syncMessageState();
@@ -212,14 +220,14 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   );
 
   const handleUnavailableAction = useCallback(
-    (action) => {
+    (action: keyof typeof actionLabels) => {
       notify?.(actionLabels[action], 'info');
     },
     [notify],
   );
 
   const handleSubjectBeforeInput = useCallback(
-    (event) => {
+    (event: InputEvent) => {
       if (!event.data || subject.length + event.data.length <= SUBJECT_LIMIT) {
         return;
       }
@@ -234,7 +242,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   );
 
   const handleSubjectChange = useCallback(
-    (event) => {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
       const nextSubject = event.target.value.slice(0, SUBJECT_LIMIT);
 
       setSubject(nextSubject);
@@ -250,7 +258,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   );
 
   const handleEditorBeforeInput = useCallback(
-    (event) => {
+    (event: InputEvent) => {
       if (
         event.inputType?.startsWith('delete') ||
         event.inputType?.startsWith('history') ||
@@ -301,7 +309,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   }, [showLimitedWarning]);
 
   const handleEditorPaste = useCallback(
-    (event) => {
+    (event: React.ClipboardEvent) => {
       event.preventDefault();
 
       const pastedText = event.clipboardData.getData('text/plain');
@@ -329,7 +337,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   );
 
   const handleOpenInsertPanel = useCallback(
-    (panel) => {
+    (panel: string) => {
       const messageSelection = getMessageSelection();
       const selectedText = messageSelection?.text.trim() || '';
 
@@ -343,7 +351,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   );
 
   const handleInsertPanelSubmit = useCallback(
-    (event) => {
+    (event?: React.SyntheticEvent) => {
       event?.preventDefault();
 
       const url = normalizeUrl(insertValue);
@@ -413,8 +421,9 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
     editorRef.current?.focus();
   }, [clearInsertPanel]);
 
-  const handleToolbarMouseDown = useCallback((event) => {
-    if (event.target.closest('select') || event.target.closest('input')) {
+  const handleToolbarMouseDown = useCallback((event: React.MouseEvent) => {
+    const target = event.target as Element;
+    if (target.closest('select') || target.closest('input')) {
       return;
     }
 
@@ -422,7 +431,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
   }, []);
 
   const handleSubmit = useCallback(
-    async (event) => {
+    async (event: React.FormEvent) => {
       event.preventDefault();
 
       const trimmedSubject = subject.trim();
@@ -477,7 +486,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
       <div className="gmail-compose__field">
         <input
           value={subject}
-          onBeforeInput={handleSubjectBeforeInput}
+          onBeforeInput={handleSubjectBeforeInput as unknown as React.FormEventHandler<HTMLInputElement>}
           onChange={handleSubjectChange}
           maxLength={SUBJECT_LIMIT}
           placeholder="Subject"
@@ -490,7 +499,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
         className="gmail-compose__editor"
         contentEditable
         data-placeholder="Write your message"
-        onBeforeInput={handleEditorBeforeInput}
+        onBeforeInput={handleEditorBeforeInput as unknown as React.FormEventHandler<HTMLDivElement>}
         onInput={handleEditorInput}
         onKeyUp={saveEditorSelection}
         onMouseUp={saveEditorSelection}
@@ -498,7 +507,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
         role="textbox"
         aria-label="Message"
         aria-multiline="true"
-        tabIndex="0"
+        tabIndex={0}
         suppressContentEditableWarning
       />
 
@@ -596,7 +605,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
                 key={color}
                 type="button"
                 className="gmail-compose__swatch"
-                style={{ '--compose-swatch': color }}
+                style={{ '--compose-swatch': color } as React.CSSProperties}
                 onClick={() => runEditorCommand('foreColor', color)}
                 aria-label={`Use color ${color}`}
               />
@@ -666,7 +675,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
         <div className="gmail-compose__insert-panel">
           <div className="gmail-compose__insert-panel-inner">
             <div className="gmail-compose__insert-panel-copy">
-              <span>{activePanelMeta.title}</span>
+              <span>{activePanelMeta?.title}</span>
               <small>
                 {hasSelectedLinkText
                   ? `Selected text: "${selectedLinkText}"`
@@ -690,7 +699,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
               </label>
             )}
             <label className="gmail-compose__insert-field">
-              <span>{activePanelMeta.urlLabel}</span>
+              <span>{activePanelMeta?.urlLabel}</span>
               <input
                 ref={insertInputRef}
                 value={insertValue}
@@ -700,7 +709,7 @@ const ContactForm = ({ onSubmit, isSubmitting, onClose, notify }) => {
                     handleInsertPanelSubmit(event);
                   }
                 }}
-                placeholder={activePanelMeta.urlPlaceholder}
+                placeholder={activePanelMeta?.urlPlaceholder}
               />
             </label>
             <div className="gmail-compose__insert-actions">
