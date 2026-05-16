@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export const useModalState = (open, onClose) => {
+export const useModalState = (open: boolean, onClose: () => void) => {
   const [currentStep, setCurrentStep] = useState('options');
 
   // Handle ESC key press to close modal
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
       }
@@ -42,7 +42,7 @@ export const useModalState = (open, onClose) => {
   }, [open, handleKeyDown]);
 
   const handleBackdropClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent) => {
       if (e.target === e.currentTarget) {
         onClose();
       }

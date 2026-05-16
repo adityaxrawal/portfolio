@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { interpolateColor } from '../utils/colorUtils';
+import { interpolateColor } from '@/lib/colorUtils';
 
 /**
  * Maps scroll position to an interpolated background color between sections
@@ -9,11 +9,16 @@ import { interpolateColor } from '../utils/colorUtils';
  * @param {import('react').RefObject} wrapperRef - Ref to the root wrapper div
  * @param {Array<{ id: string, color: string }>} sections 
  */
-export function useScrollColor(wrapperRef, sections) {
+export interface ScrollSection {
+  id: string;
+  color: string;
+}
+
+export function useScrollColor(wrapperRef: React.RefObject<HTMLElement | null>, sections: ScrollSection[]) {
   useEffect(() => {
     if (!wrapperRef.current || sections.length === 0) return;
 
-    let rafId = null;
+    let rafId: number | null = null;
 
     const calculateColor = () => {
       const scrollY = window.scrollY;
@@ -32,7 +37,7 @@ export function useScrollColor(wrapperRef, sections) {
           idx,
           center: top + height / 2,
         };
-      }).filter(Boolean);
+      }).filter((item): item is (ScrollSection & { idx: number, center: number }) => item !== null);
 
       if (sectionData.length === 0) return;
 

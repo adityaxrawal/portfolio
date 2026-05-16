@@ -14,11 +14,11 @@ const konamiCodeSequence = [
   'a',
 ];
 
-export const useKonamiCode = (callback) => {
-  const [keySequence, setKeySequence] = useState([]);
+export const useKonamiCode = (callback: () => void) => {
+  const [keySequence, setKeySequence] = useState<string[]>([]);
 
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       const { key } = event;
       let updatedSequence = [...keySequence, key];
 

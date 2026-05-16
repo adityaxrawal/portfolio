@@ -4,8 +4,8 @@ import { renderHook } from '@testing-library/react';
 import { useAnimatedCounter } from '../useAnimatedCounter';
 
 // Mock requestAnimationFrame
-global.requestAnimationFrame = vi.fn((cb) => {
-  return setTimeout(cb, 0);
+(globalThis as any).requestAnimationFrame = vi.fn((cb: FrameRequestCallback) => {
+  return setTimeout(cb, 0) as unknown as number;
 });
 
 describe('useAnimatedCounter Hook', () => {
