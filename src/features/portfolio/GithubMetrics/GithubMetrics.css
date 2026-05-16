@@ -1,0 +1,230 @@
+.github-metrics-container {
+  padding: 2rem 1.5rem;
+  border-radius: var(--std-border-radius);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.github-metrics-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.github-metrics-container.theme-light {
+  background-color: #F2EDE4;
+  border-color: #DDD3C2;
+}
+
+.github-metrics-container.theme-dark {
+  background-color: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
+/* Header Styles */
+.metrics-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.theme-dark .metrics-header {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.metrics-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.metrics-title {
+  font-family: Alegreya-Font-Bold, serif;
+  font-size: var(--font-size-subHeading);
+  margin: 0;
+  color: #333;
+}
+
+.theme-dark .metrics-title {
+  color: #eee;
+}
+
+.metrics-subtitle-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.metrics-subtitle {
+  width: 75%;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.4;
+  font-weight: 500;
+}
+
+/* Grid Layout with Internal Borders */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  margin: 0.5rem 0;
+}
+
+.metric-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  gap: 0.2rem;
+  position: relative;
+}
+
+/* Internal Dividers */
+.metric-block:nth-child(1),
+.metric-block:nth-child(3) {
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.metric-block:nth-child(1),
+.metric-block:nth-child(2) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.theme-dark .metric-block {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.metric-icon-wrapper {
+  margin-bottom: 0.25rem;
+  opacity: 0.3;
+}
+
+.metric-value {
+  font-family: Alegreya-Font-Bold, serif;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #222;
+  margin-bottom: 0.1rem;
+}
+
+.theme-dark .metric-value {
+  color: #fff;
+}
+
+.metric-label {
+  font-family: Alegreya-Font-Bold, serif;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.theme-dark .metric-label {
+  color: #eee;
+}
+
+.metric-desc {
+  font-size: 0.7rem;
+  opacity: 0.4;
+  font-style: italic;
+}
+
+/* Footer Styles */
+.metrics-footer {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  text-align: center;
+  font-size: 0.65rem;
+  opacity: 0.4;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.theme-dark .metrics-footer {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.indicator-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.external-icon {
+  margin-left: -0.1rem;
+}
+
+.skeleton-value {
+  height: 1.8rem;
+  width: 50%;
+  margin: 0 auto;
+  background: linear-gradient(90deg, rgba(0,0,0,0.03) 25%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@media (max-width: 600px) {
+  .github-metrics-container {
+    padding: 1.5rem 1rem;
+  }
+  .metric-value {
+    font-size: 1.6rem;
+  }
+  .metrics-title {
+    font-size: 1.2rem;
+  }
+  .metric-block {
+    padding: 1.25rem 0.25rem;
+  }
+}
