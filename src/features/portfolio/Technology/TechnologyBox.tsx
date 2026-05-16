@@ -1,19 +1,31 @@
 import { memo } from 'react';
 
-import { THEME_COLORS } from '../../../shared/utils/constants';
+import { THEME_COLORS } from '@/constants';
 import './TechnologyBox.css';
+
+export interface TechnologyBoxProps {
+  skillName: string;
+  skillLevel: number;
+  skillIcon: string;
+  skillDesc?: string;
+  extra?: string;
+  skillImage: string;
+  category: string;
+  isDarkTheme: boolean;
+  index: number;
+}
 
 const TechnologyBox = ({
   skillName,
   skillLevel,
   skillIcon,
-  skillDesc,
+  skillDesc: _skillDesc,
   extra,
   skillImage,
   category,
   isDarkTheme,
   index,
-} = {}) => {
+}: TechnologyBoxProps) => {
   return (
     <div className={`tech-boxes ${isDarkTheme ? 'dark' : 'light'}`} key={index}>
       <div
@@ -38,8 +50,10 @@ const TechnologyBox = ({
                   alt={`${skillName} technology logo`}
                   loading="lazy"
                   onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextElementSibling.style.display = 'flex';
+                    const img = e.currentTarget as HTMLImageElement;
+                    img.style.display = 'none';
+                    const fallback = img.nextElementSibling as HTMLElement | null;
+                    if (fallback) fallback.style.display = 'flex';
                   }}
                 />
                 <div className="image-fallback" style={{ display: 'none' }}>
@@ -47,15 +61,15 @@ const TechnologyBox = ({
                 </div>
               </div>
               <div className="box-skill-name-desc">
-                <div className="box-skill-name">{skillName}</div>
+                <h4 className="box-skill-name">{skillName}</h4>
                 <div className="box-badge">{category}</div>
               </div>
             </div>
           </div>
           <div className="box-second">{extra}</div>
-          <div className="box-third">
+          <div className="box-third" aria-label={`Skill level: ${skillLevel} out of 10`}>
             {[...Array(10)].map((_, barIndex) => (
-              <div className="box-skill-bar-container" key={barIndex}>
+              <div className="box-skill-bar-container" key={barIndex} aria-hidden="true">
                 <span
                   className={`box-skill-bar ${barIndex < skillLevel ? 'filled' : ''}`}
                 ></span>

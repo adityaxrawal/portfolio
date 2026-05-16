@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState, memo } from 'react';
+import { useCallback, useEffect, useRef, useState, memo } from 'react';
 
 import './Work.css';
-// import { useSharedState } from '../../../shared/context/AppContext';
-import { WorkExperience } from '../../../shared/utils/constants';
+// import { useSharedState } from '@/app/providers/AppContext';
+import { WorkExperience } from '../data/workExperience';
 
 // images
 import leadsquaredLogo from '../../../assets/images/companies/lsq.png';
@@ -10,9 +10,9 @@ import develUpLogo from '../../../assets/images/companies/develup.png';
 import wiproLogo from '../../../assets/images/companies/wipro.png';
 
 const Work = () => {
-  const sectionRef = useRef(null);
-  const imagesRef = useRef(null);
-  const textRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const imagesRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   const [isPinned, setIsPinned] = useState(false);
   const [isHeadingOverflowing, setHeadingOverflowing] = useState(false);
   const [imageDimensions, setImageDimensions] = useState({
@@ -33,8 +33,8 @@ const Work = () => {
     return () => window.removeEventListener('resize', calculateImageDimensions);
   }, [calculateImageDimensions]);
 
-  const handleScroll = async (e) => {
-    if (!sectionRef.current || !imagesRef.current) return;
+  const handleScroll = async () => {
+    if (!sectionRef.current || !imagesRef.current || !textRef.current) return;
 
     const sectionTop = sectionRef.current.getBoundingClientRect().top;
     const sectionOffSetHeight = sectionRef.current.offsetHeight;
@@ -54,7 +54,7 @@ const Work = () => {
     if (sectionTop < 0) {
       setIsPinned(true);
       const dynamicDivisor = 2.75 * (windowHeight / windowWidth);
-      imagesRef.current.scrollTop = parseInt(
+      imagesRef.current.scrollTop = Math.floor(
         Math.abs(textTop) / dynamicDivisor,
       );
       // ICP = image container percentage -> how is image container covered : returns percentage
@@ -69,7 +69,7 @@ const Work = () => {
   };
 
   useEffect(() => {
-    const scrollHandler = (e) => handleScroll(e);
+    const scrollHandler = () => handleScroll();
     window.addEventListener('scroll', scrollHandler);
 
     return () => {
@@ -81,7 +81,7 @@ const Work = () => {
     <>
       <section ref={sectionRef} className="work-section">
         <div className={`work-heading ${isPinned ? 'sticky' : 'relative'}`}>
-          <span
+          <h2
             className={`work-heading-text 
                             ${
                               isPinned && !isHeadingOverflowing
@@ -90,41 +90,41 @@ const Work = () => {
                             }                            `}
           >
             Deployments
-          </span>
-          <span
+          </h2>
+          <p
             className={`work-heading-subtext ${
               isPinned ? 'heading-subtext-spining' : 'heading-spining-reset'
             }`}
           >
             Code. Debug. Shenanigans. Repeat.!!
-          </span>
+          </p>
         </div>
         <div className="work-container">
           <div className="work-container-text" ref={textRef}>
             {WorkExperience.map(
               (
-                { companyLink, companyName, title, years, description },
+                { companyName, title, years, description },
                 index,
               ) => {
                 return (
-                  <div className="work-text" key={index}>
+                  <article className="work-text" key={index}>
                     <div className="work-text-details">
-                      <div className="work-details-headings">
+                      <header className="work-details-headings">
                         <div className="work-details-heading-container">
-                          <span className="work-text-details-heading">
+                          <h3 className="work-text-details-heading">
                             {companyName}&nbsp;
-                          </span>
+                          </h3>
                           <span className="work-text-details-heading-subtext">
                             {title}
                           </span>
                         </div>
-                        <span className="work-text-heading-years">{years}</span>
-                      </div>
-                      <span className="work-text-description">
+                        <time className="work-text-heading-years">{years}</time>
+                      </header>
+                      <p className="work-text-description">
                         {description}
-                      </span>
+                      </p>
                     </div>
-                  </div>
+                  </article>
                 );
               },
             )}

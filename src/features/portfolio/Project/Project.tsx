@@ -1,12 +1,14 @@
 // src/component/Content/Projects/projects.component.js
-import React, { use, Suspense, Component } from 'react';
+import { use, Suspense, Component } from 'react';
 import './Project.css';
+import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
+import { GitHubRepo } from '@/types/github';
 
 const GITHUB_USERNAME = 'adityaxrawal';
 
 // Create a stable promise once at module level — React 19's `use` requires a
 // stable (not re-created) promise so it can correctly suspend and cache the result.
-const reposPromise = fetch(
+const reposPromise: Promise<GitHubRepo[]> = fetch(
   `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=6`,
 ).then((res) => {
   if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
@@ -57,11 +59,13 @@ function RepoList() {
   );
 }
 
-// Error boundary for graceful error handling (class component — no hook equivalent yet).
-class ProjectErrorBoundary extends Component {
-  state = { error: null };
+interface ErrorBoundaryState { error: Error | null; }
 
-  static getDerivedStateFromError(error) {
+// Error boundary for graceful error handling (class component — no hook equivalent yet).
+class ProjectErrorBoundary extends Component<React.PropsWithChildren, ErrorBoundaryState> {
+  state: ErrorBoundaryState = { error: null };
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { error };
   }
 
@@ -91,12 +95,7 @@ const Project = () => (
     <h2>My GitHub Projects</h2>
     <ProjectErrorBoundary>
       <Suspense
-        fallback={
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-            <p>Loading projects...</p>
-          </div>
-        }
+        fallback={<SectionLoader message="Syncing with GitHub..." />}
       >
         <RepoList />
       </Suspense>

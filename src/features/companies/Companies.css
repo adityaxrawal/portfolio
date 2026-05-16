@@ -1,0 +1,111 @@
+.companies-page {
+  min-height: 100vh;
+  padding: 4rem 10% 8rem 10%;
+  transition: background-color 0.5s ease;
+}
+
+.companies-header {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.companies-title {
+  font-family: Alegreya-Font-Bold;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.companies-subtitle {
+  font-family: Alegreya-Font-Regular;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+}
+
+.search-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid var(--theme-light-grid);
+  background: rgba(255, 255, 255, 0.05);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.dark .search-input {
+  border-color: var(--theme-dark-grid);
+  color: var(--theme-dark-text);
+}
+
+.search-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.company-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+}
+
+.company-card:hover {
+  transform: translateY(-4px);
+  background: rgba(99, 102, 241, 0.05);
+  border-color: #6366f1 !important;
+}
+
+.company-name {
+  font-family: Alegreya-Font-Bold;
+  font-size: 1.2rem;
+}
+
+.company-link-icon {
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.company-card:hover .company-link-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem;
+  font-family: Alegreya-Font-Regular;
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .companies-page {
+    padding: 2rem 5%;
+  }
+  .companies-title {
+    font-size: 2.5rem;
+  }
+  .companies-grid {
+    grid-template-columns: 1fr;
+  }
+}

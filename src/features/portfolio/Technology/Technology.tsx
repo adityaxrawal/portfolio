@@ -1,20 +1,18 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 import './Technology.css';
-import { useSharedState } from '../../../shared/context/AppContext';
+import { useSharedState } from '@/app/providers/AppContext';
 import {
   darkModeColorList,
   lightModeColorList,
-  PROGRESS_COLORS,
-  TechnicalSkills,
-  THEME_COLORS,
-} from '../../../shared/utils/constants';
+} from '@/constants';
+import { TechnicalSkills } from '../data/technicalSkills';
 import TechnologyBox from './TechnologyBox';
 
 const Technology = () => {
   const { isDarkTheme } = useSharedState();
-  const horizontalScroll = useRef(null);
-  const techSection = useRef(null);
+  const horizontalScroll = useRef<HTMLDivElement>(null);
+  const techSection = useRef<HTMLDivElement>(null);
   const [isPinned, setIsPinned] = useState(false);
 
   const handleScroll = useCallback(() => {

@@ -280,7 +280,7 @@
   flex: 1;
   min-width: 0;
   width: auto;
-  font-size: var(--font-size-subHeading);
+  font-size: var(--font-size-text);
   font-family: Alegreya-Font-Bold;
   line-height: 1;
   overflow-wrap: anywhere;

@@ -3,9 +3,10 @@ import React, { use, Suspense, Component } from 'react';
 import './PortfolioDetail.css';
 import { RoughNotation } from 'react-rough-notation';
 
-import { useSharedState } from '../../../shared/context/AppContext';
-import { useAnimatedCounter } from '../../../shared/hooks/useAnimatedCounter';
-import { THEME_COLORS } from '../../../shared/utils/constants';
+import { useSharedState } from '@/app/providers/AppContext';
+import { useAnimatedCounter } from '@/hooks/useAnimatedCounter';
+import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
+import { GitHubStats, GitHubContributorStats } from '@/types/github';
 
 const username = 'adityaxrawal';
 const repo = 'portfolio';
@@ -27,7 +28,7 @@ const SO_VISITS_ESTIMATE = 394;
 // React 19's `use` suspends the component until this resolves.
 // Using standard fetch instead of Octokit to reduce bundle size.
 // Security: Token removed to prevent exposure in client bundle.
-const fetchGitStats = async () => {
+const fetchGitStats = async (): Promise<GitHubStats> => {
   const repoUrl = `https://api.github.com/repos/${username}/${repo}`;
   const searchUrl = `https://api.github.com/search/issues?q=repo:${username}/${repo}+type:pr`;
   const statsUrl = `https://api.github.com/repos/${username}/${repo}/stats/contributors`;
@@ -42,14 +43,14 @@ const fetchGitStats = async () => {
 
     // Calculate total commits from all contributors
     const totalCommits = Array.isArray(statsRes) 
-      ? statsRes.reduce((acc, contributor) => acc + contributor.total, 0)
+      ? (statsRes as GitHubContributorStats[]).reduce((acc, contributor) => acc + contributor.total, 0)
       : 0;
 
     return {
       commits: totalCommits || 0,
       issues: repoRes.open_issues_count || 0,
       pullRequests: prRes.total_count || 0,
-      linesOfCode: Object.values(langRes || {}).reduce((acc, val) => acc + val, 0),
+      linesOfCode: Object.values(langRes || {}).reduce((acc: number, val: unknown) => acc + (Number(val) || 0), 0),
     };
   } catch (error) {
     throw new Error('Failed to fetch GitHub data. Please try again later.');
@@ -58,11 +59,13 @@ const fetchGitStats = async () => {
 
 let gitStatsPromise = fetchGitStats();
 
-// Error boundary to catch API failures (401, 403, 404, etc.)
-class PortfolioErrorBoundary extends Component {
-  state = { error: null };
+interface ErrorBoundaryState { error: Error | null; }
 
-  static getDerivedStateFromError(error) {
+// Error boundary to catch API failures (401, 403, 404, etc.)
+class PortfolioErrorBoundary extends Component<React.PropsWithChildren, ErrorBoundaryState> {
+  state: ErrorBoundaryState = { error: null };
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { error };
   }
 
@@ -101,7 +104,14 @@ class PortfolioErrorBoundary extends Component {
 
 // Pure card component — no memo needed as it's not re-rendering frequently.
 // Memoized card component to prevent unnecessary re-renders during theme toggles
-const DetailCard = React.memo(({ title, content, isDarkTheme, extraClass }) => (
+interface DetailCardProps {
+  title: string;
+  content: React.ReactNode;
+  isDarkTheme: boolean;
+  extraClass?: string;
+}
+
+const DetailCard = React.memo(({ title, content, isDarkTheme, extraClass }: DetailCardProps) => (
   <div className={`detail-card ${isDarkTheme ? 'theme-dark' : 'theme-light'} ${extraClass || ''}`}>
     <h3>{title}</h3>
     {content}
@@ -116,7 +126,7 @@ function GitStats() {
   const { isDarkTheme } = useSharedState();
 
   const linesOfCode = useAnimatedCounter(
-    gitStats.linesOfCode,
+    typeof gitStats.linesOfCode === 'number' ? gitStats.linesOfCode : 0,
     ANIMATION_DURATION_LONG,
   );
   const gitCommits = useAnimatedCounter(
@@ -256,12 +266,7 @@ const Portfolio = () => {
         <PortfolioErrorBoundary>
           <Suspense
             fallback={
-              <div className={`detail-card card-stats fun-stats ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}>
-                <h3>Behind the Scenes</h3>
-                <div className="loading-message">
-                  Loading GitHub statistics...
-                </div>
-              </div>
+              <SectionLoader message="Fetching Repository Insights..." />
             }
           >
             <GitStats />
