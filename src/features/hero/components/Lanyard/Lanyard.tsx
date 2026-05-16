@@ -21,11 +21,11 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-import profilePic from '../../../assets/images/my/me-2.webp';
+import profilePic from '@/assets/images/my/me-2.webp';
 
-import cardGLB from './card.glb';
-import lanyard from './lanyard.webp';
-import mathcoLogoPic from './mathco_logo.webp';
+import cardGLB from '@/assets/models/card.glb';
+import lanyard from '@/assets/images/my/lanyard.webp';
+import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
 
 import { useSharedState } from '@/app/providers/AppContext';
 

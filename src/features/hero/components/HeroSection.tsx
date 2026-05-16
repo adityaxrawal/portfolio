@@ -4,7 +4,7 @@ import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
 
 import { useSharedState } from '@/app/providers/AppContext';
 import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
-import { links, THEME_COLORS } from '@/constants';
+import { links, THEME_COLORS } from '@/config';
 
 import './HeroSection.css';
 
