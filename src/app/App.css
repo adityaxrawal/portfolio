@@ -17,27 +17,23 @@
 @font-face {
   font-family: 'Alegreya-Font-Regular';
   /*Can be any text*/
-  src:
-    local('Alegreya-Regular.ttf'),
-    url('./assets/fonts/Alegreya/static/Alegreya-Regular.ttf')
-      format('truetype');
+  src: url('../assets/fonts/Alegreya/static/Alegreya-Regular.ttf')
+    format('truetype');
 }
 
 @font-face {
   font-family: 'Alegreya-Font-Bold';
   /*Can be any text*/
-  src:
-    local('Alegreya-Bold.ttf'),
-    url('./assets/fonts/Alegreya/static/Alegreya-Bold.ttf') format('truetype');
+  src: url('../assets/fonts/Alegreya/static/Alegreya-Bold.ttf')
+    format('truetype');
 }
 
 /* Second font for higlights */
 @font-face {
   font-family: 'ShadowsIntoLightTwo-Regular';
   /*Can be any text*/
-  src:
-    local('StiffStaff-Heavy.ttf'),
-    url('./assets/fonts/ShadowsIntoLightTwo-Regular.ttf') format('truetype');
+  src: url('../assets/fonts/ShadowsIntoLightTwo-Regular.ttf')
+    format('truetype');
 }
 
 .App {

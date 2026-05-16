@@ -1,19 +1,21 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   assetsInclude: ['**/*.glb'],
   plugins: [
     react(),
-    tsconfigPaths(),
     visualizer({
       filename: 'dist/stats.html',
       open: false,
       template: 'treemap',
     }),
   ],
+  resolve: {
+    tsconfigPaths: true,
+    extensions: ['.jsx', '.js', '.ts', '.tsx', '.json'],
+  },
   server: {
     open: true,
     port: 3000,
@@ -39,9 +41,6 @@ export default defineConfig({
         },
       },
     },
-  },
-  resolve: {
-    extensions: ['.jsx', '.js', '.ts', '.tsx', '.json'],
   },
   test: {
     globals: true,
