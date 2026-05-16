@@ -125,7 +125,7 @@
 }
 
 .detail-card h3 {
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold, serif;
   font-size: var(--font-size-subHeading);
   margin-top: 0;
   margin-bottom: 1rem;
@@ -146,7 +146,7 @@
 }
 
 .detail-card li strong {
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold, serif;
 }
 
 /* Fun Stats specific styling */
@@ -177,7 +177,7 @@
 .fun-stats .stat-number {
   font-size: 2.5rem;
   font-weight: bold;
-  font-family: Campton-Font-Bold;
+  font-family: Alegreya-Font-Bold, serif;
   color: #76abae;
   line-height: 1.1;
   margin-bottom: 0.5rem;
