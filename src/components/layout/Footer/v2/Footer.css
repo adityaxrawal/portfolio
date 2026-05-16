@@ -132,6 +132,20 @@
   line-height: 1.6;
 }
 
+.footer-v2__link {
+  text-decoration: none;
+  font-weight: 700;
+  color: #6366f1; /* Brand accent for links */
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.footer-v2__link:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
 /* ── SOCIAL ICONS ── */
 .footer-v2__social-row {
   display: flex;

@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import './EasterEgg.css'; // Create this CSS file
 
-const EasterEgg = ({ onComplete }) => {
+interface EasterEggProps {
+  onComplete?: () => void;
+}
+
+const EasterEgg = ({ onComplete }: EasterEggProps) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [showConfetti, setShowConfetti] = useState(true);
 

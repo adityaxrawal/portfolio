@@ -1,8 +1,14 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 
 import './ContactButton.css';
-import ContactInfo from '../../../../features/contact/ContactInfo';
-import { useSharedState } from '../../../context/AppContext';
+import ContactInfo from '@/features/contact/ContactInfo';
+import { useSharedState } from '@/app/providers/AppContext';
+
+export interface ContactButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'outline' | string;
+  size?: 'small' | 'medium' | 'large' | string;
+}
 
 const ContactButton = ({
   children = 'Contact Me',
@@ -10,11 +16,11 @@ const ContactButton = ({
   variant = 'primary',
   size = 'medium',
   ...props
-}) => {
+}: ContactButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isDarkTheme } = useSharedState();
 
-  const handleClick = (e) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsModalOpen(true);
   };

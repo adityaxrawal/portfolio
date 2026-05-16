@@ -16,12 +16,21 @@ const iconMap = {
   info: FaInfoCircle,
 };
 
-const titleMap = {
+const titleMap: Record<string, string> = {
   success: 'Done',
   error: 'Needs attention',
   warning: 'Small note',
   info: 'Note',
 };
+
+interface AlertProps {
+  message: string;
+  type?: 'success' | 'error' | 'warning' | 'info' | string;
+  title?: string;
+  theme?: 'dark' | 'light';
+  onClose: () => void;
+  duration?: number;
+}
 
 const Alert = ({
   message,
@@ -30,9 +39,10 @@ const Alert = ({
   theme = 'dark',
   onClose,
   duration = 3000,
-}) => {
+}: AlertProps) => {
   const [closing, setClosing] = useState(false);
-  const Icon = iconMap[type] || iconMap.info;
+  const typedIconMap: Record<string, typeof FaInfoCircle> = iconMap;
+  const Icon = typedIconMap[type] || iconMap.info;
 
   useEffect(() => {
     setClosing(false);

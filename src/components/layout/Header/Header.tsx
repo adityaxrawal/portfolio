@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // css
 import './Header.css';
 // context
-import { darkModeColorList, lightModeColorList } from '../../utils/constants';
-import { useSharedState } from '../../context/AppContext';
-import Alert from '../Alert';
+import { darkModeColorList, lightModeColorList } from '@/constants';
+import { useSharedState } from '@/app/providers/AppContext';
+import Alert from '@/components/Alert';
 
 const Header = () => {
   const [alert, setAlert] = useState({
@@ -40,7 +40,8 @@ const Header = () => {
         <div
           className="nav-left"
           role="button"
-          tabIndex="0"
+          tabIndex={0}
+          aria-label="Copy email address to clipboard"
           onClick={() => {
             navigator.clipboard.writeText('ar.adityarawal@gmail.com');
             setAlert((prevAlert) => ({
@@ -61,7 +62,8 @@ const Header = () => {
             }
           }}
         >
-          <span className="animated-letters">
+          <span className="sr-only">ar.adityarawal@gmail.com</span>
+          <span className="animated-letters" aria-hidden="true">
             {Array.from('ar.adityarawal@gmail.com').map((char, index) => (
               <div
                 key={index}
@@ -72,7 +74,7 @@ const Header = () => {
               </div>
             ))}
           </span>
-          <span className="animated-letters">
+          <span className="animated-letters" aria-hidden="true">
             {Array.from('ar.adityarawal@gmail.com').map((char, index) => (
               <div
                 key={index}

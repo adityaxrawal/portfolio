@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
-import { FiRefreshCw, FiX, FiZap } from 'react-icons/fi';
+import { FiRefreshCw, FiX } from 'react-icons/fi';
 
 import './AppUpdatePrompt.css';
-import { useSharedState } from '../../context/AppContext';
+import { useSharedState } from '@/app/providers/AppContext';
 import {
   APP_UPDATE_AVAILABLE_EVENT,
   clearPendingAppUpdate,
   getPendingAppUpdate,
-} from '../../services/appUpdateEvents';
+} from '@/lib/appUpdateEvents';
 
 const AppUpdatePrompt = () => {
-  const [registration, setRegistration] = useState(null);
+  const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { isDarkTheme } = useSharedState();
 
@@ -21,8 +21,9 @@ const AppUpdatePrompt = () => {
       setRegistration(pendingUpdate);
     }
 
-    const handleUpdateAvailable = (event) => {
-      setRegistration(event.detail?.registration ?? null);
+    const handleUpdateAvailable = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      setRegistration(customEvent.detail?.registration ?? null);
     };
 
     window.addEventListener(APP_UPDATE_AVAILABLE_EVENT, handleUpdateAvailable);

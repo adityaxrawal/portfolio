@@ -3,13 +3,13 @@ import './Footer.css';
 // App Context
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import { useSharedState } from '../../../context/AppContext';
-import { THEME_COLORS } from '../../../utils/constants';
+import { useSharedState } from '@/app/providers/AppContext';
+import { THEME_COLORS } from '@/constants';
 // SVG Component
-import { DarkFooterSVG, LightFooterSVG } from '../../../utils/svg';
+import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/svg';
 // React Icons
 // ContactInfo Modal
-import ContactInfo from '../../../../features/contact/ContactInfo';
+import ContactInfo from '@/features/contact/ContactInfo';
 
 
 const Footer = () => {
@@ -38,6 +38,7 @@ const Footer = () => {
               href="https://www.github.com/adityaxrawal"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit My GitHub profile"
             >
               <FaGithub />
             </a>
@@ -45,6 +46,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/adityaxrawal"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Connect with me on LinkedIn"
             >
               <FaLinkedin />
             </a>
@@ -52,6 +54,7 @@ const Footer = () => {
               href="https://www.x.com/adityaxrawal"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Follow me on X (Twitter)"
             >
               <FaTwitter />
             </a>

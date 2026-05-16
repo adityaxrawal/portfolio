@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import ContactInfo from '../../../../features/contact/ContactInfo';
-import { useSharedState } from '../../../context/AppContext';
-import { links, THEME_COLORS } from '../../../utils/constants';
+import ContactInfo from '@/features/contact/ContactInfo';
+import { useSharedState } from '@/app/providers/AppContext';
+import { links, THEME_COLORS } from '@/constants';
 import './Footer.css';
 
-const NEON = '#CCFF00';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,11 +14,11 @@ const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // CSS custom properties drive all theme-dependent colors
-  const themeVars = {
+  const themeVars: React.CSSProperties = {
     // '--footer-bg': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
     '--footer-text': isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
     '--footer-border': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.LIGHT_GRID,
-  };
+  } as React.CSSProperties;
 
   return (
     <>
@@ -50,6 +49,9 @@ const Footer = () => {
               <p className="footer-v2__bottom-text">
                 © {currentYear} adityarawal /
               </p>
+              <a href="/companies" className="footer-v2__bottom-text footer-v2__link">
+                CAREER HUB
+              </a>
               <p className="footer-v2__bottom-text">ALL RIGHTS RESERVED</p>
             </div>
             
