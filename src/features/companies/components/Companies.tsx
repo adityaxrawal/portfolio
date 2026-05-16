@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react';
 
-import { companiesData } from './data/companiesList';
-import { Company } from './types';
+import { companiesData } from '../data/companiesList';
+import { Company } from '../types';
 
 import { useSharedState } from '@/app/providers/AppContext';
-import { THEME_COLORS } from '@/constants';
+import { THEME_COLORS } from '@/config';
 
 import './Companies.css';
 
