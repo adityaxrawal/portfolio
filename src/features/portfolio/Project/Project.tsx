@@ -2,13 +2,23 @@
 import { use, Suspense, Component } from 'react';
 import './Project.css';
 import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
-import { GitHubRepo } from '@/types/github';
+// Remove unused GitHubRepo import
 
 const GITHUB_USERNAME = 'adityaxrawal';
 
+interface GitHubRestRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+}
+
 // Create a stable promise once at module level — React 19's `use` requires a
 // stable (not re-created) promise so it can correctly suspend and cache the result.
-const reposPromise: Promise<GitHubRepo[]> = fetch(
+const reposPromise: Promise<GitHubRestRepo[]> = fetch(
   `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=6`,
 ).then((res) => {
   if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
