@@ -3,11 +3,11 @@ import { useCallback, useEffect, useRef, useState, memo } from 'react';
 import './Work.css';
 
 // images
-import develUpLogo from '../../../assets/images/companies/develup.webp';
-import leadsquaredLogo from '../../../assets/images/companies/lsq.webp';
-import mathcoLogo from '../../../assets/images/companies/mathco.webp';
-import wiproLogo from '../../../assets/images/companies/wipro.webp';
-import { WorkExperience } from '../data/workExperience';
+import develUpLogo from '../../../../assets/images/companies/develup.webp';
+import leadsquaredLogo from '../../../../assets/images/companies/lsq.webp';
+import mathcoLogo from '../../../../assets/images/companies/mathco.webp';
+import wiproLogo from '../../../../assets/images/companies/wipro.webp';
+import { WorkExperience } from '../../data/workExperience';
 
 const Work = () => {
   const sectionRef = useRef<HTMLElement>(null);

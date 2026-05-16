@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { THEME_COLORS } from '@/constants';
+import { THEME_COLORS } from '@/config';
 import './TechnologyBox.css';
 
 export interface TechnologyBoxProps {

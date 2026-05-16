@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 import './Technology.css';
-import { TechnicalSkills } from '../data/technicalSkills';
+import { TechnicalSkills } from '../../data/technicalSkills';
 
 import TechnologyBox from './TechnologyBox';
 
 import { useSharedState } from '@/app/providers/AppContext';
-import { darkModeColorList, lightModeColorList } from '@/constants';
+import { darkModeColorList, lightModeColorList } from '@/config';
 
 const Technology = () => {
   const { isDarkTheme } = useSharedState();
