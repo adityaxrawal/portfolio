@@ -1,5 +1,5 @@
 // src/component/Content/HeroSection/heroSection.component.js
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // css
 import './HeroSection.css';
@@ -9,12 +9,15 @@ import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
 // constants
 import Confetti from 'react-confetti'; // Import Confetti
 
-import { links, THEME_COLORS } from '../../shared/utils/constants';
-import { useSharedState } from '../../shared/context/AppContext';
+import { links, THEME_COLORS } from '@/constants';
+import { useSharedState } from '@/app/providers/AppContext';
 
 
-// ── Lanyard (physics rope + flip card) ───────────────────────
-import Lanyard from './Lanyard/Lanyard';
+import { lazy, Suspense } from 'react';
+import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
+
+// Lazy load the heavy 3D component
+const Lanyard = lazy(() => import('./Lanyard/Lanyard'));
 
 const HeroSection = () => {
   const { isDarkTheme } = useSharedState();
@@ -165,7 +168,7 @@ const HeroSection = () => {
                   }
                 }}
                 role="button"
-                tabIndex="0"
+                tabIndex={0}
                 style={{ cursor: 'pointer' }}
               >
                 <RoughNotation
@@ -188,7 +191,7 @@ const HeroSection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button type="primary" className="headline-btn linkedin">
+              <button type="button" className="headline-btn linkedin">
                 View LinkedIn
               </button>
             </a>
@@ -197,7 +200,7 @@ const HeroSection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button type="primary" className="headline-btn github">
+              <button type="button" className="headline-btn github">
                 View Github
               </button>
             </a>
@@ -232,7 +235,9 @@ const HeroSection = () => {
       {/* ── Lanyard: physics rope + interactive flip card ── */}
       {isDesktop && (
         <div className="image-container">
-          <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+          <Suspense fallback={<SectionLoader message="Calibrating 3D Physics..." />}>
+            <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+          </Suspense>
         </div>
       )}
     </div>

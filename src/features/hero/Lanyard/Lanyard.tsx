@@ -1,8 +1,9 @@
+// @ts-nocheck
 /* eslint-disable react/no-unknown-property */
 'use client';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, extend, useFrame } from '@react-three/fiber';
-import { useSharedState } from '../../../shared/context/AppContext';
+import { useSharedState } from '@/app/providers/AppContext';
 import {
   useGLTF,
   useTexture,
@@ -17,6 +18,7 @@ import {
   useRopeJoint,
   useSphericalJoint,
 } from '@react-three/rapier';
+import type { RigidBody as RigidBodyType } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 import * as THREE from 'three';
 
@@ -33,11 +35,9 @@ const CARD_TEXTURE_WIDTH = 512;
 const CARD_TEXTURE_HEIGHT = 720;
 const BACK_ICON_SIZE = 22;
 const BAND_REPEAT = 6.5;
-const MATHCO_PURPLE = '#4b148c';
 const MATHCO_PURPLE_DARK = '#260048';
 const MATHCO_PEACH = '#FFA781'; // MathCo Peach accent color
 const CARD_INK = '#222225';
-const CARD_MUTED_INK = '#6b6872';
 const FRONT_CARD_UV = {
   x: 0.0008521821000613272,
   y: 0.004251599311828613,
@@ -51,7 +51,7 @@ const BACK_CARD_UV = {
   height: 0.7548875207138062,
 };
 
-function setupCardTexture(texture, uvRect) {
+function setupCardTexture(texture: THREE.Texture, uvRect: { x: number; y: number; width: number; height: number }) {
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = 8;
   texture.flipY = false;
@@ -63,7 +63,7 @@ function setupCardTexture(texture, uvRect) {
   return texture;
 }
 
-function drawImageCover(ctx, image, x, y, width, height) {
+function drawImageCover(ctx: CanvasRenderingContext2D, image: HTMLImageElement, x: number, y: number, width: number, height: number) {
   const imageWidth = image.naturalWidth || image.width;
   const imageHeight = image.naturalHeight || image.height;
   const scale = Math.max(width / imageWidth, height / imageHeight);
@@ -75,7 +75,7 @@ function drawImageCover(ctx, image, x, y, width, height) {
   ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight);
 }
 
-function drawRoundedRectPath(ctx, x, y, width, height, radius) {
+function drawRoundedRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
   const safeRadius = Math.min(radius, width / 2, height / 2);
   ctx.beginPath();
   ctx.moveTo(x + safeRadius, y);
@@ -95,7 +95,7 @@ function drawRoundedRectPath(ctx, x, y, width, height, radius) {
   ctx.closePath();
 }
 
-function fillRoundedRect(ctx, x, y, width, height, radius, fillStyle) {
+function fillRoundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number, fillStyle: string) {
   ctx.save();
   drawRoundedRectPath(ctx, x, y, width, height, radius);
   ctx.fillStyle = fillStyle;
@@ -104,14 +104,14 @@ function fillRoundedRect(ctx, x, y, width, height, radius, fillStyle) {
 }
 
 function strokeRoundedRect(
-  ctx,
-  x,
-  y,
-  width,
-  height,
-  radius,
-  strokeStyle,
-  lineWidth,
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number,
+  strokeStyle: string,
+  lineWidth: number,
 ) {
   ctx.save();
   drawRoundedRectPath(ctx, x, y, width, height, radius);
@@ -121,7 +121,9 @@ function strokeRoundedRect(
   ctx.restore();
 }
 
-function drawFrontDotField(ctx, exclusionZones = [], isDarkTheme) {
+interface ExclusionZone { x: number; y: number; w: number; h: number; }
+
+function drawFrontDotField(ctx: CanvasRenderingContext2D, exclusionZones: ExclusionZone[] = [], isDarkTheme: boolean) {
   ctx.save();
   ctx.fillStyle = isDarkTheme ? '#151515' : 'rgba(230, 230, 230, 1)';
 
@@ -157,7 +159,7 @@ function drawFrontDotField(ctx, exclusionZones = [], isDarkTheme) {
   ctx.restore();
 }
 
-function drawFrontCardDetails(ctx, isDarkTheme) {
+function drawFrontCardDetails(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
   const textColor = isDarkTheme ? CARD_INK : '#ffffff';
   const idColor = isDarkTheme ? '#343039' : 'rgba(255,255,255,0.7)';
 
@@ -181,7 +183,7 @@ function drawFrontCardDetails(ctx, isDarkTheme) {
   ctx.textAlign = 'left';
 }
 
-function drawFrontCard(ctx, profileImage, logoImage, isDarkTheme) {
+function drawFrontCard(ctx: CanvasRenderingContext2D, profileImage: HTMLImageElement | null, logoImage: HTMLImageElement | null, isDarkTheme: boolean) {
   // 1. Draw the base background
   if (isDarkTheme) {
     // Light mode base
@@ -277,7 +279,7 @@ function drawFrontCard(ctx, profileImage, logoImage, isDarkTheme) {
   drawFrontCardDetails(ctx, isDarkTheme);
 }
 
-function drawInfoIcon(ctx, icon, x, y, isDarkTheme) {
+function drawInfoIcon(ctx: CanvasRenderingContext2D, icon: string, x: number, y: number, isDarkTheme: boolean) {
   ctx.fillStyle = isDarkTheme ? CARD_INK : '#ffffff';
   ctx.beginPath();
   ctx.arc(x, y, BACK_ICON_SIZE, 0, Math.PI * 2);
@@ -317,7 +319,7 @@ function drawInfoIcon(ctx, icon, x, y, isDarkTheme) {
   ctx.textBaseline = 'alphabetic';
 }
 
-function drawBackCard(ctx, isDarkTheme) {
+function drawBackCard(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
   // 1. Draw the base background
   if (isDarkTheme) {
     const paperGradient = ctx.createLinearGradient(
@@ -404,18 +406,27 @@ function drawBackCard(ctx, isDarkTheme) {
   });
 }
 
-function useCardTexture(drawCard, uvRect, deps = []) {
-  return useMemo(() => {
+function useCardTexture(drawCard: (ctx: CanvasRenderingContext2D) => void, uvRect: { x: number; y: number; width: number; height: number }, deps: unknown[] = []) {
+  const texture = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = CARD_TEXTURE_WIDTH;
     canvas.height = CARD_TEXTURE_HEIGHT;
     const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
     drawCard(ctx);
     return setupCardTexture(new THREE.CanvasTexture(canvas), uvRect);
   }, [drawCard, uvRect, ...deps]);
+
+  useEffect(() => {
+    return () => {
+      texture?.dispose();
+    };
+  }, [texture]);
+
+  return texture;
 }
 
-function createCardFaceGeometry(geometry, normalDirection) {
+function createCardFaceGeometry(geometry: THREE.BufferGeometry, normalDirection: number) {
   const source = geometry.index
     ? Array.from(geometry.index.array)
     : Array.from({ length: geometry.attributes.position.count }, (_, i) => i);
@@ -516,16 +527,16 @@ export default function Lanyard({
 // ─────────────────────────────────────────────────────────────────
 function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const { isDarkTheme } = useSharedState();
-  const band = useRef(),
-    fixed = useRef(),
-    j1 = useRef(),
-    j2 = useRef(),
-    j3 = useRef(),
-    card = useRef(),
-    cardVisual = useRef(),
+  const band = useRef<any>(),
+    fixed = useRef<RigidBodyType | null>(null),
+    j1 = useRef<RigidBodyType | null>(null),
+    j2 = useRef<RigidBodyType | null>(null),
+    j3 = useRef<RigidBodyType | null>(null),
+    card = useRef<RigidBodyType | null>(null),
+    cardVisual = useRef<THREE.Group | null>(null),
     pressState = useRef({
       active: false,
-      pointerId: null,
+      pointerId: null as number | null,
       startX: 0,
       startY: 0,
       maxDistance: 0,
