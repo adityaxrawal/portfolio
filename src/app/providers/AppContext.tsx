@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 
-import { darkModeColorList } from '@/constants';
+import { lightModeColorList } from '@/constants';
 
 interface SharedState {
   isDarkTheme: boolean;
@@ -19,7 +19,7 @@ export const SharedStateContext = createContext<SharedState | undefined>(undefin
 export const ViewContext = createContext<ViewState | undefined>(undefined);
 
 // Initial values
-const initialBackgroundColor = darkModeColorList[0];
+const initialBackgroundColor = lightModeColorList[0];
 
 interface AppProviderProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ interface AppProviderProps {
 
 // Combined provider component
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [isDarkTheme, setDarkTheme] = useState(true);
+  const [isDarkTheme, setDarkTheme] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(
     initialBackgroundColor,
   );
