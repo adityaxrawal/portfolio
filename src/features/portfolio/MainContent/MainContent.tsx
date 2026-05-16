@@ -6,7 +6,7 @@ const HeroSection = lazy(() => import('../../hero'));
 const Work = lazy(() => import('../Work'));
 const Technology = lazy(() => import('../Technology'));
 const Portfolio = lazy(() => import('../PortfolioDetail'));
-const Project = lazy(() => import('../Project'));
+// const Project = lazy(() => import('../Project'));
 
 const Content = () => {
   return (
@@ -14,7 +14,7 @@ const Content = () => {
       <HeroSection />
       <Work />
       <Technology />
-      <Project />
+      {/* <Project /> */}
       <Portfolio />
     </Suspense>
   );
