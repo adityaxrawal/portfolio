@@ -15,7 +15,9 @@ interface ViewState {
 }
 
 // Create contexts
-export const SharedStateContext = createContext<SharedState | undefined>(undefined);
+export const SharedStateContext = createContext<SharedState | undefined>(
+  undefined,
+);
 export const ViewContext = createContext<ViewState | undefined>(undefined);
 
 // Initial values
@@ -45,9 +47,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   return (
     <SharedStateContext.Provider value={sharedStateValue}>
-      <ViewContext.Provider value={viewValue}>
-        {children}
-      </ViewContext.Provider>
+      <ViewContext.Provider value={viewValue}>{children}</ViewContext.Provider>
     </SharedStateContext.Provider>
   );
 };

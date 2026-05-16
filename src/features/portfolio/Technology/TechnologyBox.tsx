@@ -19,7 +19,6 @@ const TechnologyBox = ({
   skillName,
   skillLevel,
   skillIcon,
-  skillDesc: _skillDesc,
   extra,
   skillImage,
   category,
@@ -52,7 +51,8 @@ const TechnologyBox = ({
                   onError={(e) => {
                     const img = e.currentTarget as HTMLImageElement;
                     img.style.display = 'none';
-                    const fallback = img.nextElementSibling as HTMLElement | null;
+                    const fallback =
+                      img.nextElementSibling as HTMLElement | null;
                     if (fallback) fallback.style.display = 'flex';
                   }}
                 />
@@ -67,9 +67,16 @@ const TechnologyBox = ({
             </div>
           </div>
           <div className="box-second">{extra}</div>
-          <div className="box-third" aria-label={`Skill level: ${skillLevel} out of 10`}>
+          <div
+            className="box-third"
+            aria-label={`Skill level: ${skillLevel} out of 10`}
+          >
             {[...Array(10)].map((_, barIndex) => (
-              <div className="box-skill-bar-container" key={barIndex} aria-hidden="true">
+              <div
+                className="box-skill-bar-container"
+                key={barIndex}
+                aria-hidden="true"
+              >
                 <span
                   className={`box-skill-bar ${barIndex < skillLevel ? 'filled' : ''}`}
                 ></span>

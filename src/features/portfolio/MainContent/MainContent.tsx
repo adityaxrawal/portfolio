@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+
 import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
 
 // Lazy load sections for better initial TTI

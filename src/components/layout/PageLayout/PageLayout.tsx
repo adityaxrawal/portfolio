@@ -1,7 +1,7 @@
-
 import './PageLayout.css';
-import Header from '../Header';
 import Footer from '../Footer/v2';
+import Header from '../Header';
+
 import Content from '@/features/portfolio/MainContent';
 
 const Page = () => {

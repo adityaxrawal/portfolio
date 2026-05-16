@@ -1,20 +1,12 @@
-// src/component/Content/HeroSection/heroSection.component.js
-import { useCallback, useEffect, useState } from 'react';
-
-// css
-import './HeroSection.css';
-// Rough Notation for react
+import { useCallback, useEffect, useState, lazy, Suspense } from 'react';
+import Confetti from 'react-confetti';
 import { RoughNotation, RoughNotationGroup } from 'react-rough-notation';
 
-// constants
-import Confetti from 'react-confetti'; // Import Confetti
-
-import { links, THEME_COLORS } from '@/constants';
 import { useSharedState } from '@/app/providers/AppContext';
-
-
-import { lazy, Suspense } from 'react';
 import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
+import { links, THEME_COLORS } from '@/constants';
+
+import './HeroSection.css';
 
 // Lazy load the heavy 3D component
 const Lanyard = lazy(() => import('./Lanyard/Lanyard'));
@@ -235,7 +227,9 @@ const HeroSection = () => {
       {/* ── Lanyard: physics rope + interactive flip card ── */}
       {isDesktop && (
         <div className="image-container">
-          <Suspense fallback={<SectionLoader message="Calibrating 3D Physics..." />}>
+          <Suspense
+            fallback={<SectionLoader message="Calibrating 3D Physics..." />}
+          >
             <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
           </Suspense>
         </div>

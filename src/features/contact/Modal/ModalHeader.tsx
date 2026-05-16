@@ -8,31 +8,33 @@ interface ModalHeaderProps {
   onBack?: () => void;
 }
 
-const ModalHeader = memo(({ title, onClose, showBackButton, onBack }: ModalHeaderProps) => (
-  <div className="modal-header">
-    {showBackButton ? (
+const ModalHeader = memo(
+  ({ title, onClose, showBackButton, onBack }: ModalHeaderProps) => (
+    <div className="modal-header">
+      {showBackButton ? (
+        <button
+          type="button"
+          className="back-button"
+          onClick={onBack}
+          aria-label="Go back to options"
+        >
+          ← Back
+        </button>
+      ) : (
+        <div className="back-button-placeholder"></div>
+      )}
+      <h2 id="contact-title">{title}</h2>
       <button
         type="button"
-        className="back-button"
-        onClick={onBack}
-        aria-label="Go back to options"
+        className="close-button"
+        onClick={onClose}
+        aria-label="Close modal"
       >
-        ← Back
+        {'×'}
       </button>
-    ) : (
-      <div className="back-button-placeholder"></div>
-    )}
-    <h2 id="contact-title">{title}</h2>
-    <button
-      type="button"
-      className="close-button"
-      onClick={onClose}
-      aria-label="Close modal"
-    >
-      {'×'}
-    </button>
-  </div>
-));
+    </div>
+  ),
+);
 
 ModalHeader.displayName = 'ModalHeader';
 

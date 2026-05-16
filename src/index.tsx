@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 
 import './index.css';
 import App from '@/app/App';
+import { notifyAppUpdateAvailable } from '@/lib/appUpdateEvents';
 import {
   reportWebVitalsWithAnalytics,
   setupPerformanceObserver,
   monitorMemoryUsage,
 } from '@/lib/reportWebVitals';
-import { notifyAppUpdateAvailable } from '@/lib/appUpdateEvents';
 import { register as registerSW } from '@/lib/serviceWorkerRegistration';
 
 const rootElement = document.getElementById('root');

@@ -10,7 +10,8 @@ import {
 } from '@/lib/appUpdateEvents';
 
 const AppUpdatePrompt = () => {
-  const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
+  const [registration, setRegistration] =
+    useState<ServiceWorkerRegistration | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { isDarkTheme } = useSharedState();
 
@@ -80,7 +81,6 @@ const AppUpdatePrompt = () => {
       aria-live="polite"
       aria-label="Portfolio update available"
     >
-
       <div className="app-update-prompt__content">
         <p className="app-update-prompt__eyebrow">Fresh build landed</p>
         <h2 className="app-update-prompt__title">New work is ready</h2>

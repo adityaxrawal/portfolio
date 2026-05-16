@@ -95,7 +95,7 @@
   font-family: 'Alegreya-Font-Regular', serif;
   transition:
     background-color 180ms ease,
-    box-shadow 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .app-update-prompt__refresh {

@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ExternalLink, Calendar, Star, Package, GitPullRequest } from 'lucide-react';
+import {
+  ExternalLink,
+  Calendar,
+  Star,
+  Package,
+  GitPullRequest,
+} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { FaGithub as Github } from 'react-icons/fa6';
+
 import { useSharedState } from '@/app/providers/AppContext';
 import { GitHubStatsResponse } from '@/types/github';
 import './GithubMetrics.css';
@@ -38,7 +45,7 @@ const GithubMetricsSection = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: 'easeOut',
         staggerChildren: 0.12,
       },
     },
@@ -46,16 +53,18 @@ const GithubMetricsSection = () => {
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: 'easeOut' },
     },
   };
 
   if (error) {
     return (
-      <div className={`github-metrics-container ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}>
+      <div
+        className={`github-metrics-container ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}
+      >
         <p className="error-message">{error}</p>
       </div>
     );
@@ -66,7 +75,7 @@ const GithubMetricsSection = () => {
       className={`github-metrics-container ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: '-100px' }}
       variants={containerVariants}
     >
       <div className="metrics-header">
@@ -74,10 +83,12 @@ const GithubMetricsSection = () => {
           <h3 className="metrics-title">Behind The Code</h3>
         </div>
         <div className="metrics-subtitle-wrapper">
-          <span className="metrics-subtitle">Building in public, one commit at a time</span>
-          <a 
-            href="https://github.com/adityaxrawal" 
-            target="_blank" 
+          <span className="metrics-subtitle">
+            Building in public, one commit at a time
+          </span>
+          <a
+            href="https://github.com/adityaxrawal"
+            target="_blank"
             rel="noopener noreferrer"
             className="github-link"
             aria-label="View GitHub Profile"
@@ -130,7 +141,11 @@ const GithubMetricsSection = () => {
         </div>
         {stats?.updatedAt && (
           <span className="timestamp">
-            Last updated: {new Date(stats.updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            Last updated:{' '}
+            {new Date(stats.updatedAt).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
           </span>
         )}
       </div>
@@ -147,7 +162,14 @@ interface MetricBlockProps {
   variants: any;
 }
 
-const MetricBlock = ({ loading, value, label, subtitle, icon, variants }: MetricBlockProps) => {
+const MetricBlock = ({
+  loading,
+  value,
+  label,
+  subtitle,
+  icon,
+  variants,
+}: MetricBlockProps) => {
   return (
     <motion.div className="metric-block" variants={variants}>
       <div className="metric-icon-wrapper">{icon}</div>
@@ -179,9 +201,9 @@ const CountUp = ({ value }: { value: number }) => {
       const progress = frame / totalFrames;
       // Easing function (outQuart)
       const easedProgress = 1 - Math.pow(1 - progress, 4);
-      
+
       const currentCount = Math.round(easedProgress * end);
-      
+
       if (frame >= totalFrames) {
         setCount(end);
         clearInterval(timer);

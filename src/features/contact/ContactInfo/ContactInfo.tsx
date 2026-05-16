@@ -1,16 +1,17 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
 import './ContactInfo.css';
-import { useSharedState } from '@/app/providers/AppContext';
-import { useAlert } from '@/hooks/useAlert';
-import { createFormSubmitter } from '@/lib/validation';
-import Alert from '@/components/Alert';
 import ContactForm from '../ContactForm';
 import {
   DAILY_CONTACT_LIMIT,
   getContactRateStatus,
   recordContactMailSent,
 } from '../services/contactRateLimit';
+
+import { useSharedState } from '@/app/providers/AppContext';
+import Alert from '@/components/Alert';
+import { useAlert } from '@/hooks/useAlert';
+import { createFormSubmitter } from '@/lib/validation';
 
 export interface ContactInfoProps {
   open: boolean;
@@ -54,7 +55,12 @@ const ContactInfo = memo(({ open, onClose }: ContactInfoProps) => {
   );
 
   const handleFormSubmit = useCallback(
-    async (formData: { recipient: string; subject: string; message: string; formattedMessage: string }) => {
+    async (formData: {
+      recipient: string;
+      subject: string;
+      message: string;
+      formattedMessage: string;
+    }) => {
       setIsSubmitting(true);
 
       try {

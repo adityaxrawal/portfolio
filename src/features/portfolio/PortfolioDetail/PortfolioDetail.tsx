@@ -3,30 +3,52 @@ import React from 'react';
 import './PortfolioDetail.css';
 import { RoughNotation } from 'react-rough-notation';
 
-import { useSharedState } from '@/app/providers/AppContext';
 import GithubMetricsSection from '../GithubMetrics/GithubMetricsSection';
+
+import { useSharedState } from '@/app/providers/AppContext';
 
 // Removed old GitStats implementation in favor of live GithubMetricsSection
 
 const TECH_STACK = [
-  { name: 'React.js', color: '#61DAFB', detail: '(Hooks, Context API for state)' },
-  { name: 'CSS3', color: '#E34F26', detail: '(Flexbox, Grid, Custom Properties, Animations)' },
+  {
+    name: 'React.js',
+    color: '#61DAFB',
+    detail: '(Hooks, Context API for state)',
+  },
+  {
+    name: 'CSS3',
+    color: '#E34F26',
+    detail: '(Flexbox, Grid, Custom Properties, Animations)',
+  },
   { name: 'React Router', color: 'orange', detail: '(for navigation)' },
   { name: 'Lenis', color: 'green', detail: '(for that buttery smooth scroll)' },
-  { name: 'React Rough Notation', color: '#fde2e4', detail: '(for the sketchy highlights)' },
+  {
+    name: 'React Rough Notation',
+    color: '#fde2e4',
+    detail: '(for the sketchy highlights)',
+  },
 ];
 
-const DetailCard = React.memo(({ title, content, isDarkTheme, extraClass }: {
-  title: string;
-  content: React.ReactNode;
-  isDarkTheme: boolean;
-  extraClass?: string;
-}) => (
-  <div className={`detail-card ${isDarkTheme ? 'theme-dark' : 'theme-light'} ${extraClass || ''}`}>
-    <h3>{title}</h3>
-    {content}
-  </div>
-));
+const DetailCard = React.memo(
+  ({
+    title,
+    content,
+    isDarkTheme,
+    extraClass,
+  }: {
+    title: string;
+    content: React.ReactNode;
+    isDarkTheme: boolean;
+    extraClass?: string;
+  }) => (
+    <div
+      className={`detail-card ${isDarkTheme ? 'theme-dark' : 'theme-light'} ${extraClass || ''}`}
+    >
+      <h3>{title}</h3>
+      {content}
+    </div>
+  ),
+);
 
 DetailCard.displayName = 'DetailCard';
 
@@ -39,7 +61,9 @@ const Portfolio = () => {
         <RoughNotation
           type="underline"
           show
-          color={isDarkTheme ? "var(--theme-dark-text)" : "var(--theme-dark-grid)"}
+          color={
+            isDarkTheme ? 'var(--theme-dark-text)' : 'var(--theme-dark-grid)'
+          }
           strokeWidth={3}
           order={1}
         >

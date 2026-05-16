@@ -1,24 +1,24 @@
 // src/App.js
-import { Suspense, useCallback, useState, lazy } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { ReactLenis, useLenis } from 'lenis/react';
+import { Suspense, useCallback, useState, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Navigate,
   Route,
   Routes,
 } from 'react-router-dom';
-import { Analytics } from '@vercel/analytics/react';
 import tinycolor from 'tinycolor2';
 
 import './App.css';
 
+import { AppProvider, useSharedState } from '@/app/providers/AppContext';
 import AppUpdatePrompt from '@/components/AppUpdatePrompt';
 import EasterEgg from '@/components/EasterEgg';
-import Loader from '@/components/Loader';
 import Page from '@/components/layout/PageLayout';
-import { AppProvider, useSharedState } from '@/app/providers/AppContext';
-import { useKonamiCode } from '@/hooks/useKonamiCode';
+import Loader from '@/components/Loader';
 import { THEME_COLORS } from '@/constants';
+import { useKonamiCode } from '@/hooks/useKonamiCode';
 const Companies = lazy(() => import('@/features/companies/Companies'));
 
 function App() {

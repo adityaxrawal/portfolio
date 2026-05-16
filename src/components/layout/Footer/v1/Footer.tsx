@@ -4,13 +4,12 @@ import './Footer.css';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 import { useSharedState } from '@/app/providers/AppContext';
+import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/svg';
 import { THEME_COLORS } from '@/constants';
 // SVG Component
-import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/svg';
 // React Icons
 // ContactInfo Modal
 import ContactInfo from '@/features/contact/ContactInfo';
-
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,7 +20,9 @@ const Footer = () => {
     <footer
       className="footer"
       style={{
-        backgroundColor: isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
+        backgroundColor: isDarkTheme
+          ? THEME_COLORS.DARK_TEXT
+          : THEME_COLORS.DARK_GRID,
         color: isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
       }}
     >
@@ -66,16 +67,26 @@ const Footer = () => {
               className="contact-button"
               onClick={() => setIsContactModalOpen(true)}
               style={{
-                background: isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
-                border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK_GRID}` : `1px solid ${THEME_COLORS.DARK_TEXT}`,
+                background: isDarkTheme
+                  ? THEME_COLORS.DARK_GRID
+                  : THEME_COLORS.DARK_TEXT,
+                border: isDarkTheme
+                  ? `1px solid ${THEME_COLORS.DARK_GRID}`
+                  : `1px solid ${THEME_COLORS.DARK_TEXT}`,
               }}
             >
               <span
                 className="button_top"
                 style={{
-                  color: isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
-                  background: isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
-                  border: isDarkTheme ? `1px solid ${THEME_COLORS.DARK_TEXT}` : `1px solid ${THEME_COLORS.DARK_GRID}`,
+                  color: isDarkTheme
+                    ? THEME_COLORS.DARK_GRID
+                    : THEME_COLORS.DARK_TEXT,
+                  background: isDarkTheme
+                    ? THEME_COLORS.DARK_TEXT
+                    : THEME_COLORS.DARK_GRID,
+                  border: isDarkTheme
+                    ? `1px solid ${THEME_COLORS.DARK_TEXT}`
+                    : `1px solid ${THEME_COLORS.DARK_GRID}`,
                 }}
               >
                 Contact Me

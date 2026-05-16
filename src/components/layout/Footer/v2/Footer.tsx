@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import ContactInfo from '@/features/contact/ContactInfo';
 import { useSharedState } from '@/app/providers/AppContext';
 import { links, THEME_COLORS } from '@/constants';
+import ContactInfo from '@/features/contact/ContactInfo';
 import './Footer.css';
-
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,8 +15,12 @@ const Footer = () => {
   // CSS custom properties drive all theme-dependent colors
   const themeVars: React.CSSProperties = {
     // '--footer-bg': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
-    '--footer-text': isDarkTheme ? THEME_COLORS.DARK_TEXT : THEME_COLORS.DARK_GRID,
-    '--footer-border': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.LIGHT_GRID,
+    '--footer-text': isDarkTheme
+      ? THEME_COLORS.DARK_TEXT
+      : THEME_COLORS.DARK_GRID,
+    '--footer-border': isDarkTheme
+      ? THEME_COLORS.DARK_GRID
+      : THEME_COLORS.LIGHT_GRID,
   } as React.CSSProperties;
 
   return (
@@ -54,7 +57,7 @@ const Footer = () => {
               </a> */}
               <p className="footer-v2__bottom-text">ALL RIGHTS RESERVED</p>
             </div>
-            
+
             <div className="footer-v2__social-row">
               <a
                 href={links.githubLink}

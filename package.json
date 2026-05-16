@@ -40,6 +40,8 @@
 		"@types/react-dom": "^19.2.3",
 		"@types/three": "^0.184.1",
 		"@types/tinycolor2": "^1.4.6",
+		"@typescript-eslint/eslint-plugin": "^8.59.3",
+		"@typescript-eslint/parser": "^8.59.3",
 		"@vercel/node": "^5.8.2",
 		"@vitejs/plugin-react": "^6.0.1",
 		"eslint": "^8.57.1",
@@ -55,10 +57,17 @@
 		"msw": "^2.7.0",
 		"prettier": "^3.5.1",
 		"rollup-plugin-visualizer": "latest",
-		"serve": "^14.2.6",
 		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.3",
 		"vite": "^8.0.10",
 		"vitest": "^4.1.2"
+	},
+	"pnpm": {
+		"overrides": {
+			"fast-uri": "^3.1.2",
+			"minimatch": "^3.1.2",
+			"undici": "^7.1.2"
+		}
 	},
 	"scripts": {
 		"start": "vite",
@@ -68,8 +77,11 @@
 		"test": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:ci": "vitest run --passWithNoTests",
+		"type-check": "tsc --noEmit",
 		"lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+		"format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+		"prod": "node scripts/prod-check.js",
 		"analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
 		"prepare": "husky"
 	},
@@ -79,70 +91,110 @@
 			"prettier --write"
 		]
 	},
-	"eslintConfig": {
-		"env": {
-			"browser": true,
-			"es2020": true,
-			"node": true
-		},
-		"parserOptions": {
-			"ecmaVersion": "latest",
-			"sourceType": "module",
-			"ecmaFeatures": {
-				"jsx": true
-			}
-		},
-		"extends": [
-			"eslint:recommended",
-			"plugin:react/recommended",
-			"plugin:react/jsx-runtime",
-			"plugin:react-hooks/recommended",
-			"plugin:jsx-a11y/recommended"
-		],
-		"settings": {
-			"react": {
-				"version": "detect"
-			}
-		},
-		"plugins": [
-			"import",
-			"no-secrets"
-		],
-		"rules": {
-			"no-secrets/no-secrets": "error",
-			"import/order": [
-				"warn",
-				{
-					"groups": [
-						"builtin",
-						"external",
-						"internal"
-					],
-					"newlines-between": "always"
-				}
-			],
-			"react/prop-types": "off",
-			"no-unused-vars": "warn"
-		},
-		"overrides": [
-			{
-				"files": [
-					"src/**/*.test.tsx",
-					"src/**/*.test.ts",
-					"src/**/*.test.jsx",
-					"src/**/*.test.js"
-				],
-				"globals": {
-					"describe": "readonly",
-					"test": "readonly",
-					"expect": "readonly",
-					"beforeEach": "readonly",
-					"afterEach": "readonly",
-					"vi": "readonly"
-				}
-			}
-		]
-	},
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2020": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "plugins": [
+      "import",
+      "no-secrets"
+    ],
+    "rules": {
+      "no-secrets/no-secrets": "error",
+      "import/order": [
+        "warn",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index"
+          ],
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          }
+        }
+      ],
+      "react/prop-types": "off",
+      "no-unused-vars": "warn"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.tsx"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "plugins": [
+          "@typescript-eslint"
+        ],
+        "extends": [
+          "plugin:@typescript-eslint/recommended"
+        ],
+        "rules": {
+          "no-unused-vars": "off",
+          "@typescript-eslint/no-unused-vars": "warn",
+          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/ban-ts-comment": [
+            "error",
+            {
+              "ts-nocheck": "allow-with-description"
+            }
+          ]
+        }
+      },
+      {
+        "files": [
+          "src/features/companies/data/*.ts"
+        ],
+        "rules": {
+          "no-secrets/no-secrets": "off"
+        }
+      },
+      {
+        "files": [
+          "src/**/*.test.tsx",
+          "src/**/*.test.ts",
+          "src/**/*.test.jsx",
+          "src/**/*.test.js"
+        ],
+        "globals": {
+          "describe": "readonly",
+          "test": "readonly",
+          "expect": "readonly",
+          "beforeEach": "readonly",
+          "afterEach": "readonly",
+          "vi": "readonly"
+        }
+      }
+    ]
+  },
 	"browserslist": {
 		"production": [
 			">0.2%",
