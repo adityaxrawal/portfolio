@@ -1,11 +1,31 @@
 export interface GitHubRepo {
-  id: number;
+  id: string;
   name: string;
-  html_url: string;
   description: string | null;
-  language: string | null;
-  stargazers_count: number;
-  forks_count: number;
+  stargazerCount: number;
+  isArchived: boolean;
+  isFork: boolean;
+  isTemplate: boolean;
+  primaryLanguage: {
+    name: string;
+  } | null;
+}
+
+export interface ContributionDay {
+  contributionCount: number;
+  date: string;
+}
+
+export interface ContributionWeek {
+  contributionDays: ContributionDay[];
+}
+
+export interface GitHubStatsResponse {
+  totalContributions: number;
+  totalStars: number;
+  projectsShipped: number;
+  pullRequests: number;
+  updatedAt: string;
 }
 
 export interface GitHubStats {
