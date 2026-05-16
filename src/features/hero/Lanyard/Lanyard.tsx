@@ -429,11 +429,11 @@ function drawBackCard(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
     drawInfoIcon(ctx, row.icon, 168, row.y, isDarkTheme);
 
     ctx.fillStyle = textColor;
-    ctx.font = '700 15px "SF Pro Text", "Helvetica Neue", Arial, sans-serif';
+    ctx.font = '400 15px "SF Pro Text", "Helvetica Neue", Arial, sans-serif';
     ctx.fillText(row.label, 214, row.y - 14);
 
     ctx.fillStyle = valueColor;
-    ctx.font = '500 22px "SF Pro Text", "Helvetica Neue", Arial, sans-serif';
+    ctx.font = '400 22px "SF Pro Text", "Helvetica Neue", Arial, sans-serif';
     ctx.fillText(row.value, 214, row.y + 16);
 
     if (index < rows.length - 1) {
