@@ -9,10 +9,26 @@ export interface WorkExperienceItem {
 
 export const WorkExperience: WorkExperienceItem[] = [
   {
+    companyName: 'MathCo',
+    companyLink: 'https://themathcompany.com/',
+    title: 'Product Engineer - II',
+    years: 'June 2025 - Present',
+    description: `Spearheading the frontend architecture for a high-impact analytics dashboard at Mars Inc., turning complex data into sleek, user-centric visualizations that actually make sense! I collaborate closely with data scientists to translate brain-twisting analytical models into actionable insights, helping executive stakeholders make data-driven decisions. When I'm not crafting responsive interfaces with React and TypeScript, I'm under the hood with Python and FastAPI, architecting RESTful APIs that keep the data flow seamless. It's a full-stack adventure—from pixel-perfect visualizations to robust backend engines!`,
+    techHighlights: [
+      'React.js',
+      'TypeScript',
+      'Python',
+      'FastAPI',
+      'Data Visualization',
+      'RESTful APIs',
+      'Full-Stack',
+    ],
+  },
+  {
     companyName: 'Leadsquared',
     companyLink: 'https://www.leadsquared.com/',
     title: 'Software Engineer',
-    years: 'Dec 2023 - Present',
+    years: 'Dec 2023 - May 2025',
     description: `Currently wrangling serverless functions and APIs! Developed a cost-saving, speedy web app using AWS Lambda. Built and maintain robust RESTful APIs in Node.js & Express.js, handling the chaos of ~500K monthly requests (and surviving!). Regularly integrate third-party APIs – because why build it if someone else already did? Participate in code reviews, ensuring our digital creations are secure, maintainable, and don't spontaneously combust. Collaborating across teams to enhance features and keep clients happy (mostly).`,
     techHighlights: [
       'AWS Lambda',
