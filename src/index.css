@@ -25,3 +25,27 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+/* ── Accessibility: Visible Focus Indicators ── */
+:focus-visible {
+  outline: 2.5px solid #6366f1; /* Indigo-500 */
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.dark :focus-visible {
+  outline: 2.5px solid #a5b4fc; /* Indigo-300 */
+}
+
+/* ── Screen Reader Only Utility ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

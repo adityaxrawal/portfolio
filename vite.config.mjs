@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
   assetsInclude: ['**/*.glb'],
   plugins: [
     react(),
+    tsconfigPaths(),
     visualizer({
       filename: 'dist/stats.html',
       open: false,
@@ -21,8 +23,10 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'vendor';
-            if (id.includes('octokit')) return 'octokit';
+            if (id.includes('react')) return 'react-core';
+            if (id.includes('three') || id.includes('@react-three') || id.includes('@dimforge/rapier')) {
+              return '3d-engine';
+            }
             if (
               id.includes('gsap') ||
               id.includes('lenis') ||

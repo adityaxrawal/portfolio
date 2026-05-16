@@ -33,6 +33,11 @@
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
 		"@testing-library/user-event": "^14.6.1",
+		"@types/node": "^25.8.0",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@types/three": "^0.184.1",
+		"@types/tinycolor2": "^1.4.6",
 		"@vitejs/plugin-react": "^6.0.1",
 		"eslint": "^8.57.1",
 		"eslint-plugin-import": "^2.31.0",
@@ -42,14 +47,16 @@
 		"eslint-plugin-react-hooks": "^5.1.0",
 		"husky": "^9.1.7",
 		"jsdom": "^29.0.1",
+		"jsrepo": "^3.7.0",
 		"lint-staged": "^15.4.1",
 		"msw": "^2.7.0",
 		"prettier": "^3.5.1",
 		"rollup-plugin-visualizer": "latest",
 		"serve": "^14.2.6",
+		"typescript": "^6.0.3",
 		"vite": "^8.0.10",
-		"vitest": "^4.1.2",
-		"jsrepo": "^3.7.0"
+		"vite-tsconfig-paths": "^6.1.1",
+		"vitest": "^4.1.2"
 	},
 	"scripts": {
 		"start": "vite",
@@ -59,13 +66,13 @@
 		"test": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:ci": "vitest run --passWithNoTests",
-		"lint": "eslint . --ext js,jsx --report-unused-disable-directives",
-		"format": "prettier --write \"src/**/*.{js,jsx,css,md}\"",
+		"lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
 		"analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
 		"prepare": "husky"
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,css}": [
+		"src/**/*.{js,jsx,ts,tsx,css}": [
 			"eslint --fix",
 			"prettier --write"
 		]
@@ -118,15 +125,8 @@
 		"overrides": [
 			{
 				"files": [
-					"src/shared/components/Companies/CompaniesData.jsx"
-				],
-				"rules": {
-					"no-secrets/no-secrets": "off",
-					"no-unused-vars": "off"
-				}
-			},
-			{
-				"files": [
+					"src/**/*.test.tsx",
+					"src/**/*.test.ts",
 					"src/**/*.test.jsx",
 					"src/**/*.test.js"
 				],
