@@ -51,7 +51,10 @@ const BACK_CARD_UV = {
   height: 0.7548875207138062,
 };
 
-function setupCardTexture(texture: THREE.Texture, uvRect: { x: number; y: number; width: number; height: number }) {
+function setupCardTexture(
+  texture: THREE.Texture,
+  uvRect: { x: number; y: number; width: number; height: number },
+) {
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = 8;
   texture.flipY = false;
@@ -63,7 +66,14 @@ function setupCardTexture(texture: THREE.Texture, uvRect: { x: number; y: number
   return texture;
 }
 
-function drawImageCover(ctx: CanvasRenderingContext2D, image: HTMLImageElement, x: number, y: number, width: number, height: number) {
+function drawImageCover(
+  ctx: CanvasRenderingContext2D,
+  image: HTMLImageElement,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+) {
   const imageWidth = image.naturalWidth || image.width;
   const imageHeight = image.naturalHeight || image.height;
   const scale = Math.max(width / imageWidth, height / imageHeight);
@@ -75,7 +85,14 @@ function drawImageCover(ctx: CanvasRenderingContext2D, image: HTMLImageElement, 
   ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight);
 }
 
-function drawRoundedRectPath(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+function drawRoundedRectPath(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number,
+) {
   const safeRadius = Math.min(radius, width / 2, height / 2);
   ctx.beginPath();
   ctx.moveTo(x + safeRadius, y);
@@ -95,7 +112,15 @@ function drawRoundedRectPath(ctx: CanvasRenderingContext2D, x: number, y: number
   ctx.closePath();
 }
 
-function fillRoundedRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number, fillStyle: string) {
+function fillRoundedRect(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number,
+  fillStyle: string,
+) {
   ctx.save();
   drawRoundedRectPath(ctx, x, y, width, height, radius);
   ctx.fillStyle = fillStyle;
@@ -121,9 +146,18 @@ function strokeRoundedRect(
   ctx.restore();
 }
 
-interface ExclusionZone { x: number; y: number; w: number; h: number; }
+interface ExclusionZone {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
 
-function drawFrontDotField(ctx: CanvasRenderingContext2D, exclusionZones: ExclusionZone[] = [], isDarkTheme: boolean) {
+function drawFrontDotField(
+  ctx: CanvasRenderingContext2D,
+  exclusionZones: ExclusionZone[] = [],
+  isDarkTheme: boolean,
+) {
   ctx.save();
   ctx.fillStyle = isDarkTheme ? '#151515' : 'rgba(230, 230, 230, 1)';
 
@@ -159,7 +193,10 @@ function drawFrontDotField(ctx: CanvasRenderingContext2D, exclusionZones: Exclus
   ctx.restore();
 }
 
-function drawFrontCardDetails(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
+function drawFrontCardDetails(
+  ctx: CanvasRenderingContext2D,
+  isDarkTheme: boolean,
+) {
   const textColor = isDarkTheme ? CARD_INK : '#ffffff';
   const idColor = isDarkTheme ? '#343039' : 'rgba(255,255,255,0.7)';
 
@@ -183,7 +220,12 @@ function drawFrontCardDetails(ctx: CanvasRenderingContext2D, isDarkTheme: boolea
   ctx.textAlign = 'left';
 }
 
-function drawFrontCard(ctx: CanvasRenderingContext2D, profileImage: HTMLImageElement | null, logoImage: HTMLImageElement | null, isDarkTheme: boolean) {
+function drawFrontCard(
+  ctx: CanvasRenderingContext2D,
+  profileImage: HTMLImageElement | null,
+  logoImage: HTMLImageElement | null,
+  isDarkTheme: boolean,
+) {
   // 1. Draw the base background
   if (isDarkTheme) {
     // Light mode base
@@ -199,7 +241,7 @@ function drawFrontCard(ctx: CanvasRenderingContext2D, profileImage: HTMLImageEle
     ctx.fillStyle = paperGradient;
   } else {
     // Dark mode bottom section (base)
-    ctx.fillStyle = '#262626'; 
+    ctx.fillStyle = '#262626';
   }
   ctx.fillRect(0, 0, CARD_TEXTURE_WIDTH, CARD_TEXTURE_HEIGHT);
 
@@ -215,11 +257,11 @@ function drawFrontCard(ctx: CanvasRenderingContext2D, profileImage: HTMLImageEle
   }
 
   const exclusionZones = [
-    { x: 20, y: 50, w: 280, h: 130 },    // Top-left text
-    { x: 20, y: 400, w: 40, h: 150 },    // Bottom-rotated ID text
-    { x: 150, y: 610, w: 330, h: 100 },  // Bottom-right name and title
+    { x: 20, y: 50, w: 280, h: 130 }, // Top-left text
+    { x: 20, y: 400, w: 40, h: 150 }, // Bottom-rotated ID text
+    { x: 150, y: 610, w: 330, h: 100 }, // Bottom-right name and title
   ];
-  
+
   drawFrontDotField(ctx, exclusionZones, isDarkTheme);
 
   const textColor = isDarkTheme ? CARD_INK : '#ffffff';
@@ -279,7 +321,13 @@ function drawFrontCard(ctx: CanvasRenderingContext2D, profileImage: HTMLImageEle
   drawFrontCardDetails(ctx, isDarkTheme);
 }
 
-function drawInfoIcon(ctx: CanvasRenderingContext2D, icon: string, x: number, y: number, isDarkTheme: boolean) {
+function drawInfoIcon(
+  ctx: CanvasRenderingContext2D,
+  icon: string,
+  x: number,
+  y: number,
+  isDarkTheme: boolean,
+) {
   ctx.fillStyle = isDarkTheme ? CARD_INK : '#ffffff';
   ctx.beginPath();
   ctx.arc(x, y, BACK_ICON_SIZE, 0, Math.PI * 2);
@@ -376,16 +424,7 @@ function drawBackCard(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
 
   rows.forEach((row, index) => {
     fillRoundedRect(ctx, 120, row.y - 52, 336, 104, 26, rowBg);
-    strokeRoundedRect(
-      ctx,
-      120,
-      row.y - 52,
-      336,
-      104,
-      26,
-      rowBorder,
-      1,
-    );
+    strokeRoundedRect(ctx, 120, row.y - 52, 336, 104, 26, rowBorder, 1);
 
     drawInfoIcon(ctx, row.icon, 168, row.y, isDarkTheme);
 
@@ -406,7 +445,11 @@ function drawBackCard(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
   });
 }
 
-function useCardTexture(drawCard: (ctx: CanvasRenderingContext2D) => void, uvRect: { x: number; y: number; width: number; height: number }, deps: unknown[] = []) {
+function useCardTexture(
+  drawCard: (ctx: CanvasRenderingContext2D) => void,
+  uvRect: { x: number; y: number; width: number; height: number },
+  deps: unknown[] = [],
+) {
   const texture = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = CARD_TEXTURE_WIDTH;
@@ -426,7 +469,10 @@ function useCardTexture(drawCard: (ctx: CanvasRenderingContext2D) => void, uvRec
   return texture;
 }
 
-function createCardFaceGeometry(geometry: THREE.BufferGeometry, normalDirection: number) {
+function createCardFaceGeometry(
+  geometry: THREE.BufferGeometry,
+  normalDirection: number,
+) {
   const source = geometry.index
     ? Array.from(geometry.index.array)
     : Array.from({ length: geometry.attributes.position.count }, (_, i) => i);
@@ -559,17 +605,23 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const texture = useTexture(lanyard);
   const profileTexture = useTexture(profilePic);
   const mathcoLogoTexture = useTexture(mathcoLogoPic);
-  
+
   const frontTexture = useCardTexture(
-    (ctx) => drawFrontCard(ctx, profileTexture.image, mathcoLogoTexture.image, isDarkTheme),
+    (ctx) =>
+      drawFrontCard(
+        ctx,
+        profileTexture.image,
+        mathcoLogoTexture.image,
+        isDarkTheme,
+      ),
     FRONT_CARD_UV,
-    [profileTexture.image, mathcoLogoTexture.image, isDarkTheme]
+    [profileTexture.image, mathcoLogoTexture.image, isDarkTheme],
   );
-  
+
   const backTexture = useCardTexture(
-    (ctx) => drawBackCard(ctx, isDarkTheme), 
+    (ctx) => drawBackCard(ctx, isDarkTheme),
     BACK_CARD_UV,
-    [isDarkTheme]
+    [isDarkTheme],
   );
   const { frontGeometry, backGeometry } = useMemo(
     () => ({
