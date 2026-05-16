@@ -5,6 +5,7 @@ import './Work.css';
 import { WorkExperience } from '../data/workExperience';
 
 // images
+import mathcoLogo from '../../../assets/images/companies/mathco.webp';
 import leadsquaredLogo from '../../../assets/images/companies/lsq.webp';
 import develUpLogo from '../../../assets/images/companies/develup.webp';
 import wiproLogo from '../../../assets/images/companies/wipro.webp';
@@ -145,6 +146,13 @@ const Work = () => {
                 height: imageDimensions.height,
               }}
             >
+              <span className="work-images-items">
+                <img
+                  src={mathcoLogo}
+                  alt="MathCo-Logo"
+                  className="work-images"
+                />
+              </span>
               <span className="work-images-items">
                 <img
                   src={leadsquaredLogo}
