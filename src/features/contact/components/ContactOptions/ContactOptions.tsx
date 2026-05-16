@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 
-import { links, MODAL_STEPS } from '@/constants';
+import { links, MODAL_STEPS } from '@/config';
 import './ContactOptions.css';
 
 interface ContactOptionsProps {

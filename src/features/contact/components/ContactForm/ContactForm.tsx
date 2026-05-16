@@ -30,7 +30,7 @@ import {
   FaUndo,
 } from 'react-icons/fa';
 
-import { links } from '@/constants';
+import { links } from '@/config';
 import './ContactForm.css';
 
 const SUBJECT_LIMIT = 100;

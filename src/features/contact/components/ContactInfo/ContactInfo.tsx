@@ -6,10 +6,10 @@ import {
   DAILY_CONTACT_LIMIT,
   getContactRateStatus,
   recordContactMailSent,
-} from '../services/contactRateLimit';
+} from '../../services/contactRateLimit';
 
 import { useSharedState } from '@/app/providers/AppContext';
-import Alert from '@/components/Alert';
+import Alert from '@/components/ui/Alert';
 import { useAlert } from '@/hooks/useAlert';
 import { createFormSubmitter } from '@/lib/validation';
 
