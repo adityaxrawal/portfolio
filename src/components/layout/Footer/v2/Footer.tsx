@@ -49,9 +49,9 @@ const Footer = () => {
               <p className="footer-v2__bottom-text">
                 © {currentYear} adityarawal /
               </p>
-              <a href="/companies" className="footer-v2__bottom-text footer-v2__link">
+              {/* <a href="/companies" className="footer-v2__bottom-text footer-v2__link">
                 CAREER HUB
-              </a>
+              </a> */}
               <p className="footer-v2__bottom-text">ALL RIGHTS RESERVED</p>
             </div>
             
