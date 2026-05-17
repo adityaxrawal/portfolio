@@ -12,11 +12,13 @@ const Portfolio = lazy(() => import('../PortfolioDetail'));
 const Content = () => {
   return (
     <Suspense fallback={<SectionLoader />}>
-      <HeroSection />
-      <Work />
-      <Technology />
-      {/* <Project /> */}
-      <Portfolio />
+      <div className="pr-[2.5%] pl-[2.5%]">
+        <HeroSection />
+        <Work />
+        <Technology />
+        {/* <Project /> */}
+        <Portfolio />
+      </div>
     </Suspense>
   );
 };

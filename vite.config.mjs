@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 // Import GitHub logic for the dev server proxy
@@ -9,6 +10,7 @@ export default defineConfig({
   assetsInclude: ['**/*.glb'],
   plugins: [
     react(),
+    tailwindcss(),
     visualizer({
       filename: 'dist/stats.html',
       open: false,
