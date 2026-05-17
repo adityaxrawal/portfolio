@@ -12,7 +12,8 @@
   border-width: 2px;
   box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
   box-sizing: border-box;
-  color: #41403e;
+  color: var(--theme-dark-bg);
+  border-color: var(--theme-dark-bg);
   cursor: pointer;
   display: inline-block;
   font-family: 'Alegreya-Font-Regular', sans-serif;
@@ -29,28 +30,27 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  border-color: #41403e;
 }
 
 .contact-button-v2:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
-  background-color: #f8f8f8;
+  background-color: color-mix(in srgb, var(--theme-dark-text), black 5%);
 }
 
 .contact-button-v2:focus {
   box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
 }
 
-/* Dark Mode Support */
+/* --- Dark Mode Support --- */
 .contact-button-v2--dark {
-  background-color: var(--theme-dark-grid);
-  color: #f0f0f0;
-  border-color: #f0f0f0;
+  background-color: var(--theme-dark-bg);
+  color: var(--theme-dark-text);
+  border-color: var(--theme-dark-text);
   box-shadow: rgba(255, 255, 255, 0.1) 15px 28px 25px -18px;
 }
 
 .contact-button-v2--dark:hover {
-  background-color: #2a2a2a;
+  background-color: color-mix(in srgb, var(--theme-dark-bg), white 10%);
   box-shadow: rgba(255, 255, 255, 0.15) 2px 8px 8px -5px;
 }

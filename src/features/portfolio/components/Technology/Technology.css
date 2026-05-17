@@ -132,7 +132,7 @@
 
 .dark .box {
   --box-bg-color: var(--theme-dark-bg);
-  --box-hover-bg-color: #222222;
+  --box-hover-bg-color: var(--theme-dark-grid);
   --box-border-color: var(--theme-dark-bg);
 }
 

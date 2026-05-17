@@ -28,11 +28,9 @@
 }
 
 .project-card {
-  background-color: var(
-    --background-card,
-    #ffffff
-  ); /* Use a variable for theme compatibility */
-  color: var(--text-card, #333333); /* Use a variable */
+  background-color: var(--theme-light-bg);
+  color: var(--theme-light-text);
+  border: 1px solid var(--theme-light-grid);
   padding: 25px;
   border-radius: var(--std-border-radius);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -157,4 +155,16 @@
     transform: scale(1.02); /* Simpler scale effect */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   }
+}
+
+/* --- Dark Mode Support --- */
+.dark .project-card {
+  background-color: var(--theme-dark-bg);
+  color: var(--theme-dark-text);
+  border-color: var(--theme-dark-grid);
+}
+
+.dark .project-language {
+  background-color: var(--theme-dark-grid);
+  color: var(--theme-dark-text);
 }

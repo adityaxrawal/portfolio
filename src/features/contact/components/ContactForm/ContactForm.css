@@ -9,7 +9,7 @@
 }
 
 .gmail-compose {
-  --compose-bg: #fff;
+  --compose-bg: var(--theme-light-bg);
   --compose-header-bg: #f2f2f2;
   --compose-text: #202124;
   --compose-muted: #5f6368;
@@ -33,7 +33,7 @@
 }
 
 .contact-info-modal.dark .gmail-compose {
-  --compose-bg: #1f1f1f;
+  --compose-bg: var(--theme-dark-bg);
   --compose-header-bg: #2a2a2a;
   --compose-text: var(--theme-dark-text);
   --compose-muted: rgba(240, 236, 216, 0.68);

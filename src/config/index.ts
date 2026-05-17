@@ -15,16 +15,16 @@ export const API_ENDPOINTS = {
 };
 
 export const THEME_COLORS = {
-  DARK_GRID: 'rgba(35, 35, 35, 1)',
+  DARK_GRID: 'rgba(38, 38, 38, 1)',
   DARK_TEXT: '#F0ECD8',
   DARK_BG: 'rgba(35, 35, 35, 1)',
-  LIGHT_GRID: 'rgba(230, 230, 230, 1)',
+  LIGHT_GRID: '#efece7ff',
   LIGHT_TEXT: 'rgba(0, 0, 0, 1)',
   LIGHT_BG: '#F4F1EC',
 };
 
 export const darkModeColorList = {
-  0: '#151515',
+  0: THEME_COLORS.DARK_BG,
   1: '#31363F',
   2: '#76ABAE',
   3: '#EEEEEE',
@@ -33,7 +33,7 @@ export const darkModeColorList = {
 };
 
 export const lightModeColorList = {
-  0: '#F9F7F7',
+  0: THEME_COLORS.LIGHT_BG,
   1: '#DBE2EF',
   2: '#C1D0E6',
   3: '#A7BEDC',
