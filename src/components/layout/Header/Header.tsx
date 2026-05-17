@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Mail, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
@@ -9,6 +9,8 @@ import { useSharedState } from '@/app/providers/AppContext';
 import Alert from '@/components/ui/Alert';
 import { darkModeColorList, lightModeColorList, links } from '@/config';
 
+const EMAIL_CHARS = Array.from('ar.adityarawal@gmail.com');
+
 const Header = () => {
   const [alert, setAlert] = useState({
     message: '',
@@ -16,21 +18,21 @@ const Header = () => {
   });
   const { isDarkTheme, setDarkTheme, setBackgroundColor } = useSharedState();
 
-  const handleDarkMode = () => {
+  const handleDarkMode = useCallback(() => {
     setDarkTheme(!isDarkTheme);
     setBackgroundColor(
       !isDarkTheme === true ? darkModeColorList[0] : lightModeColorList[0],
     );
-  };
+  }, [isDarkTheme, setDarkTheme, setBackgroundColor]);
 
-  const copyEmail = () => {
+  const copyEmail = useCallback(() => {
     navigator.clipboard.writeText('ar.adityarawal@gmail.com');
     setAlert((prevAlert) => ({
       ...prevAlert,
       message: 'Email copied to clipboard',
       type: 'success',
     }));
-  };
+  }, []);
 
   return (
     <>
@@ -68,7 +70,7 @@ const Header = () => {
             <div className="email-animation-wrapper">
               <span className="sr-only">ar.adityarawal@gmail.com</span>
               <span className="animated-letters" aria-hidden="true">
-                {Array.from('ar.adityarawal@gmail.com').map((char, index) => (
+                {EMAIL_CHARS.map((char, index) => (
                   <div
                     key={index}
                     className="cube-flip"
@@ -79,7 +81,7 @@ const Header = () => {
                 ))}
               </span>
               <span className="animated-letters" aria-hidden="true">
-                {Array.from('ar.adityarawal@gmail.com').map((char, index) => (
+                {EMAIL_CHARS.map((char, index) => (
                   <div
                     key={index}
                     className="cube-flip"
@@ -129,7 +131,7 @@ const Header = () => {
               <span>LinkedIn</span>
             </a>
             <a
-              href="#"
+              href="#resume"
               target="_blank"
               rel="noopener noreferrer"
               className="nav-social-link"

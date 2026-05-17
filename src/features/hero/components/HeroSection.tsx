@@ -11,6 +11,17 @@ import './HeroSection.css';
 // Lazy load the heavy 3D component
 const Lanyard = lazy(() => import('./Lanyard/Lanyard'));
 
+const TECH_STACK_TAGS = [
+  'React',
+  'TypeScript',
+  'Next.js',
+  'Node.js',
+  'AWS',
+  'Serverless',
+  'Micro-Frontends',
+  'Analytics Systems',
+];
+
 const HeroSection = () => {
   const { isDarkTheme } = useSharedState();
 
@@ -114,7 +125,7 @@ const HeroSection = () => {
               </div>
             </section>
             <section className="headline-buttons">
-              <ContactButton>Let's Build Together</ContactButton>
+              <ContactButton>Let&apos;s Build Together</ContactButton>
             </section>
           </section>
         </div>
@@ -158,16 +169,7 @@ const HeroSection = () => {
               <span>TECH STACK</span>
             </div>
             <div className="tech-tags">
-              {[
-                'React',
-                'TypeScript',
-                'Next.js',
-                'Node.js',
-                'AWS',
-                'Serverless',
-                'Micro-Frontends',
-                'Analytics Systems',
-              ].map((tech) => (
+              {TECH_STACK_TAGS.map((tech) => (
                 <span key={tech} className="tech-tag">
                   {tech}
                 </span>
@@ -238,18 +240,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-{
-  /* --- END ORIGINAL TEXT ---
-<div className="headline-buttons">
-  <a
-    href={links.linkedInLink}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <button type="button" className="headline-btn github">
-      View LinkedIn
-    </button>
-  </a>
-</div> */
-}

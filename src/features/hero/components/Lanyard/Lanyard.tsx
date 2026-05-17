@@ -18,13 +18,18 @@ import {
 } from '@react-three/rapier';
 import type { RigidBody as RigidBodyType } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import * as THREE from 'three';
 
 import profilePic from '@/assets/images/my/me-2.webp';
 
 import cardGLB from '@/assets/models/card.glb';
-// import lanyard from '@/assets/images/my/lanyard.webp';
 import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
 
 import { useSharedState } from '@/app/providers/AppContext';
@@ -665,29 +670,32 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     }
   }, [hovered, dragged]);
 
-  const clearPressState = () => {
+  const clearPressState = useCallback(() => {
     pressState.current.active = false;
     pressState.current.pointerId = null;
     pressState.current.startX = 0;
     pressState.current.startY = 0;
     pressState.current.maxDistance = 0;
-  };
+  }, []);
 
-  const handlePointerDown = (e) => {
-    e.target.setPointerCapture(e.pointerId);
-    pressState.current.active = true;
-    pressState.current.pointerId = e.pointerId;
-    pressState.current.startX = e.clientX;
-    pressState.current.startY = e.clientY;
-    pressState.current.maxDistance = 0;
-    drag(
-      new THREE.Vector3()
-        .copy(e.point)
-        .sub(vec.copy(card.current.translation())),
-    );
-  };
+  const handlePointerDown = useCallback(
+    (e) => {
+      e.target.setPointerCapture(e.pointerId);
+      pressState.current.active = true;
+      pressState.current.pointerId = e.pointerId;
+      pressState.current.startX = e.clientX;
+      pressState.current.startY = e.clientY;
+      pressState.current.maxDistance = 0;
+      drag(
+        new THREE.Vector3()
+          .copy(e.point)
+          .sub(vec.copy(card.current?.translation() || new THREE.Vector3())),
+      );
+    },
+    [drag, card, vec],
+  );
 
-  const handlePointerMove = (e) => {
+  const handlePointerMove = useCallback((e) => {
     if (
       !pressState.current.active ||
       pressState.current.pointerId !== e.pointerId
@@ -703,28 +711,34 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       pressState.current.maxDistance,
       distance,
     );
-  };
+  }, []);
 
-  const handlePointerUp = (e) => {
-    const wasClick =
-      pressState.current.active &&
-      pressState.current.pointerId === e.pointerId &&
-      pressState.current.maxDistance <= clickThreshold;
+  const handlePointerUp = useCallback(
+    (e) => {
+      const wasClick =
+        pressState.current.active &&
+        pressState.current.pointerId === e.pointerId &&
+        pressState.current.maxDistance <= clickThreshold;
 
-    e.target.releasePointerCapture?.(e.pointerId);
-    drag(false);
-    clearPressState();
+      e.target.releasePointerCapture?.(e.pointerId);
+      drag(false);
+      clearPressState();
 
-    if (wasClick) {
-      setIsFlipped((prev) => !prev);
-    }
-  };
+      if (wasClick) {
+        setIsFlipped((prev) => !prev);
+      }
+    },
+    [drag, clearPressState, clickThreshold],
+  );
 
-  const handlePointerCancel = (e) => {
-    e.target.releasePointerCapture?.(e.pointerId);
-    drag(false);
-    clearPressState();
-  };
+  const handlePointerCancel = useCallback(
+    (e) => {
+      e.target.releasePointerCapture?.(e.pointerId);
+      drag(false);
+      clearPressState();
+    },
+    [drag, clearPressState],
+  );
 
   useFrame((state, delta) => {
     if (dragged) {

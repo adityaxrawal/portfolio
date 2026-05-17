@@ -1,4 +1,4 @@
-// src/constants/index.ts
+// src/config/index.ts
 
 export const links = {
   linkedInLink: 'https://www.linkedin.com/in/adityaxrawal',
@@ -23,7 +23,7 @@ export const THEME_COLORS = {
   LIGHT_BG: '#F4F1EC',
 };
 
-export const darkModeColorList = {
+export const darkModeColorList: Record<number, string> = {
   0: THEME_COLORS.DARK_BG,
   1: '#31363F',
   2: '#76ABAE',
@@ -32,7 +32,7 @@ export const darkModeColorList = {
   5: '#F0F5F7',
 };
 
-export const lightModeColorList = {
+export const lightModeColorList: Record<number, string> = {
   0: THEME_COLORS.LIGHT_BG,
   1: '#DBE2EF',
   2: '#C1D0E6',

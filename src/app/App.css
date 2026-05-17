@@ -10,30 +10,25 @@
   /* Standard for responsive design (mobile) */
   --font-size-text-mobile: 1rem;
   --font-size-heading-mobile: 1.75rem;
-  --font-size-subtext: 1rem;
-  --font-size-subSubtext: 0.75rem;
   --font-size-subHeading-mobile: 1.25rem;
   --std-border-radius-mobile: 0.25rem;
 }
 
 @font-face {
   font-family: 'Alegreya-Font-Regular';
-  /*Can be any text*/
   src: url('../assets/fonts/Alegreya/static/Alegreya-Regular.ttf')
     format('truetype');
 }
 
 @font-face {
   font-family: 'Alegreya-Font-Bold';
-  /*Can be any text*/
   src: url('../assets/fonts/Alegreya/static/Alegreya-Bold.ttf')
     format('truetype');
 }
 
-/* Second font for higlights */
+/* Second font for highlights */
 @font-face {
   font-family: 'ShadowsIntoLightTwo-Regular';
-  /*Can be any text*/
   src: url('../assets/fonts/ShadowsIntoLightTwo-Regular.ttf') format('truetype');
 }
 
