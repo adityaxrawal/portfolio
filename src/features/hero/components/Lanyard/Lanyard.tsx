@@ -24,10 +24,11 @@ import * as THREE from 'three';
 import profilePic from '@/assets/images/my/me-2.webp';
 
 import cardGLB from '@/assets/models/card.glb';
-import lanyard from '@/assets/images/my/lanyard.webp';
+// import lanyard from '@/assets/images/my/lanyard.webp';
 import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
 
 import { useSharedState } from '@/app/providers/AppContext';
+import { THEME_COLORS } from '@/config/index';
 
 import './Lanyard.css';
 
@@ -37,7 +38,7 @@ const CARD_TEXTURE_WIDTH = 512;
 const CARD_TEXTURE_HEIGHT = 720;
 const BACK_ICON_SIZE = 22;
 const BAND_REPEAT = 6.5;
-const MATHCO_PURPLE_DARK = '#260048';
+const MATHCO_PURPLE_DARK = '#232323'; // Matches THEME_COLORS.DARK_BG (rgba(35,35,35,1))
 const MATHCO_PEACH = '#FFA781'; // MathCo Peach accent color
 const CARD_INK = '#222225';
 const FRONT_CARD_UV = {
@@ -237,9 +238,9 @@ function drawFrontCard(
       CARD_TEXTURE_WIDTH,
       CARD_TEXTURE_HEIGHT,
     );
-    paperGradient.addColorStop(0, '#fbfbf8');
-    paperGradient.addColorStop(0.48, '#f4f3ef');
-    paperGradient.addColorStop(1, '#ecebe6');
+    paperGradient.addColorStop(0, THEME_COLORS.LIGHT_BG);
+    paperGradient.addColorStop(0.48, THEME_COLORS.LIGHT_BG);
+    paperGradient.addColorStop(1, THEME_COLORS.LIGHT_BG);
     ctx.fillStyle = paperGradient;
   } else {
     // Dark mode bottom section (base)
@@ -275,16 +276,17 @@ function drawFrontCard(
 
   const imageX = 236;
   const imageY = 272;
-  const imageSize = 238;
-  fillRoundedRect(ctx, imageX, imageY, imageSize, imageSize, 8, '#deddd8');
+  const imageWidth = 238;
+  const imageHeight = 310; // Increased height to show more of the image
+  fillRoundedRect(ctx, imageX, imageY, imageWidth, imageHeight, 8, '#deddd8');
 
   if (profileImage) {
     ctx.save();
-    drawRoundedRectPath(ctx, imageX, imageY, imageSize, imageSize, 8);
+    drawRoundedRectPath(ctx, imageX, imageY, imageWidth, imageHeight, 8);
     ctx.clip();
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-    drawImageCover(ctx, profileImage, imageX, imageY, imageSize, imageSize);
+    drawImageCover(ctx, profileImage, imageX, imageY, imageWidth, imageHeight);
     ctx.restore();
   }
 
@@ -313,7 +315,7 @@ function drawFrontCard(
     ctx.drawImage(
       tempCanvas,
       195 + (logoSize - 1.5 * w) / 2,
-      428 + (logoSize - 0.5 * h) / 2,
+      428 + (logoSize + 1 * h) / 2,
       w,
       h,
     );
@@ -335,8 +337,8 @@ function drawInfoIcon(
   ctx.arc(x, y, BACK_ICON_SIZE, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.strokeStyle = isDarkTheme ? '#ffffff' : 'rgba(35, 35, 35, 1)';
-  ctx.fillStyle = isDarkTheme ? '#ffffff' : 'rgba(35, 35, 35, 1)';
+  ctx.strokeStyle = isDarkTheme ? '#ffffff' : THEME_COLORS.DARK_GRID;
+  ctx.fillStyle = isDarkTheme ? '#ffffff' : THEME_COLORS.DARK_GRID;
   ctx.lineWidth = 3;
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
@@ -378,9 +380,9 @@ function drawBackCard(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
       CARD_TEXTURE_WIDTH,
       CARD_TEXTURE_HEIGHT,
     );
-    paperGradient.addColorStop(0, '#fbfbf8');
-    paperGradient.addColorStop(0.48, '#f4f3ef');
-    paperGradient.addColorStop(1, '#ecebe6');
+    paperGradient.addColorStop(0, THEME_COLORS.LIGHT_BG);
+    paperGradient.addColorStop(0.48, THEME_COLORS.LIGHT_BG);
+    paperGradient.addColorStop(1, THEME_COLORS.LIGHT_BG);
     ctx.fillStyle = paperGradient;
   } else {
     ctx.fillStyle = '#262626'; // Match the front card's dark bottom
@@ -604,7 +606,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   };
 
   const { nodes } = useGLTF(cardGLB);
-  const texture = useTexture(lanyard);
+  // const texture = useTexture(lanyard);
   const profileTexture = useTexture(profilePic);
   const mathcoLogoTexture = useTexture(mathcoLogoPic);
 
@@ -648,9 +650,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   const flipTargetY = isFlipped ? Math.PI : 0;
   const clickThreshold = 8;
 
-  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1.5]);
-  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1.5]);
-  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1.5]);
+  useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1.125]);
+  useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1.125]);
+  useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1.125]);
   useSphericalJoint(j3, card, [
     [0, 0, 0],
     [0, 2.25, 0],
@@ -772,8 +774,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
   });
 
   curve.curveType = 'chordal';
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  texture.anisotropy = 16;
+  // if (texture) {
+  //   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  //   texture.anisotropy = 16;
+  // }
 
   return (
     <>
@@ -862,12 +866,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       <mesh ref={band}>
         <meshLineGeometry />
         <meshLineMaterial
-          color="white"
+          color={MATHCO_PURPLE_DARK}
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
-          useMap
-          map={texture}
-          repeat={[BAND_REPEAT, 1]}
           lineWidth={3.5}
         />
       </mesh>
