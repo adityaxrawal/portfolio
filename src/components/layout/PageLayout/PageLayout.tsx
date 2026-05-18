@@ -1,20 +1,17 @@
 import './PageLayout.css';
 import Footer from '../Footer/v2';
-import Header from '../Header';
+import Header from '../Header/Header';
 
 import Content from '@/features/portfolio/components/MainContent';
+import React from 'react';
 
 const Page = () => {
   return (
-    <>
-      <div className="page">
-        <Header />
-        <Content />
-      </div>
-      <div className="page-footer">
-        <Footer />
-      </div>
-    </>
+    <React.Fragment>
+      <Header />
+      <Content />
+      <Footer />
+    </React.Fragment>
   );
 };
 
