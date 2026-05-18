@@ -4,11 +4,16 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: auto;
-  min-height: 8vh;
+  height: 6vh;
   z-index: 100;
-  padding: 0% 2.5%;
+  padding: 0 2.5% 0 2.5% ;
+  margin-bottom: 3vh;
   transition: all 0.3s ease;
+  border-bottom: 1px solid var(--theme-dark-grid);
+}
+
+.nav-bar.theme-dark {
+  border-bottom: 1px solid var(--theme-light-grid);
 }
 
 /* Theme Variables */

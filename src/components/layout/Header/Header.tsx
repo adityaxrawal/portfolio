@@ -102,13 +102,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Center Section: Logo */}
-        {/* <div className="nav-center">
-          <div className="nav-logo-box">
-            <Asterisk size={24} strokeWidth={2.5} />
-          </div>
-        </div> */}
-
         {/* Right Section: Socials + Theme Switch */}
         <div className="nav-right-group">
           <div className="nav-social-links">
