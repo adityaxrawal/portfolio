@@ -4,9 +4,10 @@ import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { useSharedState } from '@/app/providers/AppContext';
 import { links, THEME_COLORS } from '@/config';
 import ContactInfo from '@/features/contact/components/ContactInfo';
+import type { SlideProps } from '@/types/slides';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
   const currentYear = new Date().getFullYear();
   const { isDarkTheme } = useSharedState();
 
@@ -24,7 +25,8 @@ const Footer = () => {
   } as React.CSSProperties;
 
   return (
-    <>
+    <div style={{ width: '100%', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+    >
       <footer className="footer-v2" style={themeVars}>
         {/* ── TOP BAR ── */}
         <div className="footer-v2__top-bar">
@@ -98,9 +100,9 @@ const Footer = () => {
         </div>
       </footer>
 
-      {/* Contact modal — rendered outside footer to avoid overflow clipping */}
+      {/* Contact modal — position: fixed escapes overflow clip correctly */}
       <ContactInfo open={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </>
+    </div>
   );
 };
 
