@@ -1,0 +1,57 @@
+/* ── Snap dot navigation ──────────────────────────────────────────────────── */
+.snap-dot-nav {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.snap-dot-btn {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(128, 128, 128, 0.5);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
+  transform: scale(1);
+}
+
+.snap-dot-btn.active {
+  background: var(--theme-light-text, #000);
+  border-color: var(--theme-light-text, #000);
+  transform: scale(1.5);
+}
+
+/* Dark mode dots */
+.dark .snap-dot-btn.active {
+  background: var(--theme-dark-text, #f0ecd8);
+  border-color: var(--theme-dark-text, #f0ecd8);
+}
+
+/* ── Sliding column ───────────────────────────────────────────────────────── */
+.snap-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.snap-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transform: translateY(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
