@@ -16,15 +16,27 @@
   --theme-dark-bg: rgba(35, 35, 35, 1);
 }
 
+/* ── CRITICAL: Kill all native scroll for Reels-style snap ───────────────── */
 html,
-body {
+body,
+#root {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;          /* Hard kill — snap system owns all scroll */
+  scroll-behavior: auto;     /* Disable browser smooth scroll */
 }
 
-body::-webkit-scrollbar {
+/* ── Hide scrollbars everywhere ─────────────────────────────────────────── */
+::-webkit-scrollbar {
   display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ── Accessibility: Visible Focus Indicators ── */

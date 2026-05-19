@@ -14,7 +14,7 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({ children
       {/* Fixed Header overlay */}
       <Header />
 
-      <div style={{ width: '100vw', height: '100dvh', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ width: '100vw', height: '100dvh', overflow: 'hidden' }}>
         <div 
           ref={containerRef} 
           style={{ 

@@ -1,6 +1,5 @@
 // src/App.js
 import { Analytics } from '@vercel/analytics/react';
-import { ReactLenis, useLenis } from 'lenis/react';
 import { Suspense, useCallback, useState, lazy } from 'react';
 import {
   BrowserRouter as Router,
@@ -15,8 +14,8 @@ import './App.css';
 import { AppProvider, useSharedState } from '@/app/providers/AppContext';
 import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/EasterEgg';
-import Page from '@/components/layout/PageLayout';
 import Loader from '@/components/ui/Loader';
+const PortfolioPage = lazy(() => import('@/features/portfolio/components/PortfolioPage/PortfolioPage'));
 import { THEME_COLORS } from '@/config';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
 const Companies = lazy(() => import('@/features/companies'));
@@ -36,9 +35,7 @@ function App() {
         <Analytics />
         {/* Render Easter Egg conditionally */}
         {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
-        <ReactLenis root>
-          <ThemedApp />
-        </ReactLenis>
+        <ThemedApp />
       </AppProvider>
     </Router>
   );
@@ -47,9 +44,6 @@ function App() {
 // Keep ThemedApp function as is
 function ThemedApp() {
   const { backgroundColor } = useSharedState();
-
-  // Lenis usage remains the same
-  useLenis();
 
   const getContrastColor = (bgColor: string) => {
     // Added check for undefined bgColor
@@ -76,7 +70,7 @@ function ThemedApp() {
         <div className="grid-background" style={bgStyles} />
         <AppUpdatePrompt />
         <Routes>
-          <Route path="/aditya-rawal" element={<Page />} />
+          <Route path="/aditya-rawal" element={<PortfolioPage />} />
           <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
           {/* Full immersive scroll-driven love letter page */}
           {/* <Route path="/my-love-bhavi" element={<MyLoveBhavi />} /> */}
