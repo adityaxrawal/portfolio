@@ -1,0 +1,864 @@
+/* src/features/portfolio/components/Work/v2/Work.css */
+.work-v2-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 9vh;
+  box-sizing: border-box;
+}
+
+.dark .work-v2-section {
+  background-color: #1a1a1a;
+}
+
+.work-v2-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  max-height: 80%;
+}
+
+/* Sidebar Layout */
+.work-v2-sidebar {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0rem 1rem;
+  gap: 1rem;
+}
+
+/* Header Section */
+.work-v2-header {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-heading);
+}
+
+.work-v2-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #6b7280; /* Tailwind gray-500 */
+}
+
+.dark .work-v2-label {
+  color: #9ca3af; /* Tailwind gray-400 */
+}
+
+.work-v2-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #50b887;
+}
+
+.work-v2-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  color: #111827;
+}
+
+.dark .work-v2-title-wrapper {
+  color: #f0ecd8;
+}
+
+.work-v2-title{
+  font-size: var(--font-size-subHeading);
+}
+
+.work-v2-title-highlight {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.work-v2-underline {
+  position: absolute;
+  left: 5rem;
+  width: 30%;
+  height: 0.45rem;
+  color: #111827;
+}
+
+.dark .work-v2-underline {
+  color: #f0ecd8;
+}
+
+.work-v2-subtitle {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: #4b5563;
+  max-width: 100%;
+  line-height: 1.625;
+  margin-top: 1rem;
+}
+
+.dark .work-v2-subtitle {
+  color: #9ca3af; /* Tailwind gray-400 */
+}
+
+/* Mission Control Panel */
+.work-v2-mission-control {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 70%;
+  background-color: #faf9f6;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  /* overflow: hidden; Removed to allow dots on border to be visible */
+  padding: 0.5rem 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.dark .work-v2-mission-control {
+  background-color: #2a2a2a;
+  border-color: rgba(63, 63, 70, 0.5); /* zinc-700/50 */
+}
+
+.mc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.mc-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: monospace;
+  font-size: var(--font-size-subSubSubtext);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #374151; /* gray-700 */
+}
+
+.dark .mc-label {
+  color: #d1d5db; /* gray-300 */
+}
+
+.mc-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background-color: #50b887;
+}
+
+.mc-icon {
+  color: #9ca3af;
+}
+
+.dark .mc-icon {
+  color: #6b7280;
+}
+
+/* Timeline */
+.mc-timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.mc-timeline-item {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Indicator Area */
+.mc-indicator-wrapper {
+  position: absolute;
+  /* Centered exactly on the 1px left border given the 1.5rem (24px) padding */
+  left: -1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1em;
+  height: 100%;
+}
+
+.mc-indicator-active {
+  width: 0.25rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  z-index: 2;
+}
+
+.mc-indicator-inactive {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  border: 1.5px solid #9ca3af; /* gray-400 */
+  background-color: #faf9f6;
+  z-index: 2;
+}
+
+.dark .mc-indicator-inactive {
+  background-color: #2a2a2a;
+  border-color: #6b7280;
+}
+
+.mc-number {
+  width: 1.5rem; /* Fixed width for alignment */
+  font-family: monospace;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.mc-timeline-item:hover .mc-number {
+  opacity: 1;
+}
+
+.mc-timeline-item.active .mc-number {
+  opacity: 1;
+}
+
+/* Number Colors */
+.mc-num-live {
+  color: #50b887;
+}
+.mc-num-scaled {
+  color: #f97316;
+}
+.mc-num-learning-blue {
+  color: #3b82f6;
+}
+.mc-num-learning-purple {
+  color: #a855f7;
+}
+.mc-num-past {
+  color: #6b7280;
+}
+
+/* Card */
+.mc-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.75rem 0.75rem;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.mc-timeline-item:not(.active):hover .mc-card {
+  background-color: rgba(243, 244, 246, 0.5); /* gray-100/50 */
+}
+
+.dark .mc-timeline-item:not(.active):hover .mc-card {
+  background-color: rgba(63, 63, 70, 0.3); /* zinc-700/30 */
+}
+
+.mc-card-active-live {
+  background-color: rgba(80, 184, 135, 0.05);
+  border-color: rgba(80, 184, 135, 0.2);
+}
+
+.mc-card-active-scaled {
+  background-color: rgba(249, 115, 22, 0.05);
+  border-color: rgba(249, 115, 22, 0.2);
+}
+
+.mc-card-active-learning-blue {
+  background-color: rgba(59, 130, 246, 0.05);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.mc-card-active-learning-purple {
+  background-color: rgba(168, 85, 247, 0.05);
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+/* Active Indicators */
+.mc-indicator-live {
+  background-color: #50b887;
+  box-shadow: 0 0 8px rgba(80, 184, 135, 0.4);
+}
+
+.mc-indicator-scaled {
+  background-color: #f97316;
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
+}
+
+.mc-indicator-learning-blue {
+  background-color: #3b82f6;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+.mc-indicator-learning-purple {
+  background-color: #a855f7;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+.mc-card-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mc-logo-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem; /* p-1.5 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.mc-logo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mc-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mc-text-wrapper h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #111827; /* gray-900 */
+  margin: 0;
+}
+
+.dark .mc-text-wrapper h4 {
+  color: #ffffff;
+}
+
+.mc-text-wrapper p {
+  color: #6b7280; /* gray-500 */
+  font-size: 11px;
+  font-family: monospace;
+  margin: 0.25rem 0 0 0;
+  letter-spacing: -0.025em;
+}
+
+.dark .mc-text-wrapper p {
+  color: #9ca3af; /* gray-400 */
+}
+
+/* Badges */
+.mc-badge {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  padding: 3px 0.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.mc-badge-live {
+  color: #50b887;
+  background-color: rgba(80, 184, 135, 0.1);
+}
+
+.mc-badge-scaled {
+  color: #f97316;
+  background-color: rgba(249, 115, 22, 0.1);
+}
+
+.mc-badge-learning-blue {
+  color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.mc-badge-learning-purple {
+  color: #a855f7;
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.mc-badge-past {
+  color: #6b7280;
+  background-color: rgba(107, 114, 128, 0.1);
+}
+
+/* Divider & Button */
+.mc-divider {
+  height: 1px;
+  border-bottom: 1px dashed #e5e7eb; /* gray-200 */
+  margin: 1rem 0.5rem;
+}
+
+.dark .mc-divider {
+  border-color: #3f3f46; /* zinc-700 */
+}
+
+.mc-archived-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 0;
+  background-color: #f4f1ec;
+  color: #374151; /* gray-700 */
+  border-radius: 12px;
+  transition: colors 0.2s ease;
+  font-weight: 500;
+  font-size: 0.75rem; /* 12px */
+  border: 1px solid rgba(229, 231, 235, 0.6); /* gray-200/60 */
+  cursor: pointer;
+}
+
+.mc-archived-btn:hover {
+  background-color: #efece7;
+}
+
+.dark .mc-archived-btn {
+  background-color: #27272a; /* zinc-800 */
+  color: #d1d5db; /* gray-300 */
+  border-color: #3f3f46; /* zinc-700 */
+}
+
+.dark .mc-archived-btn:hover {
+  background-color: rgba(63, 63, 70, 0.8); /* zinc-700/80 */
+}
+
+.mc-btn-icon {
+  color: #6b7280; /* gray-500 */
+}
+
+.dark .mc-btn-icon {
+  color: #9ca3af; /* gray-400 */
+}
+
+/* Content Area */
+.work-v2-content {
+  display: flex;
+  width: 67%;
+  height: 95%;
+  padding: 0 2rem 0 3rem;
+  overflow-y: auto;
+}
+
+.work-v2-content-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-v2-content-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.dark .work-v2-content-role {
+  color: #f0ecd8;
+}
+
+.work-v2-content-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.work-v2-content-company {
+  color: #50b887;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.work-v2-content-company:hover {
+  color: #3d8c67;
+  text-decoration: underline;
+}
+
+.dark .work-v2-content-company {
+  color: #50b887;
+}
+
+.dark .work-v2-content-company:hover {
+  color: #6ee7b7;
+}
+
+.work-v2-content-years {
+  color: #6b7280;
+  background-color: rgba(107, 114, 128, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.dark .work-v2-content-years {
+  color: #9ca3af;
+  background-color: rgba(156, 163, 175, 0.15);
+}
+
+.work-v2-content-desc {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 2.5rem;
+  white-space: pre-line;
+}
+
+.dark .work-v2-content-desc {
+  color: #d1d5db;
+}
+
+.work-v2-content-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.work-v2-tech-badge {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: #374151;
+  background-color: #f3f4f6;
+  padding: 0.375rem 0.875rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.work-v2-tech-badge:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.dark .work-v2-tech-badge {
+  color: #d1d5db;
+  background-color: #27272a;
+  border-color: #3f3f46;
+}
+
+.dark .work-v2-tech-badge:hover {
+  background-color: #3f3f46;
+}
+
+/* Journey Orbit Section */
+/* ============================================================
+   Journey Orbit — JourneyOrbit.css
+   ============================================================ */
+
+/* Google Fonts import for Playfair Display */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+/* ── Wrapper card ─────────────────────────────────────────── */
+.journey-orbit-wrapper {
+  position: relative;
+  width: calc(100% - 2rem);
+  max-height: 17%;
+  margin: 0 1rem 1rem 1rem;
+  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  background-color: #faf9f6;
+  padding: 0.75rem 1.5rem; /* Reduced top padding to move everything up */
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.dark .journey-orbit-wrapper {
+  background-color: #2a2a2a;
+  border-color: rgba(63, 63, 70, 0.5);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.journey-orbit-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0; /* Zero margin to maximize bottom space */
+}
+
+.journey-orbit-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #374151;
+}
+
+.dark .journey-orbit-label {
+  color: #d1d5db;
+}
+
+.journey-orbit-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #50b887;
+}
+
+/* ── Timeline row ─────────────────────────────────────────── */
+.orbit-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Connectors will stretch to fill space */
+  width: 80%; /* Stretch to 80% of container */
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 0.5rem;
+}
+
+/* ── Dashed connector line between nodes ──────────────────── */
+.orbit-connector {
+  flex: 1;
+  height: 1px;
+  border-top: 1px dashed #d1d5db;
+  /* Removed max-width to allow full stretching across the 80% container */
+}
+
+.dark .orbit-connector {
+  border-top-color: #4b5563;
+}
+
+/* ── Individual timeline node ─────────────────────────────── */
+.orbit-point {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Colored dot ──────────────────────────────────────────── */
+.orbit-dot {
+  width: 12px; /* Scaled down dot */
+  height: 12px;
+  border-radius: 9999px;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+/* Glow shadows */
+.shadow-green {
+  box-shadow: 0 0 10px rgba(80, 184, 135, 0.45);
+}
+.shadow-orange {
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.45);
+}
+.shadow-blue {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.45);
+}
+.shadow-purple {
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
+}
+
+/* ── Centre orbital SVG container ────────────────────────── */
+.orbit-center-point {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  flex-shrink: 0;
+  /* Removed scale down to make the circle bigger */
+}
+
+.center-svg {
+  position: absolute;
+  top: -10px;
+  left: -20px;
+  color: #d1d5db;
+  z-index: 1;
+
+  --orbit-bg: #faf9f6;
+  --orbit-inner-bg: #ffffff;
+}
+
+.dark .center-svg {
+  color: #4b5563;
+  --orbit-bg: #2a2a2a;
+  --orbit-inner-bg: #1f1f1f;
+}
+
+@keyframes orbit-revolve {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.revolving-dots {
+  transform-origin: 80px 40px;
+  animation: orbit-revolve 12s linear infinite;
+}
+
+/* ── Rocket icon centred over SVG ─────────────────────────── */
+.rocket-icon-abs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .rocket-icon-abs {
+  color: #e5e7eb;
+}
+
+/* ── Flag / "Next Mission" dot ───────────────────────────── */
+.dot-flag {
+  background-color: #ffffff;
+  border: 1px dashed #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* Made slightly bigger than other dots */
+  height: 24px;
+}
+
+.dark .dot-flag {
+  background-color: #1f1f1f;
+  border-color: #6b7280;
+}
+
+.flag-icon {
+  color: #6b7280;
+  width: 12px; /* Increased icon size */
+  height: 12px;
+}
+
+.dark .flag-icon {
+  color: #9ca3af;
+}
+
+/* ── Info card (floats below dot) ────────────────────────── */
+.orbit-info {
+  position: absolute;
+  top: 50%; /* align to the vertical center of the timeline */
+  margin-top: 22px; /* push down enough to clear the 24px flag dot perfectly */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 160px;
+  gap: 2px; /* tiny gap between text elements */
+  pointer-events: none;
+}
+
+.orbit-date {
+  font-family: monospace;
+  font-size: 9px; /* increased for readability */
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.dark .orbit-date {
+  color: #9ca3af;
+}
+
+.orbit-company {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px; /* larger company name */
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.dark .orbit-company {
+  color: #f3f4f6;
+}
+
+.orbit-desc {
+  display: none;
+  font-family: monospace;
+  font-size: 9px; /* increased for readability */
+  color: #4b5563;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.dark .orbit-desc {
+  color: #d1d5db;
+}
+
+/* ── Responsive: stack vertically on narrow screens ───────── */
+@media (max-width: 1024px) {
+  .orbit-layout {
+    flex-direction: column;
+    margin-bottom: 2rem;
+    gap: 5rem;
+  }
+
+  .orbit-connector {
+    display: none;
+  }
+
+  /* Rotate the SVG 90° so branching paths go up/down */
+  .orbit-center-point {
+    transform: rotate(90deg);
+  }
+
+  /* Keep the rocket pointing up */
+  .orbit-center-point .rocket-icon-abs {
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+
+  /* Info card sits to the right of the dot */
+  .orbit-info {
+    top: 50%;
+    left: 32px;
+    transform: translateY(-50%);
+    text-align: left;
+    align-items: flex-start;
+    white-space: nowrap;
+  }
+}
