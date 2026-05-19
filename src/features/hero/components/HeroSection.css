@@ -1,9 +1,11 @@
 .hero-section-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 100%;
   width: 100%;
-  margin-bottom: 10rem;
+  padding-top: 9vh;
+  box-sizing: border-box;
 }
 
 .hero-section {
@@ -12,7 +14,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 80vh;
+  flex: 1;
+  min-height: 0;
 }
 
 .headline {
@@ -246,13 +249,13 @@
 /* ── image-container: now used as the lanyard host ── */
 .image-container {
   position: absolute;
-  top: 0;
-  left: 45%;
-  width: 25%;
-  height: 75vh;
+  top: -5%;
+  left: 5%;
+  width: 100%;
+  height: 100%;
   /* overflow must be visible so the swinging card isn't clipped */
   overflow: visible;
-  z-index: 9;
+  z-index: -1;
 }
 
 /* ── old image-card styles kept but unused (image replaced by Lanyard) ── */
@@ -290,7 +293,6 @@
 }
 
 .stats-box:hover {
-  transform: translateY(-0.5rem);
   border-color: var(--primary-color, #ff4d4d);
   cursor: pointer;
 }
@@ -422,7 +424,7 @@
   color: white;
   border-style: solid;
   border-color: transparent;
-  transform: scale(1.05);
+  transform: scale(1.05); 
 }
 
 /* Impact Snapshot Grid */
@@ -481,7 +483,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 2.5rem;
-  border-top: 1px solid var(--theme-light-grid);
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease;
@@ -489,7 +490,7 @@
 }
 
 .hero-section-scroll-container.dark {
-  border-top-color: var(--theme-dark-grid);
+  border-top: 1px solid var(--theme-light-grid);
 }
 
 .scroll-indicator-left {

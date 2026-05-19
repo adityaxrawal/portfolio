@@ -883,7 +883,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
           color={MATHCO_PURPLE_DARK}
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
-          lineWidth={3.5}
+          lineWidth={1}
         />
       </mesh>
     </>

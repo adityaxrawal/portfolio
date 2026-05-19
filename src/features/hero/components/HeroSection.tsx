@@ -5,6 +5,7 @@ import { LuAsterisk } from 'react-icons/lu';
 import ContactButton from '@/components/ui/ContactButton/';
 import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
 import { GitHubStatsResponse } from '@/types/github';
+import type { SlideProps } from '@/types/slides';
 
 import './HeroSection.css';
 
@@ -22,7 +23,7 @@ const TECH_STACK_TAGS = [
   'Analytics Systems',
 ];
 
-const HeroSection = () => {
+const HeroSection = ({ isActive: _isActive, goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
 
   // Track desktop vs mobile to show/hide lanyard
@@ -61,7 +62,10 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero-section-wrapper">
+    <section
+      className="hero-section-wrapper"
+      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+    >
       <div className={`hero-section ${isDarkTheme ? 'dark' : ''}`}>
         <div className="headline">
           {/* --- ORIGINAL TEXT CONTENT BELOW --- */}
@@ -215,9 +219,15 @@ const HeroSection = () => {
           </div>
         </section>
       </div>
-      <div
-        className={`hero-section-scroll-container ${isDarkTheme ? 'dark' : ''}`}
-      >
+        <div
+          className={`hero-section-scroll-container ${isDarkTheme ? 'dark' : ''}`}
+          onClick={() => goToSlide?.(1)}
+          role="button"
+          tabIndex={0}
+          aria-label="Scroll to next section"
+          onKeyDown={(e) => e.key === 'Enter' && goToSlide?.(1)}
+          style={{ cursor: 'pointer' }}
+        >
         <div className="scroll-indicator-left">
           <div className="scroll-arrow-circle">
             <HiArrowDown className="scroll-arrow-icon" />
