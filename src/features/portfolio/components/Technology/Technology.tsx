@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import './Technology.css';
 import { TechnicalSkills } from '../../data/technicalSkills';
@@ -7,33 +7,26 @@ import TechnologyBox from './TechnologyBox';
 
 import { useSharedState } from '@/app/providers/AppContext';
 import { darkModeColorList, lightModeColorList } from '@/config';
+import type { SlideProps } from '@/types/slides';
 
-const Technology = () => {
+const Technology = ({ isActive = false, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
   const horizontalScroll = useRef<HTMLDivElement>(null);
   const techSection = useRef<HTMLDivElement>(null);
   const [isPinned, setIsPinned] = useState(false);
 
-  const handleScroll = useCallback(() => {
-    if (!techSection.current) return;
-
-    const sectionTop = techSection.current.getBoundingClientRect().top;
-
-    if (sectionTop < 0) {
-      setIsPinned(true);
-    } else {
-      setIsPinned(false);
-    }
-  }, [techSection]);
-
+  // In snap layout the window never scrolls — use isActive to drive the spin animation
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    setIsPinned(isActive);
+  }, [isActive]);
 
   return (
-    <div ref={techSection} className="section-technology">
-      <div className="technology-container">
+    <div
+      ref={techSection}
+      className="section-technology"
+      style={{ width: '100%', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+    >
+      <div className="technology-container" style={{ flex: 1, overflowY: 'auto' }}>
         <div
           className={`tech-heading ${isPinned ? 'sticky' : 'relative'}`}
           style={{

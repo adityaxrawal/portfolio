@@ -6,6 +6,7 @@ import { RoughNotation } from 'react-rough-notation';
 import GithubMetricsSection from '../GithubMetrics/GithubMetricsSection';
 
 import { useSharedState } from '@/app/providers/AppContext';
+import type { SlideProps } from '@/types/slides';
 
 // Removed old GitStats implementation in favor of live GithubMetricsSection
 
@@ -52,11 +53,12 @@ const DetailCard = React.memo(
 
 DetailCard.displayName = 'DetailCard';
 
-const Portfolio = () => {
+const Portfolio = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
 
   return (
-    <section className="portfolio-deep-dive">
+    <div style={{ width: '100%', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', paddingTop: '9vh', boxSizing: 'border-box' }}>
+      <section className="portfolio-deep-dive" style={{ flex: 1, overflowY: 'auto' }}>
       <span className="section-heading">
         <RoughNotation
           type="underline"
@@ -150,7 +152,8 @@ const Portfolio = () => {
 
         <GithubMetricsSection />
       </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
