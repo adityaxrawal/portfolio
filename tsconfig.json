@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "allowJs": true,
 
     /* Linting */
     "strict": true,
@@ -24,5 +25,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "vite.config.mjs"]
+  "include": ["src", "vite.config.mjs"],
+  "exclude": ["node_modules", "dist"]
 }
