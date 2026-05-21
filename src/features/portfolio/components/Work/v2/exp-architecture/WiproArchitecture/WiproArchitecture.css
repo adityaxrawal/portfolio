@@ -1,0 +1,453 @@
+.wipro-architecture,
+.wipro-architecture * {
+  box-sizing: border-box;
+}
+
+.wipro-architecture {
+  --wipro-text: #334155;
+  --wipro-muted: #64748b;
+  --wipro-arrow: #6b7f96;
+  --wipro-blue: #3b82f6;
+  --wipro-card-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --wipro-soft-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.95), transparent 52%),
+    #fbfaf8;
+  border-radius: 14px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.wipro-architecture__viewport {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wipro-architecture__board {
+  position: relative;
+  width: 1132px;
+  height: 486px;
+  flex: 0 0 auto;
+  transform: scale(var(--wipro-arch-scale, 1));
+  transform-origin: center center;
+  overflow: visible;
+  color: var(--wipro-text);
+}
+
+.wipro-arch-top-flow {
+  position: absolute;
+  top: 26px;
+  left: 35px;
+  width: 1064px;
+  height: 278px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.wipro-arch-section {
+  width: 126px;
+  min-width: 126px;
+  height: 278px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.94);
+  border: 2px solid var(--section-border);
+  border-radius: 8px;
+  box-shadow: var(--wipro-card-shadow);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.wipro-arch-section:hover,
+.wipro-arch-worker-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.11);
+}
+
+.wipro-arch-section--wide {
+  width: 196px;
+  min-width: 196px;
+}
+
+.wipro-arch-section--client {
+  --section-border: #cfe8d6;
+  --section-accent: #45a266;
+  --section-header-bg: #eef8f1;
+}
+
+.wipro-arch-section--frontend {
+  --section-border: #cfe0ff;
+  --section-accent: #3b82f6;
+  --section-header-bg: #f1f6ff;
+}
+
+.wipro-arch-section--gateway {
+  --section-border: #e4d6ff;
+  --section-accent: #7c3fbc;
+  --section-header-bg: #f7f1ff;
+}
+
+.wipro-arch-section--backend {
+  --section-border: #ffdcbf;
+  --section-accent: #f47c30;
+  --section-header-bg: #fff5ec;
+}
+
+.wipro-arch-section--data {
+  --section-border: #cdeff0;
+  --section-accent: #439ea4;
+  --section-header-bg: #effafb;
+}
+
+.wipro-arch-section--external {
+  --section-border: #ffd8d8;
+  --section-accent: #d46666;
+  --section-header-bg: #fff3f3;
+}
+
+.wipro-arch-section__header {
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: var(--section-header-bg);
+  border-bottom: 1px solid var(--section-border);
+  padding: 0 9px;
+}
+
+.wipro-arch-section__header h3 {
+  margin: 0;
+  color: var(--section-accent);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.wipro-arch-section__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 10px 13px;
+  overflow: hidden;
+}
+
+.wipro-arch-logo {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--section-accent);
+}
+
+.wipro-arch-logo svg {
+  width: 38px;
+  height: 38px;
+}
+
+.wipro-arch-logo--frontend svg {
+  width: 42px;
+  height: 42px;
+  color: #dd1b16;
+}
+
+.wipro-arch-logo--gateway svg {
+  color: #009639;
+}
+
+.wipro-arch-logo--backend svg {
+  width: 92px;
+  height: 42px;
+  color: #5fa04e;
+}
+
+.wipro-arch-logo--data svg {
+  width: 96px;
+  height: 42px;
+  color: #00a35c;
+}
+
+.wipro-arch-items {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.wipro-arch-item {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 10px;
+  color: var(--wipro-text);
+  background: #ffffff;
+  border: 1px solid rgba(203, 213, 225, 0.72);
+  border-radius: 7px;
+  box-shadow: var(--wipro-soft-shadow);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+}
+
+.wipro-arch-items--icon {
+  justify-content: space-around;
+  gap: 0;
+}
+
+.wipro-arch-items--icon .wipro-arch-item {
+  min-height: 42px;
+  justify-content: flex-start;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 0 6px;
+  text-align: left;
+}
+
+.wipro-arch-item__icon {
+  width: 21px;
+  height: 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #4c6278;
+}
+
+.wipro-arch-item__icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.wipro-arch-flow-arrow {
+  position: relative;
+  width: 31px;
+  min-width: 31px;
+  height: 100%;
+  flex: 0 0 31px;
+}
+
+.wipro-arch-flow-arrow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 7px;
+  border-top: 2px solid var(--wipro-arrow);
+  transform: translateY(-50%);
+}
+
+.wipro-arch-flow-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 9px solid var(--wipro-arrow);
+  transform: translateY(-50%);
+}
+
+.wipro-arch-flow-arrow--dashed::before {
+  border-top-style: dashed;
+  border-top-color: #c9d2dc;
+}
+
+.wipro-arch-flow-arrow--dashed::after {
+  border-left-color: #c9d2dc;
+}
+
+.wipro-arch-worker-connector {
+  position: absolute;
+  pointer-events: none;
+  color: #9aa9ba;
+}
+
+.wipro-arch-worker-connector::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid currentColor;
+}
+
+.wipro-arch-worker-connector--coupon {
+  left: 455px;
+  top: 304px;
+  width: 153px;
+  height: 39px;
+}
+
+.wipro-arch-worker-connector--coupon::after {
+  left: -5px;
+  bottom: -8px;
+}
+
+.wipro-arch-worker-connector__segment {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.wipro-arch-worker-connector__segment--source {
+  top: 0;
+  right: 0;
+  height: 20px;
+  border-left: 2px solid currentColor;
+}
+
+.wipro-arch-worker-connector__segment--bridge {
+  top: 19px;
+  left: 0;
+  right: 0;
+  border-top: 2px solid currentColor;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.wipro-arch-worker-connector__segment--target {
+  left: 0;
+  top: 19px;
+  height: 20px;
+  border-left: 2px solid currentColor;
+}
+
+.wipro-arch-worker-connector--order {
+  left: 743px;
+  top: 304px;
+  height: 38px;
+  border-left: 2px solid currentColor;
+}
+
+.wipro-arch-worker-connector--order::after,
+.wipro-arch-worker-connector--data::after {
+  left: -6px;
+  bottom: -8px;
+}
+
+.wipro-arch-worker-connector--data {
+  left: 879px;
+  top: 304px;
+  height: 38px;
+  border-left: 2px dashed #c9d2dc;
+  color: #c9d2dc;
+}
+
+.wipro-arch-workers {
+  position: absolute;
+  left: 301px;
+  top: 348px;
+  width: 595px;
+  min-height: 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 9px 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.78);
+  border: 2px dotted #b9cce6;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(220, 232, 255, 0.28);
+}
+
+.wipro-arch-workers h3 {
+  margin: 0;
+  color: var(--wipro-blue);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.wipro-arch-workers__grid {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wipro-arch-worker-card {
+  width: 180px;
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 13px;
+  padding: 10px 12px;
+  color: var(--wipro-text);
+  background: #ffffff;
+  border: 1px solid #dce8ff;
+  border-radius: 6px;
+  box-shadow: var(--wipro-soft-shadow);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.wipro-arch-worker-card__icon {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--wipro-blue);
+}
+
+.wipro-arch-worker-card__icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.dark .wipro-architecture {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08), transparent 52%),
+    #fbfaf8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wipro-arch-section,
+  .wipro-arch-worker-card {
+    transition: none;
+  }
+
+  .wipro-arch-section:hover,
+  .wipro-arch-worker-card:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,847 @@
+/* ==========================================================================
+   SystemArchitecture.css - High Fidelity Architecture Diagram Styling
+   ========================================================================== */
+
+/* ── Typography & Variables ─────────────────────────────────────────────── */
+:root {
+  --sa-bg-page: #f7f8fa;
+  --sa-text-primary: #1f2937;
+  --sa-text-secondary: #6b7280;
+
+  --sa-font: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Color Themes */
+  --sa-gray-soft: #f9fafb;
+  --sa-gray-border: #e5e7eb;
+  --sa-gray-text: #374151;
+
+  --sa-green-soft: #edfdf3;
+  --sa-green-border: #bbf7d0;
+  --sa-green-accent: #22c55e;
+  --sa-green-text: #15803d;
+
+  --sa-blue-soft: #eff6ff;
+  --sa-blue-border: #bfdbfe;
+  --sa-blue-accent: #3b82f6;
+  --sa-blue-text: #1d4ed8;
+
+  --sa-purple-soft: #f5f3ff;
+  --sa-purple-border: #ddd6fe;
+  --sa-purple-accent: #8b5cf6;
+  --sa-purple-text: #6d28d9;
+
+  --sa-orange-soft: #fff7ed;
+  --sa-orange-border: #fed7aa;
+  --sa-orange-accent: #f97316;
+  --sa-orange-text: #c2410c;
+}
+
+.sa-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--sa-bg-page);
+  font-family: var(--sa-font);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+.sa-container {
+  width: 100%;
+  max-width: 1420px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.sa-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.sa-header__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sa-header__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--sa-green-accent);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+}
+
+.sa-header__title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--sa-text-primary);
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sa-header__subtitle {
+  font-size: 15px;
+  color: var(--sa-text-secondary);
+  margin: 0;
+}
+
+/* ── Diagram Board ──────────────────────────────────────────────────────── */
+.sa-diagram {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  padding: 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sa-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  gap: 0;
+}
+
+.sa-grid-col {
+  display: flex;
+  flex-direction: column;
+  width: 195px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.sa-grid-col--frontend,
+.sa-grid-col--pipelines {
+  justify-content: space-between;
+}
+
+.sa-grid-col--api {
+  width: 235px;
+}
+
+/* Connectors spacing */
+.sa-connector-col {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  padding: 0 4px;
+}
+
+/* ── Section Columns ────────────────────────────────────────────────────── */
+.arch-section {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.arch-section__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.arch-section__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.arch-section__title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Section variants styling */
+.arch-section--gray {
+  background-color: var(--sa-gray-soft);
+  border: 1px solid var(--sa-gray-border);
+}
+.arch-section--gray .arch-section__title { color: var(--sa-gray-text); }
+
+.arch-section--green {
+  background-color: var(--sa-green-soft);
+  border: 1px solid var(--sa-green-border);
+}
+.arch-section--green .arch-section__title { color: var(--sa-green-text); }
+
+.arch-section--blue {
+  background-color: var(--sa-blue-soft);
+  border: 1px solid var(--sa-blue-border);
+}
+.arch-section--blue .arch-section__title { color: var(--sa-blue-text); }
+
+.arch-section--purple {
+  background-color: var(--sa-purple-soft);
+  border: 1px solid var(--sa-purple-border);
+}
+.arch-section--purple .arch-section__title { color: var(--sa-purple-text); }
+
+.arch-section--orange {
+  background-color: var(--sa-orange-soft);
+  border: 1px solid var(--sa-orange-border);
+}
+.arch-section--orange .arch-section__title { color: var(--sa-orange-text); }
+
+.sa-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sa-cards-list--databases {
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.sa-cards-list--api-top {
+  gap: 10px;
+}
+
+.sa-api-divider {
+  height: 1px;
+  border-top: 1px dashed var(--sa-blue-border);
+  margin: 16px 0;
+}
+
+/* Microservices Subsection */
+.sa-microservices-sub {
+  border: 1px dashed var(--sa-blue-border);
+  background-color: rgba(239, 246, 255, 0.4);
+  border-radius: 12px;
+  padding: 12px 10px 10px 10px;
+  position: relative;
+}
+
+.sa-microservices-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sa-blue-text);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+/* Under-column CDN & Event Stream cards */
+.sa-cdn-card,
+.sa-event-stream-card {
+  margin-top: 0;
+  width: 100%;
+}
+
+.sa-event-stream-card {
+  border: 1px solid var(--sa-orange-border) !important;
+  background-color: var(--sa-orange-soft) !important;
+}
+
+/* ── Card Styling ───────────────────────────────────────────────────────── */
+.arch-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid var(--sa-gray-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  gap: 10px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.arch-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.arch-card__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Icon backgrounds based on colors */
+.arch-card__icon-wrapper--gray {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: var(--sa-text-secondary);
+}
+.arch-card__icon-wrapper--green {
+  background-color: rgba(34, 197, 94, 0.08);
+  color: var(--sa-green-text);
+}
+.arch-card__icon-wrapper--blue {
+  background-color: rgba(59, 130, 246, 0.08);
+  color: var(--sa-blue-text);
+}
+.arch-card__icon-wrapper--orange {
+  background-color: rgba(249, 115, 22, 0.08);
+  color: var(--sa-orange-text);
+}
+.arch-card__icon-wrapper--purple {
+  background-color: rgba(139, 92, 246, 0.08);
+  color: var(--sa-purple-text);
+}
+
+.arch-card__content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.arch-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sa-text-primary);
+}
+
+.arch-card__subtitle {
+  font-size: 11px;
+  color: var(--sa-text-secondary);
+  margin-top: 1px;
+}
+
+/* Card variants */
+.arch-card--double-line {
+  min-height: 48px;
+  padding: 8px 12px;
+}
+
+.arch-card--double-line .arch-card__title {
+  font-weight: 700;
+}
+
+.arch-card--compact {
+  padding: 8px 12px;
+  border-radius: 10px;
+  min-height: 38px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+}
+
+.arch-card--compact .arch-card__title {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* Database Row style (transparent, borderless list items) */
+.arch-card--database {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 2px 0;
+  min-height: auto;
+  gap: 12px;
+}
+
+.arch-card--database:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.arch-card--database .arch-card__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sa-text-primary);
+}
+
+.arch-card--database .arch-card__subtitle {
+  font-size: 11.5px;
+  color: var(--sa-text-secondary);
+}
+
+/* ── Pure CSS Cylinder ──────────────────────────────────────────────────── */
+.css-cylinder {
+  position: relative;
+  width: 24px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.css-cylinder__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.css-cylinder__body {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  border-radius: 0 0 12px 12px / 0 0 4px 4px;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.css-cylinder__line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  border-radius: 50%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+.css-cylinder__line--1 {
+  top: 10px;
+}
+
+.css-cylinder__line--2 {
+  top: 18px;
+}
+
+/* Cylinder Colors */
+.css-cylinder--purple .css-cylinder__top {
+  background-color: #ddd6fe;
+  border: 1px solid var(--sa-purple-accent);
+}
+.css-cylinder--purple .css-cylinder__body {
+  background: linear-gradient(180deg, #f5f3ff 0%, #c084fc 100%);
+  border: 1px solid var(--sa-purple-accent);
+  border-top: none;
+}
+
+.css-cylinder--blue .css-cylinder__top {
+  background-color: #bfdbfe;
+  border: 1px solid var(--sa-blue-accent);
+}
+.css-cylinder--blue .css-cylinder__body {
+  background: linear-gradient(180deg, #eff6ff 0%, #60a5fa 100%);
+  border: 1px solid var(--sa-blue-accent);
+  border-top: none;
+}
+
+/* ── Pure CSS Arrows ────────────────────────────────────────────────────── */
+.arch-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.arch-arrow__line {
+  position: relative;
+  background-color: #9ca3af;
+}
+
+/* Horizontal Connector */
+.sa-connector-col .arch-arrow {
+  width: 100%;
+}
+
+.arch-arrow--horizontal .sa-connector-col {
+  width: 100%;
+}
+
+.arch-arrow--horizontal .arch-arrow__line {
+  height: 2px;
+  width: 100%;
+}
+
+/* Vertical / Up / Down Connectors */
+.arch-arrow--up,
+.arch-arrow--down {
+  width: 100%;
+  height: 24px;
+}
+
+.arch-arrow--up .arch-arrow__line,
+.arch-arrow--down .arch-arrow__line {
+  width: 2px;
+  height: 100%;
+}
+
+/* Arrowheads */
+.arch-arrow__head {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-style: solid;
+  border-color: #9ca3af;
+  box-sizing: border-box;
+}
+
+.arch-arrow__head--right {
+  right: 0;
+  top: 50%;
+  border-width: 2px 2px 0 0;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.arch-arrow__head--left {
+  left: 0;
+  top: 50%;
+  border-width: 0 0 2px 2px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.arch-arrow__head--top {
+  top: 0;
+  left: 50%;
+  border-width: 2px 0 0 2px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.arch-arrow__head--bottom {
+  bottom: 0;
+  left: 50%;
+  border-width: 0 2px 2px 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Dashed vertical arrow to DevOps section */
+.sa-event-stream-devops-arrow {
+  height: 32px !important;
+}
+
+.sa-event-stream-devops-arrow .arch-arrow__line {
+  background: transparent;
+  border-left: 2px dashed #9ca3af;
+}
+
+/* ── DevOps & Observability Footer ──────────────────────────────────────── */
+.arch-footer {
+  background-color: #f8fafc;
+  border: 1px solid var(--sa-gray-border);
+  border-radius: 20px;
+  padding: 16px 24px 20px 24px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.arch-footer__title {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sa-text-secondary);
+  border-radius: 4px;
+}
+
+.arch-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.arch-footer__card {
+  width: 100%;
+}
+
+/* ── Dashed Bus Line Overlay ────────────────────────────────────────────── */
+.sa-dashed-bus-container {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  right: 32px;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sa-dashed-bus-horizontal {
+  position: absolute;
+  bottom: 122px; /* centered horizontally between columns and footer */
+  left: 10%;
+  right: 30%;
+  height: 2px;
+  border-top: 2px dashed #9ca3af;
+}
+
+.sa-dashed-bus-vertical {
+  position: absolute;
+  width: 2px;
+  border-left: 2px dashed #9ca3af;
+  bottom: 122px;
+}
+
+.sa-dashed-bus-vertical--cdn {
+  left: 23%;
+  height: 100px; /* reaches CDN bottom */
+}
+
+.sa-dashed-bus-vertical--api {
+  left: 49%;
+  height: 48px; /* reaches API bottom */
+}
+
+.sa-dashed-bus-vertical--data {
+  left: 71.5%;
+  height: 48px; /* reaches Data Layer bottom */
+}
+
+.sa-dashed-bus-arrow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-style: solid;
+  border-color: #9ca3af;
+  border-width: 2px 0 0 2px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  box-sizing: border-box;
+}
+
+/* ── Responsiveness ─────────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .sa-diagram {
+    overflow-x: auto;
+    padding: 24px;
+    align-items: flex-start;
+  }
+
+  .sa-grid {
+    gap: 0;
+    width: 1050px; /* Keep desktop structure scrollable */
+  }
+
+  .sa-dashed-bus-container {
+    display: none; /* Simplify overlapping connectors in horizontal scrolling */
+  }
+
+  .arch-footer {
+    width: 1050px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sa-page-wrapper {
+    padding: 16px;
+  }
+  
+  .sa-diagram {
+    padding: 16px;
+    overflow-x: unset;
+  }
+
+  .sa-grid {
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .sa-grid-col {
+    width: 100% !important;
+  }
+
+  .sa-connector-col {
+    height: 32px;
+    width: 100%;
+  }
+
+  .sa-connector-col .arch-arrow {
+    width: 32px;
+    height: 100%;
+    transform: rotate(90deg);
+  }
+
+  .sa-grid-col--frontend,
+  .sa-grid-col--pipelines {
+    gap: 16px;
+  }
+
+  .sa-cdn-card,
+  .sa-event-stream-card {
+    margin-top: 0;
+  }
+
+  .arch-footer {
+    width: 100%;
+    padding: 24px 16px 16px 16px;
+  }
+
+  .arch-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sa-event-stream-devops-arrow {
+    display: none;
+  }
+}
+
+/* ── Embedded Mode (inside JobContent panel) ────────────────────────────── */
+.sa-embedded {
+  border-radius: 12px;
+  padding: 10px 12px;
+  gap: 16px;
+  box-shadow: none;
+  border: 1px solid var(--sa-gray-border);
+  overflow: hidden;
+  font-family: var(--sa-font);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sa-embedded .sa-grid {
+  min-width: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.sa-embedded .sa-grid-col {
+  width: 17%;
+  flex-shrink: 1;
+}
+
+.sa-embedded .sa-grid-col--api {
+  width: 22%;
+  flex-shrink: 1;
+}
+
+.sa-embedded .sa-connector-col {
+  width: 3%;
+  min-width: 12px;
+  padding: 0;
+}
+
+.sa-embedded .arch-section {
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.sa-embedded .arch-section__header {
+  margin-bottom: 8px;
+}
+
+.sa-embedded .arch-section__title {
+  font-size: 10px;
+}
+
+.sa-embedded .arch-card {
+  padding: 4px 6px;
+  border-radius: 6px;
+  min-height: 26px;
+  gap: 6px;
+}
+
+.sa-embedded .arch-card__icon-wrapper {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.sa-embedded .arch-card__icon-wrapper svg {
+  width: 10px;
+  height: 10px;
+}
+
+.sa-embedded .arch-card__title {
+  font-size: 9px;
+  line-height: 1.1;
+}
+
+.sa-embedded .arch-card__subtitle {
+  font-size: 7.5px;
+  line-height: 1.1;
+}
+
+.sa-embedded .sa-cards-list {
+  gap: 4px;
+}
+
+.sa-embedded .sa-cards-list--databases {
+  gap: 6px;
+}
+
+.sa-embedded .sa-microservices-sub {
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.sa-embedded .sa-microservices-header {
+  font-size: 8px;
+  margin-bottom: 4px;
+}
+
+.sa-embedded .arch-footer {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.sa-embedded .arch-footer__grid {
+  gap: 4px;
+}
+
+.sa-embedded .arch-footer__title {
+  font-size: 9px;
+  left: 12px;
+}
+
+.sa-embedded .css-cylinder {
+  width: 14px;
+  height: 18px;
+}
+
+.sa-embedded .css-cylinder__top {
+  height: 4px;
+}
+
+.sa-embedded .css-cylinder__body {
+  top: 2px;
+  height: 16px;
+}
+
+.sa-embedded .css-cylinder__line--1 {
+  top: 6px;
+  height: 4px;
+}
+
+.sa-embedded .css-cylinder__line--2 {
+  top: 10px;
+  height: 4px;
+}
+
+.sa-embedded .arch-arrow--up,
+.sa-embedded .arch-arrow--down {
+  height: 12px;
+}
+
+.sa-embedded .sa-api-divider {
+  margin: 6px 0;
+}
+
+.sa-embedded .sa-event-stream-devops-arrow {
+  height: 16px !important;
+}

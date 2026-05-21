@@ -1,0 +1,402 @@
+/* ── BASE VARIABLES ─────────────────────────────────────────────── */
+:root {
+  --ls-bg-page: #f7f7f8;
+  --ls-bg-card: #ffffff;
+  --ls-bg-section: #fafafa;
+  --ls-bg-blue: #f3f8ff;
+  --ls-bg-orange: #fffaf5;
+  --ls-border: #e5e7eb;
+  --ls-border-dashed: #d1d5db;
+  --ls-text-primary: #1f2937;
+  --ls-text-secondary: #6b7280;
+  --ls-orange: #f97316;
+  --ls-purple: #8b5cf6;
+  --ls-blue: #3b82f6;
+  --ls-green: #84cc16;
+  --ls-pink: #ec4899;
+  --ls-gray-icon: #9ca3af;
+  --ls-gray-arrow: #9ca3af;
+}
+
+/* ── WRAPPERS ─────────────────────────────────────────────────── */
+.ls-diagram-wrapper {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ls-diagram-wrapper * {
+  box-sizing: border-box;
+}
+
+.ls-diagram-wrapper--embedded {
+  padding: 0;
+  max-width: 100%;
+}
+
+.ls-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.ls-header-dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--ls-orange);
+  border-radius: 50%;
+}
+
+.ls-header-title {
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--ls-text-primary);
+  margin: 0;
+}
+
+/* ── CONTAINER QUERY MAGIC ────────────────────────────────────── */
+/* 
+   We use container-type: inline-size to make ALL internal sizing
+   relative to this container's width using `cqi` units.
+   This guarantees perfect proportional scaling and zero overflow!
+*/
+.ls-diagram-container {
+  container-type: inline-size;
+  container-name: lsdiagram;
+  width: 100%;
+  background-color: white;
+  border-radius: 2cqi;
+  padding: 1.5cqi;
+  position: relative;
+  /* Box shadow removed for embedded, kept for standalone via wrapper if needed */
+}
+
+/* ── MAIN GRID ────────────────────────────────────────────────── */
+.ls-diagram-grid {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5cqi;
+}
+
+/* COLUMN SIZING (Total ~ 92cqi + gaps + padding = 100cqi) */
+.ls-col {
+  display: flex;
+  flex-direction: column;
+}
+.ls-col--clients { width: 12.5cqi; }
+.ls-col--frontend { width: 13.5cqi; }
+.ls-col--edge { width: 12.5cqi; }
+.ls-col--backend { width: 29.5cqi; }
+.ls-col--data { width: 13.5cqi; }
+.ls-col--integrations { width: 12.5cqi; }
+
+.ls-col-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1cqi;
+  height: 100%;
+}
+
+/* ── SECTION STYLES ───────────────────────────────────────────── */
+.ls-section {
+  background-color: var(--ls-bg-section);
+  border: 0.1cqi solid var(--ls-border);
+  border-radius: 1.5cqi;
+  padding: 1.2cqi 1cqi;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ls-section--large {
+  padding: 1.2cqi 1.2cqi;
+}
+
+.ls-section--blue-bg {
+  background-color: var(--ls-bg-blue);
+  border-color: #e0e7ff;
+}
+
+.ls-section--orange-bg {
+  background-color: var(--ls-bg-orange);
+  border-color: #ffedd5;
+}
+
+.ls-section__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.1cqi;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ls-text-primary);
+  margin-bottom: 1.2cqi;
+}
+
+/* ── CARD STYLES ──────────────────────────────────────────────── */
+.ls-card {
+  background-color: var(--ls-bg-card);
+  border: 0.1cqi solid var(--ls-border);
+  border-radius: 1cqi;
+  padding: 1cqi;
+  display: flex;
+  align-items: center;
+  gap: 0.8cqi;
+  flex: 1; /* evenly space vertically */
+  min-height: 4.5cqi;
+  box-shadow: 0 0.2cqi 0.4cqi rgba(0,0,0,0.02);
+}
+
+.ls-card--centered {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5cqi;
+}
+
+.ls-card--tall {
+  flex: 2; /* React Micro Frontends takes up more vertical space */
+}
+
+.ls-card__icon--centered {
+  margin-bottom: 0.5cqi;
+}
+
+.ls-card__text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ls-card__title {
+  font-size: 1.05cqi;
+  font-weight: 600;
+  color: var(--ls-text-primary);
+  line-height: 1.2;
+}
+
+.ls-card__subtitle {
+  font-size: 0.9cqi;
+  color: var(--ls-text-secondary);
+  line-height: 1.2;
+  margin-top: 0.1cqi;
+}
+
+/* ── ICONS ────────────────────────────────────────────────────── */
+.ls-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2cqi;
+  height: 2.2cqi;
+  flex-shrink: 0;
+}
+
+.ls-icon {
+  width: 1.6cqi;
+  height: 1.6cqi;
+  stroke-width: 2;
+}
+
+/* Icon Colors */
+.ls-icon-wrapper--gray { color: var(--ls-gray-icon); }
+.ls-icon-wrapper--orange { color: var(--ls-orange); }
+.ls-icon-wrapper--purple { color: var(--ls-purple); }
+.ls-icon-wrapper--blue { color: var(--ls-blue); }
+.ls-icon-wrapper--green { color: var(--ls-green); }
+.ls-icon-wrapper--pink { color: var(--ls-pink); }
+
+/* ── SERVERLESS BACKEND GRID ──────────────────────────────────── */
+.ls-backend-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1cqi;
+  height: 100%;
+}
+.ls-backend-grid .ls-card {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1.2cqi 1cqi;
+}
+.ls-backend-grid .ls-icon-wrapper {
+  margin-bottom: 0.8cqi;
+  width: 2.8cqi;
+  height: 2.8cqi;
+}
+.ls-backend-grid .ls-icon {
+  width: 2cqi;
+  height: 2cqi;
+  stroke-width: 1.5;
+}
+
+/* ── EVENTS & QUEUES (BOTTOM FLOATING SECTION) ────────────────── */
+.ls-queue-wrapper {
+  margin-top: 3cqi;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1cqi;
+}
+
+.ls-queue-section {
+  border: 0.15cqi dashed var(--ls-border-dashed);
+  background-color: var(--ls-bg-section);
+  border-radius: 1.5cqi;
+  padding: 1.5cqi 2.5cqi;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60cqi;
+  position: relative;
+}
+
+.ls-queue-section__title {
+  text-transform: uppercase;
+  font-size: 1.1cqi;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--ls-text-primary);
+  margin-bottom: 1.5cqi;
+}
+
+.ls-queue-section__content {
+  display: flex;
+  gap: 1.5cqi;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.ls-queue-section__content .ls-card {
+  flex-direction: row;
+  min-height: 4cqi;
+  padding: 0.8cqi 1.2cqi;
+}
+
+/* ── ARROWS & CONNECTORS (PURE CSS) ───────────────────────────── */
+.ls-flow-arrow {
+  width: 1.5cqi;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Align to center of the row */
+  align-self: center; 
+}
+
+.ls-arrow {
+  position: relative;
+  display: flex;
+}
+
+.ls-arrow__line {
+  background-color: var(--ls-gray-arrow);
+  position: relative;
+}
+
+.ls-arrow--dashed .ls-arrow__line {
+  background-color: transparent;
+}
+
+/* Horizontal Line */
+.ls-arrow--horizontal .ls-arrow__line {
+  width: 100%;
+  height: 0.15cqi;
+}
+
+/* Vertical Line */
+.ls-arrow--up .ls-arrow__line,
+.ls-arrow--down .ls-arrow__line,
+.ls-arrow--both .ls-arrow__line {
+  width: 0.15cqi;
+  height: 100%;
+}
+
+/* Dashed lines use a background gradient instead of border to ensure perfect arrowhead centering */
+.ls-arrow--dashed.ls-arrow--down .ls-arrow__line,
+.ls-arrow--dashed.ls-arrow--up .ls-arrow__line {
+  border-left: none;
+  width: 0.15cqi;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, var(--ls-gray-arrow) 50%, transparent 50%);
+  background-size: 100% 0.8cqi;
+}
+
+/* Arrowheads using CSS borders */
+.ls-arrow__head {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.ls-arrow__head--right {
+  border-width: 0.4cqi 0 0.4cqi 0.6cqi;
+  border-color: transparent transparent transparent var(--ls-gray-arrow);
+  right: -0.2cqi;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ls-arrow__head--bottom {
+  border-width: 0.6cqi 0.4cqi 0 0.4cqi;
+  border-color: var(--ls-gray-arrow) transparent transparent transparent;
+  bottom: -0.2cqi;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ls-arrow__head--top {
+  border-width: 0 0.4cqi 0.6cqi 0.4cqi;
+  border-color: transparent transparent var(--ls-gray-arrow) transparent;
+  top: -0.2cqi;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Edge & Security vertical internal arrows */
+.ls-vertical-connector {
+  display: flex;
+  justify-content: center;
+  height: 1.5cqi;
+  gap: 0.5cqi;
+}
+.ls-vertical-connector .ls-arrow {
+  height: 100%;
+}
+
+/* Queue Connectors (Positioned in the normal document flow between grid and queues) */
+.ls-queue-connectors {
+  position: relative;
+  width: 100%;
+  height: 0;
+  pointer-events: none;
+}
+
+/* 1. Down arrow from Lambda API */
+.ls-q-arrow--1 {
+  position: absolute;
+  left: 47cqi;
+  top: -1.3cqi;
+  height: 4.1cqi;
+}
+
+/* 2. Up arrow from EventBridge to center */
+.ls-q-arrow--2 {
+  position: absolute;
+  left: 56.5cqi;
+  top: -1.1cqi;
+  height: 4.1cqi;
+}
+
+/* 3. Down arrow from Auth Service to Dead Letter */
+.ls-q-arrow--3 {
+  position: absolute;
+  left: 66cqi;
+  top: -1.3cqi;
+  height: 4.1cqi;
+}
