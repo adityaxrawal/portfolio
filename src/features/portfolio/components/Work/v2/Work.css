@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 /* src/features/portfolio/components/Work/v2/Work.css */
 .work-v2-section {
   width: 100%;
@@ -9,7 +11,8 @@
   box-sizing: border-box;
 }
 
-.dark .work-v2-section {
+.dark .work-v2-section,
+.work-v2-section.dark {
   background-color: #1a1a1a;
 }
 
@@ -18,12 +21,12 @@
   flex-direction: row;
   position: relative;
   width: 100%;
-  max-height: 80%;
+  height: 85%;
 }
 
 /* Sidebar Layout */
 .work-v2-sidebar {
-  width: 30%;
+  width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -113,7 +116,7 @@
 .work-v2-mission-control {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   height: 70%;
   background-color: #faf9f6;
   border-radius: 1rem;
@@ -458,14 +461,14 @@
 /* Content Area */
 .work-v2-content {
   display: flex;
-  width: 67%;
-  height: 95%;
-  padding: 0 2rem 0 3rem;
+  width: 74%;
+  height: 100%;
   overflow-y: auto;
 }
 
 .work-v2-content-details {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -576,19 +579,18 @@
    ============================================================ */
 
 /* Google Fonts import for Playfair Display */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 /* ── Wrapper card ─────────────────────────────────────────── */
 .journey-orbit-wrapper {
   position: relative;
   width: calc(100% - 2rem);
-  max-height: 17%;
+  height: 15%;
   margin: 0 1rem 1rem 1rem;
   border-radius: 24px;
   border: 1px solid #e5e7eb;
   background-color: #faf9f6;
-  padding: 0.75rem 1.5rem; /* Reduced top padding to move everything up */
-  overflow: hidden;
+  /* padding: 0.75rem 1.5rem; */
+  overflow: visible;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -608,8 +610,7 @@
 .journey-orbit-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0; /* Zero margin to maximize bottom space */
+  /* gap: 0.5rem; */
 }
 
 .journey-orbit-label {
@@ -618,6 +619,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #374151;
+  padding-left: 1.5%;
 }
 
 .dark .journey-orbit-label {
@@ -657,25 +659,52 @@
 }
 
 /* ── Individual timeline node ─────────────────────────────── */
+/* ── Individual timeline node ─────────────────────────────── */
 .orbit-point {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orbit-point:not(.orbit-point-next) {
+  cursor: pointer;
+  outline: none;
 }
 
 /* ── Colored dot ──────────────────────────────────────────── */
 .orbit-dot {
-  width: 12px; /* Scaled down dot */
-  height: 12px;
+  width: 0.75rem; 
+  height: 0.75rem;
   border-radius: 9999px;
   position: relative;
   z-index: 2;
   flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Glow shadows */
+/* Scale dot on hover and active states */
+.orbit-point:not(.orbit-point-next):hover .orbit-dot {
+  transform: scale(1.25);
+}
+
+.orbit-point.active .orbit-dot {
+  transform: scale(1.4);
+}
+
+/* Keyboard accessibility focus styles */
+.orbit-point:focus-visible .orbit-dot {
+  outline: 2px solid #50b887;
+  outline-offset: 4px;
+}
+
+.dark .orbit-point:focus-visible .orbit-dot {
+  outline-color: #6ee7b7;
+}
+
+/* Glow shadows (normal states) */
 .shadow-green {
   box-shadow: 0 0 10px rgba(80, 184, 135, 0.45);
 }
@@ -689,6 +718,24 @@
   box-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
 }
 
+/* Enhanced glow shadows (active states) */
+.orbit-point.active .orbit-dot.shadow-green,
+.orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-green {
+  box-shadow: 0 0 16px rgba(80, 184, 135, 0.75), 0 0 4px rgba(80, 184, 135, 0.4);
+}
+.orbit-point.active .orbit-dot.shadow-orange,
+.orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-orange {
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.75), 0 0 4px rgba(249, 115, 22, 0.4);
+}
+.orbit-point.active .orbit-dot.shadow-blue,
+.orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-blue {
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.75), 0 0 4px rgba(59, 130, 246, 0.4);
+}
+.orbit-point.active .orbit-dot.shadow-purple,
+.orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-purple {
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.75), 0 0 4px rgba(168, 85, 247, 0.4);
+}
+
 /* ── Centre orbital SVG container ────────────────────────── */
 .orbit-center-point {
   position: relative;
@@ -698,7 +745,6 @@
   width: 120px;
   height: 60px;
   flex-shrink: 0;
-  /* Removed scale down to make the circle bigger */
 }
 
 .center-svg {
@@ -707,9 +753,10 @@
   left: -20px;
   color: #d1d5db;
   z-index: 1;
-
   --orbit-bg: #faf9f6;
   --orbit-inner-bg: #ffffff;
+  transform: scale(0.7);
+  transform-origin: center;
 }
 
 .dark .center-svg {
@@ -756,8 +803,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px; /* Made slightly bigger than other dots */
-  height: 24px;
+  width: 16px; /* Made slightly bigger than other dots */
+  height: 16px;
 }
 
 .dark .dot-flag {
@@ -775,60 +822,71 @@
   color: #9ca3af;
 }
 
-/* ── Info card (floats below dot) ────────────────────────── */
+/* ── Info card (floats relative to center of dot) ────────── */
 .orbit-info {
   position: absolute;
-  top: 50%; /* align to the vertical center of the timeline */
-  margin-top: 22px; /* push down enough to clear the 24px flag dot perfectly */
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 160px;
-  gap: 2px; /* tiny gap between text elements */
-  pointer-events: none;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  display: block;
 }
 
 .orbit-date {
+  position: absolute;
+  bottom: 0.75rem; 
+  left: 50%;
+  transform: translateX(-50%);
   font-family: monospace;
-  font-size: 9px; /* increased for readability */
+  font-size: 7px; /* increased for readability */
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .dark .orbit-date {
   color: #9ca3af;
 }
 
+.orbit-point.active .orbit-date {
+  color: #374151;
+  font-weight: bold;
+}
+
+.dark .orbit-point.active .orbit-date {
+  color: #f3f4f6;
+}
+
 .orbit-company {
+  position: absolute;
+  top: 0.5rem; /* Positioned exactly 16px below the center line */
+  left: 50%;
+  transform: translateX(-50%);
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 13px; /* larger company name */
+  font-size: 11px; /* larger company name */
   font-weight: 700;
   color: #111827;
   margin: 0;
   white-space: nowrap;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .dark .orbit-company {
   color: #f3f4f6;
 }
 
-.orbit-desc {
-  display: none;
-  font-family: monospace;
-  font-size: 9px; /* increased for readability */
-  color: #4b5563;
-  line-height: 1.2;
-  margin: 0;
+.orbit-point.active .orbit-company {
+  color: #10b981; /* Highlight active company with a premium emerald green */
 }
 
-.dark .orbit-desc {
-  color: #d1d5db;
+.dark .orbit-point.active .orbit-company {
+  color: #34d399;
 }
+
+
 
 /* ── Responsive: stack vertically on narrow screens ───────── */
 @media (max-width: 1024px) {
@@ -854,11 +912,25 @@
 
   /* Info card sits to the right of the dot */
   .orbit-info {
+    position: absolute;
     top: 50%;
     left: 32px;
     transform: translateY(-50%);
     text-align: left;
     align-items: flex-start;
     white-space: nowrap;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .orbit-date,
+  .orbit-company {
+    position: static;
+    transform: none;
+    bottom: auto;
+    top: auto;
   }
 }

@@ -1,12 +1,19 @@
-import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSnapScroll } from '@/components/layout/SnapLayout/SnapScrollContext';
-import type { SlideProps } from '@/types/slides';
+import { Activity, FlaskConical } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+
 import {
   WorkExperience,
   WorkExperienceItem,
 } from '../../../data/workExperience';
-import { Activity, Rocket, Flag, FlaskConical } from 'lucide-react';
+
+import JobContent from './JobContent';
+import JourneyOrbit from './JourneyOrbit';
+
+import { useSharedState } from '@/app/providers/AppContext';
+import { useSnapScroll } from '@/components/layout/SnapLayout/SnapScrollContext';
+import type { SlideProps } from '@/types/slides';
+
 import './Work.css';
 
 const getCompanyDetails = (companyName: string) => {
@@ -88,6 +95,7 @@ const Work = ({
   goToSlide: _goToSlide,
   slideIndex: _slideIndex,
 }: Partial<SlideProps> = {}) => {
+  const { isDarkTheme } = useSharedState();
   const [activeJob, setActiveJob] = useState(0);
   const [direction, setDirection] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -234,7 +242,7 @@ const Work = ({
 
   return (
     <div
-      className="work-v2-section"
+      className={`work-v2-section ${isDarkTheme ? 'dark' : 'light'}`}
       ref={containerRef}
       style={{ width: '100%', height: '100%' }}
     >
@@ -364,251 +372,16 @@ const Work = ({
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               className="work-v2-content-details"
             >
-              <h2 className="work-v2-content-role">
-                {WorkExperience[activeJob].title}
-              </h2>
-              <div className="work-v2-content-meta">
-                <a
-                  href={WorkExperience[activeJob].companyLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="work-v2-content-company"
-                >
-                  @{WorkExperience[activeJob].companyName}
-                </a>
-                <span className="work-v2-content-years">
-                  {WorkExperience[activeJob].years}
-                </span>
-              </div>
-
-              <div className="work-v2-content-desc">
-                {WorkExperience[activeJob].description}
-              </div>
-
-              <div className="work-v2-content-tech">
-                {WorkExperience[activeJob].techHighlights.map((tech, idx) => (
-                  <span key={idx} className="work-v2-tech-badge">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+                <JobContent job={WorkExperience[activeJob]} />
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
-      <div className="journey-orbit-wrapper">
-        <div className="journey-orbit-header">
-          <span className="journey-orbit-label">MY JOURNEY ORBIT</span>
-        </div>
-
-        <div className="orbit-layout">
-          {/* Node 1: Wipro */}
-          <div className="orbit-point">
-            <div
-              className="orbit-dot shadow-purple"
-              style={{ backgroundColor: '#a855f7' }}
-            />
-            <div className="orbit-info">
-              <span className="orbit-date">Feb 2020 – May 2021</span>
-              <h4 className="orbit-company">Wipro</h4>
-              <p className="orbit-desc">
-                Built robust services for
-                <br />
-                e-commerce platforms.
-              </p>
-            </div>
-          </div>
-
-          <div className="orbit-connector" />
-
-          {/* Node 2: DevelUp */}
-          <div className="orbit-point">
-            <div
-              className="orbit-dot shadow-blue"
-              style={{ backgroundColor: '#3b82f6' }}
-            />
-            <div className="orbit-info">
-              <span className="orbit-date">Jun 2021 – Dec 2022</span>
-              <h4 className="orbit-company">DevelUp</h4>
-              <p className="orbit-desc">
-                Shipped growth features
-                <br />
-                used by thousands.
-              </p>
-            </div>
-          </div>
-
-          <div className="orbit-connector" />
-
-          {/* Center: Rocket Orbital SVG */}
-          <div className="orbit-center-point">
-            <svg
-              viewBox="0 0 160 80"
-              width="160"
-              height="80"
-              className="center-svg"
-              aria-hidden="true"
-            >
-              {/* Left branch paths (now extending to x=50 to reach the larger circle) */}
-              <path
-                d="M 0,40 C 20,40 30,22.5 50,22.5"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <path
-                d="M 0,40 C 20,40 30,57.5 50,57.5"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <circle cx="0" cy="40" r="1.5" fill="currentColor" />
-
-              {/* Right branch paths (now starting at x=110 to reach the larger circle) */}
-              <path
-                d="M 160,40 C 140,40 130,22.5 110,22.5"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <path
-                d="M 160,40 C 140,40 130,57.5 110,57.5"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <circle cx="160" cy="40" r="1.5" fill="currentColor" />
-
-              {/* ── Revolving Group ── */}
-              <g className="revolving-dots">
-                {/* Outer ring (radius increased from 30 to 35) */}
-                <circle
-                  cx="80"
-                  cy="40"
-                  r="35"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  fill="var(--orbit-bg)"
-                />
-
-                {/* Connection dots on outer ring (moved outward to match r=35) */}
-                <circle
-                  cx="50"
-                  cy="22.5"
-                  r="2.5"
-                  fill="var(--orbit-bg)"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-                <circle
-                  cx="50"
-                  cy="57.5"
-                  r="2.5"
-                  fill="var(--orbit-bg)"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-                <circle
-                  cx="110"
-                  cy="22.5"
-                  r="2.5"
-                  fill="var(--orbit-bg)"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-                <circle
-                  cx="110"
-                  cy="57.5"
-                  r="2.5"
-                  fill="var(--orbit-bg)"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-
-                {/* Top dot */}
-                <circle
-                  cx="80"
-                  cy="5"
-                  r="2.5"
-                  fill="var(--orbit-bg)"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-              </g>
-
-              {/* Inner ring (radius increased from 18 to 22) */}
-              <circle
-                cx="80"
-                cy="40"
-                r="22"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="var(--orbit-inner-bg)"
-              />
-            </svg>
-
-            <div className="rocket-icon-abs">
-              <Rocket size={18} />
-            </div>
-          </div>
-
-          <div className="orbit-connector" />
-
-          {/* Node 3: LeadSquared */}
-          <div className="orbit-point">
-            <div
-              className="orbit-dot shadow-orange"
-              style={{ backgroundColor: '#f97316' }}
-            />
-            <div className="orbit-info">
-              <span className="orbit-date">Dec 2022 – Mar 2024</span>
-              <h4 className="orbit-company">LeadSquared</h4>
-              <p className="orbit-desc">
-                Scaled serverless APIs to
-                <br />
-                50K+ monthly requests.
-              </p>
-            </div>
-          </div>
-
-          <div className="orbit-connector" />
-
-          {/* Node 4: MathCo */}
-          <div className="orbit-point">
-            <div
-              className="orbit-dot shadow-green"
-              style={{ backgroundColor: '#50b887' }}
-            />
-            <div className="orbit-info">
-              <span className="orbit-date">Jan 2024 – Present</span>
-              <h4 className="orbit-company">MathCo</h4>
-              <p className="orbit-desc">
-                Building analytics systems
-                <br />
-                that power Mars missions.
-              </p>
-            </div>
-          </div>
-
-          <div className="orbit-connector" />
-
-          {/* Node 5: Next Mission */}
-          <div className="orbit-point">
-            <div className="orbit-dot dot-flag">
-              <Flag size={10} className="flag-icon" />
-            </div>
-            <div className="orbit-info">
-              <span className="orbit-date">Next Mission</span>
-              <h4 className="orbit-company">Always building.</h4>
-              <p className="orbit-desc">Always shipping.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <JourneyOrbit
+        activeJob={activeJob}
+        setActiveJob={setActiveJob}
+        setDirection={setDirection}
+      />
     </div>
   );
 };
