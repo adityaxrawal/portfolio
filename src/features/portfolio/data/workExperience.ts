@@ -5,6 +5,8 @@ export interface WorkExperienceItem {
   years: string;
   description: string;
   techHighlights: string[];
+  orbitColor?: string;
+  orbitShadowClass?: string;
 }
 
 export const WorkExperience: WorkExperienceItem[] = [
@@ -23,6 +25,8 @@ export const WorkExperience: WorkExperienceItem[] = [
       'RESTful APIs',
       'Full-Stack',
     ],
+    orbitColor: '#50b887',
+    orbitShadowClass: 'shadow-green',
   },
   {
     companyName: 'Leadsquared',
@@ -38,6 +42,8 @@ export const WorkExperience: WorkExperienceItem[] = [
       'Serverless',
       'Third-Party APIs',
     ],
+    orbitColor: '#f97316',
+    orbitShadowClass: 'shadow-orange',
   },
   {
     companyName: 'DevelUp',
@@ -53,6 +59,8 @@ export const WorkExperience: WorkExperienceItem[] = [
       'UI/UX',
       'Feature Development',
     ],
+    orbitColor: '#3b82f6',
+    orbitShadowClass: 'shadow-blue',
   },
   {
     companyName: 'Wipro',
@@ -69,5 +77,7 @@ export const WorkExperience: WorkExperienceItem[] = [
       'REST APIs',
       'E-commerce',
     ],
+    orbitColor: '#a855f7',
+    orbitShadowClass: 'shadow-purple'
   },
 ];
