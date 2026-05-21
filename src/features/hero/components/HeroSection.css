@@ -255,7 +255,7 @@
   height: 100%;
   /* overflow must be visible so the swinging card isn't clipped */
   overflow: visible;
-  z-index: -1;
+  z-index: 99;
 }
 
 /* ── old image-card styles kept but unused (image replaced by Lanyard) ── */
