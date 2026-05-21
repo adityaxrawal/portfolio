@@ -1,0 +1,11 @@
+{
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": true,
+  "typescript.tsserver.watchOptions": {
+    "excludeDirectories": ["**/node_modules", "**/dist"]
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true
+  }
+}
