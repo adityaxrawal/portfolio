@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import {
   FaAlignCenter,
   FaAlignLeft,
@@ -31,71 +31,22 @@ import {
 } from 'react-icons/fa';
 
 import { links } from '@/config';
+import { useContactFormState } from '../../hooks/useContactFormState';
+import { useRichTextEditor } from '../../hooks/useRichTextEditor';
+import type { ContactNotifyFn } from '../../types/contact.types';
+
+import {
+  actionLabels,
+  fontOptions,
+  LIMIT_WARNING_COOLDOWN,
+  MESSAGE_LIMIT,
+  panelMeta,
+  sizeOptions,
+  SUBJECT_LIMIT,
+  textColors,
+} from './contactFormConstants';
+import { escapeHtml, getEditorText, normalizeUrl } from './contactFormUtils';
 import './ContactForm.css';
-
-const SUBJECT_LIMIT = 100;
-const MESSAGE_LIMIT = 1000;
-const LIMIT_WARNING_COOLDOWN = 1800;
-
-const fontOptions = [
-  { label: 'Sans Serif', value: 'Arial' },
-  { label: 'Serif', value: 'Georgia' },
-  { label: 'Monospace', value: 'Courier New' },
-];
-
-const sizeOptions = [
-  { label: 'Normal', value: 'p' },
-  { label: 'Title', value: 'h2' },
-  { label: 'Small', value: 'h5' },
-];
-
-const textColors = ['#202124', '#ccff00', '#d93025', '#188038', '#1967d2'];
-
-const actionLabels = {
-  attach: 'Attachments are not available in this form yet.',
-  drive: 'Drive attachments are not available in this form yet.',
-  confidential: 'Confidential mode is not available in this form yet.',
-  pen: 'Signature support is not available in this form yet.',
-  more: 'More compose actions are not available in this form yet.',
-};
-
-const getEditorText = (editor: HTMLElement | null) =>
-  (editor?.textContent || '').replace(/\u00a0/g, ' ');
-
-const escapeHtml = (value: string) =>
-  value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-
-const normalizeUrl = (value: string) => {
-  const trimmedValue = value.trim();
-
-  if (!trimmedValue) {
-    return '';
-  }
-
-  if (/^(https?:|mailto:|tel:)/i.test(trimmedValue)) {
-    return trimmedValue;
-  }
-
-  return `https://${trimmedValue}`;
-};
-
-const panelMeta = {
-  link: {
-    title: 'Paste a link',
-    urlLabel: 'Link URL',
-    urlPlaceholder: 'https://example.com',
-  },
-  image: {
-    title: 'Paste an image URL',
-    urlLabel: 'Image URL',
-    urlPlaceholder: 'https://example.com/image.png',
-  },
-};
 
 interface ContactFormProps {
   onSubmit: (data: {
@@ -106,7 +57,7 @@ interface ContactFormProps {
   }) => Promise<void>;
   isSubmitting: boolean;
   onClose: () => void;
-  notify?: (message: string, type?: string) => void;
+  notify?: ContactNotifyFn;
 }
 
 const ContactForm = ({
@@ -115,28 +66,40 @@ const ContactForm = ({
   onClose,
   notify,
 }: ContactFormProps) => {
-  const editorRef = useRef<HTMLDivElement>(null);
   const insertInputRef = useRef<HTMLInputElement>(null);
   const insertTextInputRef = useRef<HTMLInputElement>(null);
-  const savedRangeRef = useRef<Range | null>(null);
   const warningTimesRef = useRef<Record<string, number>>({});
-  const [subject, setSubject] = useState('');
-  const [messageLength, setMessageLength] = useState(0);
-  const [isToolbarVisible, setIsToolbarVisible] = useState(true);
-  const [insertPanel, setInsertPanel] = useState<string | null>(null);
-  const [insertTextValue, setInsertTextValue] = useState('');
-  const [insertValue, setInsertValue] = useState('');
-  const [selectedLinkText, setSelectedLinkText] = useState('');
 
-  const messageRemaining = MESSAGE_LIMIT - messageLength;
+  const {
+    subject,
+    setSubject,
+    setMessageLength,
+    isToolbarVisible,
+    setIsToolbarVisible,
+    insertPanel,
+    setInsertPanel,
+    insertTextValue,
+    setInsertTextValue,
+    insertValue,
+    setInsertValue,
+    selectedLinkText,
+    setSelectedLinkText,
+    messageRemaining,
+    canSend,
+  } = useContactFormState(isSubmitting);
+
+  const {
+    editorRef,
+    savedRangeRef,
+    syncMessageState,
+    getMessageSelection,
+    saveEditorSelection,
+  } = useRichTextEditor(setMessageLength);
+
   const activePanelMeta = insertPanel
-    ? (panelMeta as Record<string, typeof panelMeta.link>)[insertPanel]
+    ? panelMeta[insertPanel as keyof typeof panelMeta]
     : null;
   const hasSelectedLinkText = selectedLinkText.trim().length > 0;
-
-  const canSend = useMemo(() => {
-    return subject.trim().length > 0 && messageLength > 0 && !isSubmitting;
-  }, [isSubmitting, messageLength, subject]);
 
   useEffect(() => {
     if (insertPanel) {
@@ -161,37 +124,6 @@ const ContactForm = ({
     },
     [notify],
   );
-
-  const syncMessageState = useCallback(() => {
-    setMessageLength(getEditorText(editorRef.current).length);
-  }, []);
-
-  const getMessageSelection = useCallback(() => {
-    const selection = window.getSelection();
-
-    if (
-      !selection?.rangeCount ||
-      !editorRef.current?.contains(selection.anchorNode) ||
-      !editorRef.current?.contains(selection.focusNode)
-    ) {
-      return null;
-    }
-
-    return {
-      range: selection.getRangeAt(0).cloneRange(),
-      text: selection.toString(),
-    };
-  }, []);
-
-  const saveEditorSelection = useCallback(() => {
-    const messageSelection = getMessageSelection();
-
-    if (!messageSelection) {
-      return;
-    }
-
-    savedRangeRef.current = messageSelection.range;
-  }, [getMessageSelection]);
 
   const clearInsertPanel = useCallback(() => {
     setInsertPanel(null);
