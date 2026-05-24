@@ -61,7 +61,9 @@ interface GitHubGraphQLResponse {
   };
 }
 
-function calculateStreak(weeks: any[]) {
+function calculateStreak(
+  weeks: Array<{ contributionDays: Array<{ contributionCount: number; date: string }> }>,
+) {
   const days = weeks
     .flatMap((w) => w.contributionDays)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

@@ -61,6 +61,7 @@
     "prettier": "^3.5.1",
     "rollup-plugin-visualizer": "latest",
     "tailwindcss": "^4.3.0",
+    "ts-morph": "^28.0.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
     "vite": "^8.0.10",
@@ -164,7 +165,7 @@
         "rules": {
           "no-unused-vars": "off",
           "@typescript-eslint/no-unused-vars": "warn",
-          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-explicit-any": "error",
           "@typescript-eslint/ban-ts-comment": [
             "error",
             {
