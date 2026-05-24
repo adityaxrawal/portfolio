@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import './SectionLoader.css';
 
 interface SectionLoaderProps {
@@ -17,4 +19,4 @@ const SectionLoader = ({
   );
 };
 
-export default SectionLoader;
+export default memo(SectionLoader);

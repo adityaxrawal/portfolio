@@ -1,15 +1,18 @@
+/**
+ * @deprecated Use `Footer/v2` instead.
+ */
 import { useState } from 'react';
-import './Footer.css';
+
 // App Context
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import { useSharedState } from '@/app/providers/AppContext';
-import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/Icons/Icons';
+import { useSharedState } from '@/app';
+import { DarkFooterSVG, LightFooterSVG } from '@/components/ui/Icons';
 import { THEME_COLORS } from '@/config';
 // SVG Component
 // React Icons
 // ContactInfo Modal
-import ContactInfo from '@/features/contact/components/ContactInfo';
+import { ContactInfo } from '@/features/contact';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

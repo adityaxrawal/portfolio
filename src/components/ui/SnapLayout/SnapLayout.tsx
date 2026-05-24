@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSharedState } from '@/app/providers/AppContext';
-import { useReelsScroll } from '@/hooks/useReelsScroll';
+import { useSharedState } from '@/app';
+import { useReelsScroll } from '@/hooks';
+import Header from '@/components/ui/Header';
+
+import { SnapSlide } from './SnapSlide';
 import { SnapScrollContext } from './SnapScrollContext';
-import Header from '@/components/layout/Header';
-import './SnapLayout.css'; // keep the CSS for dot nav and z-index
+import './SnapLayout.css';
 
 export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({ children }) => {
   const { isDarkTheme } = useSharedState();
@@ -24,17 +26,7 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({ children
           }}
         >
           {children.map((child, idx) => (
-            <div 
-              key={idx} 
-              style={{ 
-                width: '100vw', 
-                height: '100dvh', 
-                boxSizing: 'border-box',
-                flexShrink: 0
-              }}
-            >
-              {child}
-            </div>
+            <SnapSlide key={idx}>{child}</SnapSlide>
           ))}
         </div>
       </div>

@@ -1,32 +1,39 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import { links, THEME_COLORS } from '@/config';
-import ContactInfo from '@/features/contact/components/ContactInfo';
-import type { SlideProps } from '@/types/slides';
+import { ContactInfo } from '@/features/contact';
+import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+
 import './Footer.css';
 
-const Footer = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
+const WRAPPER_STYLE: React.CSSProperties = {
+  width: '100%',
+  height: '100%',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+};
+
+const Footer = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
   const currentYear = new Date().getFullYear();
   const { isDarkTheme } = useSharedState();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // CSS custom properties drive all theme-dependent colors
-  const themeVars: React.CSSProperties = {
-    // '--footer-bg': isDarkTheme ? THEME_COLORS.DARK_GRID : THEME_COLORS.DARK_TEXT,
+  const themeVars = useMemo((): React.CSSProperties => ({
     '--footer-text': isDarkTheme
       ? THEME_COLORS.DARK_TEXT
       : THEME_COLORS.DARK_GRID,
     '--footer-border': isDarkTheme
       ? THEME_COLORS.DARK_GRID
       : THEME_COLORS.LIGHT_GRID,
-  } as React.CSSProperties;
+  } as React.CSSProperties), [isDarkTheme]);
 
   return (
-    <div style={{ width: '100%', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-    >
+    <div style={WRAPPER_STYLE}>
       <footer className="footer-v2" style={themeVars}>
         {/* ── TOP BAR ── */}
         <div className="footer-v2__top-bar">

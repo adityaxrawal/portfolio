@@ -2,17 +2,16 @@ import { useState, useCallback } from 'react';
 import { Mail, FileText } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
-// css
-import './Header.css';
-// context
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import Alert from '@/components/ui/Alert';
 import { darkModeColorList, lightModeColorList, links } from '@/config';
+
+import './Header.css';
 
 const EMAIL_CHARS = Array.from('ar.adityarawal@gmail.com');
 
 const Header = () => {
-  const [alert, setAlert] = useState({
+  const [alert, setAlert] = useState<{ message: string; type: string }>({
     message: '',
     type: '',
   });

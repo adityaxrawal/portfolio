@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { FiRefreshCw, FiX } from 'react-icons/fi';
 
 import './AppUpdatePrompt.css';
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import {
   APP_UPDATE_AVAILABLE_EVENT,
   clearPendingAppUpdate,
