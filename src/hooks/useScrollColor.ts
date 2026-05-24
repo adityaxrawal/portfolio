@@ -1,6 +1,9 @@
+/**
+ * @deprecated Legacy scroll-based theming. Theme is managed via `AppContext`.
+ */
 import { useEffect } from 'react';
 
-import { interpolateColor } from '@/lib/colorUtils';
+import { interpolateColor } from '@/utils';
 
 /**
  * Maps scroll position to an interpolated background color between sections

@@ -1,53 +1,54 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+const BODY_STYLE_DEFAULTS = { overflow: '', paddingRight: '' };
 
 export const useModalState = (open: boolean, onClose: () => void) => {
   const [currentStep, setCurrentStep] = useState('options');
+  const bodyStylesRef = useRef(BODY_STYLE_DEFAULTS);
+  const onCloseRef = useRef(onClose);
 
-  // Handle ESC key press to close modal
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    },
-    [onClose],
-  );
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      onCloseRef.current();
+    }
+  }, []);
 
   useEffect(() => {
     if (open) {
-      // Store original overflow value
-      const originalOverflow = document.body.style.overflow;
-      const originalPaddingRight = document.body.style.paddingRight;
+      bodyStylesRef.current = {
+        overflow: document.body.style.overflow,
+        paddingRight: document.body.style.paddingRight,
+      };
 
-      // Calculate scrollbar width to prevent layout shift
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
 
-      // Apply styles to prevent background scrolling
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
 
       document.addEventListener('keydown', handleKeyDown);
 
       return () => {
-        // Restore original styles
-        document.body.style.overflow = originalOverflow;
-        document.body.style.paddingRight = originalPaddingRight;
+        document.body.style.overflow = bodyStylesRef.current.overflow;
+        document.body.style.paddingRight = bodyStylesRef.current.paddingRight;
         document.removeEventListener('keydown', handleKeyDown);
       };
-    } else {
-      // Reset state when modal closes
-      setCurrentStep('options');
     }
+
+    setCurrentStep('options');
   }, [open, handleKeyDown]);
 
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent) => {
       if (e.target === e.currentTarget) {
-        onClose();
+        onCloseRef.current();
       }
     },
-    [onClose],
+    [],
   );
 
   return {
