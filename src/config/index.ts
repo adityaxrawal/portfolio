@@ -1,4 +1,6 @@
 // src/config/index.ts
+import { env } from './env';
+export * from './env';
 
 export const links = {
   linkedInLink: 'https://www.linkedin.com/in/adityaxrawal',
@@ -8,10 +10,9 @@ export const links = {
   twitterLink: 'https://www.twitter.com/adityaxrawal',
 };
 
-// API Endpoints
+// API Endpoints — URLs sourced from environment variables (see src/config/env.ts)
 export const API_ENDPOINTS = {
-  CONTACT_FORM:
-    'https://portfolio-backend-v1-373822582459.europe-west1.run.app/contact',
+  CONTACT_FORM: env.CONTACT_API_URL,
 };
 
 export const THEME_COLORS = {
@@ -40,14 +41,6 @@ export const lightModeColorList: Record<number, string> = {
   4: '#3F72AF',
   5: '#112D4E',
 };
-
-export const PROGRESS_COLORS = [
-  { max: 2, color: '#FFCCBC' },
-  { max: 5, color: '#FFD180' },
-  { max: 7, color: '#81D4FA' },
-  { max: 9, color: '#A5D6A7' },
-  { max: 10, color: '#B39DDB' },
-];
 
 // --- Modal Constants ---
 export const MODAL_STEPS = Object.freeze({

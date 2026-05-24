@@ -1,8 +1,8 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import './index.css';
-import App from '@/app/App';
+import '../assets/styles/globals.css';
+import App from './App';
 import { notifyAppUpdateAvailable } from '@/lib/appUpdateEvents';
 import {
   reportWebVitalsWithAnalytics,
@@ -28,10 +28,14 @@ setupPerformanceObserver();
 if (import.meta.env.MODE === 'production') {
   registerSW({
     onSuccess: (registration) => {
-      console.log('🎉 Service worker registration successful:', registration);
+      if (import.meta.env.DEV) {
+        console.log('🎉 Service worker registration successful:', registration);
+      }
     },
     onUpdate: (registration) => {
-      console.log('🔄 New content is available, please refresh.');
+      if (import.meta.env.DEV) {
+        console.log('🔄 New content is available, please refresh.');
+      }
       notifyAppUpdateAvailable(registration);
     },
   });
