@@ -1,11 +1,11 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import { HiLocationMarker, HiArrowDown } from 'react-icons/hi';
 import { LuAsterisk } from 'react-icons/lu';
-import ContactButton from '@/components/ui/ContactButton/';
-import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
-import { GitHubStatsResponse } from '@/types/github';
-import type { SlideProps } from '@/types/slides';
+import ContactButton from '@/components/ui/ContactButton';
+import SectionLoader from '@/components/ui/SectionLoader';
+import { useGitHubStats } from '@/features/portfolio';
+import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 
 import './HeroSection.css';
 
@@ -23,7 +23,7 @@ const TECH_STACK_TAGS = [
   'Analytics Systems',
 ];
 
-const HeroSection = ({ isActive: _isActive, goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
+const HeroSection = ({ isActive: _isActive, goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
 
   // Track desktop vs mobile to show/hide lanyard
@@ -31,26 +31,7 @@ const HeroSection = ({ isActive: _isActive, goToSlide, slideIndex: _slideIndex }
     () => typeof window !== 'undefined' && window.innerWidth > 1024,
   );
 
-  const [stats, setStats] = useState<GitHubStatsResponse | null>(null);
-  const [loadingStats, setLoadingStats] = useState(true);
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        setLoadingStats(true);
-        const response = await fetch('/api/github-stats');
-        if (!response.ok) throw new Error('Failed to fetch GitHub metrics');
-        const data = await response.json();
-        setStats(data);
-      } catch (err) {
-        console.error('GitHub Metrics Error:', err);
-      } finally {
-        setLoadingStats(false);
-      }
-    };
-
-    fetchStats();
-  }, []);
+  const { stats, loading: loadingStats } = useGitHubStats();
 
   // Calculate confetti dimensions
   useEffect(() => {
