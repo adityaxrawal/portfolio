@@ -9,34 +9,13 @@ import {
 import React, { useEffect, useState } from 'react';
 import { FaGithub as Github } from 'react-icons/fa6';
 
-import { useSharedState } from '@/app/providers/AppContext';
-import { GitHubStatsResponse } from '@/types/github';
+import { useSharedState } from '@/app';
+import { useGitHubStats } from '../../hooks/useGitHubStats';
 import './GithubMetrics.css';
 
 const GithubMetricsSection = () => {
   const { isDarkTheme } = useSharedState();
-  const [stats, setStats] = useState<GitHubStatsResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/github-stats');
-        if (!response.ok) throw new Error('Failed to fetch GitHub metrics');
-        const data = await response.json();
-        setStats(data);
-      } catch (err) {
-        console.error('GitHub Metrics Error:', err);
-        setError('Metrics temporarily unavailable');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, []);
+  const { stats, loading, error } = useGitHubStats({ reportError: true });
 
   const containerVariants: Variants = {
     hidden: { opacity: 0, scale: 0.98 },
@@ -159,7 +138,7 @@ interface MetricBlockProps {
   label: string;
   subtitle: string;
   icon: React.ReactNode;
-  variants: any;
+  variants: Variants;
 }
 
 const MetricBlock = ({

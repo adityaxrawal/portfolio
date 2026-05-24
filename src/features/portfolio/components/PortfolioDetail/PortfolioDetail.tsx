@@ -1,12 +1,12 @@
-// src/component/Content/PortfolioDetail/PortfolioDetail.js
-import React from 'react';
-import './PortfolioDetail.css';
+import { memo, type ReactNode } from 'react';
 import { RoughNotation } from 'react-rough-notation';
 
 import GithubMetricsSection from '../GithubMetrics/GithubMetricsSection';
 
-import { useSharedState } from '@/app/providers/AppContext';
-import type { SlideProps } from '@/types/slides';
+import { useSharedState } from '@/app';
+import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+
+import './PortfolioDetail.css';
 
 // Removed old GitStats implementation in favor of live GithubMetricsSection
 
@@ -30,7 +30,7 @@ const TECH_STACK = [
   },
 ];
 
-const DetailCard = React.memo(
+const DetailCard = memo(
   ({
     title,
     content,
@@ -38,7 +38,7 @@ const DetailCard = React.memo(
     extraClass,
   }: {
     title: string;
-    content: React.ReactNode;
+    content: ReactNode;
     isDarkTheme: boolean;
     extraClass?: string;
   }) => (
@@ -53,7 +53,7 @@ const DetailCard = React.memo(
 
 DetailCard.displayName = 'DetailCard';
 
-const Portfolio = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
+const Portfolio = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
 
   return (

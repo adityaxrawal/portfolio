@@ -1,22 +1,25 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 
-import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
+import SectionLoader from '@/components/ui/SectionLoader';
+import {
+  HeroSectionLazy,
+  PortfolioDetailLazy,
+  TechnologyLazy,
+  WorkLazy,
+} from '../../constants/sectionImports';
 
-// Lazy load sections for better initial TTI
-const HeroSection = lazy(() => import('../../../hero'));
-const Work = lazy(() => import('../Work'));
-const Technology = lazy(() => import('../Technology'));
-const Portfolio = lazy(() => import('../PortfolioDetail'));
-
+/**
+ * @deprecated Use `PortfolioPage` with `SnapLayout` instead. Retained for legacy `PageLayout`.
+ */
 const Content = () => {
   return (
     <Suspense fallback={<SectionLoader />}>
       <div className="pr-[2.5%] pl-[2.5%]">
-        <HeroSection />
-        <Work />
-        <Technology />
+        <HeroSectionLazy />
+        <WorkLazy />
+        <TechnologyLazy />
         {/* <Project /> */}
-        <Portfolio />
+        <PortfolioDetailLazy />
       </div>
     </Suspense>
   );

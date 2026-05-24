@@ -28,13 +28,6 @@ export interface GitHubStatsResponse {
   updatedAt: string;
 }
 
-export interface GitHubStats {
-  commits: number;
-  issues: number;
-  pullRequests: number;
-  linesOfCode: number;
-}
-
 export interface GitHubContributorStats {
   total: number;
   weeks: Array<{

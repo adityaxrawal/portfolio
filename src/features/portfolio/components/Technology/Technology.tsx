@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
 import './Technology.css';
-import { TechnicalSkills } from '../../data/technicalSkills';
+import { TechnicalSkills } from '../../constants/technicalSkills';
 
 import TechnologyBox from './TechnologyBox';
 
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import { darkModeColorList, lightModeColorList } from '@/config';
-import type { SlideProps } from '@/types/slides';
+import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 
-const Technology = ({ isActive = false, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SlideProps> = {}) => {
+const Technology = ({ isActive = false, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
   const horizontalScroll = useRef<HTMLDivElement>(null);
   const techSection = useRef<HTMLDivElement>(null);
@@ -71,7 +71,7 @@ const Technology = ({ isActive = false, goToSlide: _goToSlide, slideIndex: _slid
               index,
             ) => (
               <TechnologyBox
-                key={index}
+                key={skillName}
                 skillName={skillName}
                 skillLevel={skillLevel}
                 skillIcon={skillIcon}

@@ -2,7 +2,7 @@
 import { use, Suspense, Component } from 'react';
 
 import './Project.css';
-import SectionLoader from '@/components/ui/SectionLoader/SectionLoader';
+import SectionLoader from '@/components/ui/SectionLoader';
 // Remove unused GitHubRepo import
 
 const GITHUB_USERNAME = 'adityaxrawal';
