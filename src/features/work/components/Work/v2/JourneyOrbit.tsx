@@ -1,7 +1,10 @@
 import { Rocket, Flag } from 'lucide-react';
-import React from 'react';
+import { Fragment, type FC } from 'react';
 
-import { WorkExperience, WorkExperienceItem } from '../../../data/workExperience';
+import { OrbitJobNode } from './OrbitJobNode';
+
+import { WorkExperience } from '../../../constants/workExperience';
+
 
 interface JourneyOrbitProps {
   activeJob: number;
@@ -9,7 +12,7 @@ interface JourneyOrbitProps {
   setDirection: (direction: number) => void;
 }
 
-const JourneyOrbit: React.FC<JourneyOrbitProps> = ({
+const JourneyOrbit: FC<JourneyOrbitProps> = ({
   activeJob,
   setActiveJob,
   setDirection,
@@ -23,41 +26,18 @@ const JourneyOrbit: React.FC<JourneyOrbitProps> = ({
   const leftJobs = chronologicalJobs.slice(0, half);
   const rightJobs = chronologicalJobs.slice(half);
 
-  const renderJobNode = (job: WorkExperienceItem, chronoIdx: number) => {
-    // Map chronological index back to original index in WorkExperience
+  const renderJobNode = (job: (typeof WorkExperience)[number], chronoIdx: number) => {
     const originalIndex = totalJobs - 1 - chronoIdx;
-    const isActive = activeJob === originalIndex;
 
     return (
-      <div
+      <OrbitJobNode
         key={`job-${job.companyName}-${chronoIdx}`}
-        className={`orbit-point ${isActive ? 'active' : ''}`}
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          if (originalIndex > activeJob) setDirection(1);
-          else if (originalIndex < activeJob) setDirection(-1);
-          setActiveJob(originalIndex);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            if (originalIndex > activeJob) setDirection(1);
-            else if (originalIndex < activeJob) setDirection(-1);
-            setActiveJob(originalIndex);
-          }
-        }}
-        aria-label={`View experience at ${job.companyName}`}
-      >
-        <div
-          className={`orbit-dot ${job.orbitShadowClass || ''}`}
-          style={{ backgroundColor: job.orbitColor }}
-        />
-        <div className="orbit-info">
-          <span className="orbit-date">{job.years}</span>
-          <h4 className="orbit-company">{job.companyName}</h4>
-        </div>
-      </div>
+        job={job}
+        originalIndex={originalIndex}
+        activeJob={activeJob}
+        setActiveJob={setActiveJob}
+        setDirection={setDirection}
+      />
     );
   };
 
@@ -216,10 +196,10 @@ const JourneyOrbit: React.FC<JourneyOrbitProps> = ({
 
       <div className="orbit-layout">
         {items.map((node, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             {index > 0 && <div className="orbit-connector" />}
             {node}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

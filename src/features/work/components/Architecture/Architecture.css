@@ -1,0 +1,193 @@
+/* 
+  Architecture Diagram — Contained Layout
+  The arch-diagram-wrapper must fill its parent container (jc-arch-section--detailed)
+  completely. All overflow is managed internally, and the content scales to fit
+  using CSS container queries.
+*/
+
+.arch-diagram-wrapper {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: transparent;
+  box-sizing: border-box;
+  container-type: size;
+  container-name: arch;
+}
+
+/* Inner content area (no scrolling, flex layout) */
+.arch-content-scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden; /* NO SCROLLING! Content scales instead. */
+  display: flex;
+  flex-direction: column;
+  gap: 2cqmin;
+  padding: 2cqmin;
+  box-sizing: border-box;
+}
+
+/* Main columns row */
+.arch-columns-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 1.5cqmin;
+  width: 100%;
+  flex: 1 1 0; /* Allow the column row to shrink/grow */
+  min-height: 0;
+}
+
+/* Individual column */
+.arch-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 1.5cqmin;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.arch-column-header {
+  padding: 1.25cqmin 2cqmin;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2.25cqmin;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1cqmin;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.arch-column-body {
+  padding: 1.5cqmin;
+  display: flex;
+  flex-direction: column;
+  gap: 1cqmin;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+/* Node card */
+.arch-node {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1cqmin;
+  padding: 0.75cqmin 1cqmin; /* Reduced vertical padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  gap: 0.25cqmin; /* Reduced gap */
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden; /* Ensure text doesn't visibly bleed out */
+}
+
+.arch-node-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.arch-node-icon-wrapper svg {
+  width: 2.5cqmin; /* Scaled down slightly */
+  height: 2.5cqmin;
+}
+
+.arch-node-label {
+  font-size: 2cqmin; /* Reduced font size */
+  font-weight: 500;
+  color: #1f2937;
+  line-height: 1.1; /* Tighter line height */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Max 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.arch-node-sublabel {
+  font-size: 1.6cqmin; /* Reduced font size */
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.1;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Arrow connector between columns */
+.arch-arrow-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 3.5cqmin;
+  padding: 0;
+  align-self: center;
+}
+
+.arch-arrow svg {
+  width: 3.5cqmin;
+  height: 3.5cqmin;
+  color: #94a3b8;
+}
+
+/* Footer band */
+.arch-footer-band {
+  background: rgba(248, 250, 252, 0.9);
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 1.5cqmin;
+  padding: 1.5cqmin 2cqmin;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25cqmin;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 auto; /* Prevent stretching, shrink to fit content */
+}
+
+.arch-footer-header {
+  text-align: center;
+  font-size: 2.25cqmin;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.arch-footer-nodes {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5cqmin;
+  flex-wrap: nowrap; /* Ensures footer nodes don't wrap and take extra height */
+  justify-content: center;
+}
+
+.arch-footer-nodes .arch-node {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+}
