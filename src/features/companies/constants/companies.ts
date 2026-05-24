@@ -1,3 +1,6 @@
+/**
+ * @deprecated Duplicate dataset — use `companiesList.ts` instead.
+ */
 export const companiesData = [
   [
     {
@@ -1454,4 +1457,3 @@ export const companiesData = [
     }, // Mid-sized company misplaced earlier
   ],
 ];
-;

@@ -1,3 +1,6 @@
+/**
+ * @deprecated Unused dataset — retained for reference only.
+ */
 export const hrList = [
   {
     company: 'SourceFuse Technologies',

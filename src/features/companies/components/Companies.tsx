@@ -1,24 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useCompaniesFilter } from '../hooks/useCompaniesFilter';
+import type { Company } from '../types';
 
-import { companiesData } from '../data/companiesList';
-import { Company } from '../types';
-
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import { THEME_COLORS } from '@/config';
 
 import './Companies.css';
 
 const CompaniesTable = () => {
   const { isDarkTheme } = useSharedState();
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredCompanies = useMemo(() => {
-    const flatList = companiesData.flat();
-    if (!searchTerm) return flatList.slice(0, 100); // Only show top 100 for perf initially
-    return flatList
-      .filter((c) => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
-      .slice(0, 100);
-  }, [searchTerm]);
+  const { searchTerm, setSearchTerm, filteredCompanies } = useCompaniesFilter();
 
   return (
     <div className={`companies-page ${isDarkTheme ? 'dark' : 'light'}`}>
