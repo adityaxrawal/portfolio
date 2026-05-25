@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import type { FC } from 'react';
+import type { CSSProperties, FC } from 'react';
 
 import type { DetailedInfoSection } from './jobConfigs';
 
@@ -34,22 +34,42 @@ export const DetailedInfoBlock: FC<DetailedInfoBlockProps> = ({ sections }) => (
           <p className="jc-detailed-info-description">{section.description}</p>
         )}
 
+        {/* Architecture domain chips — shown for 'built' variant */}
+        {section.domains && section.domains.length > 0 && (
+          <div className="jc-domain-chips-wrapper">
+            <div className="jc-domain-separator" aria-hidden="true">
+              <span className="jc-domain-separator-line" />
+              <span className="jc-domain-separator-label">Architecture Domains</span>
+              <span className="jc-domain-separator-line" />
+            </div>
+            <div className="jc-domain-chips" role="list" aria-label="Architecture domains">
+              {section.domains.map((domain) => (
+                <div
+                  key={domain.label}
+                  className="jc-domain-chip"
+                  role="listitem"
+                  style={
+                    {
+                      '--chip-color': domain.color ?? '#64748b',
+                    } as CSSProperties
+                  }
+                >
+                  <span className="jc-domain-chip-icon" aria-hidden="true">
+                    {domain.icon}
+                  </span>
+                  <span className="jc-domain-chip-label">{domain.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Key responsibilities checklist */}
         {section.items && section.variant === 'responsibilities' && (
           <ul className="jc-detailed-check-list">
             {section.items.map((item) => (
               <li className="jc-detailed-check-item" key={item}>
                 <Check size={14} aria-hidden="true" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {section.items && section.variant === 'architecture' && (
-          <ul className="jc-detailed-arch-list">
-            {section.items.map((item) => (
-              <li className="jc-detailed-arch-item" key={item}>
-                <span className="jc-detailed-arch-bullet" aria-hidden="true" />
                 <span>{item}</span>
               </li>
             ))}

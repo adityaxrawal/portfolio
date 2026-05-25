@@ -16,30 +16,52 @@ import {
   Monitor,
   Package,
   Server,
+  Share2,
   ShieldCheck,
   Target,
   TrendingUp,
   Users,
   Zap,
+  Box,
+  Activity,
+  Network,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import type { JobConfig } from '../../../../types/work.types';
+
+export interface ArchDomainChip {
+  label: string;
+  icon: ReactNode;
+  color?: string;
+}
 
 export interface DetailedInfoSection {
   title: string;
   icon: ReactNode;
   description?: string;
   items?: string[];
-  variant: 'built' | 'responsibilities' | 'architecture';
+  domains?: ArchDomainChip[];
+  variant: 'built' | 'responsibilities';
 }
 
+/* ─────────────────────────────────────────────────────────────
+   WIPRO
+   ───────────────────────────────────────────────────────────── */
 export const wiproDetailedSections: DetailedInfoSection[] = [
   {
     title: 'What I Built',
     icon: <FileCode2 size={14} />,
     description:
       'A full-stack e-commerce platform with coupon management, product catalog, and secure authentication.',
+    domains: [
+      { label: 'Frontend', icon: <Monitor size={10} />, color: '#0ea5e9' },
+      { label: 'Backend API', icon: <Server size={10} />, color: '#6366f1' },
+      { label: 'Auth / JWT', icon: <Lock size={10} />, color: '#8b5cf6' },
+      { label: 'Databases', icon: <Database size={10} />, color: '#f59e0b' },
+      { label: 'Microservices', icon: <Package size={10} />, color: '#14b8a6' },
+      { label: 'REST APIs', icon: <Globe size={10} />, color: '#ec4899' },
+    ],
     variant: 'built',
   },
   {
@@ -54,26 +76,25 @@ export const wiproDetailedSections: DetailedInfoSection[] = [
     ],
     variant: 'responsibilities',
   },
-  {
-    title: 'Architecture Highlights',
-    icon: <GitBranch size={14} />,
-    items: [
-      'RESTful APIs with Node.js & Express',
-      'Secure authentication with JWT',
-      'Coupon engine with rule validation',
-      'Caching with Redis',
-      'Scalable & modular monolith',
-    ],
-    variant: 'architecture',
-  },
 ];
 
+/* ─────────────────────────────────────────────────────────────
+   DEVELUP
+   ───────────────────────────────────────────────────────────── */
 export const develUpDetailedSections: DetailedInfoSection[] = [
   {
     title: 'What I Built',
     icon: <AppWindow size={14} />,
     description:
       'An interactive Resume Builder with real-time editing, template customization, secure auth, PDF export and user dashboard.',
+    domains: [
+      { label: 'Frontend SSR', icon: <Monitor size={10} />, color: '#10b981' },
+      { label: 'REST APIs', icon: <Network size={10} />, color: '#3b82f6' },
+      { label: 'Auth / RBAC', icon: <ShieldCheck size={10} />, color: '#8b5cf6' },
+      { label: 'Async Workers', icon: <Share2 size={10} />, color: '#f59e0b' },
+      { label: 'CDN / S3', icon: <Cloud size={10} />, color: '#06b6d4' },
+      { label: 'CI/CD', icon: <GitBranch size={10} />, color: '#64748b' },
+    ],
     variant: 'built',
   },
   {
@@ -84,31 +105,29 @@ export const develUpDetailedSections: DetailedInfoSection[] = [
       'Built REST APIs using Express.js',
       'Implemented JWT auth & protected routes',
       'Designed resume templates & rendering flow',
-      // 'Integrated PDF generation & storage',
       'Built dashboard with analytics & tracking',
     ],
     variant: 'responsibilities',
   },
-  {
-    title: 'Architecture Highlights',
-    icon: <Zap size={14} />,
-    items: [
-      'Server-side rendering for better SEO',
-      'Optimized for performance & scalability',
-      'Asynchronous PDF generation with queues',
-      'Secure state management & data isolation',
-      'Modular, maintainable & component-driven',
-    ],
-    variant: 'architecture',
-  },
 ];
 
+/* ─────────────────────────────────────────────────────────────
+   LEADSQUARED
+   ───────────────────────────────────────────────────────────── */
 export const leadSquaredDetailedSections: DetailedInfoSection[] = [
   {
     title: 'What I Built',
     icon: <Package size={14} />,
     description:
       'Serverless microservices, secure APIs, and micro frontend modules that power core CRM workflows.',
+    domains: [
+      { label: 'Micro Frontend', icon: <Layers size={10} />, color: '#3b82f6' },
+      { label: 'Serverless', icon: <Zap size={10} />, color: '#f97316' },
+      { label: 'Event-Driven', icon: <Share2 size={10} />, color: '#f59e0b' },
+      { label: 'Auth & WAF', icon: <ShieldCheck size={10} />, color: '#a855f7' },
+      { label: 'Integrations', icon: <Globe size={10} />, color: '#0ea5e9' },
+      { label: 'CDN / Edge', icon: <Cloud size={10} />, color: '#64748b' },
+    ],
     variant: 'built',
   },
   {
@@ -123,26 +142,25 @@ export const leadSquaredDetailedSections: DetailedInfoSection[] = [
     ],
     variant: 'responsibilities',
   },
-  {
-    title: 'Architecture Highlights',
-    icon: <Cloud size={14} />,
-    items: [
-      'Serverless, event-driven architecture',
-      'Micro frontends for scalability',
-      'High availability & auto-scaling',
-      'Secure multi-tenant design',
-      'Cost optimized with AWS services',
-    ],
-    variant: 'architecture',
-  },
 ];
 
+/* ─────────────────────────────────────────────────────────────
+   MATHCO
+   ───────────────────────────────────────────────────────────── */
 export const mathCoDetailedSections: DetailedInfoSection[] = [
   {
     title: 'What I Built',
     icon: <FileCode2 size={14} />,
     description:
       'End-to-end analytics dashboard with real-time insights, automated pipelines and secure data access.',
+    domains: [
+      { label: 'React / TS UI', icon: <Monitor size={10} />, color: '#22c55e' },
+      { label: 'FastAPI', icon: <Server size={10} />, color: '#3b82f6' },
+      { label: 'Data Pipelines', icon: <Share2 size={10} />, color: '#f97316' },
+      { label: 'Auth & RBAC', icon: <ShieldCheck size={10} />, color: '#a855f7' },
+      { label: 'CI/CD & Docker', icon: <Box size={10} />, color: '#64748b' },
+      { label: 'Monitoring', icon: <Activity size={10} />, color: '#0ea5e9' },
+    ],
     variant: 'built',
   },
   {
@@ -157,20 +175,11 @@ export const mathCoDetailedSections: DetailedInfoSection[] = [
     ],
     variant: 'responsibilities',
   },
-  {
-    title: 'Architecture Highlights',
-    icon: <Layers size={14} />,
-    items: [
-      'Microservices with FastAPI',
-      'Real-time + Batch processing',
-      'Scalable data pipelines',
-      'Secure, role-based access',
-      'High performance caching',
-    ],
-    variant: 'architecture',
-  },
 ];
 
+/* ─────────────────────────────────────────────────────────────
+   JOB CONFIGS (Metrics, ArchNodes, Impacts, TechStack)
+   ───────────────────────────────────────────────────────────── */
 export const jobConfigs: Record<string, JobConfig> = {
   MathCo: {
     logoLetter: 'M',
@@ -463,7 +472,6 @@ export const jobConfigs: Record<string, JobConfig> = {
 
 /**
  * Maps company names to their detailed info sections.
- * Used in JobContent to replace cascading if/else company-name checks.
  * REFACTOR: Centralised here so adding a new company only requires one change.
  */
 export const detailedSections: Record<string, DetailedInfoSection[]> = {
@@ -472,4 +480,3 @@ export const detailedSections: Record<string, DetailedInfoSection[]> = {
   Leadsquared: leadSquaredDetailedSections,
   MathCo: mathCoDetailedSections,
 };
-

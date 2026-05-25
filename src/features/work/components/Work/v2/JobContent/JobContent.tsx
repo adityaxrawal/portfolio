@@ -11,7 +11,7 @@ import { detailedSections, jobConfigs } from './jobConfigs';
 import { MetricCard } from './MetricCard';
 import { TechStack } from './TechStack';
 
-import { useSharedState } from '@/app';
+import { useSharedState } from '../../../../../../app';
 
 import '../JobContent.css';
 
@@ -72,17 +72,17 @@ function JobContent({ job }: JobContentProps) {
               usesCustomDiagram ? 'jc-arch-section--detailed' : ''
             }`}
           >
+            <div className="jc-section-header">
+              <span
+                className="jc-section-dot"
+                style={{ backgroundColor: config.accentColor }}
+              />
+              <span className="jc-section-label">SYSTEM ARCHITECTURE</span>
+            </div>
             {usesCustomDiagram ? (
               <ArchitecturePanel companyName={job.companyName} />
             ) : (
-              <>
-                <div className="jc-section-header">
-                  <span
-                    className="jc-section-dot"
-                    style={{ backgroundColor: config.accentColor }}
-                  />
-                  <span className="jc-section-label">SYSTEM ARCHITECTURE</span>
-                </div>
+
                 <div className="jc-arch-flow-wrapper">
                   <div className="jc-arch-flow">
                     {config.archNodes.map((node, i) => (
@@ -106,7 +106,6 @@ function JobContent({ job }: JobContentProps) {
                     <div className="jc-feedback-label">feedback loop</div>
                   </div>
                 </div>
-              </>
             )}
           </div>
 

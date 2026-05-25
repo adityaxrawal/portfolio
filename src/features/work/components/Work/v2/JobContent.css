@@ -253,7 +253,7 @@
 .jc-left-col {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 65%;
   height: 100%;
   overflow: visible;
 }
@@ -613,7 +613,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 25%;
+  width: 35%;
 }
 
 .jc-impact-list {
@@ -701,7 +701,7 @@
   min-height: 100%;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
 }
 
 .jc-detailed-info-section {
@@ -765,7 +765,7 @@
 
 .jc-detailed-info-description {
   margin: 0;
-  padding-left: 2.7rem;
+  padding-left: 2rem;
   color: #64748b;
   font-family: monospace;
   font-size: 0.68rem;
@@ -784,7 +784,7 @@
   flex-direction: column;
   gap: 0.35rem;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 2rem;
   list-style: none;
 }
 
@@ -844,8 +844,124 @@
 
 
 /* ─────────────────────────────────────────────────────────────
-   6. RESPONSIVENESS & ADAPTIVE LAYOUT
+   5c. ARCHITECTURE DOMAIN CHIPS
    ───────────────────────────────────────────────────────────── */
+.jc-domain-chips-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-left: 2rem;
+  padding-top: 0.15rem;
+}
+
+/* Labeled separator */
+.jc-domain-separator {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.jc-domain-separator-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(209, 213, 219, 0.8), transparent);
+}
+
+.dark .jc-domain-separator-line {
+  background: linear-gradient(to right, transparent, rgba(63, 63, 70, 0.7), transparent);
+}
+
+.jc-domain-separator-label {
+  font-family: monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dark .jc-domain-separator-label {
+  color: #6b7280;
+}
+
+/* Domain chips row */
+.jc-domain-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+}
+
+/* Individual domain chip */
+.jc-domain-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.6rem 0.28rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--chip-color, #64748b) 25%, transparent);
+  background-color: color-mix(in srgb, var(--chip-color, #64748b) 8%, transparent);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+/* Fallback for browsers without color-mix */
+@supports not (color: color-mix(in srgb, red 25%, transparent)) {
+  .jc-domain-chip {
+    border-color: rgba(100, 116, 139, 0.25);
+    background-color: rgba(100, 116, 139, 0.08);
+  }
+}
+
+.jc-domain-chip:hover {
+  transform: translateY(-1.5px);
+  border-color: color-mix(in srgb, var(--chip-color, #64748b) 50%, transparent);
+  background-color: color-mix(in srgb, var(--chip-color, #64748b) 14%, transparent);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--chip-color, #64748b) 20%, transparent);
+}
+
+.jc-domain-chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--chip-color, #64748b);
+}
+
+.jc-domain-chip-icon svg {
+  width: 10px;
+  height: 10px;
+}
+
+.jc-domain-chip-label {
+  font-family: monospace;
+  font-size: 0.63rem;
+  font-weight: 600;
+  color: var(--chip-color, #64748b);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Dark mode domain chips */
+.dark .jc-domain-chip {
+  border-color: color-mix(in srgb, var(--chip-color, #64748b) 30%, rgba(0,0,0,0.4));
+  background-color: color-mix(in srgb, var(--chip-color, #64748b) 10%, rgba(30,30,30,0.6));
+}
+
+.dark .jc-domain-chip:hover {
+  border-color: color-mix(in srgb, var(--chip-color, #64748b) 55%, transparent);
+  background-color: color-mix(in srgb, var(--chip-color, #64748b) 18%, rgba(30,30,30,0.6));
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--chip-color, #64748b) 25%, transparent);
+}
+
+.dark .jc-domain-chip-label,
+.dark .jc-domain-chip-icon {
+  opacity: 0.9;
+}
+
+
 @media (max-width: 1200px) {
   .jc-header {
     flex-direction: column;
