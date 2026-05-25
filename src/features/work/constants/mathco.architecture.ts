@@ -2,81 +2,82 @@ import { ArchitectureDiagramConfig } from '../types/architecture.types';
 
 export const mathcoArchitecture: ArchitectureDiagramConfig = {
   company: 'MathCo',
-  columns: [
+  rows: [
     {
       id: 'clients',
-      title: 'Clients',
-      accent: '#64748b', // slate
+      layerLabel: 'CLIENT\nLAYER',
       nodes: [
-        { id: 'exec', label: 'Executive Dashboards', icon: 'LayoutGrid' },
-        { id: 'regional', label: 'Regional Managers', icon: 'Users' },
-        { id: 'analysts', label: 'Business Analysts', icon: 'TrendingUp' },
-        { id: 'mobile', label: 'Mobile Users', icon: 'Smartphone' },
+        { id: 'exec',     label: 'Executive Users',    icon: 'Users',    iconColor: '#64748b' },
+        { id: 'analysts', label: 'Business Analysts',  icon: 'BarChart2', iconColor: '#64748b' },
+        { id: 'brand',    label: 'Brand Managers',     icon: 'User',      iconColor: '#64748b' },
       ],
+      connectorToNext: 'solid',
+      // 3 arrows from each client node → FRONTEND wide node
     },
     {
       id: 'frontend',
-      title: 'Frontend (React + TS)',
-      accent: '#22c55e', // green
+      layerLabel: 'FRONTEND',
       nodes: [
-        { id: 'spa', label: 'React SPA', icon: 'Monitor' },
-        { id: 'ui', label: 'UI Components', icon: 'Layers' },
-        { id: 'state', label: 'State Management', icon: 'Cpu' },
-        { id: 'charts', label: 'Charts & Visualizations', icon: 'BarChart2' },
-        { id: 'rbac-ui', label: 'RBAC UI Renderer', icon: 'ShieldCheck' },
-        { id: 'cdn', label: 'CDN + Edge Cache', icon: 'Globe' },
+        {
+          id: 'spa',
+          label: 'React.js + TypeScript',
+          subLabel: 'Interactive Dashboards',
+          icon: 'SiReact',
+          iconColor: '#61DAFB',
+          highlight: true,
+        },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 1, // single center arrow → BACKEND
     },
     {
-      id: 'api',
-      title: 'API & Services (FastAPI)',
-      accent: '#3b82f6', // blue
+      id: 'backend',
+      layerLabel: 'BACKEND\nSERVICES',
       nodes: [
-        { id: 'gateway', label: 'API Gateway', icon: 'Network' },
-        { id: 'auth', label: 'Auth & RBAC', icon: 'ShieldCheck' },
-        { id: 'analytics-svc', label: 'Analytics Service', icon: 'Server' },
-        { id: 'report-svc', label: 'Report Service', icon: 'Server' },
-        { id: 'forecast-svc', label: 'Forecasting Service', icon: 'Server' },
-        { id: 'prefs-svc', label: 'User Prefs Service', icon: 'Server' },
-        { id: 'notify-svc', label: 'Notification Service', icon: 'Server' },
+        {
+          id: 'api',
+          label: 'FastAPI (Python)',
+          subLabel: 'RESTful APIs',
+          icon: 'SiFastapi',
+          iconColor: '#009688',
+        },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 4, // branches to 4 DATA LAYER nodes
     },
     {
       id: 'data',
-      title: 'Data Layer',
-      accent: '#8b5cf6', // purple
+      layerLabel: 'DATA\nLAYER',
       nodes: [
-        { id: 'postgres', label: 'PostgreSQL', subLabel: '(Operational DB)', icon: 'cylinder' },
-        { id: 'redis', label: 'Redis', subLabel: '(Cache)', icon: 'cylinder' },
-        { id: 'dw', label: 'Data Warehouse', subLabel: '(Snowflake/Redshift)', icon: 'cylinder' },
-        { id: 's3', label: 'S3 Data Lake', icon: 'cylinder' },
+        { id: 'postgres', label: 'PostgreSQL',      subLabel: '(Operational DB)',   icon: 'SiPostgresql',   iconColor: '#336791' },
+        { id: 'redis',    label: 'Redis',            subLabel: '(Cache)',            icon: 'SiRedis',        iconColor: '#DC382D' },
+        { id: 'redshift', label: 'Amazon Redshift',  subLabel: '(Data Warehouse)',   icon: 'Database',       iconColor: '#8B5CF6' },
+        { id: 's3',       label: 'Amazon S3',        subLabel: '(Data Lake)',        icon: 'Archive',        iconColor: '#3CB054' },
       ],
+      connectorToNext: 'dashed',
+      connectorArrowCount: 2, // dashed → 2 PIPELINE nodes
     },
     {
       id: 'pipelines',
-      title: 'Pipelines & Processing',
-      accent: '#f97316', // orange
+      layerLabel: 'DATA\nPIPELINES',
       nodes: [
-        { id: 'etl', label: 'ETL Ingestion', icon: 'ArrowDownCircle' },
-        { id: 'validation', label: 'Data Validation', icon: 'CheckSquare' },
-        { id: 'transform', label: 'Transformations', icon: 'RefreshCw' },
-        { id: 'airflow', label: 'Airflow Scheduler', icon: 'Calendar' },
-        { id: 'batch', label: 'Batch Jobs', icon: 'Terminal' },
-        { id: 'events', label: 'Event Stream', subLabel: '(Kafka / SQS)', icon: 'Share2' },
+        { id: 'airflow', label: 'Airflow',   subLabel: '(ETL Orchestration)', icon: 'SiApacheairflow', iconColor: '#017CEE' },
+        { id: 'glue',    label: 'AWS Glue',  subLabel: '(Data Preparation)',  icon: 'Filter',          iconColor: '#8B5CF6' },
       ],
+      intraRowArrows: [{ from: 'airflow', to: 'glue', style: 'dashed' }],
+      connectorToNext: 'dashed',
+      connectorArrowCount: 4, // dashed → 4 DATA SOURCE nodes
     },
-  ],
-  footerBands: [
     {
-      id: 'devops',
-      title: 'DevOps & Observability',
+      id: 'sources',
+      layerLabel: 'DATA\nSOURCES',
       nodes: [
-        { id: 'docker', label: 'Docker', icon: 'Box' },
-        { id: 'k8s', label: 'Kubernetes', icon: 'Layers' },
-        { id: 'cicd', label: 'CI/CD (GitHub Actions)', icon: 'GitBranch' },
-        { id: 'monitoring', label: 'Monitoring (CloudWatch + Grafana)', icon: 'Activity' },
-        { id: 'logging', label: 'Logging & Tracing', icon: 'FileText' },
+        { id: 'internal',   label: 'Internal Systems',  subLabel: '(CRM, ERP, etc.)',       icon: 'Building2',  iconColor: '#64748b' },
+        { id: 'models',     label: 'Analytical Models', subLabel: '(DS / ML Pipelines)',    icon: 'TrendingUp', iconColor: '#3b82f6' },
+        { id: 'thirdparty', label: 'Third-party Data',  subLabel: '(Market, External)',     icon: 'Globe',      iconColor: '#0ea5e9' },
+        { id: 'manual',     label: 'Manual Uploads',    subLabel: '(Spreadsheets)',         icon: 'Upload',     iconColor: '#64748b' },
       ],
+      connectorToNext: 'none',
     },
   ],
 };

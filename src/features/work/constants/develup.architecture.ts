@@ -2,92 +2,78 @@ import { ArchitectureDiagramConfig } from '../types/architecture.types';
 
 export const develupArchitecture: ArchitectureDiagramConfig = {
   company: 'DevelUp',
-  columns: [
+  rows: [
     {
       id: 'clients',
-      title: 'Clients',
-      accent: '#8b5cf6', // purple
+      layerLabel: 'CLIENT\nLAYER',
       nodes: [
-        { id: 'web', label: 'Web Users', icon: 'user' },
-        { id: 'job', label: 'Job Seekers', icon: 'user' },
-        { id: 'students', label: 'Students', icon: 'graduate' },
-        { id: 'recruiters', label: 'Recruiters', icon: 'users' },
+        { id: 'web',        label: 'Web Users',   icon: 'Globe',       iconColor: '#64748b' },
+        { id: 'job',        label: 'Job Seekers', icon: 'Target',      iconColor: '#64748b' },
+        { id: 'students',   label: 'Students',    icon: 'GraduationCap', iconColor: '#64748b' },
+        { id: 'recruiters', label: 'Recruiters',  icon: 'UserCog',     iconColor: '#64748b' },
       ],
+      connectorToNext: 'solid',
     },
     {
       id: 'frontend',
-      title: 'Frontend (Next.js)',
-      accent: '#10b981', // emerald
+      layerLabel: 'FRONTEND',
       nodes: [
-        { id: 'next', label: 'Next.js App', subLabel: '(SSR/CSR)' },
-        { id: 'resume', label: 'Resume Builder UI' },
-        { id: 'template', label: 'Template Engine' },
-        { id: 'state', label: 'State Management', subLabel: '(Context API)' },
-        { id: 'storage', label: 'Local Storage', subLabel: '(Drafts)' },
+        {
+          id: 'next',
+          label: 'Next.js App',
+          subLabel: 'SSR / CSR — Resume Builder',
+          icon: 'SiNextdotjs',
+          iconColor: '#000000',
+          highlight: true,
+        },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 4, // branches to 4 API nodes
     },
     {
       id: 'api',
-      title: 'API Layer (Express.js)',
-      accent: '#3b82f6', // blue
+      layerLabel: 'API\nLAYER',
       nodes: [
-        { id: 'gateway', label: 'REST API Gateway' },
-        { id: 'auth', label: 'Auth Middleware', subLabel: '(JWT)' },
-        { id: 'controllers', label: 'Controllers' },
-        { id: 'services', label: 'Services' },
-        { id: 'repositories', label: 'Repositories' },
+        { id: 'gateway',     label: 'REST API Gateway',  icon: 'Network',    iconColor: '#3b82f6' },
+        { id: 'auth',        label: 'Auth Middleware',   subLabel: '(JWT)',   icon: 'Key',       iconColor: '#f59e0b' },
+        { id: 'controllers', label: 'Controllers',        icon: 'LayoutGrid', iconColor: '#8B5CF6' },
+        { id: 'services',    label: 'Services',           icon: 'Server',     iconColor: '#64748b' },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 3, // to 3 DATA nodes
     },
     {
       id: 'data',
-      title: 'Data Layer',
-      accent: '#a855f7', // purple
+      layerLabel: 'DATA\nLAYER',
       nodes: [
-        { id: 'postgres', label: 'PostgreSQL', subLabel: '(User & Auth)', icon: 'database' },
-        { id: 'mongo', label: 'MongoDB', subLabel: '(Resumes & Templates)', icon: 'file' },
-        { id: 'redis', label: 'Redis', subLabel: '(Cache & Sessions)', icon: 'cache' },
+        { id: 'postgres', label: 'PostgreSQL', subLabel: '(User & Auth)',            icon: 'SiPostgresql', iconColor: '#336791' },
+        { id: 'mongo',    label: 'MongoDB',    subLabel: '(Resumes & Templates)',    icon: 'SiMongodb',    iconColor: '#47A248' },
+        { id: 'redis',    label: 'Redis',      subLabel: '(Cache & Sessions)',       icon: 'SiRedis',      iconColor: '#DC382D' },
       ],
+      connectorToNext: 'dashed',
+      connectorArrowCount: 4, // dashed → 4 WORKER nodes
     },
     {
       id: 'workers',
-      title: 'Background Services',
-      accent: '#f59e0b', // amber
+      layerLabel: 'BACKGROUND\nSERVICES',
       nodes: [
-        { id: 'render', label: 'Resume Rendering Service' },
-        { id: 'pdf', label: 'PDF Generation Worker' },
-        { id: 'email', label: 'Email/Notification Worker' },
-        { id: 'analytics', label: 'Analytics Worker' },
+        { id: 'render',    label: 'Resume Rendering', icon: 'FileText',   iconColor: '#64748b' },
+        { id: 'pdf',       label: 'PDF Generation',  subLabel: '(Worker)', icon: 'Box',         iconColor: '#ef4444' },
+        { id: 'email',     label: 'Email / Notifications', icon: 'Mail',  iconColor: '#f59e0b' },
+        { id: 'analytics', label: 'Analytics Worker', icon: 'Activity',   iconColor: '#10b981' },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 3, // → 3 STORAGE nodes
     },
     {
       id: 'storage',
-      title: 'Storage & CDN',
-      accent: '#06b6d4', // cyan
+      layerLabel: 'STORAGE\n& CDN',
       nodes: [
-        { id: 's3', label: 'AWS S3', subLabel: '(Resumes & Files)', icon: 'cloud' },
-        { id: 'cdn', label: 'CloudFront', subLabel: '(CDN)', icon: 'server' },
-        { id: 'assets', label: 'Static Assets', icon: 'package' },
+        { id: 's3',     label: 'AWS S3',       subLabel: '(Resumes & Files)', icon: 'Archive', iconColor: '#3CB054' },
+        { id: 'cdn',    label: 'CloudFront',   subLabel: '(CDN)',             icon: 'Cloud',   iconColor: '#f97316' },
+        { id: 'assets', label: 'Static Assets',                               icon: 'Package', iconColor: '#64748b' },
       ],
-    },
-  ],
-  footerBands: [
-    {
-      id: 'security',
-      title: 'Security',
-      nodes: [
-        { id: 'jwt', label: 'JWT Authentication', icon: 'jwt' },
-        { id: 'routes', label: 'Protected Routes', icon: 'lock' },
-        { id: 'rbac', label: 'Role-based Access', icon: 'role' },
-      ],
-    },
-    {
-      id: 'devops',
-      title: 'DevOps & Monitoring',
-      nodes: [
-        { id: 'cicd', label: 'GitHub Actions (CI/CD)', icon: 'github' },
-        { id: 'sentry', label: 'Sentry Monitoring', icon: 'bell' },
-        { id: 'logs', label: 'Logs & Analytics', icon: 'analytics' },
-      ],
+      connectorToNext: 'none',
     },
   ],
 };

@@ -2,81 +2,77 @@ import { ArchitectureDiagramConfig } from '../types/architecture.types';
 
 export const wiproArchitecture: ArchitectureDiagramConfig = {
   company: 'Wipro',
-  columns: [
+  rows: [
     {
       id: 'client',
-      title: 'Client Layer',
-      accent: '#8b5cf6', // purple
+      layerLabel: 'CLIENT\nLAYER',
       nodes: [
-        { id: 'web', label: 'Web Users', icon: 'FaUsers' },
-        { id: 'admin', label: 'Admin Panel', icon: 'FaUserShield' },
-        { id: 'mobile', label: 'Mobile Users', icon: 'FaMobileAlt' },
+        { id: 'web',    label: 'Web Users',    icon: 'Globe',      iconColor: '#64748b' },
+        { id: 'admin',  label: 'Admin Panel',  icon: 'ShieldCheck', iconColor: '#64748b' },
+        { id: 'mobile', label: 'Mobile Users', icon: 'Smartphone', iconColor: '#64748b' },
       ],
+      connectorToNext: 'solid',
     },
     {
       id: 'frontend',
-      title: 'Frontend (Angular)',
-      accent: '#0ea5e9', // sky blue
+      layerLabel: 'FRONTEND',
       nodes: [
-        { id: 'spa', label: 'Angular SPA', icon: 'SiAngular' },
-        { id: 'routing', label: 'Routing' },
-        { id: 'state', label: 'State Management' },
-        { id: 'interceptors', label: 'HTTP Interceptors' },
+        {
+          id: 'spa',
+          label: 'Angular SPA',
+          subLabel: 'E-commerce Storefront',
+          icon: 'SiAngular',
+          iconColor: '#DD0031',
+          highlight: true,
+        },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 4, // branches to 4 GATEWAY nodes
     },
     {
       id: 'gateway',
-      title: 'API Gateway / NGINX',
-      accent: '#14b8a6', // teal
+      layerLabel: 'API\nGATEWAY',
       nodes: [
-        { id: 'proxy', label: 'Reverse Proxy', icon: 'SiNginx' },
-        { id: 'lb', label: 'Load Balancing' },
-        { id: 'routing', label: 'Request Routing' },
-        { id: 'rate', label: 'Rate Limiting' },
+        { id: 'proxy',   label: 'Reverse Proxy',   subLabel: '(NGINX)',  icon: 'SiNginx',  iconColor: '#009639' },
+        { id: 'lb',      label: 'Load Balancing',                         icon: 'Network',  iconColor: '#3b82f6' },
+        { id: 'routing', label: 'Request Routing',                        icon: 'Share2',   iconColor: '#8B5CF6' },
+        { id: 'rate',    label: 'Rate Limiting',                          icon: 'Shield',   iconColor: '#f59e0b' },
       ],
+      connectorToNext: 'solid',
     },
     {
       id: 'backend',
-      title: 'Backend Services (Node.js)',
-      accent: '#6366f1', // indigo
+      layerLabel: 'BACKEND\nSERVICES',
       nodes: [
-        { id: 'auth', label: 'Auth Service', icon: 'SiNodedotjs' },
-        { id: 'product', label: 'Product Service' },
-        { id: 'coupon', label: 'Coupon Service' },
-        { id: 'order', label: 'Order Service' },
+        { id: 'auth',    label: 'Auth Service',    icon: 'Key',        iconColor: '#64748b' },
+        { id: 'product', label: 'Product Service', icon: 'Box',        iconColor: '#3b82f6' },
+        { id: 'coupon',  label: 'Coupon Service',  icon: 'Target',     iconColor: '#10b981' },
+        { id: 'order',   label: 'Order Service',   icon: 'CheckSquare', iconColor: '#f97316' },
       ],
+      connectorToNext: 'solid',
+      connectorArrowCount: 3, // → 3 DATA nodes
     },
     {
       id: 'data',
-      title: 'Data Layer',
-      accent: '#f59e0b', // amber
+      layerLabel: 'DATA\nLAYER',
       nodes: [
-        { id: 'mongo', label: 'MongoDB', subLabel: '(Primary)', icon: 'SiMongodb' },
-        { id: 'redis', label: 'Redis', subLabel: '(Cache)', icon: 'SiRedis' },
-        { id: 'file', label: 'File Storage', icon: 'FaRegFileAlt' },
+        { id: 'mongo', label: 'MongoDB',      subLabel: '(Primary)', icon: 'SiMongodb', iconColor: '#47A248' },
+        { id: 'redis', label: 'Redis',        subLabel: '(Cache)',   icon: 'SiRedis',   iconColor: '#DC382D' },
+        { id: 'file',  label: 'File Storage', subLabel: '(Assets)', icon: 'Archive',   iconColor: '#64748b' },
       ],
+      connectorToNext: 'dashed',
+      connectorArrowCount: 4, // dashed → 4 EXTERNAL nodes
     },
     {
       id: 'external',
-      title: 'External Services',
-      accent: '#ec4899', // pink
+      layerLabel: 'EXTERNAL\nSERVICES',
       nodes: [
-        { id: 'payment', label: 'Payment Gateway', icon: 'FaCreditCard' },
-        { id: 'email', label: 'Email Service', icon: 'FaEnvelope' },
-        { id: 'sms', label: 'SMS Service', icon: 'FaSms' },
-        { id: 'analytics', label: 'Analytics Service', icon: 'FaChartLine' },
+        { id: 'payment',   label: 'Payment Gateway', icon: 'FaCreditCard', iconColor: '#10b981' },
+        { id: 'email',     label: 'Email Service',   icon: 'Mail',         iconColor: '#3b82f6' },
+        { id: 'sms',       label: 'SMS Service',     icon: 'FaSms',        iconColor: '#f59e0b' },
+        { id: 'analytics', label: 'Analytics',       icon: 'Activity',     iconColor: '#8B5CF6' },
       ],
-    },
-  ],
-  footerBands: [
-    {
-      id: 'workers',
-      title: 'Background Workers',
-      nodes: [
-        { id: 'coupon-worker', label: 'Coupon Expiry Worker', icon: 'FaCog' },
-        { id: 'order-worker', label: 'Order Processing Worker', icon: 'FaClipboardList' },
-        { id: 'email-worker', label: 'Email Notification Worker', icon: 'FaEnvelope' },
-      ],
+      connectorToNext: 'none',
     },
   ],
 };
