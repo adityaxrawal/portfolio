@@ -1,193 +1,423 @@
-/* 
-  Architecture Diagram — Contained Layout
-  The arch-diagram-wrapper must fill its parent container (jc-arch-section--detailed)
-  completely. All overflow is managed internally, and the content scales to fit
-  using CSS container queries.
+/*
+  Architecture Diagram — Vertical Row Layout
+  ============================================
+  Redesigned to match a layered-row diagram style:
+  - Left sidebar shows layer labels (e.g. "CLIENT LAYER")
+  - Right area holds nodes for that layer
+  - Vertical arrows connect layers top-to-bottom
+  - Single-node rows span full width (wide nodes)
+  - Intra-row dashed arrows show flow within a layer
+  All sizing uses container queries (cqi) — no media queries.
 */
 
-.arch-diagram-wrapper {
+/* ── Pulse animation for the header indicator dot ─── */
+@keyframes arch-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+  50%       { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+}
+
+/* ── Outer diagram shell ─────────────────────────── */
+.arch-v-diagram {
   width: 100%;
   height: 100%;
   flex: 1 1 0;
   min-height: 0;
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
   overflow: hidden;
-  background-color: transparent;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
-  container-type: size;
+  container-type: inline-size;
   container-name: arch;
 }
 
-/* Inner content area (no scrolling, flex layout) */
-.arch-content-scroll {
-  flex: 1 1 0;
-  min-height: 0;
-  overflow: hidden; /* NO SCROLLING! Content scales instead. */
-  display: flex;
-  flex-direction: column;
-  gap: 2cqmin;
-  padding: 2cqmin;
-  box-sizing: border-box;
+.dark .arch-v-diagram {
+  background: #1a1a1e;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Main columns row */
-.arch-columns-row {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 1.5cqmin;
-  width: 100%;
-  flex: 1 1 0; /* Allow the column row to shrink/grow */
-  min-height: 0;
-}
-
-/* Individual column */
-.arch-column {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0;
-  min-width: 0;
-  border-radius: 1.5cqmin;
-  overflow: hidden;
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-}
-
-.arch-column-header {
-  padding: 1.25cqmin 2cqmin;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 2.25cqmin;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid transparent;
+/* ── Top bar: ● SYSTEM ARCHITECTURE ─────────────── */
+.arch-v-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1cqmin;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f3f4f6;
   flex-shrink: 0;
+  background: #fafafa;
+}
+
+.dark .arch-v-header {
+  background: #111114;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.arch-v-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: arch-pulse-dot 2.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.arch-v-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #374151;
+  text-transform: uppercase;
   line-height: 1;
 }
 
-.arch-column-body {
-  padding: 1.5cqmin;
-  display: flex;
-  flex-direction: column;
-  gap: 1cqmin;
+.dark .arch-v-title {
+  color: #d1d5db;
+}
+
+/* ── Scrollable body ─────────────────────────────── */
+.arch-v-body {
   flex: 1 1 0;
   min-height: 0;
-}
-
-/* Node card */
-.arch-node {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 1cqmin;
-  padding: 0.75cqmin 1cqmin; /* Reduced vertical padding */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  gap: 0.25cqmin; /* Reduced gap */
-  flex: 1 1 0;
-  min-height: 0;
-  overflow: hidden; /* Ensure text doesn't visibly bleed out */
-}
-
-.arch-node-icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.arch-node-icon-wrapper svg {
-  width: 2.5cqmin; /* Scaled down slightly */
-  height: 2.5cqmin;
-}
-
-.arch-node-label {
-  font-size: 2cqmin; /* Reduced font size */
-  font-weight: 500;
-  color: #1f2937;
-  line-height: 1.1; /* Tighter line height */
-  word-break: break-word;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* Max 2 lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.arch-node-sublabel {
-  font-size: 1.6cqmin; /* Reduced font size */
-  font-weight: 400;
-  color: #6b7280;
-  line-height: 1.1;
-  word-break: break-word;
-  overflow-wrap: anywhere;
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Arrow connector between columns */
-.arch-arrow-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 3.5cqmin;
-  padding: 0;
-  align-self: center;
-}
-
-.arch-arrow svg {
-  width: 3.5cqmin;
-  height: 3.5cqmin;
-  color: #94a3b8;
-}
-
-/* Footer band */
-.arch-footer-band {
-  background: rgba(248, 250, 252, 0.9);
-  border: 1.5px dashed #cbd5e1;
-  border-radius: 1.5cqmin;
-  padding: 1.5cqmin 2cqmin;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25cqmin;
-  width: 100%;
+  gap: 0;
   box-sizing: border-box;
-  flex: 0 0 auto; /* Prevent stretching, shrink to fit content */
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb transparent;
 }
 
-.arch-footer-header {
-  text-align: center;
-  font-size: 2.25cqmin;
-  font-weight: 700;
-  color: #475569;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+.arch-v-body::-webkit-scrollbar { width: 4px; }
+.arch-v-body::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+
+.dark .arch-v-body {
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
 }
 
-.arch-footer-nodes {
+/* ── Row: one layer of the diagram ──────────────── */
+.arch-v-row {
   display: flex;
   flex-direction: row;
-  gap: 1.5cqmin;
-  flex-wrap: nowrap; /* Ensures footer nodes don't wrap and take extra height */
+  align-items: center;
+  gap: 0;
+  min-height: 0;
+}
+
+/* ── Layer label sidebar ─────────────────────────── */
+.arch-v-layer-label {
+  width: 80px;
+  min-width: 80px;
+  flex-shrink: 0;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  line-height: 1.45;
+  white-space: pre-line;
+  text-align: right;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.dark .arch-v-layer-label {
+  color: #6b7280;
+}
+
+/* Thin divider line between label and nodes */
+.arch-v-layer-divider {
+  width: 1.5px;
+  align-self: stretch;
+  background: #f0f0f0;
+  flex-shrink: 0;
+  margin-right: 12px;
+  border-radius: 1px;
+}
+
+.dark .arch-v-layer-divider {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Node area ─────────────────────────────────── */
+.arch-v-nodes {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+/* ── Node Wrapper (Equal width slice to align arrows) ── */
+.arch-v-node-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
   justify-content: center;
 }
 
-.arch-footer-nodes .arch-node {
+/* Wide variant (single node spans full row) */
+.arch-v-nodes--wide .arch-v-node-wrapper {
+  flex: 1 1 0;
+}
+
+/* ── Node card ─────────────────────────────────── */
+.arch-v-node {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  padding: 7px 11px;
   flex: 1 1 0;
   min-width: 0;
-  max-width: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.18s ease, transform 0.15s ease, border-color 0.18s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.arch-v-node:hover {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.09);
+  transform: translateY(-1.5px);
+  border-color: #d1d5db;
+}
+
+.dark .arch-v-node {
+  background: #242428;
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark .arch-v-node:hover {
+  background: #2c2c32;
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Highlighted node (primary/core service) */
+.arch-v-node--highlight {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.arch-v-node--highlight:hover {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.14), 0 3px 12px rgba(0, 0, 0, 0.09);
+  border-color: #16a34a;
+}
+
+.dark .arch-v-node--highlight {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.08), 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Node icon ───────────────────────────────────── */
+.arch-v-node-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--arch-node-accent, #64748b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-v-node-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Node text group ─────────────────────────── */
+.arch-v-node-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.arch-v-node-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.dark .arch-v-node-label {
+  color: #f3f4f6;
+}
+
+.arch-v-node-sublabel {
+  font-size: 9.5px;
+  font-weight: 400;
+  color: #9ca3af;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.dark .arch-v-node-sublabel {
+  color: #6b7280;
+}
+
+/* ── Vertical connector between rows — multi-arrow flex layout ── */
+
+/*
+  The connector row uses the SAME flex layout as arch-v-row:
+  - A spacer that matches the label sidebar width
+  - A flex container of arrow items matching arch-v-nodes layout
+  This guarantees arrows land exactly above/below each node.
+*/
+.arch-v-connector-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* Mirror of: label (80px) + divider (1.5px) + divider margin-right (12px) = 93.5px */
+.arch-v-connector-spacer {
+  width: calc(80px + 1.5px + 12px);
+  min-width: calc(80px + 1.5px + 12px);
+  flex-shrink: 0;
+}
+
+/* Same flex layout as .arch-v-nodes so arrows align with nodes */
+.arch-v-connector-arrows {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 8px; /* MUST match .arch-v-nodes gap */
+}
+
+/* Each arrow item occupies the same horizontal space as a node */
+.arch-v-connector-arrow-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical connector line */
+.arch-v-connector-line {
+  width: 1.5px;
+  height: 10px;
+  background: #d1d5db;
+}
+
+.dark .arch-v-connector-line {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Dashed variant */
+.arch-v-connector-row--dashed .arch-v-connector-line {
+  background: none;
+  border-left: 1.5px dashed #cbd5e1;
+}
+
+.dark .arch-v-connector-row--dashed .arch-v-connector-line {
+  border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+.arch-v-connector-arrowhead {
+  font-size: 10px;
+  line-height: 1;
+  color: #9ca3af;
+  margin-top: -2px;
+  user-select: none;
+}
+
+.dark .arch-v-connector-arrowhead {
+  color: #4b5563;
+}
+
+/* ── Intra-row horizontal arrow (e.g. Airflow → AWS Glue) ──── */
+.arch-v-intra-arrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 20px;
+  max-width: 36px;
+  gap: 0;
+}
+
+.arch-v-intra-arrow-line {
+  flex: 1;
+  height: 1.5px;
+  background: #d1d5db;
+}
+
+.arch-v-intra-arrow--dashed .arch-v-intra-arrow-line {
+  background: none;
+  border-top: 1.5px dashed #cbd5e1;
+  height: 0;
+}
+
+.dark .arch-v-intra-arrow-line {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dark .arch-v-intra-arrow--dashed .arch-v-intra-arrow-line {
+  background: none;
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.arch-v-intra-arrow-head {
+  font-size: 13px;
+  line-height: 1;
+  color: #9ca3af;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.dark .arch-v-intra-arrow-head {
+  color: #4b5563;
+}
+
+/* ── Container queries ───────────────────────────── */
+
+/* Compact: hide sublabels, reduce gaps */
+@container arch (max-width: 520px) {
+  .arch-v-layer-label {
+    width: 60px;
+    min-width: 60px;
+    font-size: 7.5px;
+  }
+  .arch-v-connector-spacer {
+    width: calc(60px + 1.5px + 10px);
+    min-width: calc(60px + 1.5px + 10px);
+  }
+  .arch-v-nodes { gap: 5px; }
+  .arch-v-connector-arrows { gap: 5px; }
+  .arch-v-node { padding: 6px 8px; gap: 5px; }
+  .arch-v-node-label { font-size: 10px; }
+  .arch-v-node-sublabel { display: none; }
+  .arch-v-node-icon { width: 13px; height: 13px; }
+  .arch-v-layer-divider { margin-right: 10px; }
+}
+
+/* Very compact: hide sidebar labels, stack vertically */
+@container arch (max-width: 360px) {
+  .arch-v-layer-label   { display: none; }
+  .arch-v-layer-divider { display: none; }
+  .arch-v-row           { flex-direction: column; align-items: stretch; }
+  .arch-v-nodes         { flex-wrap: wrap; }
+  .arch-v-connector-spacer { display: none; }
 }

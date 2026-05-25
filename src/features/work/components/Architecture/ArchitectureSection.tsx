@@ -1,13 +1,20 @@
+import type { ComponentType } from 'react';
 import type { ArchitectureColumn } from '../../types/architecture.types';
 import { hexToRgba } from '../../constants/architecture.constants';
 import { ArchitectureNode } from './ArchitectureNode';
+import { ARCHITECTURE_ICONS } from '../../constants/architecture.icons';
 
 interface Props {
   column: ArchitectureColumn;
 }
 
 export function ArchitectureSection({ column }: Props) {
-  const { title, accent, nodes } = column;
+  const { title, accent, nodes, badge, icon } = column;
+
+  const IconComponent = icon
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ? (ARCHITECTURE_ICONS[icon] as ComponentType<any>)
+    : null;
 
   return (
     <div
@@ -17,12 +24,24 @@ export function ArchitectureSection({ column }: Props) {
       <div
         className="arch-column-header"
         style={{
-          backgroundColor: hexToRgba(accent, 0.12),
+          backgroundColor: hexToRgba(accent, 0.1),
           color: accent,
           borderBottomColor: hexToRgba(accent, 0.3),
         }}
       >
-        {title}
+        <span style={{ display: 'flex', alignItems: 'center', gap: '0.5cqmin' }}>
+          {IconComponent && <IconComponent size={16} />}
+          {title}
+        </span>
+
+        {badge && (
+          <span
+            className="arch-column-badge"
+            style={{ color: accent, borderColor: hexToRgba(accent, 0.5) }}
+          >
+            {badge}
+          </span>
+        )}
       </div>
       <div className="arch-column-body">
         {nodes.map(node => (
@@ -36,3 +55,4 @@ export function ArchitectureSection({ column }: Props) {
     </div>
   );
 }
+

@@ -37,12 +37,15 @@ import {
   Cloud,
   Code2,
   Workflow,
-  GraduationCap, // using for 'graduate'
+  GraduationCap,
   Package,
   Atom,
   DatabaseBackup,
   Lock,
   Bell,
+  Building2,
+  Upload,
+  Filter,
 } from 'lucide-react';
 
 import {
@@ -66,6 +69,14 @@ import {
   SiNodedotjs,
   SiRedis,
   SiPostgresql,
+  SiReact,
+  SiFastapi,
+  SiNextdotjs,
+  SiApacheairflow,
+  SiDocker,
+  SiKubernetes,
+  SiGithubactions,
+  SiGrafana,
 } from 'react-icons/si';
 
 import { ArchitectureIconKey } from '../types/architecture.types';
@@ -115,6 +126,9 @@ export const ARCHITECTURE_ICONS: Record<ArchitectureIconKey, ElementType> = {
   DatabaseBackup: DatabaseBackup,
   Lock: Lock,
   Bell: Bell,
+  Building2: Building2,
+  Upload: Upload,
+  Filter: Filter,
 
   // DevelUp string mappings
   user: User,
@@ -135,7 +149,7 @@ export const ARCHITECTURE_ICONS: Record<ArchitectureIconKey, ElementType> = {
 
   // LeadSquared/MathCo specific mappings
   cylinder: Database,
-  DatabaseZap: Database, // lucide doesn't have DatabaseZap easily available sometimes, fallback to Database
+  DatabaseZap: Database,
 
   // Wipro (React Icons)
   FaChartLine: FaChartLine,
@@ -148,11 +162,25 @@ export const ARCHITECTURE_ICONS: Record<ArchitectureIconKey, ElementType> = {
   FaSms: FaSms,
   FaUserShield: FaUserShield,
   FaUsers: FaUsers,
-  
+
+  // Simple Icons — brand / tech logos
   SiAngular: SiAngular,
   SiMongodb: SiMongodb,
   SiNginx: SiNginx,
   SiNodedotjs: SiNodedotjs,
   SiRedis: SiRedis,
   SiPostgresql: SiPostgresql,
+  SiReact: SiReact,
+  SiFastapi: SiFastapi,
+  SiNextdotjs: SiNextdotjs,
+  SiApacheairflow: SiApacheairflow,
+  // AWS services — using lucide equivalents (no Si AWS icons in installed version)
+  SiAmazonaws: Cloud,
+  SiAmazons3: Archive,
+  SiAmazonredshift: Database,
+  SiAmazondynamodb: Database,
+  SiDocker: SiDocker,
+  SiKubernetes: SiKubernetes,
+  SiGithubactions: SiGithubactions,
+  SiGrafana: SiGrafana,
 };
