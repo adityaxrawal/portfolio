@@ -13,7 +13,7 @@
 
 .dark .work-v2-section,
 .work-v2-section.dark {
-  background-color: #1a1a1a;
+  background-color: var(--color-background-base);
 }
 
 .work-v2-container {
@@ -50,18 +50,18 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #6b7280; /* Tailwind gray-500 */
+  color: var(--color-text-muted); /* Tailwind gray-500 */
 }
 
 .dark .work-v2-label {
-  color: #9ca3af; /* Tailwind gray-400 */
+  color: var(--color-text-soft); /* Tailwind gray-400 */
 }
 
 .work-v2-dot {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
-  background-color: #50b887;
+  background-color: var(--color-success);
 }
 
 .work-v2-title-wrapper {
@@ -70,11 +70,11 @@
   font-family: 'Playfair Display', serif;
   font-size: var(--font-size-heading);
   font-weight: 700;
-  color: #111827;
+  color: var(--color-text-primary);
 }
 
 .dark .work-v2-title-wrapper {
-  color: #f0ecd8;
+  color: var(--color-text-inverse);
 }
 
 .work-v2-title{
@@ -92,24 +92,24 @@
   left: 5rem;
   width: 30%;
   height: 0.45rem;
-  color: #111827;
+  color: var(--color-text-primary);
 }
 
 .dark .work-v2-underline {
-  color: #f0ecd8;
+  color: var(--color-text-inverse);
 }
 
 .work-v2-subtitle {
   font-family: monospace;
   font-size: 0.875rem;
-  color: #4b5563;
+  color: var(--color-text-tertiary);
   max-width: 100%;
   line-height: 1.625;
   margin-top: 1rem;
 }
 
 .dark .work-v2-subtitle {
-  color: #9ca3af; /* Tailwind gray-400 */
+  color: var(--color-text-soft); /* Tailwind gray-400 */
 }
 
 /* Mission Control Panel */
@@ -118,9 +118,9 @@
   flex-direction: column;
   width: 100%;
   height: 70%;
-  background-color: #faf9f6;
+  background-color: var(--color-background-base);
   border-radius: 1rem;
-  border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+  border: 1px solid var(--color-border-default); /* Tailwind gray-200 */
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   /* overflow: hidden; Removed to allow dots on border to be visible */
   padding: 0.5rem 1rem;
@@ -129,7 +129,7 @@
 }
 
 .dark .work-v2-mission-control {
-  background-color: #2a2a2a;
+  background-color: var(--color-surface-card);
   border-color: rgba(63, 63, 70, 0.5); /* zinc-700/50 */
 }
 
@@ -148,26 +148,26 @@
   font-size: var(--font-size-subSubSubtext);
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #374151; /* gray-700 */
+  color: var(--color-text-tertiary); /* gray-700 */
 }
 
 .dark .mc-label {
-  color: #d1d5db; /* gray-300 */
+  color: var(--color-border-default); /* gray-300 */
 }
 
 .mc-dot {
   width: 0.375rem;
   height: 0.375rem;
   border-radius: 9999px;
-  background-color: #50b887;
+  background-color: var(--color-success);
 }
 
 .mc-icon {
-  color: #9ca3af;
+  color: var(--color-text-soft);
 }
 
 .dark .mc-icon {
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 /* Timeline */
@@ -210,14 +210,14 @@
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  border: 1.5px solid #9ca3af; /* gray-400 */
-  background-color: #faf9f6;
+  border: 1.5px solid var(--color-text-soft); /* gray-400 */
+  background-color: var(--color-background-base);
   z-index: 2;
 }
 
 .dark .mc-indicator-inactive {
-  background-color: #2a2a2a;
-  border-color: #6b7280;
+  background-color: var(--color-surface-card);
+  border-color: var(--color-text-muted);
 }
 
 .mc-number {
@@ -240,7 +240,7 @@
 
 /* Number Colors */
 .mc-num-live {
-  color: #50b887;
+  color: var(--color-success);
 }
 .mc-num-scaled {
   color: #f97316;
@@ -252,7 +252,7 @@
   color: #a855f7;
 }
 .mc-num-past {
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 /* Card */
@@ -297,7 +297,7 @@
 
 /* Active Indicators */
 .mc-indicator-live {
-  background-color: #50b887;
+  background-color: var(--color-success);
   box-shadow: 0 0 8px rgba(80, 184, 135, 0.4);
 }
 
@@ -352,16 +352,16 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 1.25;
-  color: #111827; /* gray-900 */
+  color: var(--color-text-primary); /* gray-900 */
   margin: 0;
 }
 
 .dark .mc-text-wrapper h4 {
-  color: #ffffff;
+  color: var(--color-surface-overlay);
 }
 
 .mc-text-wrapper p {
-  color: #6b7280; /* gray-500 */
+  color: var(--color-text-muted); /* gray-500 */
   font-size: 11px;
   font-family: monospace;
   margin: 0.25rem 0 0 0;
@@ -369,7 +369,7 @@
 }
 
 .dark .mc-text-wrapper p {
-  color: #9ca3af; /* gray-400 */
+  color: var(--color-text-soft); /* gray-400 */
 }
 
 /* Badges */
@@ -384,7 +384,7 @@
 }
 
 .mc-badge-live {
-  color: #50b887;
+  color: var(--color-success);
   background-color: rgba(80, 184, 135, 0.1);
 }
 
@@ -404,14 +404,14 @@
 }
 
 .mc-badge-past {
-  color: #6b7280;
+  color: var(--color-text-muted);
   background-color: rgba(107, 114, 128, 0.1);
 }
 
 /* Divider & Button */
 .mc-divider {
   height: 1px;
-  border-bottom: 1px dashed #e5e7eb; /* gray-200 */
+  border-bottom: 1px dashed var(--color-border-default); /* gray-200 */
   margin: 1rem 0.5rem;
 }
 
@@ -426,8 +426,8 @@
   gap: 0.5rem;
   width: 100%;
   padding: 0.875rem 0;
-  background-color: #f4f1ec;
-  color: #374151; /* gray-700 */
+  background-color: var(--color-background-base);
+  color: var(--color-text-tertiary); /* gray-700 */
   border-radius: 12px;
   transition: colors 0.2s ease;
   font-weight: 500;
@@ -441,8 +441,8 @@
 }
 
 .dark .mc-archived-btn {
-  background-color: #27272a; /* zinc-800 */
-  color: #d1d5db; /* gray-300 */
+  background-color: var(--color-surface-card); /* zinc-800 */
+  color: var(--color-border-default); /* gray-300 */
   border-color: #3f3f46; /* zinc-700 */
 }
 
@@ -451,11 +451,11 @@
 }
 
 .mc-btn-icon {
-  color: #6b7280; /* gray-500 */
+  color: var(--color-text-muted); /* gray-500 */
 }
 
 .dark .mc-btn-icon {
-  color: #9ca3af; /* gray-400 */
+  color: var(--color-text-soft); /* gray-400 */
 }
 
 /* Content Area */
@@ -477,13 +477,13 @@
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--color-text-primary);
   margin: 0 0 0.5rem 0;
   line-height: 1.2;
 }
 
 .dark .work-v2-content-role {
-  color: #f0ecd8;
+  color: var(--color-text-inverse);
 }
 
 .work-v2-content-meta {
@@ -496,27 +496,27 @@
 }
 
 .work-v2-content-company {
-  color: #50b887;
+  color: var(--color-success);
   text-decoration: none;
   font-weight: 700;
   transition: color 0.2s ease;
 }
 
 .work-v2-content-company:hover {
-  color: #3d8c67;
+  color: var(--color-success-strong);
   text-decoration: underline;
 }
 
 .dark .work-v2-content-company {
-  color: #50b887;
+  color: var(--color-success);
 }
 
 .dark .work-v2-content-company:hover {
-  color: #6ee7b7;
+  color: var(--color-success-text);
 }
 
 .work-v2-content-years {
-  color: #6b7280;
+  color: var(--color-text-muted);
   background-color: rgba(107, 114, 128, 0.1);
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
@@ -524,7 +524,7 @@
 }
 
 .dark .work-v2-content-years {
-  color: #9ca3af;
+  color: var(--color-text-soft);
   background-color: rgba(156, 163, 175, 0.15);
 }
 
@@ -532,13 +532,13 @@
   font-family: var(--font-sans, system-ui, sans-serif);
   font-size: 1.125rem;
   line-height: 1.7;
-  color: #4b5563;
+  color: var(--color-text-tertiary);
   margin-bottom: 2.5rem;
   white-space: pre-line;
 }
 
 .dark .work-v2-content-desc {
-  color: #d1d5db;
+  color: var(--color-border-default);
 }
 
 .work-v2-content-tech {
@@ -550,22 +550,22 @@
 .work-v2-tech-badge {
   font-family: monospace;
   font-size: 0.875rem;
-  color: #374151;
-  background-color: #f3f4f6;
+  color: var(--color-text-tertiary);
+  background-color: var(--color-border-subtle);
   padding: 0.375rem 0.875rem;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border-default);
   transition: all 0.2s ease;
 }
 
 .work-v2-tech-badge:hover {
-  background-color: #e5e7eb;
+  background-color: var(--color-border-default);
   transform: translateY(-1px);
 }
 
 .dark .work-v2-tech-badge {
-  color: #d1d5db;
-  background-color: #27272a;
+  color: var(--color-border-default);
+  background-color: var(--color-surface-card);
   border-color: #3f3f46;
 }
 
@@ -587,8 +587,8 @@
   height: 15%;
   margin: 0 1rem 1rem 1rem;
   border-radius: 24px;
-  border: 1px solid #e5e7eb;
-  background-color: #faf9f6;
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-background-base);
   /* padding: 0.75rem 1.5rem; */
   overflow: visible;
   flex: 1;
@@ -598,7 +598,7 @@
 }
 
 .dark .journey-orbit-wrapper {
-  background-color: #2a2a2a;
+  background-color: var(--color-surface-card);
   border-color: rgba(63, 63, 70, 0.5);
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -618,19 +618,19 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #374151;
+  color: var(--color-text-tertiary);
   padding-left: 1.5%;
 }
 
 .dark .journey-orbit-label {
-  color: #d1d5db;
+  color: var(--color-border-default);
 }
 
 .journey-orbit-dot {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 9999px;
-  background-color: #50b887;
+  background-color: var(--color-success);
 }
 
 /* ── Timeline row ─────────────────────────────────────────── */
@@ -650,12 +650,12 @@
 .orbit-connector {
   flex: 1;
   height: 1px;
-  border-top: 1px dashed #d1d5db;
+  border-top: 1px dashed var(--color-border-default);
   /* Removed max-width to allow full stretching across the 80% container */
 }
 
 .dark .orbit-connector {
-  border-top-color: #4b5563;
+  border-top-color: var(--color-text-tertiary);
 }
 
 /* ── Individual timeline node ─────────────────────────────── */
@@ -696,12 +696,12 @@
 
 /* Keyboard accessibility focus styles */
 .orbit-point:focus-visible .orbit-dot {
-  outline: 2px solid #50b887;
+  outline: 2px solid var(--color-success);
   outline-offset: 4px;
 }
 
 .dark .orbit-point:focus-visible .orbit-dot {
-  outline-color: #6ee7b7;
+  outline-color: var(--color-success-text);
 }
 
 /* Glow shadows (normal states) */
@@ -751,18 +751,18 @@
   position: absolute;
   top: -10px;
   left: -20px;
-  color: #d1d5db;
+  color: var(--color-border-default);
   z-index: 1;
-  --orbit-bg: #faf9f6;
-  --orbit-inner-bg: #ffffff;
+  --orbit-bg: var(--color-background-base);
+  --orbit-inner-bg: var(--color-surface-overlay);
   transform: scale(0.7);
   transform-origin: center;
 }
 
 .dark .center-svg {
-  color: #4b5563;
-  --orbit-bg: #2a2a2a;
-  --orbit-inner-bg: #1f1f1f;
+  color: var(--color-text-tertiary);
+  --orbit-bg: var(--color-surface-card);
+  --orbit-inner-bg: var(--color-background-base);
 }
 
 @keyframes orbit-revolve {
@@ -786,20 +786,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  color: #374151;
+  color: var(--color-text-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .dark .rocket-icon-abs {
-  color: #e5e7eb;
+  color: var(--color-border-default);
 }
 
 /* ── Flag / "Next Mission" dot ───────────────────────────── */
 .dot-flag {
-  background-color: #ffffff;
-  border: 1px dashed #9ca3af;
+  background-color: var(--color-surface-overlay);
+  border: 1px dashed var(--color-text-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -808,18 +808,18 @@
 }
 
 .dark .dot-flag {
-  background-color: #1f1f1f;
-  border-color: #6b7280;
+  background-color: var(--color-background-base);
+  border-color: var(--color-text-muted);
 }
 
 .flag-icon {
-  color: #6b7280;
+  color: var(--color-text-muted);
   width: 12px; /* Increased icon size */
   height: 12px;
 }
 
 .dark .flag-icon {
-  color: #9ca3af;
+  color: var(--color-text-soft);
 }
 
 /* ── Info card (floats relative to center of dot) ────────── */
@@ -840,7 +840,7 @@
   transform: translateX(-50%);
   font-family: monospace;
   font-size: 7px; /* increased for readability */
-  color: #6b7280;
+  color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
@@ -848,16 +848,16 @@
 }
 
 .dark .orbit-date {
-  color: #9ca3af;
+  color: var(--color-text-soft);
 }
 
 .orbit-point.active .orbit-date {
-  color: #374151;
+  color: var(--color-text-tertiary);
   font-weight: bold;
 }
 
 .dark .orbit-point.active .orbit-date {
-  color: #f3f4f6;
+  color: var(--color-border-subtle);
 }
 
 .orbit-company {
@@ -868,18 +868,18 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 11px; /* larger company name */
   font-weight: 700;
-  color: #111827;
+  color: var(--color-text-primary);
   margin: 0;
   white-space: nowrap;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .dark .orbit-company {
-  color: #f3f4f6;
+  color: var(--color-border-subtle);
 }
 
 .orbit-point.active .orbit-company {
-  color: #10b981; /* Highlight active company with a premium emerald green */
+  color: var(--color-success); /* Highlight active company with a premium emerald green */
 }
 
 .dark .orbit-point.active .orbit-company {

@@ -51,7 +51,7 @@ export function ArchitectureFlowLayer({ footer }: Props) {
           <ArchitectureNode
             key={node.id}
             node={node}
-            accentColor={isInfra ? '#64748b' : '#f59e0b'}
+            accentColor={isInfra ? '#64748b' : '#f59e0b'} /* TODO: palette - accent node color */
           />
         ))}
       </div>

@@ -25,7 +25,7 @@ export const WorkExperience: WorkExperienceItem[] = [
       'RESTful APIs',
       'Full-Stack',
     ],
-    orbitColor: '#50b887',
+    orbitColor: '#50b887' /* TODO: palette - accent orbit color */,
     orbitShadowClass: 'shadow-green',
   },
   {
@@ -42,7 +42,7 @@ export const WorkExperience: WorkExperienceItem[] = [
       'Serverless',
       'Third-Party APIs',
     ],
-    orbitColor: '#f97316',
+    orbitColor: '#f97316' /* TODO: palette - accent orbit color */,
     orbitShadowClass: 'shadow-orange',
   },
   {
@@ -59,7 +59,7 @@ export const WorkExperience: WorkExperienceItem[] = [
       'UI/UX',
       'Feature Development',
     ],
-    orbitColor: '#3b82f6',
+    orbitColor: '#3b82f6' /* TODO: palette - accent orbit color */,
     orbitShadowClass: 'shadow-blue',
   },
   {
@@ -77,7 +77,7 @@ export const WorkExperience: WorkExperienceItem[] = [
       'REST APIs',
       'E-commerce',
     ],
-    orbitColor: '#a855f7',
+    orbitColor: '#a855f7' /* TODO: palette - accent orbit color */,
     orbitShadowClass: 'shadow-purple'
   },
 ];

@@ -24,10 +24,10 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
+  background: var(--color-surface-overlay);
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--color-border-default);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
@@ -36,9 +36,9 @@
 }
 
 .dark .arch-v-diagram {
-  background: #1a1a1e;
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  background: var(--color-surface-sunken);
+  border-color: var(--color-border-subtle);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ── Top bar: ● SYSTEM ARCHITECTURE ─────────────── */
@@ -47,20 +47,20 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--color-border-subtle);
   flex-shrink: 0;
-  background: #fafafa;
+  background: var(--color-surface-raised);
 }
 
 .dark .arch-v-header {
-  background: #111114;
-  border-bottom-color: rgba(255, 255, 255, 0.06);
+  background: var(--color-background-inverse);
+  border-bottom-color: var(--color-border-subtle);
 }
 
 .arch-v-pulse-dot {
   width: 7px;
   height: 7px;
-  background: #22c55e;
+  background: var(--color-success);
   border-radius: 50%;
   animation: arch-pulse-dot 2.2s ease-in-out infinite;
   flex-shrink: 0;
@@ -70,13 +70,13 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #374151;
+  color: var(--color-text-tertiary);
   text-transform: uppercase;
   line-height: 1;
 }
 
 .dark .arch-v-title {
-  color: #d1d5db;
+  color: var(--color-text-soft);
 }
 
 /* ── Scrollable body ─────────────────────────────── */
@@ -91,14 +91,14 @@
   gap: 0;
   box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: #e5e7eb transparent;
+  scrollbar-color: var(--color-border-default) transparent;
 }
 
 .arch-v-body::-webkit-scrollbar { width: 4px; }
-.arch-v-body::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+.arch-v-body::-webkit-scrollbar-thumb { background: var(--color-border-default); border-radius: 4px; }
 
 .dark .arch-v-body {
-  scrollbar-color: rgba(255,255,255,0.08) transparent;
+  scrollbar-color: var(--color-border-subtle) transparent;
 }
 
 /* ── Row: one layer of the diagram ──────────────── */
@@ -119,7 +119,7 @@
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: var(--color-text-soft);
   line-height: 1.45;
   white-space: pre-line;
   text-align: right;
@@ -128,21 +128,21 @@
 }
 
 .dark .arch-v-layer-label {
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 /* Thin divider line between label and nodes */
 .arch-v-layer-divider {
   width: 1.5px;
   align-self: stretch;
-  background: #f0f0f0;
+  background: var(--color-border-subtle);
   flex-shrink: 0;
   margin-right: 12px;
   border-radius: 1px;
 }
 
 .dark .arch-v-layer-divider {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--color-border-subtle);
 }
 
 /* ── Node area ─────────────────────────────────── */
@@ -177,13 +177,13 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface-overlay);
+  border: 1px solid var(--color-border-default);
   border-radius: 7px;
   padding: 7px 11px;
   flex: 1 1 0;
   min-width: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-xs);
   transition: box-shadow 0.18s ease, transform 0.15s ease, border-color 0.18s ease;
   cursor: default;
   position: relative;
@@ -191,37 +191,37 @@
 }
 
 .arch-v-node:hover {
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.09);
+  box-shadow: var(--shadow-md);
   transform: translateY(-1.5px);
-  border-color: #d1d5db;
+  border-color: var(--color-border-strong);
 }
 
 .dark .arch-v-node {
-  background: #242428;
-  border-color: rgba(255, 255, 255, 0.09);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  background: var(--color-surface-default);
+  border-color: var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
 }
 
 .dark .arch-v-node:hover {
-  background: #2c2c32;
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  background: var(--color-surface-raised);
+  border-color: var(--color-border-default);
+  box-shadow: var(--shadow-md);
 }
 
 /* Highlighted node (primary/core service) */
 .arch-v-node--highlight {
-  border-color: #22c55e;
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-success-border);
+  box-shadow: 0 0 0 2px var(--color-success-bg), var(--shadow-xs);
 }
 
 .arch-v-node--highlight:hover {
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.14), 0 3px 12px rgba(0, 0, 0, 0.09);
-  border-color: #16a34a;
+  box-shadow: 0 0 0 3px var(--color-success-bg-hover), var(--shadow-md);
+  border-color: var(--color-success-strong);
 }
 
 .dark .arch-v-node--highlight {
-  border-color: rgba(34, 197, 94, 0.5);
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.08), 0 1px 4px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-success-border);
+  box-shadow: 0 0 0 2px var(--color-success-bg), var(--shadow-sm);
 }
 
 /* ── Node icon ───────────────────────────────────── */
@@ -253,27 +253,27 @@
 .arch-v-node-label {
   font-size: 11px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text-secondary);
   text-align: center;
   line-height: 1.2;
   word-break: break-word;
 }
 
 .dark .arch-v-node-label {
-  color: #f3f4f6;
+  color: var(--color-text-primary);
 }
 
 .arch-v-node-sublabel {
   font-size: 9.5px;
   font-weight: 400;
-  color: #9ca3af;
+  color: var(--color-text-soft);
   text-align: center;
   line-height: 1.2;
   word-break: break-word;
 }
 
 .dark .arch-v-node-sublabel {
-  color: #6b7280;
+  color: var(--color-text-muted);
 }
 
 /* ── Vertical connector between rows — multi-arrow flex layout ── */
@@ -318,33 +318,33 @@
 .arch-v-connector-line {
   width: 1.5px;
   height: 10px;
-  background: #d1d5db;
+  background: var(--color-border-default);
 }
 
 .dark .arch-v-connector-line {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--color-border-subtle);
 }
 
 /* Dashed variant */
 .arch-v-connector-row--dashed .arch-v-connector-line {
   background: none;
-  border-left: 1.5px dashed #cbd5e1;
+  border-left: 1.5px dashed var(--color-border-default);
 }
 
 .dark .arch-v-connector-row--dashed .arch-v-connector-line {
-  border-left-color: rgba(255, 255, 255, 0.1);
+  border-left-color: var(--color-border-subtle);
 }
 
 .arch-v-connector-arrowhead {
   font-size: 10px;
   line-height: 1;
-  color: #9ca3af;
+  color: var(--color-text-soft);
   margin-top: -2px;
   user-select: none;
 }
 
 .dark .arch-v-connector-arrowhead {
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 /* ── Intra-row horizontal arrow (e.g. Airflow → AWS Glue) ──── */
@@ -361,34 +361,34 @@
 .arch-v-intra-arrow-line {
   flex: 1;
   height: 1.5px;
-  background: #d1d5db;
+  background: var(--color-border-default);
 }
 
 .arch-v-intra-arrow--dashed .arch-v-intra-arrow-line {
   background: none;
-  border-top: 1.5px dashed #cbd5e1;
+  border-top: 1.5px dashed var(--color-border-default);
   height: 0;
 }
 
 .dark .arch-v-intra-arrow-line {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--color-border-subtle);
 }
 
 .dark .arch-v-intra-arrow--dashed .arch-v-intra-arrow-line {
   background: none;
-  border-top-color: rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-border-subtle);
 }
 
 .arch-v-intra-arrow-head {
   font-size: 13px;
   line-height: 1;
-  color: #9ca3af;
+  color: var(--color-text-soft);
   flex-shrink: 0;
   user-select: none;
 }
 
 .dark .arch-v-intra-arrow-head {
-  color: #4b5563;
+  color: var(--color-text-muted);
 }
 
 /* ── Container queries ───────────────────────────── */
