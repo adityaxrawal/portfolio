@@ -13,20 +13,24 @@ import type { RefObject } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-import profilePic from '@/assets/images/my/me-2.webp';
-import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
-import cardGLB from '@/assets/models/card.glb';
-import { useSharedState } from '@/app';
-
 import { drawBackCard, drawFrontCard } from './lanyardCardDrawing';
 import { createCardFaceGeometry, useCardTexture } from './lanyardCardGeometry';
-import { BACK_CARD_UV, FRONT_CARD_UV, MATHCO_PURPLE_DARK } from './lanyardConstants';
+import {
+  BACK_CARD_UV,
+  FRONT_CARD_UV,
+  MATHCO_PURPLE_DARK,
+} from './lanyardConstants';
 import type {
   LanyardCardNodes,
   LanyardDragOffset,
   LanyardRigidBody,
   MeshLineGeometryWithPoints,
 } from './lanyardTypes';
+
+import { useSharedState } from '@/app';
+import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
+import profilePic from '@/assets/images/my/me-2.webp';
+import cardGLB from '@/assets/models/card.glb';
 import './lanyardSetup';
 
 const asBodyRef = (ref: RefObject<RapierBody | null>) =>
@@ -213,7 +217,13 @@ export function LanyardBand({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
         z: vec.z - dragged.z,
       });
     }
-    if (fixed.current && j1.current && j2.current && j3.current && card.current) {
+    if (
+      fixed.current &&
+      j1.current &&
+      j2.current &&
+      j3.current &&
+      card.current
+    ) {
       for (const ref of [j1, j2] as const) {
         const body = ref.current;
         if (!body) continue;
@@ -233,7 +243,9 @@ export function LanyardBand({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       curve.points[1].copy(j2.current.lerped!);
       curve.points[2].copy(j1.current.lerped!);
       curve.points[3].copy(fixed.current.translation());
-      const bandGeometry = band.current?.geometry as MeshLineGeometryWithPoints | undefined;
+      const bandGeometry = band.current?.geometry as
+        | MeshLineGeometryWithPoints
+        | undefined;
       bandGeometry?.setPoints(curve.getPoints(isMobile ? 16 : 32));
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());

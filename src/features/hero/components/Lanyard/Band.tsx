@@ -137,8 +137,14 @@ export const Band = React.memo(
     // ─────────────────────────────────────────────────────────────
     const { frontGeometry, backGeometry } = useMemo(
       () => ({
-        frontGeometry: createCardFaceGeometry((nodes.card as THREE.Mesh).geometry, 1),
-        backGeometry: createCardFaceGeometry((nodes.card as THREE.Mesh).geometry, -1),
+        frontGeometry: createCardFaceGeometry(
+          (nodes.card as THREE.Mesh).geometry,
+          1,
+        ),
+        backGeometry: createCardFaceGeometry(
+          (nodes.card as THREE.Mesh).geometry,
+          -1,
+        ),
       }),
       [nodes.card],
     );
@@ -315,15 +321,20 @@ export const Band = React.memo(
         if (j1Lerped) curve.points[2].copy(j1Lerped);
         curve.points[3].copy(fixed.current.translation());
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (band.current!.geometry as any).setPoints(curve.getPoints(isMobile ? 16 : 32));
+        (band.current!.geometry as any).setPoints(
+          curve.getPoints(isMobile ? 16 : 32),
+        );
 
         ang.copy(card.current!.angvel());
         rot.copy(card.current!.rotation());
-        card.current!.setAngvel({
-          x: ang.x,
-          y: ang.y - rot.y * 0.25,
-          z: ang.z,
-        }, true);
+        card.current!.setAngvel(
+          {
+            x: ang.x,
+            y: ang.y - rot.y * 0.25,
+            z: ang.z,
+          },
+          true,
+        );
       }
 
       if (cardVisual.current) {

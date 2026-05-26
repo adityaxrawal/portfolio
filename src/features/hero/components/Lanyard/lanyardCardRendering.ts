@@ -7,7 +7,6 @@
 import { useEffect, useMemo } from 'react';
 import * as THREE from 'three';
 
-import { THEME_COLORS } from '@/config';
 import {
   BACK_ICON_SIZE,
   CARD_INK,
@@ -17,6 +16,8 @@ import {
   MATHCO_PURPLE_DARK,
   setupCardTexture,
 } from './lanyardConstants';
+
+import { THEME_COLORS } from '@/config';
 
 /**
  * Drawing helper: Covers an area with an image using proper scaling.

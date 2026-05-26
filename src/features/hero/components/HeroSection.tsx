@@ -1,11 +1,12 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
-import { useSharedState } from '@/app';
 import { HiLocationMarker, HiArrowDown } from 'react-icons/hi';
 import { LuAsterisk } from 'react-icons/lu';
+
+import { useSharedState } from '@/app';
 import ContactButton from '@/components/ui/ContactButton';
 import SectionLoader from '@/components/ui/SectionLoader';
-import { useGitHubStats } from '@/features/portfolio';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+import { useGitHubStats } from '@/features/portfolio';
 
 import './HeroSection.css';
 
@@ -23,7 +24,11 @@ const TECH_STACK_TAGS = [
   'Analytics Systems',
 ];
 
-const HeroSection = ({ isActive: _isActive, goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
+const HeroSection = ({
+  isActive: _isActive,
+  goToSlide,
+  slideIndex: _slideIndex,
+}: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
 
   // Track desktop vs mobile to show/hide lanyard
@@ -200,15 +205,15 @@ const HeroSection = ({ isActive: _isActive, goToSlide, slideIndex: _slideIndex }
           </div>
         </section>
       </div>
-        <div
-          className={`hero-section-scroll-container ${isDarkTheme ? 'dark' : ''}`}
-          onClick={() => goToSlide?.(1)}
-          role="button"
-          tabIndex={0}
-          aria-label="Scroll to next section"
-          onKeyDown={(e) => e.key === 'Enter' && goToSlide?.(1)}
-          style={{ cursor: 'pointer' }}
-        >
+      <div
+        className={`hero-section-scroll-container ${isDarkTheme ? 'dark' : ''}`}
+        onClick={() => goToSlide?.(1)}
+        role="button"
+        tabIndex={0}
+        aria-label="Scroll to next section"
+        onKeyDown={(e) => e.key === 'Enter' && goToSlide?.(1)}
+        style={{ cursor: 'pointer' }}
+      >
         <div className="scroll-indicator-left">
           <div className="scroll-arrow-circle">
             <HiArrowDown className="scroll-arrow-icon" />

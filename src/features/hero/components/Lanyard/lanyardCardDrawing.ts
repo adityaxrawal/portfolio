@@ -1,5 +1,3 @@
-import { THEME_COLORS } from '@/config';
-
 import {
   BACK_ICON_SIZE,
   CARD_INK,
@@ -8,6 +6,8 @@ import {
   MATHCO_PEACH,
   MATHCO_PURPLE_DARK,
 } from './lanyardConstants';
+
+import { THEME_COLORS } from '@/config';
 
 function drawImageCover(
   ctx: CanvasRenderingContext2D,
@@ -315,7 +315,10 @@ function drawInfoIcon(
   ctx.textBaseline = 'alphabetic';
 }
 
-export function drawBackCard(ctx: CanvasRenderingContext2D, isDarkTheme: boolean) {
+export function drawBackCard(
+  ctx: CanvasRenderingContext2D,
+  isDarkTheme: boolean,
+) {
   // 1. Draw the base background
   if (isDarkTheme) {
     const paperGradient = ctx.createLinearGradient(
