@@ -9,8 +9,9 @@ import {
 import React, { useEffect, useState } from 'react';
 import { FaGithub as Github } from 'react-icons/fa6';
 
-import { useSharedState } from '@/app';
 import { useGitHubStats } from '../../hooks/useGitHubStats';
+
+import { useSharedState } from '@/app';
 import './GithubMetrics.css';
 
 const GithubMetricsSection = () => {

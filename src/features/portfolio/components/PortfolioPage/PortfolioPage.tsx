@@ -1,13 +1,16 @@
 import { Suspense } from 'react';
-import SnapLayout from '@/components/ui/SnapLayout';
-import SectionLoader from '@/components/ui/SectionLoader';
+
 import {
   FooterLazy,
   HeroSectionLazy,
   PortfolioDetailLazy,
+  ProjectLazy,
   TechnologyLazy,
   WorkLazy,
 } from '../../constants/sectionImports';
+
+import SectionLoader from '@/components/ui/SectionLoader';
+import SnapLayout from '@/components/ui/SnapLayout';
 
 export default function PortfolioPage() {
   return (
@@ -15,8 +18,9 @@ export default function PortfolioPage() {
       <SnapLayout>
         <HeroSectionLazy />
         <WorkLazy />
-        <TechnologyLazy />
+        <ProjectLazy />
         <PortfolioDetailLazy />
+        <TechnologyLazy />
         <FooterLazy />
       </SnapLayout>
     </Suspense>

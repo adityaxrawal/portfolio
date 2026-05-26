@@ -1,5 +1,6 @@
-import { parseJsonResponse } from '@/types';
 import type { GitHubStatsResponse } from '../types/github.types';
+
+import { parseJsonResponse } from '@/types';
 
 const GITHUB_STATS_ENDPOINT = '/api/github-stats';
 

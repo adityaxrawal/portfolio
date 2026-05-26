@@ -6,10 +6,14 @@ import { TechnicalSkills } from '../../constants/technicalSkills';
 import TechnologyBox from './TechnologyBox';
 
 import { useSharedState } from '@/app';
-import { darkModeColorList, lightModeColorList } from '@/config';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+import { darkModeColorList, lightModeColorList } from '@/config';
 
-const Technology = ({ isActive = false, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
+const Technology = ({
+  isActive = false,
+  goToSlide: _goToSlide,
+  slideIndex: _slideIndex,
+}: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
   const horizontalScroll = useRef<HTMLDivElement>(null);
   const techSection = useRef<HTMLDivElement>(null);
@@ -24,9 +28,18 @@ const Technology = ({ isActive = false, goToSlide: _goToSlide, slideIndex: _slid
     <div
       ref={techSection}
       className="section-technology"
-      style={{ width: '100%', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+      style={{
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
-      <div className="technology-container" style={{ flex: 1, overflowY: 'auto' }}>
+      <div
+        className="technology-container"
+        style={{ flex: 1, overflowY: 'auto' }}
+      >
         <div
           className={`tech-heading ${isPinned ? 'sticky' : 'relative'}`}
           style={{

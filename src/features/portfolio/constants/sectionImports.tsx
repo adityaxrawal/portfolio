@@ -6,6 +6,9 @@ export const WorkLazy = lazy(() => import('@/features/work/components/Work'));
 export const TechnologyLazy = lazy(
   () => import('@/features/portfolio/components/Technology'),
 );
+export const ProjectLazy = lazy(
+  () => import('@/features/portfolio/components/Project/v2'),
+);
 export const PortfolioDetailLazy = lazy(
   () => import('@/features/portfolio/components/PortfolioDetail'),
 );

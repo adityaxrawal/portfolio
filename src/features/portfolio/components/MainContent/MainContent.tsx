@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
 
-import SectionLoader from '@/components/ui/SectionLoader';
 import {
   HeroSectionLazy,
   PortfolioDetailLazy,
   TechnologyLazy,
   WorkLazy,
 } from '../../constants/sectionImports';
+
+import SectionLoader from '@/components/ui/SectionLoader';
 
 /**
  * @deprecated Use `PortfolioPage` with `SnapLayout` instead. Retained for legacy `PageLayout`.
