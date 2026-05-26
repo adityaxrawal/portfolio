@@ -2,9 +2,7 @@ import { useCallback, useRef } from 'react';
 
 import { getEditorText } from '../components/ContactForm/contactFormUtils';
 
-export function useRichTextEditor(
-  setMessageLength: (length: number) => void,
-) {
+export function useRichTextEditor(setMessageLength: (length: number) => void) {
   const editorRef = useRef<HTMLDivElement>(null);
   const savedRangeRef = useRef<Range | null>(null);
 

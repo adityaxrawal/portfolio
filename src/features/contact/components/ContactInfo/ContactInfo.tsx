@@ -1,17 +1,17 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import { useSharedState } from '@/app';
-import Alert from '@/components/ui/Alert';
-import { useAlert } from '@/hooks';
-import { createFormSubmitter } from '@/utils';
-import type { AlertType } from '../../types/contact.types';
-
-import ContactForm from '../ContactForm';
 import {
   DAILY_CONTACT_LIMIT,
   getContactRateStatus,
   recordContactMailSent,
 } from '../../services/contactRateLimit';
+import type { AlertType } from '../../types/contact.types';
+import ContactForm from '../ContactForm';
+
+import { useSharedState } from '@/app';
+import Alert from '@/components/ui/Alert';
+import { useAlert } from '@/hooks';
+import { createFormSubmitter } from '@/utils';
 
 import './ContactInfo.css';
 

@@ -14,7 +14,13 @@ export const sizeOptions = [
   { label: 'Small', value: 'h5' },
 ] as const;
 
-export const textColors = ['#202124' /* TODO: palette - contact text color */, '#ccff00' /* TODO: palette - contact text color */, '#d93025' /* TODO: palette - contact text color */, '#188038' /* TODO: palette - contact text color */, '#1967d2' /* TODO: palette - contact text color */];
+export const textColors = [
+  '#202124' /* TODO: palette - contact text color */,
+  '#ccff00' /* TODO: palette - contact text color */,
+  '#d93025' /* TODO: palette - contact text color */,
+  '#188038' /* TODO: palette - contact text color */,
+  '#1967d2' /* TODO: palette - contact text color */,
+];
 
 export const actionLabels = {
   attach: 'Attachments are not available in this form yet.',

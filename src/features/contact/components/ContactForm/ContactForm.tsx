@@ -30,7 +30,6 @@ import {
   FaUndo,
 } from 'react-icons/fa';
 
-import { links } from '@/config';
 import { useContactFormState } from '../../hooks/useContactFormState';
 import { useRichTextEditor } from '../../hooks/useRichTextEditor';
 import type { ContactNotifyFn } from '../../types/contact.types';
@@ -46,6 +45,8 @@ import {
   textColors,
 } from './contactFormConstants';
 import { escapeHtml, getEditorText, normalizeUrl } from './contactFormUtils';
+
+import { links } from '@/config';
 import './ContactForm.css';
 
 interface ContactFormProps {
