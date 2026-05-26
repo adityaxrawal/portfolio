@@ -19,8 +19,8 @@ export default function PortfolioPage() {
         <HeroSectionLazy />
         <WorkLazy />
         <ProjectLazy />
-        <PortfolioDetailLazy />
         <TechnologyLazy />
+        <PortfolioDetailLazy />
         <FooterLazy />
       </SnapLayout>
     </Suspense>
