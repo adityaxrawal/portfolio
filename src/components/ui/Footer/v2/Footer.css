@@ -91,7 +91,7 @@
   font-size: clamp(11px, 1.2vw, 13px);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #1a1a1a;
+  color: var(--color-background-base);
   white-space: nowrap;
 }
 
@@ -99,7 +99,7 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: #1a1a1a;
+  background-color: var(--color-background-base);
   display: flex;
   align-items: center;
   justify-content: center;

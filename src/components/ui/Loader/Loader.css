@@ -65,7 +65,7 @@
 /* Dark theme support */
 @media (prefers-color-scheme: dark) {
   .loader-container {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+    background: linear-gradient(135deg, var(--color-background-base) 0%, #2d3436 100%);
   }
 }
 
