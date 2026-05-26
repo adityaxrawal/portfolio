@@ -4,7 +4,7 @@ import { lazy } from 'react';
 export const HeroSectionLazy = lazy(() => import('@/features/hero'));
 export const WorkLazy = lazy(() => import('@/features/work/components/Work'));
 export const TechnologyLazy = lazy(
-  () => import('@/features/portfolio/components/Technology'),
+  () => import('@/features/portfolio/components/Technology/v1'),
 );
 export const ProjectLazy = lazy(
   () => import('@/features/portfolio/components/Project/v2'),

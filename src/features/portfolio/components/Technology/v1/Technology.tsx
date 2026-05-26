@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import './Technology.css';
-import { TechnicalSkills } from '../../constants/technicalSkills';
+import { TechnicalSkills } from '../../../constants/technicalSkills';
 
 import TechnologyBox from './TechnologyBox';
 
