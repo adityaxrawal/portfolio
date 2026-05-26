@@ -16,13 +16,14 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
 }
 
 .dark .jc-root,
 .jc-root.dark {
   background-color: var(--color-surface-card);
-  border-color: rgba(63, 63, 70, 0.5); 
+  border-color: rgba(63, 63, 70, 0.5);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
@@ -209,10 +210,22 @@
 }
 
 /* Outline-themed metric icons */
-.jc-metric-icon-green  { color: var(--color-success); background-color: rgba(16, 185, 129, 0.08); }
-.jc-metric-icon-orange { color: #f97316; background-color: rgba(249, 115, 22, 0.08); }
-.jc-metric-icon-blue   { color: #3b82f6; background-color: rgba(59, 130, 246, 0.08); }
-.jc-metric-icon-purple { color: #a855f7; background-color: rgba(168, 85, 247, 0.08); }
+.jc-metric-icon-green {
+  color: var(--color-success);
+  background-color: rgba(16, 185, 129, 0.08);
+}
+.jc-metric-icon-orange {
+  color: #f97316;
+  background-color: rgba(249, 115, 22, 0.08);
+}
+.jc-metric-icon-blue {
+  color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.08);
+}
+.jc-metric-icon-purple {
+  color: #a855f7;
+  background-color: rgba(168, 85, 247, 0.08);
+}
 
 .jc-metric-value {
   font-weight: 700;
@@ -237,7 +250,6 @@
 .dark .jc-metric-label {
   color: var(--color-text-soft);
 }
-
 
 /* ─────────────────────────────────────────────────────────────
    2. MAIN PANEL LAYOUT — Two Column Split
@@ -354,8 +366,8 @@
   flex-direction: column;
   align-items: center;
   gap: 0.35rem;
-  background-color: var(--color-surface-overlay);
-  border: 1px solid var(--color-border-default);
+  background-color: var(--color-surface-card);
+  border: 1px dashed var(--color-border-subtle);
   border-radius: 12px;
   padding: 0.65rem 0.5rem;
   width: 90px;
@@ -369,11 +381,12 @@
 .jc-arch-node:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
+  border-color: var(--color-border-default);
 }
 
 .dark .jc-arch-node {
-  background-color: var(--color-surface-default);
-  border-color: rgba(63, 63, 70, 0.5);
+  background-color: var(--color-surface-card);
+  border-color: var(--color-border-subtle);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -499,7 +512,6 @@
   color: var(--color-text-muted);
 }
 
-
 /* ─────────────────────────────────────────────────────────────
    4. TECH STACK (Bottom-Left)
    ───────────────────────────────────────────────────────────── */
@@ -530,8 +542,8 @@
   font-size: 0.86rem;
   /* font-weight: 700; */
   color: var(--color-text-secondary);
-  background-color: var(--color-surface-overlay);
-  border: 1px solid rgba(229, 231, 235, 0.9);
+  background-color: var(--color-surface-card);
+  border: 1px dashed var(--color-border-subtle);
   padding: 0.42rem 0.9rem;
   border-radius: 7px;
   cursor: default;
@@ -566,22 +578,52 @@
   transform: translateY(-1px);
 }
 
-.jc-tech-pill-icon-react { color: #61dafb; }
-.jc-tech-pill-icon-typescript { color: #3178c6; }
-.jc-tech-pill-icon-fastapi { color: #009688; }
-.jc-tech-pill-icon-python { color: #3776ab; }
+.jc-tech-pill-icon-react {
+  color: #61dafb;
+}
+.jc-tech-pill-icon-typescript {
+  color: #3178c6;
+}
+.jc-tech-pill-icon-fastapi {
+  color: #009688;
+}
+.jc-tech-pill-icon-python {
+  color: #3776ab;
+}
 .jc-tech-pill-icon-aws,
-.jc-tech-pill-icon-sqs { color: #ff9900; }
-.jc-tech-pill-icon-postgresql { color: #4169e1; }
-.jc-tech-pill-icon-lambda { color: #ff9900; }
-.jc-tech-pill-icon-node { color: #5fa04e; }
-.jc-tech-pill-icon-express { color: var(--color-text-primary); }
-.jc-tech-pill-icon-rest { color: #85ea2d; }
-.jc-tech-pill-icon-dynamodb { color: #4053d6; }
-.jc-tech-pill-icon-next { color: var(--color-text-primary); }
-.jc-tech-pill-icon-angular { color: #dd0031; }
-.jc-tech-pill-icon-mongodb { color: #47a248; }
-.jc-tech-pill-icon-jwt { color: #d63aff; }
+.jc-tech-pill-icon-sqs {
+  color: #ff9900;
+}
+.jc-tech-pill-icon-postgresql {
+  color: #4169e1;
+}
+.jc-tech-pill-icon-lambda {
+  color: #ff9900;
+}
+.jc-tech-pill-icon-node {
+  color: #5fa04e;
+}
+.jc-tech-pill-icon-express {
+  color: var(--color-text-primary);
+}
+.jc-tech-pill-icon-rest {
+  color: #85ea2d;
+}
+.jc-tech-pill-icon-dynamodb {
+  color: #4053d6;
+}
+.jc-tech-pill-icon-next {
+  color: var(--color-text-primary);
+}
+.jc-tech-pill-icon-angular {
+  color: #dd0031;
+}
+.jc-tech-pill-icon-mongodb {
+  color: #47a248;
+}
+.jc-tech-pill-icon-jwt {
+  color: #d63aff;
+}
 
 .dark .jc-tech-section {
   background-color: var(--color-surface-card);
@@ -589,21 +631,20 @@
 
 .dark .jc-tech-pill {
   color: var(--color-border-subtle);
-  background-color: var(--color-surface-default);
-  border-color: rgba(63, 63, 70, 0.5);
+  background-color: var(--color-surface-card);
+  border-color: var(--color-border-subtle);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
 }
 
 .dark .jc-tech-pill:hover {
   background-color: var(--color-surface-raised);
-  border-color: rgba(63, 63, 70, 0.8);
+  border-color: var(--color-border-default);
 }
 
 .dark .jc-tech-pill-icon-express,
 .dark .jc-tech-pill-icon-next {
   color: var(--color-surface-raised);
 }
-
 
 /* ─────────────────────────────────────────────────────────────
    5. CORE IMPACT (Right Column)
@@ -660,10 +701,18 @@
 }
 
 /* Accent matching for impact icons */
-.jc-impact-icon-green  { color: var(--color-success); }
-.jc-impact-icon-orange { color: #f97316; }
-.jc-impact-icon-blue   { color: #3b82f6; }
-.jc-impact-icon-purple { color: #a855f7; }
+.jc-impact-icon-green {
+  color: var(--color-success);
+}
+.jc-impact-icon-orange {
+  color: #f97316;
+}
+.jc-impact-icon-blue {
+  color: #3b82f6;
+}
+.jc-impact-icon-purple {
+  color: #a855f7;
+}
 
 .jc-impact-text {
   display: flex;
@@ -842,7 +891,6 @@
   background-color: #c084fc;
 }
 
-
 /* ─────────────────────────────────────────────────────────────
    5c. ARCHITECTURE DOMAIN CHIPS
    ───────────────────────────────────────────────────────────── */
@@ -864,11 +912,21 @@
 .jc-domain-separator-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(209, 213, 219, 0.8), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(209, 213, 219, 0.8),
+    transparent
+  );
 }
 
 .dark .jc-domain-separator-line {
-  background: linear-gradient(to right, transparent, rgba(63, 63, 70, 0.7), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(63, 63, 70, 0.7),
+    transparent
+  );
 }
 
 .jc-domain-separator-label {
@@ -900,8 +958,13 @@
   gap: 0.35rem;
   padding: 0.28rem 0.6rem 0.28rem 0.45rem;
   border-radius: 6px;
-  border: 1px solid color-mix(in srgb, var(--chip-color, #64748b) 25%, transparent);
-  background-color: color-mix(in srgb, var(--chip-color, #64748b) 8%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--chip-color, #64748b) 25%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--chip-color, #64748b) 8%,
+    transparent
+  );
   transition: all 0.2s ease;
   cursor: default;
 }
@@ -917,8 +980,13 @@
 .jc-domain-chip:hover {
   transform: translateY(-1.5px);
   border-color: color-mix(in srgb, var(--chip-color, #64748b) 50%, transparent);
-  background-color: color-mix(in srgb, var(--chip-color, #64748b) 14%, transparent);
-  box-shadow: 0 2px 6px color-mix(in srgb, var(--chip-color, #64748b) 20%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--chip-color, #64748b) 14%,
+    transparent
+  );
+  box-shadow: 0 2px 6px
+    color-mix(in srgb, var(--chip-color, #64748b) 20%, transparent);
 }
 
 .jc-domain-chip-icon {
@@ -946,14 +1014,27 @@
 
 /* Dark mode domain chips */
 .dark .jc-domain-chip {
-  border-color: color-mix(in srgb, var(--chip-color, #64748b) 30%, rgba(0,0,0,0.4));
-  background-color: color-mix(in srgb, var(--chip-color, #64748b) 10%, rgba(30,30,30,0.6));
+  border-color: color-mix(
+    in srgb,
+    var(--chip-color, #64748b) 30%,
+    rgba(0, 0, 0, 0.4)
+  );
+  background-color: color-mix(
+    in srgb,
+    var(--chip-color, #64748b) 10%,
+    rgba(30, 30, 30, 0.6)
+  );
 }
 
 .dark .jc-domain-chip:hover {
   border-color: color-mix(in srgb, var(--chip-color, #64748b) 55%, transparent);
-  background-color: color-mix(in srgb, var(--chip-color, #64748b) 18%, rgba(30,30,30,0.6));
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--chip-color, #64748b) 25%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--chip-color, #64748b) 18%,
+    rgba(30, 30, 30, 0.6)
+  );
+  box-shadow: 0 2px 8px
+    color-mix(in srgb, var(--chip-color, #64748b) 25%, transparent);
 }
 
 .dark .jc-domain-chip-label,
@@ -961,18 +1042,17 @@
   opacity: 0.9;
 }
 
-
 @media (max-width: 1200px) {
   .jc-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  
+
   .jc-header-divider {
     display: none;
   }
-  
+
   .jc-metrics-grid {
     width: 100%;
     justify-content: space-between;
@@ -983,12 +1063,12 @@
   .jc-main-panel {
     flex-direction: column;
   }
-  
+
   .jc-vert-divider {
     width: 100%;
     height: 1px;
   }
-  
+
   .jc-left-col {
     flex: none;
   }
@@ -1013,7 +1093,7 @@
     overflow-x: auto;
     padding-bottom: 1rem;
   }
-  
+
   .jc-feedback-loop {
     display: none;
   }

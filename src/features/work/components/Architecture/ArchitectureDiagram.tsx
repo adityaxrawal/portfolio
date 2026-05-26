@@ -1,5 +1,7 @@
 import { Fragment } from 'react';
+
 import type { ArchitectureDiagramConfig } from '../../types/architecture.types';
+
 import { ArchitectureRow } from './ArchitectureRow';
 import { ArchitectureVerticalConnector } from './ArchitectureVerticalConnector';
 import './Architecture.css';

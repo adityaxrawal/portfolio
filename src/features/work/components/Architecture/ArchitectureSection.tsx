@@ -1,8 +1,10 @@
 import type { ComponentType } from 'react';
-import type { ArchitectureColumn } from '../../types/architecture.types';
+
 import { hexToRgba } from '../../constants/architecture.constants';
-import { ArchitectureNode } from './ArchitectureNode';
 import { ARCHITECTURE_ICONS } from '../../constants/architecture.icons';
+import type { ArchitectureColumn } from '../../types/architecture.types';
+
+import { ArchitectureNode } from './ArchitectureNode';
 
 interface Props {
   column: ArchitectureColumn;
@@ -12,15 +14,12 @@ export function ArchitectureSection({ column }: Props) {
   const { title, accent, nodes, badge, icon } = column;
 
   const IconComponent = icon
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ? (ARCHITECTURE_ICONS[icon] as ComponentType<any>)
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (ARCHITECTURE_ICONS[icon] as ComponentType<any>)
     : null;
 
   return (
-    <div
-      className="arch-column"
-      style={{ borderColor: accent }}
-    >
+    <div className="arch-column" style={{ borderColor: accent }}>
       <div
         className="arch-column-header"
         style={{
@@ -29,7 +28,9 @@ export function ArchitectureSection({ column }: Props) {
           borderBottomColor: hexToRgba(accent, 0.3),
         }}
       >
-        <span style={{ display: 'flex', alignItems: 'center', gap: '0.5cqmin' }}>
+        <span
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5cqmin' }}
+        >
           {IconComponent && <IconComponent size={16} />}
           {title}
         </span>
@@ -44,15 +45,10 @@ export function ArchitectureSection({ column }: Props) {
         )}
       </div>
       <div className="arch-column-body">
-        {nodes.map(node => (
-          <ArchitectureNode
-            key={node.id}
-            node={node}
-            accentColor={accent}
-          />
+        {nodes.map((node) => (
+          <ArchitectureNode key={node.id} node={node} accentColor={accent} />
         ))}
       </div>
     </div>
   );
 }
-

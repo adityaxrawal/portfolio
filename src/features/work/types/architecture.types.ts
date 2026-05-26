@@ -1,7 +1,12 @@
 export type ArchitectureIconKey = string;
 
 export type ArchCommunicationType = 'sync' | 'async' | 'both';
-export type ArchFooterVariant = 'events' | 'workers' | 'devops' | 'security' | 'default';
+export type ArchFooterVariant =
+  | 'events'
+  | 'workers'
+  | 'devops'
+  | 'security'
+  | 'default';
 
 /** Arrow style between rows */
 export type ArchRowConnector = 'solid' | 'dashed' | 'none';
@@ -60,7 +65,11 @@ export interface ArchitectureRow {
    */
   connectorArrowCount?: number;
   /** Optional: arrows between specific nodes within this row (e.g. Airflow → AWS Glue) */
-  intraRowArrows?: Array<{ from: string; to: string; style?: 'dashed' | 'solid' }>;
+  intraRowArrows?: Array<{
+    from: string;
+    to: string;
+    style?: 'dashed' | 'solid';
+  }>;
 }
 
 export interface ArchitectureDiagramConfig {

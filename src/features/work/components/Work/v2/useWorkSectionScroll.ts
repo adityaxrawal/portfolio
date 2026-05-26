@@ -107,7 +107,9 @@ export function useWorkSectionScroll({
     };
 
     container.addEventListener('wheel', handleWheel, { passive: false });
-    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchstart', handleTouchStart, {
+      passive: true,
+    });
     container.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     return () => {
@@ -115,12 +117,7 @@ export function useWorkSectionScroll({
       container.removeEventListener('touchstart', handleTouchStart);
       container.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [
-    containerRef,
-    setActiveJob,
-    setDirection,
-    totalJobs,
-  ]);
+  }, [containerRef, setActiveJob, setDirection, totalJobs]);
 
   return { lastSnapTime };
 }

@@ -78,6 +78,6 @@ export const WorkExperience: WorkExperienceItem[] = [
       'E-commerce',
     ],
     orbitColor: '#a855f7' /* TODO: palette - accent orbit color */,
-    orbitShadowClass: 'shadow-purple'
+    orbitShadowClass: 'shadow-purple',
   },
 ];

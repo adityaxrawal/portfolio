@@ -1,10 +1,9 @@
 import { Rocket, Flag } from 'lucide-react';
 import { Fragment, type FC } from 'react';
 
-import { OrbitJobNode } from './OrbitJobNode';
-
 import { WorkExperience } from '../../../constants/workExperience';
 
+import { OrbitJobNode } from './OrbitJobNode';
 
 interface JourneyOrbitProps {
   activeJob: number;
@@ -26,7 +25,10 @@ const JourneyOrbit: FC<JourneyOrbitProps> = ({
   const leftJobs = chronologicalJobs.slice(0, half);
   const rightJobs = chronologicalJobs.slice(half);
 
-  const renderJobNode = (job: (typeof WorkExperience)[number], chronoIdx: number) => {
+  const renderJobNode = (
+    job: (typeof WorkExperience)[number],
+    chronoIdx: number,
+  ) => {
     const originalIndex = totalJobs - 1 - chronoIdx;
 
     return (

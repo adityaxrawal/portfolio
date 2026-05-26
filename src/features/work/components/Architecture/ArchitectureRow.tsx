@@ -1,5 +1,7 @@
 import { Fragment } from 'react';
+
 import type { ArchitectureRow as RowType } from '../../types/architecture.types';
+
 import { ArchitectureNode } from './ArchitectureNode';
 
 interface Props {
@@ -11,11 +13,14 @@ export function ArchitectureRow({ row }: Props) {
 
   /** Returns true if this nodeId has an outgoing intra-row arrow */
   function hasArrowAfter(nodeId: string): boolean {
-    return (row.intraRowArrows ?? []).some(a => a.from === nodeId);
+    return (row.intraRowArrows ?? []).some((a) => a.from === nodeId);
   }
 
   function arrowStyle(nodeId: string): 'dashed' | 'solid' {
-    return (row.intraRowArrows ?? []).find(a => a.from === nodeId)?.style ?? 'dashed';
+    return (
+      (row.intraRowArrows ?? []).find((a) => a.from === nodeId)?.style ??
+      'dashed'
+    );
   }
 
   return (
@@ -28,7 +33,7 @@ export function ArchitectureRow({ row }: Props) {
 
       {/* Nodes + intra-row arrows */}
       <div className={`arch-v-nodes${isWide ? ' arch-v-nodes--wide' : ''}`}>
-        {row.nodes.map(node => (
+        {row.nodes.map((node) => (
           <Fragment key={node.id}>
             <ArchitectureNode node={node} />
             {hasArrowAfter(node.id) && (

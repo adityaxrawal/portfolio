@@ -77,7 +77,7 @@
   color: var(--color-text-inverse);
 }
 
-.work-v2-title{
+.work-v2-title {
   font-size: var(--font-size-subHeading);
 }
 
@@ -676,13 +676,15 @@
 
 /* ── Colored dot ──────────────────────────────────────────── */
 .orbit-dot {
-  width: 0.75rem; 
+  width: 0.75rem;
   height: 0.75rem;
   border-radius: 9999px;
   position: relative;
   z-index: 2;
   flex-shrink: 0;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Scale dot on hover and active states */
@@ -721,19 +723,27 @@
 /* Enhanced glow shadows (active states) */
 .orbit-point.active .orbit-dot.shadow-green,
 .orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-green {
-  box-shadow: 0 0 16px rgba(80, 184, 135, 0.75), 0 0 4px rgba(80, 184, 135, 0.4);
+  box-shadow:
+    0 0 16px rgba(80, 184, 135, 0.75),
+    0 0 4px rgba(80, 184, 135, 0.4);
 }
 .orbit-point.active .orbit-dot.shadow-orange,
 .orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-orange {
-  box-shadow: 0 0 16px rgba(249, 115, 22, 0.75), 0 0 4px rgba(249, 115, 22, 0.4);
+  box-shadow:
+    0 0 16px rgba(249, 115, 22, 0.75),
+    0 0 4px rgba(249, 115, 22, 0.4);
 }
 .orbit-point.active .orbit-dot.shadow-blue,
 .orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-blue {
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.75), 0 0 4px rgba(59, 130, 246, 0.4);
+  box-shadow:
+    0 0 16px rgba(59, 130, 246, 0.75),
+    0 0 4px rgba(59, 130, 246, 0.4);
 }
 .orbit-point.active .orbit-dot.shadow-purple,
 .orbit-point:not(.orbit-point-next):hover .orbit-dot.shadow-purple {
-  box-shadow: 0 0 16px rgba(168, 85, 247, 0.75), 0 0 4px rgba(168, 85, 247, 0.4);
+  box-shadow:
+    0 0 16px rgba(168, 85, 247, 0.75),
+    0 0 4px rgba(168, 85, 247, 0.4);
 }
 
 /* ── Centre orbital SVG container ────────────────────────── */
@@ -835,7 +845,7 @@
 
 .orbit-date {
   position: absolute;
-  bottom: 0.75rem; 
+  bottom: 0.75rem;
   left: 50%;
   transform: translateX(-50%);
   font-family: monospace;
@@ -871,7 +881,9 @@
   color: var(--color-text-primary);
   margin: 0;
   white-space: nowrap;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .dark .orbit-company {
@@ -879,14 +891,14 @@
 }
 
 .orbit-point.active .orbit-company {
-  color: var(--color-success); /* Highlight active company with a premium emerald green */
+  color: var(
+    --color-success
+  ); /* Highlight active company with a premium emerald green */
 }
 
 .dark .orbit-point.active .orbit-company {
   color: #34d399;
 }
-
-
 
 /* ── Responsive: stack vertically on narrow screens ───────── */
 @media (max-width: 1024px) {

@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Fragment } from 'react';
 
+import { useSharedState } from '../../../../../../app';
 import type { WorkExperienceItem } from '../../../../constants/workExperience';
 
 import { ArchitecturePanel } from './ArchitecturePanel';
@@ -11,15 +12,18 @@ import { detailedSections, jobConfigs } from './jobConfigs';
 import { MetricCard } from './MetricCard';
 import { TechStack } from './TechStack';
 
-import { useSharedState } from '../../../../../../app';
-
 import '../JobContent.css';
 
 interface JobContentProps {
   job: WorkExperienceItem;
 }
 
-const DETAILED_COMPANIES = ['Wipro', 'DevelUp', 'Leadsquared', 'MathCo'] as const;
+const DETAILED_COMPANIES = [
+  'Wipro',
+  'DevelUp',
+  'Leadsquared',
+  'MathCo',
+] as const;
 type DetailedCompany = (typeof DETAILED_COMPANIES)[number];
 
 function isDetailedCompany(name: string): name is DetailedCompany {
@@ -82,30 +86,29 @@ function JobContent({ job }: JobContentProps) {
             {usesCustomDiagram ? (
               <ArchitecturePanel companyName={job.companyName} />
             ) : (
-
-                <div className="jc-arch-flow-wrapper">
-                  <div className="jc-arch-flow">
-                    {config.archNodes.map((node, i) => (
-                      <Fragment key={node.label}>
-                        <ArchNode {...node} accentColor={config.accentColor} />
-                        {i < config.archNodes.length - 1 && (
-                          <div className="jc-arch-arrow">
-                            <ArrowRight
-                              size={12}
-                              className="jc-arch-arrow-icon"
-                            />
-                          </div>
-                        )}
-                      </Fragment>
-                    ))}
-                  </div>
-                  <div className="jc-feedback-loop">
-                    <div className="jc-feedback-line-container">
-                      <div className="jc-feedback-arrow" />
-                    </div>
-                    <div className="jc-feedback-label">feedback loop</div>
-                  </div>
+              <div className="jc-arch-flow-wrapper">
+                <div className="jc-arch-flow">
+                  {config.archNodes.map((node, i) => (
+                    <Fragment key={node.label}>
+                      <ArchNode {...node} accentColor={config.accentColor} />
+                      {i < config.archNodes.length - 1 && (
+                        <div className="jc-arch-arrow">
+                          <ArrowRight
+                            size={12}
+                            className="jc-arch-arrow-icon"
+                          />
+                        </div>
+                      )}
+                    </Fragment>
+                  ))}
                 </div>
+                <div className="jc-feedback-loop">
+                  <div className="jc-feedback-line-container">
+                    <div className="jc-feedback-arrow" />
+                  </div>
+                  <div className="jc-feedback-label">feedback loop</div>
+                </div>
+              </div>
             )}
           </div>
 

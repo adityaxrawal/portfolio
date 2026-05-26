@@ -2,7 +2,7 @@ export const ARCHITECTURE_TOKENS = {
   // Border radius used for the outer wrapper and inner nodes
   wrapperRadius: '10px',
   nodeRadius: '6px',
-  
+
   // Colors
   wrapperBorder: '#e5e7eb',
   wrapperBg: '#ffffff',
@@ -11,14 +11,14 @@ export const ARCHITECTURE_TOKENS = {
   footerBg: '#f8fafc',
   footerBorder: '#cbd5e1',
   arrowColor: '#94a3b8',
-  
+
   // Body background
   columnBodyBg: '#fafafa',
-  
+
   // Spacing (used primarily via CSS vars or container queries)
   columnGap: '1.5rem',
   nodeGap: '1rem',
-  
+
   // Opacity for the header background
   headerBgOpacity: 0.12,
 };

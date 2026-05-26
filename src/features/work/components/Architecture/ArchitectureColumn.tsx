@@ -1,5 +1,6 @@
-import type { ArchitectureColumn as ColumnType } from '../../types/architecture.types';
 import { hexToRgba } from '../../constants/architecture.constants';
+import type { ArchitectureColumn as ColumnType } from '../../types/architecture.types';
+
 import { ArchitectureNode } from './ArchitectureNode';
 
 interface Props {
@@ -26,16 +27,9 @@ export function ArchitectureColumn({ column }: Props) {
       >
         {title}
       </div>
-      <div
-        className="arch-column-body"
-        style={{ borderTopColor: accent }}
-      >
-        {nodes.map(node => (
-          <ArchitectureNode
-            key={node.id}
-            node={node}
-            accentColor={accent}
-          />
+      <div className="arch-column-body" style={{ borderTopColor: accent }}>
+        {nodes.map((node) => (
+          <ArchitectureNode key={node.id} node={node} accentColor={accent} />
         ))}
       </div>
     </div>

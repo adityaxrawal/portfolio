@@ -7,6 +7,7 @@
 import { Activity } from 'lucide-react';
 
 import type { WorkExperienceItem } from '../../../constants/workExperience';
+
 import { getCompanyDetails } from './companyTheme';
 
 interface MissionControlProps {

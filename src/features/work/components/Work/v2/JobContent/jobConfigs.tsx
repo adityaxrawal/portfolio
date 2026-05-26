@@ -90,7 +90,11 @@ export const develUpDetailedSections: DetailedInfoSection[] = [
     domains: [
       { label: 'Frontend SSR', icon: <Monitor size={10} />, color: '#10b981' },
       { label: 'REST APIs', icon: <Network size={10} />, color: '#3b82f6' },
-      { label: 'Auth / RBAC', icon: <ShieldCheck size={10} />, color: '#8b5cf6' },
+      {
+        label: 'Auth / RBAC',
+        icon: <ShieldCheck size={10} />,
+        color: '#8b5cf6',
+      },
       { label: 'Async Workers', icon: <Share2 size={10} />, color: '#f59e0b' },
       { label: 'CDN / S3', icon: <Cloud size={10} />, color: '#06b6d4' },
       { label: 'CI/CD', icon: <GitBranch size={10} />, color: '#64748b' },
@@ -124,7 +128,11 @@ export const leadSquaredDetailedSections: DetailedInfoSection[] = [
       { label: 'Micro Frontend', icon: <Layers size={10} />, color: '#3b82f6' },
       { label: 'Serverless', icon: <Zap size={10} />, color: '#f97316' },
       { label: 'Event-Driven', icon: <Share2 size={10} />, color: '#f59e0b' },
-      { label: 'Auth & WAF', icon: <ShieldCheck size={10} />, color: '#a855f7' },
+      {
+        label: 'Auth & WAF',
+        icon: <ShieldCheck size={10} />,
+        color: '#a855f7',
+      },
       { label: 'Integrations', icon: <Globe size={10} />, color: '#0ea5e9' },
       { label: 'CDN / Edge', icon: <Cloud size={10} />, color: '#64748b' },
     ],
@@ -157,7 +165,11 @@ export const mathCoDetailedSections: DetailedInfoSection[] = [
       { label: 'React / TS UI', icon: <Monitor size={10} />, color: '#22c55e' },
       { label: 'FastAPI', icon: <Server size={10} />, color: '#3b82f6' },
       { label: 'Data Pipelines', icon: <Share2 size={10} />, color: '#f97316' },
-      { label: 'Auth & RBAC', icon: <ShieldCheck size={10} />, color: '#a855f7' },
+      {
+        label: 'Auth & RBAC',
+        icon: <ShieldCheck size={10} />,
+        color: '#a855f7',
+      },
       { label: 'CI/CD & Docker', icon: <Box size={10} />, color: '#64748b' },
       { label: 'Monitoring', icon: <Activity size={10} />, color: '#0ea5e9' },
     ],

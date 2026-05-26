@@ -39,10 +39,16 @@ export const DetailedInfoBlock: FC<DetailedInfoBlockProps> = ({ sections }) => (
           <div className="jc-domain-chips-wrapper">
             <div className="jc-domain-separator" aria-hidden="true">
               <span className="jc-domain-separator-line" />
-              <span className="jc-domain-separator-label">Architecture Domains</span>
+              <span className="jc-domain-separator-label">
+                Architecture Domains
+              </span>
               <span className="jc-domain-separator-line" />
             </div>
-            <div className="jc-domain-chips" role="list" aria-label="Architecture domains">
+            <div
+              className="jc-domain-chips"
+              role="list"
+              aria-label="Architecture domains"
+            >
               {section.domains.map((domain) => (
                 <div
                   key={domain.label}

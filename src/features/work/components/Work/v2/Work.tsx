@@ -118,7 +118,9 @@ const Work = ({
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               className="work-v2-content-details"
             >
-              <JobContent job={WorkExperience[activeJob] as WorkExperienceItem} />
+              <JobContent
+                job={WorkExperience[activeJob] as WorkExperienceItem}
+              />
             </motion.div>
           </AnimatePresence>
         </div>

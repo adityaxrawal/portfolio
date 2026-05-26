@@ -12,8 +12,13 @@
 
 /* ── Pulse animation for the header indicator dot ─── */
 @keyframes arch-pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
-  50%       { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+  }
 }
 
 /* ── Outer diagram shell ─────────────────────────── */
@@ -24,12 +29,16 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  background: var(--color-surface-overlay);
+  /* background: var(--color-surface-overlay); */
   border-radius: 10px;
   border: 1px solid var(--color-border-default);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
   box-sizing: border-box;
   container-type: inline-size;
   container-name: arch;
@@ -94,8 +103,13 @@
   scrollbar-color: var(--color-border-default) transparent;
 }
 
-.arch-v-body::-webkit-scrollbar { width: 4px; }
-.arch-v-body::-webkit-scrollbar-thumb { background: var(--color-border-default); border-radius: 4px; }
+.arch-v-body::-webkit-scrollbar {
+  width: 4px;
+}
+.arch-v-body::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: 4px;
+}
 
 .dark .arch-v-body {
   scrollbar-color: var(--color-border-subtle) transparent;
@@ -177,14 +191,17 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  background: var(--color-surface-overlay);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-surface-card);
+  border: 1px dashed var(--color-border-subtle);
   border-radius: 7px;
   padding: 7px 11px;
   flex: 1 1 0;
   min-width: 0;
   box-shadow: var(--shadow-xs);
-  transition: box-shadow 0.18s ease, transform 0.15s ease, border-color 0.18s ease;
+  transition:
+    box-shadow 0.18s ease,
+    transform 0.15s ease,
+    border-color 0.18s ease;
   cursor: default;
   position: relative;
   overflow: hidden;
@@ -197,7 +214,7 @@
 }
 
 .dark .arch-v-node {
-  background: var(--color-surface-default);
+  background: var(--color-surface-card);
   border-color: var(--color-border-subtle);
   box-shadow: var(--shadow-sm);
 }
@@ -211,17 +228,23 @@
 /* Highlighted node (primary/core service) */
 .arch-v-node--highlight {
   border-color: var(--color-success-border);
-  box-shadow: 0 0 0 2px var(--color-success-bg), var(--shadow-xs);
+  box-shadow:
+    0 0 0 2px var(--color-success-bg),
+    var(--shadow-xs);
 }
 
 .arch-v-node--highlight:hover {
-  box-shadow: 0 0 0 3px var(--color-success-bg-hover), var(--shadow-md);
+  box-shadow:
+    0 0 0 3px var(--color-success-bg-hover),
+    var(--shadow-md);
   border-color: var(--color-success-strong);
 }
 
 .dark .arch-v-node--highlight {
   border-color: var(--color-success-border);
-  box-shadow: 0 0 0 2px var(--color-success-bg), var(--shadow-sm);
+  box-shadow:
+    0 0 0 2px var(--color-success-bg),
+    var(--shadow-sm);
 }
 
 /* ── Node icon ───────────────────────────────────── */
@@ -404,20 +427,47 @@
     width: calc(60px + 1.5px + 10px);
     min-width: calc(60px + 1.5px + 10px);
   }
-  .arch-v-nodes { gap: 5px; }
-  .arch-v-connector-arrows { gap: 5px; }
-  .arch-v-node { padding: 6px 8px; gap: 5px; }
-  .arch-v-node-label { font-size: 10px; }
-  .arch-v-node-sublabel { display: none; }
-  .arch-v-node-icon { width: 13px; height: 13px; }
-  .arch-v-layer-divider { margin-right: 10px; }
+  .arch-v-nodes {
+    gap: 5px;
+  }
+  .arch-v-connector-arrows {
+    gap: 5px;
+  }
+  .arch-v-node {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+  .arch-v-node-label {
+    font-size: 10px;
+  }
+  .arch-v-node-sublabel {
+    display: none;
+  }
+  .arch-v-node-icon {
+    width: 13px;
+    height: 13px;
+  }
+  .arch-v-layer-divider {
+    margin-right: 10px;
+  }
 }
 
 /* Very compact: hide sidebar labels, stack vertically */
 @container arch (max-width: 360px) {
-  .arch-v-layer-label   { display: none; }
-  .arch-v-layer-divider { display: none; }
-  .arch-v-row           { flex-direction: column; align-items: stretch; }
-  .arch-v-nodes         { flex-wrap: wrap; }
-  .arch-v-connector-spacer { display: none; }
+  .arch-v-layer-label {
+    display: none;
+  }
+  .arch-v-layer-divider {
+    display: none;
+  }
+  .arch-v-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .arch-v-nodes {
+    flex-wrap: wrap;
+  }
+  .arch-v-connector-spacer {
+    display: none;
+  }
 }

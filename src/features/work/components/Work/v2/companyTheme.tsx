@@ -44,7 +44,13 @@ export function getCompanyDetails(companyName: string): CompanyThemeDetails {
       };
     case 'DevelUp':
       return {
-        icon: <FlaskConical size={22} color="var(--color-text-inverse)" strokeWidth={2} />,
+        icon: (
+          <FlaskConical
+            size={22}
+            color="var(--color-text-inverse)"
+            strokeWidth={2}
+          />
+        ),
         badgeText: 'LEARNING',
         badgeClass: 'mc-badge-learning-blue',
         numColorClass: 'mc-num-learning-blue',
