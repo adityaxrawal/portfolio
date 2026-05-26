@@ -478,9 +478,6 @@
   flex-shrink: 0;
 }
 
-.dark .tech-v2-bottom-row {
-}
-
 .tech-v2-bottom-section {
   display: flex;
   flex-direction: column;
