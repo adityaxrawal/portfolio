@@ -77,6 +77,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
+    "prebuild": "node scripts/fetch-portfolio-v2-github-data.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",

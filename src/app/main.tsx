@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import '../assets/styles/globals.css';
 import App from './App';
+
 import { notifyAppUpdateAvailable } from '@/lib/appUpdateEvents';
 import {
   reportWebVitalsWithAnalytics,

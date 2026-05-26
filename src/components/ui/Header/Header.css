@@ -9,7 +9,7 @@
   width: 100%;
   height: 6vh;
   z-index: 100;
-  padding: 0 2.5% 0 2.5% ;
+  padding: 0 2.5% 0 2.5%;
   transition: all 0.3s ease;
   border-bottom: 1px solid var(--theme-dark-grid);
 }
@@ -223,7 +223,8 @@
   width: 18px;
   height: 18px;
   position: relative;
-  box-shadow: inset 6px -6px 0 0 var(--color-toggle-dark, var(--color-text-primary));
+  box-shadow: inset 6px -6px 0 0
+    var(--color-toggle-dark, var(--color-text-primary));
   transform: scale(1) rotate(-2deg);
   transition:
     box-shadow 0.5s ease 0s,

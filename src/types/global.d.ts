@@ -7,6 +7,7 @@ interface ImportMetaEnv {
 }
 
 interface ImportMeta {
+  readonly env: ImportMetaEnv;
 }
 
 import { Object3DNode, MaterialNode } from '@react-three/fiber';

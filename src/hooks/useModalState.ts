@@ -42,14 +42,11 @@ export const useModalState = (open: boolean, onClose: () => void) => {
     setCurrentStep('options');
   }, [open, handleKeyDown]);
 
-  const handleBackdropClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (e.target === e.currentTarget) {
-        onCloseRef.current();
-      }
-    },
-    [],
-  );
+  const handleBackdropClick = useCallback((e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onCloseRef.current();
+    }
+  }, []);
 
   return {
     currentStep,

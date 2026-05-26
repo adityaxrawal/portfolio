@@ -1,11 +1,14 @@
 import { useState, useCallback } from 'react';
 
 import { ALERT_DURATION } from '@/config';
-
 import type { AlertType } from '@/features/contact';
 
 export const useAlert = () => {
-  const [alert, setAlert] = useState({ message: '', type: '' as AlertType | '', duration: 3000 });
+  const [alert, setAlert] = useState({
+    message: '',
+    type: '' as AlertType | '',
+    duration: 3000,
+  });
 
   const getAlertDuration = useCallback((type: string) => {
     const durationMap = ALERT_DURATION as Record<string, number>;

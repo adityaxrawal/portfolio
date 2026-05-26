@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Content from '@/features/portfolio';
 import Footer from '@/components/ui/Footer';
 import Header from '@/components/ui/Header';
+import Content from '@/features/portfolio';
 
 import './PageLayout.css';
 

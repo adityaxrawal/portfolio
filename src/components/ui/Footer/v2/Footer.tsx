@@ -2,9 +2,9 @@ import { useMemo, useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 import { useSharedState } from '@/app';
+import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 import { links, THEME_COLORS } from '@/config';
 import { ContactInfo } from '@/features/contact';
-import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 
 import './Footer.css';
 
@@ -17,20 +17,28 @@ const WRAPPER_STYLE: React.CSSProperties = {
   justifyContent: 'center',
 };
 
-const Footer = ({ isActive: _isActive, goToSlide: _goToSlide, slideIndex: _slideIndex }: Partial<SnapSlideProps> = {}) => {
+const Footer = ({
+  isActive: _isActive,
+  goToSlide: _goToSlide,
+  slideIndex: _slideIndex,
+}: Partial<SnapSlideProps> = {}) => {
   const currentYear = new Date().getFullYear();
   const { isDarkTheme } = useSharedState();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const themeVars = useMemo((): React.CSSProperties => ({
-    '--footer-text': isDarkTheme
-      ? THEME_COLORS.DARK_TEXT
-      : THEME_COLORS.DARK_GRID,
-    '--footer-border': isDarkTheme
-      ? THEME_COLORS.DARK_GRID
-      : THEME_COLORS.LIGHT_GRID,
-  } as React.CSSProperties), [isDarkTheme]);
+  const themeVars = useMemo(
+    (): React.CSSProperties =>
+      ({
+        '--footer-text': isDarkTheme
+          ? THEME_COLORS.DARK_TEXT
+          : THEME_COLORS.DARK_GRID,
+        '--footer-border': isDarkTheme
+          ? THEME_COLORS.DARK_GRID
+          : THEME_COLORS.LIGHT_GRID,
+      }) as React.CSSProperties,
+    [isDarkTheme],
+  );
 
   return (
     <div style={WRAPPER_STYLE}>

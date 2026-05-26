@@ -5,12 +5,13 @@ import tinycolor from 'tinycolor2';
 
 import './App.css';
 
-import { AppRoutes } from '@/config/routes';
 import { AppProvider, useSharedState } from './providers/AppContext';
+
 import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/ui/EasterEgg';
 import Loader from '@/components/ui/Loader';
 import { THEME_COLORS } from '@/config';
+import { AppRoutes } from '@/config/routes';
 import { useKonamiCode } from '@/hooks';
 
 function App() {

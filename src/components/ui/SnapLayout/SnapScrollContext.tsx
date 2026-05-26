@@ -6,9 +6,9 @@ export interface SnapScrollContextType {
   totalSlides: number;
 }
 
-export const SnapScrollContext = createContext<SnapScrollContextType | undefined>(
-  undefined,
-);
+export const SnapScrollContext = createContext<
+  SnapScrollContextType | undefined
+>(undefined);
 
 export function useSnapScroll(): SnapScrollContextType {
   const context = useContext(SnapScrollContext);

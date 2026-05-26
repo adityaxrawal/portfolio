@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
 import { Mail, FileText } from 'lucide-react';
+import { useState, useCallback } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 import { useSharedState } from '@/app';

@@ -2,18 +2,18 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 
 /**
  * useReelsScroll
- * 
+ *
  * Instagram Reels-style fullscreen section snapping with intelligent
  * nested scroll delegation and transition-synced hardware locking.
- * 
+ *
  * @param totalSlides – total number of snap sections
  * @param duration    – snap animation duration in ms (default: 600)
  */
 export function useReelsScroll(totalSlides: number, duration = 600) {
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Refs for tracking state without triggering stale closures in event listeners
   const activeIndexRef = useRef(0);
   const isAnimating = useRef(false);
@@ -21,35 +21,43 @@ export function useReelsScroll(totalSlides: number, duration = 600) {
   const touchStartY = useRef<number | null>(null);
 
   // ── goToSlide ─────────────────────────────────────────────────────────────
-  const goToSlide = useCallback((index: number) => {
-    if (isAnimating.current) return;
-    
-    const clampedIndex = Math.max(0, Math.min(index, totalSlides - 1));
-    if (clampedIndex === activeIndexRef.current) return;
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (isAnimating.current) return;
 
-    isAnimating.current = true;
-    activeIndexRef.current = clampedIndex;
-    setActiveIndex(clampedIndex);
-    lastSnapTime.current = Date.now();
+      const clampedIndex = Math.max(0, Math.min(index, totalSlides - 1));
+      if (clampedIndex === activeIndexRef.current) return;
 
-    if (containerRef.current) {
-      containerRef.current.style.transition = `transform ${duration}ms cubic-bezier(0.77, 0, 0.175, 1)`;
-      containerRef.current.style.transform = `translateY(-${clampedIndex * 100}dvh)`;
-    }
-  }, [totalSlides, duration]);
+      isAnimating.current = true;
+      activeIndexRef.current = clampedIndex;
+      setActiveIndex(clampedIndex);
+      lastSnapTime.current = Date.now();
+
+      if (containerRef.current) {
+        containerRef.current.style.transition = `transform ${duration}ms cubic-bezier(0.77, 0, 0.175, 1)`;
+        containerRef.current.style.transform = `translateY(-${clampedIndex * 100}dvh)`;
+      }
+    },
+    [totalSlides, duration],
+  );
 
   // Helper to recursively find the nearest scrollable parent
-  const findScrollableParent = useCallback((el: HTMLElement | null): HTMLElement | null => {
-    if (!el || el === document.body || el === document.documentElement) return null;
-    
-    const hasOverflow = el.scrollHeight > el.clientHeight;
-    const style = window.getComputedStyle(el);
-    const isScrollable = style.overflowY === 'auto' || style.overflowY === 'scroll';
-    
-    if (hasOverflow && isScrollable) return el;
-    
-    return findScrollableParent(el.parentElement);
-  }, []);
+  const findScrollableParent = useCallback(
+    (el: HTMLElement | null): HTMLElement | null => {
+      if (!el || el === document.body || el === document.documentElement)
+        return null;
+
+      const hasOverflow = el.scrollHeight > el.clientHeight;
+      const style = window.getComputedStyle(el);
+      const isScrollable =
+        style.overflowY === 'auto' || style.overflowY === 'scroll';
+
+      if (hasOverflow && isScrollable) return el;
+
+      return findScrollableParent(el.parentElement);
+    },
+    [],
+  );
 
   // ── Event Listeners ───────────────────────────────────────────────────────
   useEffect(() => {
@@ -68,7 +76,7 @@ export function useReelsScroll(totalSlides: number, duration = 600) {
 
       // 1. Momentum Bleed Guard (1000ms Strict Cooldown)
       // This completely absorbs the trackpad momentum tail from the previous swipe.
-      // Crucially, it prevents momentum from "bleeding" into a newly revealed nested 
+      // Crucially, it prevents momentum from "bleeding" into a newly revealed nested
       // scrollable container (like Work Experience) and causing it to scroll or skip.
       if (timeSinceLastSnap < 1000) {
         e.preventDefault();
@@ -109,7 +117,7 @@ export function useReelsScroll(totalSlides: number, duration = 600) {
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (touchStartY.current === null || isAnimating.current) return;
-      
+
       const deltaY = touchStartY.current - e.changedTouches[0].clientY;
       touchStartY.current = null;
 
@@ -117,9 +125,9 @@ export function useReelsScroll(totalSlides: number, duration = 600) {
 
       const elementAtCenter = document.elementFromPoint(
         window.innerWidth / 2,
-        window.innerHeight / 2
+        window.innerHeight / 2,
       ) as HTMLElement;
-      
+
       const scrollableParent = findScrollableParent(elementAtCenter);
 
       if (scrollableParent) {
@@ -141,8 +149,9 @@ export function useReelsScroll(totalSlides: number, duration = 600) {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       // Allow natural browser behavior for inputs/textareas
-      if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
-      
+      if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName))
+        return;
+
       if (isAnimating.current) return;
 
       const nextKeys = ['ArrowDown', 'PageDown', 'j'];
