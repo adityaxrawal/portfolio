@@ -1,29 +1,29 @@
 /* CSS Variables - Design System */
 :root {
   /* Colors — mapped to design system tokens */
-  --modal-primary:       var(--color-brand-primary);
-  --modal-primary-dark:  var(--color-brand-primary-active);
+  --modal-primary: var(--color-brand-primary);
+  --modal-primary-dark: var(--color-brand-primary-active);
   --modal-primary-light: var(--color-brand-primary-hover);
-  --modal-success:       var(--color-success);
-  --modal-error:         var(--color-error);
-  --modal-warning:       var(--color-warning);
+  --modal-success: var(--color-success);
+  --modal-error: var(--color-error);
+  --modal-warning: var(--color-warning);
 
   /* Neutral Colors — TODO: palette (gray neutral scale not in Warm Cinematic palette) */
-  --modal-neutral-50:  #f9fafb;  /* TODO: palette */
-  --modal-neutral-100: #f3f4f6;  /* TODO: palette */
-  --modal-neutral-200: #e5e7eb;  /* TODO: palette */
-  --modal-neutral-300: #d1d5db;  /* TODO: palette */
-  --modal-neutral-400: #9ca3af;  /* TODO: palette */
-  --modal-neutral-500: #6b7280;  /* TODO: palette */
-  --modal-neutral-600: #4b5563;  /* TODO: palette */
-  --modal-neutral-700: #374151;  /* TODO: palette */
-  --modal-neutral-800: #1f2937;  /* TODO: palette */
-  --modal-neutral-900: #111827;  /* TODO: palette */
+  --modal-neutral-50: #f9fafb; /* TODO: palette */
+  --modal-neutral-100: #f3f4f6; /* TODO: palette */
+  --modal-neutral-200: #e5e7eb; /* TODO: palette */
+  --modal-neutral-300: #d1d5db; /* TODO: palette */
+  --modal-neutral-400: #9ca3af; /* TODO: palette */
+  --modal-neutral-500: #6b7280; /* TODO: palette */
+  --modal-neutral-600: #4b5563; /* TODO: palette */
+  --modal-neutral-700: #374151; /* TODO: palette */
+  --modal-neutral-800: #1f2937; /* TODO: palette */
+  --modal-neutral-900: #111827; /* TODO: palette */
 
   /* Dark Theme — mapped to design system tokens */
-  --modal-dark-bg:      var(--color-background-base);
+  --modal-dark-bg: var(--color-background-base);
   --modal-dark-surface: var(--color-surface-raised);
-  --modal-dark-border:  var(--color-border-subtle);
+  --modal-dark-border: var(--color-border-subtle);
 
   /* Spacing */
   --modal-space-xs: 0.25rem;

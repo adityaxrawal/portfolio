@@ -21,7 +21,7 @@
       "strong":  "#9C9A96",
       "focus":   "#8B7355",
       "card":    "#D6D3CE",
-      "grid":    "#D6D2CC",
+      "grid":    "#EBE8E3",
       "divider": "#E5E2DD",
       "inverse": "#4A4845"
     },
@@ -212,7 +212,7 @@
       "strong":  "#6B6866",
       "focus":   "#C4956A",
       "card":    "#3A3936",
-      "grid":    "#2A2A28",
+      "grid":    "#242423",
       "divider": "#333231",
       "inverse": "#BDBCB9"
     },
