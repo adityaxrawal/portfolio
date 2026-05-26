@@ -4,9 +4,9 @@ export const CARD_TEXTURE_WIDTH = 512;
 export const CARD_TEXTURE_HEIGHT = 720;
 export const BACK_ICON_SIZE = 22;
 export const BAND_REPEAT = 6.5;
-export const MATHCO_PURPLE_DARK = '#232323';
-export const MATHCO_PEACH = '#FFA781';
-export const CARD_INK = '#222225';
+export const MATHCO_PURPLE_DARK = '#232323' /* TODO: palette - lanyard color */;
+export const MATHCO_PEACH = '#FFA781' /* TODO: palette - lanyard color */;
+export const CARD_INK = '#222225' /* TODO: palette - lanyard color */;
 
 export const FRONT_CARD_UV = {
   x: 0.0008521821000613272,

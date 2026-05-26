@@ -13,7 +13,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'React.js',
     skillLevel: 10,
-    skillColor: '#61DAFB',
+    skillColor: '#61DAFB' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Building fast, dynamic, and responsive UIs with reusable components, state management, and hooks for seamless user experiences.',
     skillIcon: '⚛️',
@@ -24,7 +24,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'JavaScript',
     skillLevel: 9,
-    skillColor: '#F7DF1E',
+    skillColor: '#F7DF1E' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Writing clean, maintainable, and robust code with strong typing, asynchronous programming, and modern ES6+ features.',
     skillIcon: '📜',
@@ -35,7 +35,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'HTML, CSS',
     skillLevel: 9,
-    skillColor: '#E34F26',
+    skillColor: '#E34F26' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Designing pixel-perfect, responsive web interfaces with modern styling techniques and framework-based UI components.',
     skillIcon: '🎨',
@@ -46,7 +46,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'Next.js',
     skillLevel: 8,
-    skillColor: '#000000',
+    skillColor: '#000000' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Optimizing performance with SSR, ISR, and API routes to craft high-speed, SEO-friendly web applications.',
     skillIcon: '🚀',
@@ -57,7 +57,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'Node.js',
     skillLevel: 8,
-    skillColor: '#8CC84B',
+    skillColor: '#8CC84B' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Designing high-performance APIs and scalable backend architectures for handling millions of requests efficiently.',
     skillIcon: '🌿',
@@ -68,7 +68,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'MongoDB',
     skillLevel: 8,
-    skillColor: '#47A248',
+    skillColor: '#47A248' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Crafting flexible, high-speed NoSQL databases with optimized queries and efficient indexing for scalable applications.',
     skillIcon: '🍃',
@@ -79,7 +79,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'REST API & Postman',
     skillLevel: 8,
-    skillColor: '#FF5722',
+    skillColor: '#FF5722' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Building, testing, and optimizing RESTful APIs with secure authentication, efficient data handling, and seamless third-party integrations.',
     skillIcon: '🔗',
@@ -90,7 +90,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'Express.js',
     skillLevel: 7,
-    skillColor: '#303030',
+    skillColor: '#303030' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Creating robust and scalable backend solutions with middleware, routing, and API handling.',
     skillIcon: '🚏',
@@ -101,7 +101,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'Serverless Architecture',
     skillLevel: 7,
-    skillColor: '#FF9800',
+    skillColor: '#FF9800' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Architecting modular, scalable, and independently deployable services for flexibility and performance.',
     skillIcon: '📦',
@@ -112,7 +112,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'Python',
     skillLevel: 7,
-    skillColor: '#3776AB',
+    skillColor: '#3776AB' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Solving complex problems with structured programming, scripting, and automation capabilities.',
     skillIcon: '🐍',
@@ -123,7 +123,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'Data Structure and Algorithms (DSA)',
     skillLevel: 7,
-    skillColor: '#2196F3',
+    skillColor: '#2196F3' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Implementing optimized algorithms and efficient data structures for high-performance applications.',
     skillIcon: '🔢',
@@ -134,7 +134,7 @@ export const TechnicalSkills: TechnicalSkill[] = [
   {
     skillName: 'AWS (EC2, Lambda, API Gateway)',
     skillLevel: 6,
-    skillColor: '#FF9900',
+    skillColor: '#FF9900' /* TODO: palette - tech brand icon color */,
     skillDesc:
       'Deploying and managing cloud infrastructure with serverless functions, cost-effective computing, and scalable API solutions.',
     skillIcon: '☁️',
