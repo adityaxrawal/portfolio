@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
-import { Suspense, useCallback, useState } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import tinycolor from 'tinycolor2';
 
@@ -36,7 +36,13 @@ function App() {
 }
 
 function ThemedApp() {
-  const { backgroundColor } = useSharedState();
+  const { backgroundColor, isDarkTheme } = useSharedState();
+
+  // ── Sync .dark class on <html> for CSS custom properties + Tailwind v4 dark: ──
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkTheme);
+    localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+  }, [isDarkTheme]);
 
   const getContrastColor = (bgColor: string) => {
     if (!bgColor) return THEME_COLORS.DARK_GRID;

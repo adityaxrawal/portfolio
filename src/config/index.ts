@@ -16,30 +16,30 @@ export const API_ENDPOINTS = {
 };
 
 export const THEME_COLORS = {
-  DARK_GRID: 'rgba(38, 38, 38, 1)',
-  DARK_TEXT: '#F0ECD8',
-  DARK_BG: 'rgba(35, 35, 35, 1)',
-  LIGHT_GRID: '#efece7ff',
-  LIGHT_TEXT: 'rgba(0, 0, 0, 1)',
-  LIGHT_BG: '#F4F1EC',
+  DARK_GRID:  '#232321',          /* --color-background-secondary (dark) */
+  DARK_TEXT:  '#F4F1E8',          /* --color-text-primary (dark) */
+  DARK_BG:    '#1C1C1B',          /* --color-background-base (dark) */
+  LIGHT_GRID: '#D6D2CC',          /* --color-border-grid (light) */
+  LIGHT_TEXT: '#101010',          /* --color-text-primary (light) */
+  LIGHT_BG:   '#F3F0EB',          /* --color-background-base (light) */
 };
 
 export const darkModeColorList: Record<number, string> = {
-  0: THEME_COLORS.DARK_BG,
-  1: '#31363F',
-  2: '#76ABAE',
-  3: '#EEEEEE',
-  4: '#B8E0E3',
-  5: '#F0F5F7',
+  0: THEME_COLORS.DARK_BG,   /* --color-background-base (dark) */
+  1: '#2B2A28',              /* --color-background-tertiary (dark) */
+  2: '#333230',              /* --color-surface-raised (dark) */
+  3: '#3A3937',              /* --color-surface-overlay (dark) */
+  4: '#4A4845',              /* --color-border-default (dark) */
+  5: '#6B6866',              /* --color-border-strong (dark) */
 };
 
 export const lightModeColorList: Record<number, string> = {
-  0: THEME_COLORS.LIGHT_BG,
-  1: '#DBE2EF',
-  2: '#C1D0E6',
-  3: '#A7BEDC',
-  4: '#3F72AF',
-  5: '#112D4E',
+  0: THEME_COLORS.LIGHT_BG,  /* --color-background-base (light) */
+  1: '#DDDAD6',              /* --color-background-secondary (light) */
+  2: '#ECE8E2',              /* --color-surface-default (light) */
+  3: '#E2DED8',              /* --color-surface-sunken (light) */
+  4: '#D6D3CE',              /* --color-border-card (light) */
+  5: '#BDBCB9',              /* --color-border-default (light) */
 };
 
 // --- Modal Constants ---
