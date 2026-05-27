@@ -18,6 +18,10 @@
   border-radius: 2rem;
 }
 
+.dark .footer-v2 {
+  background-color: transparent !important;
+}
+
 /* ── TOP BAR (Contact + Info) ── */
 .footer-v2__top-bar {
   display: flex;
@@ -91,7 +95,7 @@
   font-size: clamp(11px, 1.2vw, 13px);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-background-base);
+  color: #101010;
   white-space: nowrap;
 }
 
@@ -99,7 +103,7 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: var(--color-background-base);
+  background-color: #101010;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,6 +133,7 @@
   color: var(--footer-text);
   text-transform: uppercase;
   font-size: clamp(9px, 0.9vw, 11px);
+  font-weight: 600;
   letter-spacing: 0.08em;
   margin: 0;
   line-height: 1.6;
