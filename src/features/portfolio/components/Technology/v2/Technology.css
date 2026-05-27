@@ -17,7 +17,6 @@
   flex-direction: column;
   padding-top: 0;
   box-sizing: border-box;
-  background-color: var(--color-background-base);
   color: var(--color-text-primary);
   overflow: hidden;
 }
@@ -33,7 +32,7 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  padding: 0rem 1.25rem 0.75rem 1.25rem;
+  padding: 0.75rem 1.25rem 0.75rem 1.25rem;
   gap: 1rem;
   box-sizing: border-box;
 }
@@ -659,4 +658,110 @@
 
 .dark .tech-v2-strength-desc {
   color: var(--color-text-tertiary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   9. RESPONSIVE / MOBILE OVERRIDES
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hide 'My Approach' in header */
+  .tech-v2-header-right {
+    display: none !important;
+  }
+
+  /* Hide 'Core Strengths' sidebar */
+  .tech-v2-right {
+    display: none !important;
+  }
+
+  /* Hide header description and divider */
+  .tech-v2-header-desc,
+  .tech-v2-header-divider-v {
+    display: none !important;
+  }
+
+  /* Reduce main container padding */
+  .tech-v2-container {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Shrink outer card margin */
+  .tech-v2-skills-outer-card {
+    border-radius: 8px;
+  }
+
+  /* Header of technical skills */
+  .tech-v2-skills-header {
+    padding: 0.5rem 0.75rem 0.25rem;
+  }
+  
+  .tech-v2-skills-header .tech-v2-label-row {
+    font-size: 0.55rem;
+  }
+
+  /* Change grid from 4 columns to 2x2 */
+  .tech-v2-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+    padding: 0 0.5rem 0.5rem;
+  }
+
+  /* Reduce category card padding */
+  .tech-v2-category {
+    padding: 0.4rem 0.35rem;
+    gap: 0.15rem;
+    border-radius: 8px;
+  }
+  
+  .tech-v2-category-label {
+    font-size: 0.5rem;
+  }
+
+  /* Reduce skill item sizes */
+  .tech-v2-skill-item {
+    padding: 0.2rem 0;
+    gap: 0.3rem;
+  }
+
+  /* Smaller skill icons */
+  .tech-v2-skill-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .tech-v2-skill-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Smaller skill font */
+  .tech-v2-skill-name {
+    font-size: 0.55rem;
+  }
+
+  /* Bottom row adjustments */
+  .tech-v2-bottom-section {
+    padding: 0.4rem 0.5rem;
+    gap: 0.4rem;
+  }
+  
+  .tech-v2-bottom-section-header {
+    font-size: 0.5rem;
+  }
+
+  /* Smaller chips */
+  .tech-v2-chip-grid {
+    gap: 0.25rem;
+  }
+  .tech-v2-chip-icon-box-light {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+  }
+  .tech-v2-chip-icon-box-light svg {
+    width: 12px;
+    height: 12px;
+  }
+  .tech-v2-chip-label {
+    font-size: 0.45rem;
+  }
 }
