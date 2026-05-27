@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Loader from '@/components/ui/Loader';
@@ -21,14 +21,14 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route
-        path="/aditya-rawal"
+        path="*"
         element={
           <LazyRoute>
             <PortfolioPage />
           </LazyRoute>
         }
       />
-      <Route path="/" element={<Navigate to="/aditya-rawal" replace />} />
+      {/* <Route path="/" element={<Navigate to="/" replace />} /> */}
       <Route
         path="/companies"
         element={

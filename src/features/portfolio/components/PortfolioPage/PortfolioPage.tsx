@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import {
   FooterLazy,
   HeroSectionLazy,
-  PortfolioDetailLazy,
+  // PortfolioDetailLazy,
   ProjectLazy,
   TechnologyLazy,
   WorkLazy,
@@ -20,7 +20,7 @@ export default function PortfolioPage() {
         <WorkLazy />
         <ProjectLazy />
         <TechnologyLazy />
-        <PortfolioDetailLazy />
+        {/* <PortfolioDetailLazy /> */}
         <FooterLazy />
       </SnapLayout>
     </Suspense>
