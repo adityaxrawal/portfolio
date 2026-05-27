@@ -1,10 +1,9 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { HiLocationMarker, HiArrowDown } from 'react-icons/hi';
 import { LuAsterisk } from 'react-icons/lu';
 
 import { useSharedState } from '@/app';
 import ContactButton from '@/components/ui/ContactButton';
-import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Loader from '@/components/ui/Loader';
 import { LOADER_LOGS } from '@/config';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
@@ -33,26 +32,12 @@ const HeroSection = ({
 }: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
 
-  // Track desktop vs mobile to show/hide lanyard
-  const [isDesktop, setIsDesktop] = useState(
-    () => typeof window !== 'undefined' && window.innerWidth > 1024,
-  );
-
   const { stats, loading: loadingStats } = useGitHubStats();
-
-  // Calculate confetti dimensions
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth > 1024);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <section
       className="hero-section-wrapper"
-      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+      style={{ width: '100%', height: '100%' }}
     >
       <div className={`hero-section ${isDarkTheme ? 'dark' : ''}`}>
         <div className="headline">
@@ -123,15 +108,13 @@ const HeroSection = ({
         </div>
 
         {/* ── Lanyard: physics rope + interactive flip card ── */}
-        {isDesktop && (
-          <section className="image-container">
-            <Suspense
-              fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.HERO as unknown as string[]} />}
-            >
-              <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
-            </Suspense>
-          </section>
-        )}
+        <section className="image-container">
+          <Suspense
+            fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.HERO as unknown as string[]} />}
+          >
+            <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+          </Suspense>
+        </section>
         <section className="stats-container">
           {/* Box 1: System Status */}
           <div className="stats-box system-status">

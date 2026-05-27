@@ -361,7 +361,7 @@ export function LanyardBand({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
           color={MATHCO_PURPLE_DARK}
           depthTest={false}
           resolution={isMobile ? [1000, 2000] : [1000, 1000]}
-          lineWidth={1}
+          lineWidth={isMobile ? 1.5 : 1}
         />
       </mesh>
     </>

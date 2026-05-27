@@ -6,6 +6,8 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
 import { Suspense, useEffect, useState } from 'react';
 import * as THREE from 'three';
+import { motion, useReducedMotion } from 'framer-motion';
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 
 import { LanyardBand } from './LanyardBand';
 import './lanyardSetup';
@@ -18,6 +20,8 @@ export interface LanyardSceneProps {
   transparent?: boolean;
 }
 
+type LanyardState = 'entering' | 'dropped' | 'retracting' | 'retracted';
+
 export default function LanyardScene({
   position = [0, 0, 30],
   gravity = [0, -40, 0],
@@ -25,17 +29,107 @@ export default function LanyardScene({
   transparent = true,
 }: LanyardSceneProps) {
   const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.innerWidth < 768,
+    () => typeof window !== 'undefined' && window.innerWidth <= 1024,
   );
+  
+  const prefersReducedMotion = useReducedMotion();
+  const [lanyardState, setLanyardState] = useState<LanyardState>('entering');
+  const [isUserTriggered, setIsUserTriggered] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    if (prefersReducedMotion) {
+      setLanyardState('retracted');
+    }
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    if (!isMobile || prefersReducedMotion) return;
+
+    let timeout: NodeJS.Timeout;
+
+    if (lanyardState === 'entering') {
+      if (!isUserTriggered) {
+        timeout = setTimeout(() => {
+          setLanyardState('retracting');
+        }, 2400); // 900ms animation + 1500ms pause
+      } else {
+        timeout = setTimeout(() => {
+          setLanyardState('dropped');
+        }, 900);
+      }
+    } else if (lanyardState === 'retracting') {
+      timeout = setTimeout(() => {
+        setLanyardState('retracted');
+      }, 500);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [lanyardState, isMobile, prefersReducedMotion, isUserTriggered]);
+
+  const handlePullTabClick = () => {
+    setIsUserTriggered(true);
+    setLanyardState('entering');
+  };
+
+  const handleDismissClick = () => {
+    setLanyardState('retracting');
+  };
+
+  const getTransition = () => {
+    if (lanyardState === 'entering' || lanyardState === 'dropped') {
+      return { type: 'tween' as const, duration: 0.9, ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number] };
+    }
+    return { type: 'tween' as const, duration: 0.5, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] };
+  };
+
+  const isLanyardDown = lanyardState === 'entering' || lanyardState === 'dropped';
+
   return (
-    <div className="lanyard-wrapper">
+    <>
+      {isMobile && (
+        <motion.div
+          className="lanyard-pull-tab"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{
+            opacity: lanyardState === 'retracted' ? 1 : 0,
+            y: lanyardState === 'retracted' ? 0 : -20,
+            pointerEvents: lanyardState === 'retracted' ? 'auto' : 'none',
+          }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          role="button"
+          tabIndex={lanyardState === 'retracted' ? 0 : -1}
+          aria-label="Show ID card"
+          onClick={handlePullTabClick}
+          onKeyDown={(e) =>
+            (e.key === 'Enter' || e.key === ' ') && handlePullTabClick()
+          }
+        >
+          <HiChevronDown size={20} />
+        </motion.div>
+      )}
+
+      <motion.div
+        className="lanyard-container"
+        animate={
+          isMobile
+            ? { y: isLanyardDown ? 0 : '-120%' }
+            : { y: 0 }
+        }
+        transition={isMobile && !prefersReducedMotion ? getTransition() : { duration: 0 }}
+        aria-hidden="true"
+        style={{
+          pointerEvents: isMobile
+            ? (isLanyardDown ? 'auto' : 'none')
+            : 'auto',
+        }}
+      >
+        <div className="lanyard-wrapper">
       <Canvas
         camera={{ position: position, fov: fov }}
         dpr={[1, isMobile ? 1.5 : 2]}
@@ -82,5 +176,32 @@ export default function LanyardScene({
         </Environment>
       </Canvas>
     </div>
+
+        {isMobile && (
+          <motion.div
+            className="lanyard-dismiss-btn"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: lanyardState === 'dropped' ? 1 : 0,
+              pointerEvents: lanyardState === 'dropped' ? 'auto' : 'none',
+            }}
+            transition={{
+              duration: lanyardState === 'dropped' ? 0.25 : 0.15,
+              ease: lanyardState === 'dropped' ? 'easeOut' : 'easeIn',
+            }}
+            role="button"
+            tabIndex={lanyardState === 'dropped' ? 0 : -1}
+            aria-label="Hide ID card"
+            onClick={handleDismissClick}
+            onKeyDown={(e) =>
+              (e.key === 'Enter' || e.key === ' ') && handleDismissClick()
+            }
+          >
+            <span>Snap up</span>
+            <HiChevronUp size={16} />
+          </motion.div>
+        )}
+      </motion.div>
+    </>
   );
 }
