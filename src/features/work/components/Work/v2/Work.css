@@ -903,6 +903,15 @@
 
 /* ── Responsive: stack vertically on narrow screens ───────── */
 @media (max-width: 1024px) {
+  .journey-orbit-wrapper {
+    display: none !important;
+  }
+
+  .work-v2-container {
+    height: 100%;
+    padding: 1rem 0.1rem;
+  }
+
   .orbit-layout {
     flex-direction: column;
     margin-bottom: 2rem;
@@ -945,6 +954,52 @@
     transform: none;
     bottom: auto;
     top: auto;
+  }
+}
+
+/* ── Responsive: Tablet Sidebar Adjustments ───────────────── */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .work-v2-sidebar {
+    padding: 0 0.5rem;
+  }
+
+  .mc-card {
+    padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+  }
+
+  .mc-logo-wrapper {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    padding: 0.25rem;
+  }
+
+  .mc-card-info {
+    gap: 0.35rem;
+  }
+
+  .mc-text-wrapper h4 {
+    font-size: 12px;
+  }
+
+  .mc-text-wrapper p {
+    font-size: 9px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px; /* Prevent it from pushing badge out */
+  }
+
+  .mc-badge {
+    font-size: 7px;
+    padding: 2px 4px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .mc-number {
+    font-size: 0.75rem;
+    width: 1.25rem;
   }
 }
 
