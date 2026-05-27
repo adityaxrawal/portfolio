@@ -55,3 +55,11 @@
   will-change: transform;
   backface-visibility: hidden;
 }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media screen and (max-width: 640px) {
+  .snap-dot-nav {
+    display: none;
+  }
+}
+
