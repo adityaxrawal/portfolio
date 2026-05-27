@@ -1,5 +1,5 @@
 .nav-bar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -8,7 +8,7 @@
   align-items: center;
   width: 100%;
   height: 6vh;
-  z-index: 100;
+  /* z-index: 999; */
   padding: 0 2.5% 0 2.5%;
   transition: all 0.3s ease;
   border-bottom: 1px solid var(--theme-dark-grid);
@@ -365,7 +365,9 @@
 
 /* --- Responsive --- */
 @media screen and (max-width: 1024px) {
-  .nav-availability span:first-child,
+  .nav-availability span:first-child {
+    white-space: nowrap;
+  }
   .nav-social-link span {
     display: none;
   }
