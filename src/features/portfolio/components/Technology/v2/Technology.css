@@ -22,6 +22,10 @@
   overflow: hidden;
 }
 
+.dark .tech-v2-section {
+  background-color: transparent !important;
+}
+
 .tech-v2-container {
   display: flex;
   flex-direction: row;
@@ -94,7 +98,7 @@
 }
 
 .dark .tech-v2-label-row {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 .tech-v2-dot {
@@ -172,38 +176,36 @@
   display: flex;
   flex-direction: column;
   font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-heading);
   font-weight: 700;
-  font-size: 3.75rem;
-  line-height: 1;
   color: var(--color-text-primary);
   margin: 0.25rem 0 0;
 }
 
 .dark .tech-v2-tagline {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary);
 }
 
 .tech-v2-tagline-line {
-  display: block;
+  font-size: var(--font-size-subHeading);
 }
 
 .tech-v2-tagline-highlight {
   position: relative;
   display: inline-block;
+  line-height: 1;
 }
 
 .tech-v2-tagline-underline {
   position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 10px;
+  left: 5rem;
+  width: 30%;
+  height: 0.45rem;
   color: var(--color-text-primary);
-  pointer-events: none;
 }
 
 .dark .tech-v2-tagline-underline {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary);
 }
 
 /* Description text — right of the vertical divider */
@@ -218,7 +220,7 @@
 }
 
 .dark .tech-v2-header-desc {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 /* Vertical separator between left and right header halves */
@@ -318,7 +320,7 @@
 }
 
 .dark .tech-v2-step-label {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 /* Arrow — aligned vertically to the icon box center (52px / 2 - 8px ≈ 18px margin-top) */
@@ -455,7 +457,7 @@
 }
 
 .dark .tech-v2-skill-name {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -502,7 +504,7 @@
 }
 
 .dark .tech-v2-bottom-section-header {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 .tech-v2-bottom-section-icon {
@@ -566,7 +568,7 @@
 }
 
 .dark .tech-v2-chip-label {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -588,7 +590,7 @@
 }
 
 .dark .tech-v2-strengths-header {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 .tech-v2-strengths-list {
@@ -645,7 +647,7 @@
 }
 
 .dark .tech-v2-strength-title {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary);
 }
 
 .tech-v2-strength-desc {
@@ -656,5 +658,5 @@
 }
 
 .dark .tech-v2-strength-desc {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }

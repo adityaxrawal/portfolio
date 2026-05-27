@@ -23,20 +23,20 @@ export function TechHeader() {
           </div>
 
           {/* Serif heading */}
-          <div className="tech-v2-tagline" aria-label="My Skills. My Edge.">
-            <span className="tech-v2-tagline-line">My Skills.</span>
-            <span className="tech-v2-tagline-line tech-v2-tagline-highlight">
-              My Edge.
+          <div className="tech-v2-tagline" aria-label="Tech for Innovation">
+            <span className="tech-v2-tagline-line">Tech for</span>
+            <span className="tech-v2-tagline-highlight">
+              Innovation
               <svg
                 className="tech-v2-tagline-underline"
-                viewBox="0 0 180 8"
+                viewBox="0 0 200 9"
                 fill="none"
                 preserveAspectRatio="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
                 <path
-                  d="M2 5.5C40 1.5 120 -1 178 4.5"
+                  d="M2.5 6.5C48.5 2.5 130.5 -1.5 197.5 5"
                   stroke="currentColor"
                   strokeWidth="2.5"
                   strokeLinecap="round"
