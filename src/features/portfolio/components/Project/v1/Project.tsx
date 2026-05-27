@@ -1,8 +1,6 @@
 // src/component/Content/Projects/projects.component.js
 import { use, Suspense, Component } from 'react';
 
-import { FaGithub } from 'react-icons/fa';
-
 import './Project.css';
 import Loader from '@/components/ui/Loader';
 import { LOADER_LOGS } from '@/config';

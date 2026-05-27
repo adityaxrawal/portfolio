@@ -15,7 +15,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 9vh;
+  padding-top: 0;
   box-sizing: border-box;
   background-color: var(--color-background-base);
   color: var(--color-text-primary);
