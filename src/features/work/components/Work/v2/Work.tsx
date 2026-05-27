@@ -88,12 +88,24 @@ const Work = ({
     [activeJob, lastSnapTime],
   );
 
+
+
   return (
     <div
       className={`work-v2-section ${isDarkTheme ? 'dark' : 'light'}`}
       ref={containerRef}
       style={{ width: '100%', height: '100%' }}
     >
+      <div className="work-v2-mobile-header">
+        <div className="work-v2-mobile-header-left">
+          <span className="work-v2-mobile-label">WORK EXPERIENCE •</span>
+          <span className="work-v2-mobile-title">Systems in Production</span>
+        </div>
+        <div className="work-v2-mobile-header-right">
+          I design, build and ship systems that solve real problems and create measurable impact at scale.
+        </div>
+      </div>
+
       <div className="work-v2-container">
         {/* SIDEBAR */}
         <div className="work-v2-sidebar">
@@ -125,6 +137,18 @@ const Work = ({
           </AnimatePresence>
         </div>
       </div>
+
+      {/* MOBILE ONLY: Carousel */}
+      <div className="work-v2-mobile-carousel-container">
+        <div className="work-v2-mobile-carousel" id="work-mobile-carousel">
+          {WorkExperience.map((job) => (
+            <div className="work-v2-mobile-card-wrapper" key={job.companyName}>
+              <JobContent job={job as WorkExperienceItem} />
+            </div>
+          ))}
+        </div>
+      </div>
+
       <JourneyOrbit
         activeJob={activeJob}
         setActiveJob={setActiveJob}

@@ -947,3 +947,87 @@
     top: auto;
   }
 }
+
+/* --- Mobile Specific Additions --- */
+.work-v2-mobile-header,
+.work-v2-mobile-carousel-container {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .work-v2-sidebar,
+  .journey-orbit-wrapper {
+    display: none !important;
+  }
+  
+  .work-v2-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: calc(100% - 46px); /* Header is now smaller */
+    padding: 0 8px 8px 8px;
+    box-sizing: border-box;
+  }
+  
+  .work-v2-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .work-v2-section {
+    max-width: 100vw;
+    height: 100svh;
+    height: 100dvh; /* fallback/modern approach if svh isn't perfectly supported by some lint, though svh is better */
+    overflow: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 0;
+  }
+  
+  .work-v2-section::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Row 1 — Section Header Row */
+  .work-v2-mobile-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 6px 8px 4px 8px;
+  }
+
+  .work-v2-mobile-header-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-v2-mobile-label {
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+  }
+
+  .work-v2-mobile-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+  
+  .dark .work-v2-mobile-title {
+    color: var(--color-text-primary);
+  }
+
+  .work-v2-mobile-header-right {
+    display: none;
+  }
+
+}

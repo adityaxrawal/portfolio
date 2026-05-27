@@ -83,33 +83,40 @@ function JobContent({ job }: JobContentProps) {
               />
               <span className="jc-section-label">SYSTEM ARCHITECTURE</span>
             </div>
-            {usesCustomDiagram ? (
-              <ArchitecturePanel companyName={job.companyName} />
-            ) : (
-              <div className="jc-arch-flow-wrapper">
-                <div className="jc-arch-flow">
-                  {config.archNodes.map((node, i) => (
-                    <Fragment key={node.label}>
-                      <ArchNode {...node} accentColor={config.accentColor} />
-                      {i < config.archNodes.length - 1 && (
-                        <div className="jc-arch-arrow">
-                          <ArrowRight
-                            size={12}
-                            className="jc-arch-arrow-icon"
-                          />
-                        </div>
-                      )}
-                    </Fragment>
-                  ))}
-                </div>
-                <div className="jc-feedback-loop">
-                  <div className="jc-feedback-line-container">
-                    <div className="jc-feedback-arrow" />
+            <div className="jc-arch-desktop">
+              {usesCustomDiagram ? (
+                <ArchitecturePanel companyName={job.companyName} />
+              ) : (
+                <div className="jc-arch-flow-wrapper">
+                  <div className="jc-arch-flow">
+                    {config.archNodes.map((node, i) => (
+                      <Fragment key={node.label}>
+                        <ArchNode {...node} accentColor={config.accentColor} />
+                        {i < config.archNodes.length - 1 && (
+                          <div className="jc-arch-arrow">
+                            <ArrowRight
+                              size={12}
+                              className="jc-arch-arrow-icon"
+                            />
+                          </div>
+                        )}
+                      </Fragment>
+                    ))}
                   </div>
-                  <div className="jc-feedback-label">feedback loop</div>
+                  <div className="jc-feedback-loop">
+                    <div className="jc-feedback-line-container">
+                      <div className="jc-feedback-arrow" />
+                    </div>
+                    <div className="jc-feedback-label">feedback loop</div>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+            
+            <div className="jc-arch-mobile">
+              <span className="jc-arch-mobile-icon">⌘</span>
+              <span>Full architecture diagram available on desktop. Open this portfolio in a desktop browser for the complete interactive system design view.</span>
+            </div>
           </div>
 
           <div className="jc-col-divider" />

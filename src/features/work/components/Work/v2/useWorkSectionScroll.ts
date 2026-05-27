@@ -27,6 +27,23 @@ export function useWorkSectionScroll({
     const container = containerRef.current;
     if (!container) return undefined;
 
+    const checkScrollable = (target: HTMLElement, deltaY: number) => {
+      let el: HTMLElement | null = target;
+      while (el && el !== container) {
+        if (el.scrollHeight > el.clientHeight) {
+          const style = window.getComputedStyle(el);
+          if (style.overflowY === 'auto' || style.overflowY === 'scroll') {
+            // Scrolling down
+            if (deltaY > 0 && Math.ceil(el.scrollTop + el.clientHeight) < el.scrollHeight) return true;
+            // Scrolling up
+            if (deltaY < 0 && Math.ceil(el.scrollTop) > 0) return true;
+          }
+        }
+        el = el.parentElement;
+      }
+      return false;
+    };
+
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
       const timeSinceLastSnap = now - lastSnapTime.current;
@@ -38,6 +55,11 @@ export function useWorkSectionScroll({
       }
 
       if (Math.abs(e.deltaY) < 10) return;
+
+      if (checkScrollable(e.target as HTMLElement, e.deltaY)) {
+        e.stopPropagation();
+        return;
+      }
 
       const currentJob = activeJobRef.current;
 
@@ -82,6 +104,11 @@ export function useWorkSectionScroll({
       }
 
       if (Math.abs(deltaY) < 20) return;
+
+      if (checkScrollable(e.target as HTMLElement, deltaY)) {
+        e.stopPropagation();
+        return;
+      }
 
       const currentJob = activeJobRef.current;
 
