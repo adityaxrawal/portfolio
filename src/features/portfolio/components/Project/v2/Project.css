@@ -1301,7 +1301,25 @@
   }
   /* proj-v2-center is flex:1, no width needed */
   .proj-v2-right {
-    width: 26%;
+    width: 22%;
+    min-width: 170px;
+  }
+  .proj-stat-value {
+    font-size: 1.1rem;
+  }
+  .proj-stat-label {
+    font-size: 0.55rem;
+  }
+  .proj-fc-sparkline,
+  .proj-td-activity .proj-sparkline {
+    display: none;
+  }
+  .proj-badge {
+    font-size: 0.45rem;
+    padding: 1px 5px;
+  }
+  .proj-cloud-tag:nth-child(n+11) {
+    display: none;
   }
 }
 
