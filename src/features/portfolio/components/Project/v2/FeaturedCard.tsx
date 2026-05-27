@@ -79,8 +79,8 @@ export function FeaturedCard({ project }: FeaturedCardProps) {
         />
       </div>
 
-      {/* Tech icons — 3 max, colored 2-letter chips */}
-      <TechIconRow stack={project.stack} max={3} />
+      {/* Tech icons — 5 max, colored 2-letter chips */}
+      <TechIconRow stack={project.stack} max={5} />
 
       {/* Meta: stars, forks, time */}
       <div className="proj-fc-meta">

@@ -1319,6 +1319,32 @@
     min-height: auto;
     border: none;
     border-bottom: 1px solid var(--color-border-subtle);
-    overflow-y: visible;
+    overflow-y: hidden;
+  }
+  .proj-v2-sidebar {
+    padding-bottom: 0.25rem;
+  }
+  .proj-featured-card{
+    padding: 0.5rem;
+  }
+  .proj-featured-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
+  }
+  .proj-fc-sparkline,
+  .proj-fc-meta {
+    display: none;
+  }
+  .proj-filter-section,
+  .proj-impact-section,
+  .proj-focus-section,
+  .proj-commit-section,
+  .proj-table-section,
+  .proj-cta-banner {
+    display: none;
+  }
+  .proj-cloud-tag:nth-child(n+6) {
+    display: none;
   }
 }
