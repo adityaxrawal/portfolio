@@ -1,8 +1,11 @@
 // src/component/Content/Projects/projects.component.js
 import { use, Suspense, Component } from 'react';
 
+import { FaGithub } from 'react-icons/fa';
+
 import './Project.css';
-import SectionLoader from '@/components/ui/SectionLoader';
+import Loader from '@/components/ui/Loader';
+import { LOADER_LOGS } from '@/config';
 // Remove unused GitHubRepo import
 
 const GITHUB_USERNAME = 'adityaxrawal';
@@ -110,7 +113,7 @@ const Project = () => (
   <section className="projects-section">
     <h2>My GitHub Projects</h2>
     <ProjectErrorBoundary>
-      <Suspense fallback={<SectionLoader message="Syncing with GitHub..." />}>
+      <Suspense fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.GITHUB as unknown as string[]} />}>
         <RepoList />
       </Suspense>
     </ProjectErrorBoundary>

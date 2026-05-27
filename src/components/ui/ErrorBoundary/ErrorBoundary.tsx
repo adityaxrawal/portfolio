@@ -1,6 +1,7 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 
-import SectionLoader from '@/components/ui/SectionLoader';
+import Loader from '@/components/ui/Loader';
+import { LOADER_LOGS } from '@/config';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -9,6 +10,7 @@ interface ErrorBoundaryProps {
 
 interface ErrorBoundaryState {
   hasError: boolean;
+  error?: Error;
 }
 
 export class ErrorBoundary extends Component<
@@ -20,8 +22,8 @@ export class ErrorBoundary extends Component<
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(): ErrorBoundaryState {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
@@ -30,7 +32,24 @@ export class ErrorBoundary extends Component<
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback ?? <SectionLoader />;
+      if (typeof this.props.fallback === 'function') {
+        return (this.props.fallback as any)(this.state.error);
+      }
+      return (
+        this.props.fallback ?? (
+          <Loader
+            isFullScreen={true}
+            logLines={LOADER_LOGS.ERROR_RECOVERY as unknown as string[]}
+            systemMessage={{
+              pending: [
+                '// CRITICAL SYSTEM FAILURE',
+                this.state.error?.message || 'UNKNOWN EXCEPTION DETECTED',
+              ],
+              done: [],
+            }}
+          />
+        )
+      );
     }
 
     return this.props.children;

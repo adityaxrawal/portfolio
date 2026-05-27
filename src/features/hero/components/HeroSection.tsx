@@ -4,7 +4,9 @@ import { LuAsterisk } from 'react-icons/lu';
 
 import { useSharedState } from '@/app';
 import ContactButton from '@/components/ui/ContactButton';
-import SectionLoader from '@/components/ui/SectionLoader';
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
+import Loader from '@/components/ui/Loader';
+import { LOADER_LOGS } from '@/config';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 import { useGitHubStats } from '@/features/portfolio';
 
@@ -124,7 +126,7 @@ const HeroSection = ({
         {isDesktop && (
           <section className="image-container">
             <Suspense
-              fallback={<SectionLoader message="Calibrating 3D Physics..." />}
+              fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.HERO as unknown as string[]} />}
             >
               <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
             </Suspense>

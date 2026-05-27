@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import tinycolor from 'tinycolor2';
 
@@ -9,7 +9,6 @@ import { AppProvider, useSharedState } from './providers/AppContext';
 
 import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/ui/EasterEgg';
-import Loader from '@/components/ui/Loader';
 import { THEME_COLORS } from '@/config';
 import { AppRoutes } from '@/config/routes';
 import { useKonamiCode } from '@/hooks';
@@ -28,9 +27,7 @@ function App() {
       <AppProvider>
         <Analytics />
         {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
-        <Suspense fallback={<Loader />}>
-          <ThemedApp />
-        </Suspense>
+        <ThemedApp />
       </AppProvider>
     </Router>
   );

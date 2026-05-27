@@ -6,7 +6,8 @@ import { mathcoArchitecture } from '../../../../constants/mathco.architecture';
 import { wiproArchitecture } from '../../../../constants/wipro.architecture';
 import { ArchitectureDiagramConfig } from '../../../Architecture';
 
-import SectionLoader from '@/components/ui/SectionLoader';
+import Loader from '@/components/ui/Loader';
+import { LOADER_LOGS } from '@/config';
 
 const ArchitectureDiagram = lazy(() =>
   import('@/features/work/components/Architecture').then((m) => ({
@@ -30,7 +31,7 @@ export function ArchitecturePanel({ companyName }: ArchitecturePanelProps) {
   if (!config) return null;
 
   return (
-    <Suspense fallback={<SectionLoader />}>
+    <Suspense fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.ARCHITECTURE as unknown as string[]} />}>
       <ArchitectureDiagram config={config} />
     </Suspense>
   );
