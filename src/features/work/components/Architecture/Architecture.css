@@ -192,7 +192,7 @@
   justify-content: center;
   gap: 7px;
   background: var(--color-surface-card);
-  border: 1px dashed var(--color-border-subtle);
+  border: 1px dashed var(--color-border-default);
   border-radius: 7px;
   padding: 7px 11px;
   flex: 1 1 0;
@@ -228,15 +228,15 @@
 /* Highlighted node (primary/core service) */
 .arch-v-node--highlight {
   border-color: var(--color-success-border);
-  box-shadow:
+  /* box-shadow:
     0 0 0 2px var(--color-success-bg),
-    var(--shadow-xs);
+    var(--shadow-xs); */
 }
 
 .arch-v-node--highlight:hover {
-  box-shadow:
+  /* box-shadow:
     0 0 0 3px var(--color-success-bg-hover),
-    var(--shadow-md);
+    var(--shadow-md); */
   border-color: var(--color-success-strong);
 }
 

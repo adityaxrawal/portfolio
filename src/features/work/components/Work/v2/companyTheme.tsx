@@ -7,7 +7,7 @@ export function getCompanyDetails(companyName: string): CompanyThemeDetails {
     case 'MathCo':
       return {
         icon: (
-          <span className="font-serif text-text-inverse font-bold text-xl md:text-2xl pt-1">
+          <span className="font-serif text-white font-bold text-xl md:text-2xl pt-1">
             M
           </span>
         ),
@@ -25,7 +25,7 @@ export function getCompanyDetails(companyName: string): CompanyThemeDetails {
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--color-text-inverse)"
+            stroke="#ffffff"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -47,7 +47,7 @@ export function getCompanyDetails(companyName: string): CompanyThemeDetails {
         icon: (
           <FlaskConical
             size={22}
-            color="var(--color-text-inverse)"
+            color="#ffffff"
             strokeWidth={2}
           />
         ),
@@ -60,7 +60,7 @@ export function getCompanyDetails(companyName: string): CompanyThemeDetails {
     case 'Wipro':
       return {
         icon: (
-          <span className="text-text-inverse font-bold text-[12px] md:text-[14px] tracking-wide">
+          <span className="text-white font-bold text-[12px] md:text-[14px] tracking-wide">
             wipro
           </span>
         ),
@@ -72,7 +72,7 @@ export function getCompanyDetails(companyName: string): CompanyThemeDetails {
       };
     default:
       return {
-        icon: <span className="text-text-inverse font-bold">?</span>,
+        icon: <span className="text-white font-bold">?</span>,
         badgeText: 'PAST',
         badgeClass: 'mc-badge-past',
         numColorClass: 'mc-num-past',

@@ -106,7 +106,7 @@
 }
 
 .dark .jc-company-name {
-  color: var(--color-surface-overlay);
+  color: var(--color-text-primary);
 }
 
 .jc-badge {
@@ -151,7 +151,7 @@
 }
 
 .dark .jc-subtitle {
-  color: var(--color-text-soft);
+  color: var(--color-text-secondary);
 }
 
 .jc-description {
@@ -163,7 +163,7 @@
 }
 
 .dark .jc-description {
-  color: var(--color-border-default);
+  color: var(--color-text-tertiary);
 }
 
 /* Header Vertical Divider */
@@ -236,7 +236,7 @@
 }
 
 .dark .jc-metric-value {
-  color: var(--color-surface-overlay);
+  color: var(--color-text-primary);
 }
 
 .jc-metric-label {
@@ -248,7 +248,7 @@
 }
 
 .dark .jc-metric-label {
-  color: var(--color-text-soft);
+  color: var(--color-text-tertiary);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -342,7 +342,7 @@
 }
 
 .dark .jc-section-label {
-  color: var(--color-border-default);
+  color: var(--color-text-tertiary);
 }
 
 /* Arch diagram container */
@@ -543,7 +543,7 @@
   /* font-weight: 700; */
   color: var(--color-text-secondary);
   background-color: var(--color-surface-card);
-  border: 1px dashed var(--color-border-subtle);
+  border: 1px dashed var(--color-border-default);
   padding: 0.42rem 0.9rem;
   border-radius: 7px;
   cursor: default;
@@ -630,9 +630,9 @@
 }
 
 .dark .jc-tech-pill {
-  color: var(--color-border-subtle);
+  color: var(--color-text-tertiary);
   background-color: var(--color-surface-card);
-  border-color: var(--color-border-subtle);
+  border-color: var(--color-border-default);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
 }
 
@@ -809,7 +809,7 @@
 }
 
 .dark .jc-detailed-info-title {
-  color: var(--color-surface-overlay);
+  color: var(--color-text-primary);
 }
 
 .jc-detailed-info-description {
@@ -824,7 +824,7 @@
 }
 
 .dark .jc-detailed-info-description {
-  color: var(--color-border-default);
+  color: var(--color-text-tertiary);
 }
 
 .jc-detailed-check-list,
@@ -853,7 +853,7 @@
 
 .dark .jc-detailed-check-item,
 .dark .jc-detailed-arch-item {
-  color: var(--color-border-default);
+  color: var(--color-text-tertiary);
 }
 
 .jc-detailed-check-item svg {

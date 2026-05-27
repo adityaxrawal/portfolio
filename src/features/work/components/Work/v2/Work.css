@@ -13,7 +13,7 @@
 
 .dark .work-v2-section,
 .work-v2-section.dark {
-  background-color: var(--color-background-base);
+  background-color: transparent !important;
 }
 
 .work-v2-container {
@@ -50,11 +50,11 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--color-text-muted); /* Tailwind gray-500 */
+  color: var(--color-text-tertiary); /* Tailwind gray-700 */
 }
 
 .dark .work-v2-label {
-  color: var(--color-text-soft); /* Tailwind gray-400 */
+  color: var(--color-text-tertiary); /* Upgraded from text-soft */
 }
 
 .work-v2-dot {
@@ -74,7 +74,7 @@
 }
 
 .dark .work-v2-title-wrapper {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary); /* Fixed: Was text-inverse (black) */
 }
 
 .work-v2-title {
@@ -96,7 +96,7 @@
 }
 
 .dark .work-v2-underline {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary);
 }
 
 .work-v2-subtitle {
@@ -109,7 +109,7 @@
 }
 
 .dark .work-v2-subtitle {
-  color: var(--color-text-soft); /* Tailwind gray-400 */
+  color: var(--color-text-tertiary); /* Upgraded from text-soft */
 }
 
 /* Mission Control Panel */
@@ -148,11 +148,11 @@
   font-size: var(--font-size-subSubSubtext);
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--color-text-tertiary); /* gray-700 */
+  color: var(--color-text-secondary); /* gray-800 */
 }
 
 .dark .mc-label {
-  color: var(--color-border-default); /* gray-300 */
+  color: var(--color-text-tertiary); /* Upgraded from border-default */
 }
 
 .mc-dot {
@@ -167,7 +167,7 @@
 }
 
 .dark .mc-icon {
-  color: var(--color-text-muted);
+  color: var(--color-text-tertiary);
 }
 
 /* Timeline */
@@ -210,14 +210,14 @@
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  border: 1.5px solid var(--color-text-soft); /* gray-400 */
+  border: 1.5px solid var(--color-text-muted); /* gray-500 */
   background-color: var(--color-background-base);
   z-index: 2;
 }
 
 .dark .mc-indicator-inactive {
   background-color: var(--color-surface-card);
-  border-color: var(--color-text-muted);
+  border-color: var(--color-text-tertiary); /* Boosted contrast */
 }
 
 .mc-number {
@@ -240,19 +240,19 @@
 
 /* Number Colors */
 .mc-num-live {
-  color: var(--color-success);
+  color: var(--color-success-strong);
 }
 .mc-num-scaled {
-  color: #f97316;
+  color: #c2410c;
 }
 .mc-num-learning-blue {
-  color: #3b82f6;
+  color: #1d4ed8;
 }
 .mc-num-learning-purple {
-  color: #a855f7;
+  color: #7e22ce;
 }
 .mc-num-past {
-  color: var(--color-text-muted);
+  color: var(--color-text-soft); /* Boosted contrast */
 }
 
 /* Card */
@@ -357,7 +357,7 @@
 }
 
 .dark .mc-text-wrapper h4 {
-  color: var(--color-surface-overlay);
+  color: var(--color-text-primary);
 }
 
 .mc-text-wrapper p {
@@ -369,13 +369,13 @@
 }
 
 .dark .mc-text-wrapper p {
-  color: var(--color-text-soft); /* gray-400 */
+  color: var(--color-text-tertiary); /* Upgraded from text-soft */
 }
 
 /* Badges */
 .mc-badge {
   font-size: 9px;
-  font-weight: 700;
+  font-weight: 800;
   font-family: monospace;
   letter-spacing: 0.1em;
   padding: 3px 0.5rem;
@@ -384,28 +384,28 @@
 }
 
 .mc-badge-live {
-  color: var(--color-success);
+  color: var(--color-success-strong);
   background-color: rgba(80, 184, 135, 0.1);
 }
 
 .mc-badge-scaled {
-  color: #f97316;
+  color: #c2410c;
   background-color: rgba(249, 115, 22, 0.1);
 }
 
 .mc-badge-learning-blue {
-  color: #3b82f6;
+  color: #1d4ed8;
   background-color: rgba(59, 130, 246, 0.1);
 }
 
 .mc-badge-learning-purple {
-  color: #a855f7;
+  color: #7e22ce;
   background-color: rgba(168, 85, 247, 0.1);
 }
 
 .mc-badge-past {
-  color: var(--color-text-muted);
-  background-color: rgba(107, 114, 128, 0.1);
+  color: var(--color-text-soft); /* Boosted contrast */
+  background-color: rgba(107, 114, 128, 0.2); /* Slightly more visible background */
 }
 
 /* Divider & Button */
@@ -442,8 +442,8 @@
 
 .dark .mc-archived-btn {
   background-color: var(--color-surface-card); /* zinc-800 */
-  color: var(--color-border-default); /* gray-300 */
-  border-color: #3f3f46; /* zinc-700 */
+  color: var(--color-text-tertiary); /* Upgraded from gray-300 */
+  border-color: var(--color-border-default); /* Upgraded from zinc-700 */
 }
 
 .dark .mc-archived-btn:hover {
@@ -455,7 +455,7 @@
 }
 
 .dark .mc-btn-icon {
-  color: var(--color-text-soft); /* gray-400 */
+  color: var(--color-text-tertiary); /* Upgraded from gray-400 */
 }
 
 /* Content Area */
@@ -524,8 +524,8 @@
 }
 
 .dark .work-v2-content-years {
-  color: var(--color-text-soft);
-  background-color: rgba(156, 163, 175, 0.15);
+  color: var(--color-text-tertiary);
+  background-color: rgba(156, 163, 175, 0.25);
 }
 
 .work-v2-content-desc {
@@ -538,7 +538,7 @@
 }
 
 .dark .work-v2-content-desc {
-  color: var(--color-border-default);
+  color: var(--color-text-tertiary);
 }
 
 .work-v2-content-tech {
@@ -850,6 +850,7 @@
   transform: translateX(-50%);
   font-family: monospace;
   font-size: 7px; /* increased for readability */
+  font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
