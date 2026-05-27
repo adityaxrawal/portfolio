@@ -15,6 +15,7 @@ export const SnapSlide = memo(function SnapSlide({ children }: SnapSlideProps) {
         height: '100dvh',
         boxSizing: 'border-box',
         flexShrink: 0,
+        paddingTop: '6vh',
       }}
     >
       {children}
