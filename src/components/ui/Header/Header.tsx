@@ -1,4 +1,4 @@
-import { Mail, FileText } from 'lucide-react';
+import { Mail, FileText, Menu, X } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
@@ -15,6 +15,11 @@ const Header = () => {
     message: '',
     type: '',
   });
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((prev) => !prev);
+  }, []);
   const { isDarkTheme, setDarkTheme, setBackgroundColor } = useSharedState();
 
   const handleDarkMode = useCallback(() => {
@@ -101,8 +106,8 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Right Section: Socials + Theme Switch */}
-        <div className="nav-right-group">
+        {/* Right Section: Socials + Theme Switch (desktop) */}
+        <div className="nav-right-group nav-desktop-only">
           <div className="nav-social-links">
             <a
               href={links.githubLink}
@@ -150,6 +155,70 @@ const Header = () => {
             </label>
           </div>
         </div>
+
+        {/* Hamburger Button (mobile only) */}
+        <button
+          className="nav-hamburger"
+          onClick={toggleMenu}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        {/* Mobile Dropdown Menu */}
+        {menuOpen && (
+          <div className={`nav-mobile-menu ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}>
+            <a
+              href={links.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              <FaGithub size={18} />
+              <span>GitHub</span>
+            </a>
+            <a
+              href={links.linkedInLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              <FaLinkedin size={18} />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="#resume"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-mobile-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              <FileText size={18} />
+              <span>Resume</span>
+            </a>
+            <div className="nav-mobile-divider" />
+            <div className="nav-mobile-theme-row">
+              <span>Dark mode</span>
+              <label
+                className="container-dark-mode"
+                title={isDarkTheme ? 'Activate light mode' : 'Activate dark mode'}
+                aria-label={
+                  isDarkTheme ? 'Activate light mode' : 'Activate dark mode'
+                }
+              >
+                <input
+                  type="checkbox"
+                  checked={isDarkTheme}
+                  onChange={handleDarkMode}
+                />
+                <div />
+              </label>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );

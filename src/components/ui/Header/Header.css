@@ -282,7 +282,88 @@
   transition: transform 0.5s ease 0.15s;
 }
 
-/* Responsive */
+/* --- Hamburger Button --- */
+.nav-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px dashed var(--color-border-strong);
+  background-color: var(--theme-light-bg);
+  border-radius: 6px;
+  color: var(--header-text);
+  cursor: pointer;
+  padding: 0.4rem 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+/* --- Mobile Dropdown Menu --- */
+.nav-mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 220px;
+  border: 1px solid var(--header-border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 0.5rem 0;
+  z-index: 200;
+  animation: menuSlide 0.2s ease;
+}
+
+.nav-mobile-menu.theme-light {
+  background: var(--theme-light-bg, #fff);
+}
+
+.nav-mobile-menu.theme-dark {
+  background: var(--theme-dark-bg, #111);
+}
+
+@keyframes menuSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--header-text);
+  transition: opacity 0.2s ease;
+}
+
+.nav-mobile-link:hover {
+  opacity: 0.6;
+}
+
+.nav-mobile-divider {
+  height: 1px;
+  background: var(--header-border);
+  margin: 0.4rem 1.25rem;
+  opacity: 0.4;
+}
+
+.nav-mobile-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--header-text);
+}
+
+/* --- Responsive --- */
 @media screen and (max-width: 1024px) {
   .nav-availability span:first-child,
   .nav-social-link span {
@@ -299,10 +380,23 @@
 
 @media screen and (max-width: 640px) {
   .nav-bar {
-    padding: 1rem;
+    padding: 0 1rem;
   }
+
+  /* Hide availability text + separator */
   .nav-separator,
   .nav-availability {
     display: none;
   }
+
+  /* Hide the desktop right group */
+  .nav-desktop-only {
+    display: none;
+  }
+
+  /* Show the hamburger */
+  .nav-hamburger {
+    display: flex;
+  }
 }
+
