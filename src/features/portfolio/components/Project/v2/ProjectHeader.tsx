@@ -12,12 +12,11 @@ export function ProjectHeader() {
         <span className="proj-header-dot" aria-hidden="true" />
       </div>
 
-      {/* 3-line serif tagline */}
+      {/* 2-line serif tagline */}
       <div className="proj-header-tagline">
-        <span className="proj-tagline-line">Building systems.</span>
-        <span className="proj-tagline-line">Exploring problems.</span>
-        <span className="proj-tagline-line proj-tagline-highlight">
-          Shipping impact.
+        <span className="proj-tagline-line">Scale through</span>
+        <span className="proj-tagline-highlight">
+          Engineering
           <svg
             className="proj-tagline-underline"
             viewBox="0 0 200 9"
