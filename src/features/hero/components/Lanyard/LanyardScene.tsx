@@ -51,7 +51,7 @@ export default function LanyardScene({
   useEffect(() => {
     if (!isMobile || prefersReducedMotion) return;
 
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
 
     if (lanyardState === 'entering') {
       if (!isUserTriggered) {
