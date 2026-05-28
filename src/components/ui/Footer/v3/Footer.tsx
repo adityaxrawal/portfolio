@@ -10,9 +10,9 @@ import { ProjectSparkline } from '@/features/portfolio/components/Project/v2/Pro
 import './Footer.css';
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 6 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
 };
 
 const SectionLabel = () => (
@@ -27,8 +27,8 @@ const Headline = () => (
       Let&apos;s build<br />
       <span className="footer-headline-underline-wrapper">
         what&apos;s next.
-        <svg className="footer-headline-svg" viewBox="0 0 200 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 0,6 Q 50,0 100,6 T 200,6" fill="none" stroke="#111111" strokeWidth="3" />
+        <svg className="footer-headline-svg" viewBox="0 0 330 10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 0,6 C 40,2 80,9 160,5 C 220,2 270,8 330,5" fill="none" stroke="currentColor" strokeWidth="2" />
         </svg>
       </span>
     </h1>
@@ -60,7 +60,7 @@ const CTARow = ({ onOpenContact }: { onOpenContact: () => void }) => (
   </div>
 );
 
-const ServiceCard = ({ icon: Icon, iconBg, iconColor, title, description }: any) => (
+const ServiceCard = ({ icon: Icon, iconBg, iconColor, title, titleMobile, description }: any) => (
   <div className="service-card">
     <div className="service-card-header">
       <div className="service-card-icon-wrapper" style={{ backgroundColor: iconBg }}>
@@ -69,7 +69,14 @@ const ServiceCard = ({ icon: Icon, iconBg, iconColor, title, description }: any)
       <div className="service-card-dot" />
     </div>
     <div>
-      <h3 className="service-card-title">{title}</h3>
+      {titleMobile ? (
+        <>
+          <h3 className="service-card-title desktop-only">{title}</h3>
+          <h3 className="service-card-title mobile-only">{titleMobile}</h3>
+        </>
+      ) : (
+        <h3 className="service-card-title">{title}</h3>
+      )}
       <p className="service-card-desc">{description}</p>
     </div>
   </div>
@@ -206,8 +213,8 @@ export const Footer = () => {
         className="footer-services-grid"
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ staggerChildren: 0.08, delayChildren: 0.2 }}
+        viewport={{ once: true, margin: "50px" }}
+        transition={{ staggerChildren: 0.06, delayChildren: 0.15 }}
       >
         <motion.div variants={fadeInUp}>
           <ServiceCard 
@@ -215,6 +222,7 @@ export const Footer = () => {
             iconBg="#F0EDE8" 
             iconColor="#555555" 
             title="Product\nEngineering" 
+            titleMobile="Product Eng."
             description="Building for impact" 
           />
         </motion.div>
@@ -224,6 +232,7 @@ export const Footer = () => {
             iconBg="#E8FFD6" 
             iconColor="#3ED45A" 
             title="Frontend\nSystems" 
+            titleMobile="Frontend Sys."
             description="Scalable interfaces" 
           />
         </motion.div>
@@ -233,6 +242,7 @@ export const Footer = () => {
             iconBg="#F0EEFF" 
             iconColor="#8B7CF6" 
             title="Scalable\nBackends" 
+            titleMobile="Scalable Backends"
             description="Reliable & secure" 
           />
         </motion.div>
@@ -242,10 +252,11 @@ export const Footer = () => {
             iconBg="#F0EEFF" 
             iconColor="#8B7CF6" 
             title="Data-driven\nProducts" 
+            titleMobile="Data Products"
             description="Insights that matter" 
           />
         </motion.div>
-        <motion.div variants={fadeInUp}>
+        <motion.div variants={fadeInUp} className="system-status-wrapper">
           <SystemStatusCard />
         </motion.div>
       </motion.div>
@@ -255,10 +266,10 @@ export const Footer = () => {
         className="footer-bottom-bar"
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "50px" }}
         variants={{
-          initial: { opacity: 0, y: 24 },
-          animate: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] } }
+          initial: { opacity: 0, y: 6 },
+          animate: { opacity: 1, y: 0, transition: { duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] } }
         }}
       >
         <div className="footer-bottom-block-left">

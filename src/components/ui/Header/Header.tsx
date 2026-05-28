@@ -1,4 +1,4 @@
-import { Mail, FileText, Menu, X } from 'lucide-react';
+import { Mail, FileText } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
@@ -158,12 +158,14 @@ const Header = () => {
 
         {/* Hamburger Button (mobile only) */}
         <button
-          className="nav-hamburger"
+          className={`nav-hamburger ${menuOpen ? 'is-open' : ''}`}
           onClick={toggleMenu}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
         </button>
 
         {/* Mobile Dropdown Menu */}
