@@ -65,7 +65,7 @@ self.addEventListener("fetch", (event) => {
         .then((response) => {
           const responseToCache = response.clone();
           // Only cache http/https requests, avoid chrome-extension:// etc.
-          if (event.request.url.startsWith("http")) {
+          if (event.request.url.startsWith("http") && event.request.method === "GET") {
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseToCache);
             });
@@ -106,7 +106,7 @@ self.addEventListener("fetch", (event) => {
           const responseToCache = response.clone();
 
           // Only cache http/https requests, avoid chrome-extension:// etc.
-          if (event.request.url.startsWith("http")) {
+          if (event.request.url.startsWith("http") && event.request.method === "GET") {
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseToCache);
             });
