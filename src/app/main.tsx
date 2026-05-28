@@ -12,6 +12,19 @@ import {
 } from '@/lib/reportWebVitals';
 import { register as registerSW } from '@/lib/serviceWorkerRegistration';
 
+const originalWarn = console.warn;
+console.warn = (...args) => {
+  if (
+    typeof args[0] === 'string' &&
+    (args[0].includes('THREE.Clock: This module has been deprecated') ||
+      args[0].includes(
+        'using deprecated parameters for the initialization function',
+      ))
+  ) {
+    return;
+  }
+  originalWarn(...args);
+};
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
 const root = ReactDOM.createRoot(rootElement);
