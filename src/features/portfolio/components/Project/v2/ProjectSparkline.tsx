@@ -21,6 +21,7 @@ export function ProjectSparkline({
   // React 18+ — each instance gets a stable, unique ID so gradients don't collide
   const uid = useId();
   const gradId = `sg${uid.replace(/:/g, '')}`;
+  const markerId = `m${uid.replace(/:/g, '')}`;
 
   if (!data || data.length < 2) return null;
 
@@ -61,6 +62,16 @@ export function ProjectSparkline({
           <stop offset="0%" stopColor={color} stopOpacity="0.28" />
           <stop offset="100%" stopColor={color} stopOpacity="0.02" />
         </linearGradient>
+        <marker
+          id={markerId}
+          markerWidth="5"
+          markerHeight="5"
+          refX="4"
+          refY="2.5"
+          orient="auto"
+        >
+          <path d="M 0 0 L 5 2.5 L 0 5 z" fill={color} />
+        </marker>
       </defs>
       {/* Filled area */}
       <path d={areaPath} fill={`url(#${gradId})`} />
@@ -69,9 +80,11 @@ export function ProjectSparkline({
         points={linePoints}
         stroke={color}
         strokeWidth="1.5"
+        strokeDasharray="3 5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
+        markerEnd={`url(#${markerId})`}
       />
     </svg>
   );
