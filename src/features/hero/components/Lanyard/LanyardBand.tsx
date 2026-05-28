@@ -20,6 +20,7 @@ import {
   FRONT_CARD_UV,
   MATHCO_PURPLE_DARK,
 } from './lanyardConstants';
+import { initMeshLine } from './lanyardSetup';
 import type {
   LanyardCardNodes,
   LanyardDragOffset,
@@ -31,7 +32,6 @@ import { useSharedState } from '@/app';
 import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
 import profilePic from '@/assets/images/my/me-2.webp';
 import cardGLB from '@/assets/models/card.glb';
-import { initMeshLine } from './lanyardSetup';
 
 initMeshLine();
 

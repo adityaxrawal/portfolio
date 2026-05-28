@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Mail, FileText } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
@@ -5,6 +6,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 import { useSharedState } from '@/app';
 import Alert from '@/components/ui/Alert';
 import { darkModeColorList, lightModeColorList, links } from '@/config';
+import { hoverSpring } from '@/lib/animations';
 
 import './Header.css';
 
@@ -54,7 +56,12 @@ const Header = () => {
           theme={isDarkTheme ? 'dark' : 'light'}
         />
       )}
-      <nav className={`nav-bar ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}>
+      <motion.nav
+        className={`nav-bar ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+      >
         {/* Left Section: Email + Availability */}
         <div className="nav-left-group">
           <div
@@ -109,7 +116,8 @@ const Header = () => {
         {/* Right Section: Socials + Theme Switch (desktop) */}
         <div className="nav-right-group nav-desktop-only">
           <div className="nav-social-links">
-            <a
+            <motion.a
+              {...hoverSpring}
               href={links.githubLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -117,8 +125,9 @@ const Header = () => {
             >
               <FaGithub size={18} />
               <span>GitHub</span>
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              {...hoverSpring}
               href={links.linkedInLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -126,8 +135,9 @@ const Header = () => {
             >
               <FaLinkedin size={18} />
               <span>LinkedIn</span>
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              {...hoverSpring}
               href="#resume"
               target="_blank"
               rel="noopener noreferrer"
@@ -135,7 +145,7 @@ const Header = () => {
             >
               <FileText size={18} />
               <span>Resume</span>
-            </a>
+            </motion.a>
           </div>
 
           <div className="nav-switch-wrapper">
@@ -225,7 +235,7 @@ const Header = () => {
             </div>
           </div>
         )}
-      </nav>
+      </motion.nav>
     </>
   );
 };

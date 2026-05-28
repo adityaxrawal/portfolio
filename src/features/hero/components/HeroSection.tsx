@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { lazy, Suspense } from 'react';
 import { HiLocationMarker, HiArrowDown } from 'react-icons/hi';
 import { LuAsterisk } from 'react-icons/lu';
@@ -8,6 +9,12 @@ import Loader from '@/components/ui/Loader';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 import { LOADER_LOGS } from '@/config';
 import { useGitHubStats } from '@/features/portfolio';
+import {
+  fadeUp,
+  staggerContainer,
+  staggerChild,
+  textReveal,
+} from '@/lib/animations';
 
 import './HeroSection.css';
 
@@ -35,23 +42,39 @@ const HeroSection = ({
   const { stats, loading: loadingStats } = useGitHubStats();
 
   return (
-    <section
+    <motion.section
       className="hero-section-wrapper"
       style={{ width: '100%', height: '100%' }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+      variants={fadeUp}
     >
       <div className={`hero-section ${isDarkTheme ? 'dark' : ''}`}>
         <div className="headline">
           {/* --- ORIGINAL TEXT CONTENT BELOW --- */}
           <section className="headline-header">
-            <div className="headline-pre-title">
+            <motion.div
+              className="headline-pre-title"
+              variants={textReveal}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.1 }}
+            >
               <span className="headline-pre-title-text">
                 Full Stack Engineer / Frontend Systems
               </span>
               <span className="headline-pre-title-text">
                 Bengaluru, India <HiLocationMarker className="location-icon" />
               </span>
-            </div>
-            <div className="headline-title">
+            </motion.div>
+            <motion.div
+              className="headline-title"
+              variants={textReveal}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2 }}
+            >
               <span className="headline-text-1">नमस्ते.</span>
               <span className="headline-text-2">I build software</span>
               <span className="headline-text-3">
@@ -74,36 +97,48 @@ const HeroSection = ({
                 </span>{' '}
                 use
               </span>
-            </div>
-            <section className="headline-content">
-              <div className="timeline-item">
+            </motion.div>
+            <motion.section
+              className="headline-content"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              transition={{ delayChildren: 0.3 }}
+            >
+              <motion.div className="timeline-item" variants={staggerChild}>
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">CURRENTLY</span>
                 <p className="timeline-text">
                   Leading frontend engineering at <strong>MathCo</strong> for a
                   high-impact analytics platform serving Mars Inc.
                 </p>
-              </div>
-              <div className="timeline-item">
+              </motion.div>
+              <motion.div className="timeline-item" variants={staggerChild}>
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">PREVIOUSLY</span>
                 <p className="timeline-text">
                   Built serverless architecture at <strong>LeadSquared</strong>{' '}
                   handling ~500K monthly API requests.
                 </p>
-              </div>
-              <div className="timeline-item">
+              </motion.div>
+              <motion.div className="timeline-item" variants={staggerChild}>
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">ALSO</span>
                 <p className="timeline-text">
                   Built a Resume Builder platform adopted by 5,000+ users in
                   under a year.
                 </p>
-              </div>
-            </section>
-            <section className="headline-buttons">
+              </motion.div>
+            </motion.section>
+            <motion.section
+              className="headline-buttons"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.6 }}
+            >
               <ContactButton>Let&apos;s Build Together</ContactButton>
-            </section>
+            </motion.section>
           </section>
         </div>
 
@@ -121,9 +156,18 @@ const HeroSection = ({
             <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
           </Suspense>
         </section>
-        <section className="stats-container">
+        <motion.section
+          className="stats-container"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {/* Box 1: System Status */}
-          <div className="stats-box system-status">
+          <motion.div
+            className="stats-box system-status"
+            variants={staggerChild}
+          >
             <div className="stats-box-header">
               <span>SYSTEM STATUS</span>
               <span className="terminal-icon">{`>_`}</span>
@@ -142,10 +186,10 @@ const HeroSection = ({
                 <span>Learning</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Box 2: Tech Stack */}
-          <div className="stats-box tech-stack">
+          <motion.div className="stats-box tech-stack" variants={staggerChild}>
             <div className="stats-box-header">
               <span>TECH STACK</span>
             </div>
@@ -156,10 +200,13 @@ const HeroSection = ({
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Box 3: Impact Snapshot */}
-          <div className="stats-box impact-snapshot">
+          <motion.div
+            className="stats-box impact-snapshot"
+            variants={staggerChild}
+          >
             <div className="stats-box-header">
               <span>IMPACT SNAPSHOT</span>
             </div>
@@ -193,8 +240,8 @@ const HeroSection = ({
                 <span className="impact-label">Pull Requests</span>
               </div>
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
       </div>
       <div
         className={`hero-section-scroll-container ${isDarkTheme ? 'dark' : ''}`}
@@ -222,7 +269,7 @@ const HeroSection = ({
           <LuAsterisk className="scroll-asterisk-icon" />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

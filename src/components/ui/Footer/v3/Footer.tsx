@@ -22,13 +22,15 @@ import { WorldMap } from './WorldMap';
 
 import { ContactInfo } from '@/features/contact';
 import { ProjectSparkline } from '@/features/portfolio/components/Project/v2/ProjectSparkline';
+import {
+  fadeUp,
+  staggerContainer,
+  staggerChild,
+  footerBox,
+  hoverLift,
+  hoverSpring,
+} from '@/lib/animations';
 import './Footer.css';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 6 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
-};
 
 const SectionLabel = () => (
   <div className="footer-section-label">
@@ -71,12 +73,16 @@ const Subtitle = () => (
 
 const CTARow = ({ onOpenContact }: { onOpenContact: () => void }) => (
   <div className="footer-cta-row">
-    <button className="cta-button" onClick={onOpenContact}>
+    <motion.button
+      className="cta-button"
+      onClick={onOpenContact}
+      {...hoverSpring}
+    >
       <span className="cta-button-text">LET&apos;S SHIP</span>
       <div className="cta-button-icon">
         <ArrowRight size={16} strokeWidth={2} color="currentColor" />
       </div>
-    </button>
+    </motion.button>
     <div className="cta-arrow-desktop">&rarr;</div>
     <div className="cta-availability">
       Available for select opportunities
@@ -106,7 +112,7 @@ const ServiceCard = ({
   titleMobile,
   description,
 }: ServiceCardProps) => (
-  <div className="service-card">
+  <motion.div className="service-card" variants={footerBox} {...hoverLift}>
     <div className="service-card-header">
       <div
         className="service-card-icon-wrapper"
@@ -127,11 +133,15 @@ const ServiceCard = ({
       )}
       <p className="service-card-desc">{description}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 const SystemStatusCard = () => (
-  <div className="system-status-card">
+  <motion.div
+    className="system-status-card"
+    variants={footerBox}
+    {...hoverLift}
+  >
     <div className="system-status-left">
       <div className="system-status-header">
         <span className="system-status-arrow">&gt;_</span>
@@ -149,7 +159,7 @@ const SystemStatusCard = () => (
       <div className="radar-circle radar-circle-inner" />
       <div className="radar-center-dot" />
     </div>
-  </div>
+  </motion.div>
 );
 
 const CopyrightBlock = () => (
@@ -197,25 +207,31 @@ const NetworkBlock = () => (
       NETWORK <ArrowUpRight size={12} color="#9A9A9A" />
     </div>
     <div className="social-links-row">
-      <a
+      <motion.a
+        {...hoverSpring}
         href="https://github.com/adityaxrawal"
         target="_blank"
         rel="noreferrer"
         className="social-link-btn"
       >
         <FaGithub size={16} />
-      </a>
-      <a
+      </motion.a>
+      <motion.a
+        {...hoverSpring}
         href="https://linkedin.com/in/adityaxrawal"
         target="_blank"
         rel="noreferrer"
         className="social-link-btn"
       >
         <FaLinkedinIn size={16} />
-      </a>
-      <a href="mailto:contact@adityarawal.dev" className="social-link-btn">
+      </motion.a>
+      <motion.a
+        {...hoverSpring}
+        href="mailto:contact@adityarawal.dev"
+        className="social-link-btn"
+      >
         <Mail size={16} />
-      </a>
+      </motion.a>
     </div>
   </div>
 );
@@ -249,10 +265,10 @@ export const Footer = () => {
         <div className="footer-hero-container">
           <motion.div
             className="footer-hero-left"
-            initial="initial"
-            whileInView="animate"
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
+            variants={fadeUp}
           >
             <SectionLabel />
             <Headline />
@@ -268,12 +284,12 @@ export const Footer = () => {
         {/* Section B — Service Capability Cards */}
         <motion.div
           className="footer-services-grid"
-          initial="initial"
-          whileInView="animate"
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: '50px' }}
-          transition={{ staggerChildren: 0.06, delayChildren: 0.15 }}
+          variants={staggerContainer}
         >
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={staggerChild}>
             <ServiceCard
               icon={User2}
               iconBg="#F0EDE8"
@@ -283,7 +299,7 @@ export const Footer = () => {
               description="Building for impact"
             />
           </motion.div>
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={staggerChild}>
             <ServiceCard
               icon={Code2}
               iconBg="#E8FFD6"
@@ -293,7 +309,7 @@ export const Footer = () => {
               description="Scalable interfaces"
             />
           </motion.div>
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={staggerChild}>
             <ServiceCard
               icon={Cloud}
               iconBg="#F0EEFF"
@@ -303,7 +319,7 @@ export const Footer = () => {
               description="Reliable & secure"
             />
           </motion.div>
-          <motion.div variants={fadeInUp}>
+          <motion.div variants={staggerChild}>
             <ServiceCard
               icon={Database}
               iconBg="#F0EEFF"
@@ -313,7 +329,7 @@ export const Footer = () => {
               description="Insights that matter"
             />
           </motion.div>
-          <motion.div variants={fadeInUp} className="system-status-wrapper">
+          <motion.div variants={staggerChild} className="system-status-wrapper">
             <SystemStatusCard />
           </motion.div>
         </motion.div>
@@ -321,12 +337,12 @@ export const Footer = () => {
         {/* Section C — Bottom Bar */}
         <motion.div
           className="footer-bottom-bar"
-          initial="initial"
-          whileInView="animate"
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: '50px' }}
           variants={{
-            initial: { opacity: 0, y: 6 },
-            animate: {
+            hidden: { opacity: 0, y: 6 },
+            visible: {
               opacity: 1,
               y: 0,
               transition: {
