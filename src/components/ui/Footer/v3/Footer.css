@@ -1027,25 +1027,15 @@
 /* MOBILE SPECIFIC LAYOUT (max-width: 767px) */
 @media (max-width: 767px) {
   .footer-v3-root {
-    --bg: #f0ede6;
-    --bg-card: #e8e4dc;
-    --border: #d6d0c4;
-    --border-dashed: #c8c2b4;
-    --text-primary: #0a0a0a;
-    --text-muted: #6b6660;
-    --accent-lime: #c8ff00;
-    --accent-black: #0a0a0a;
-    --dot-live: #22c55e;
-
     height: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: hidden;
-    padding: 1vh 0 0 0; /* Add top padding for fixed 6vh navbar */
+    padding: 2vh 0 0 0; /* Add top padding for fixed 6vh navbar */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--bg);
+    background-color: var(--color-background-base);
   }
 
   .footer-v3-root::before {
@@ -1053,8 +1043,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      linear-gradient(var(--color-border-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border-subtle) 1px, transparent 1px);
     background-size: 32px 32px;
     opacity: 0.3;
     pointer-events: none;
@@ -1078,7 +1068,7 @@
   
   .footer-section-label span {
     font-size: 10px;
-    color: var(--text-muted);
+    color: var(--color-text-secondary);
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     letter-spacing: 0.15em;
   }
@@ -1093,11 +1083,11 @@
     font-size: clamp(40px, 10vw, 48px);
     font-weight: 800;
     line-height: 1.05;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
   }
   
   .footer-headline-svg {
-    stroke: var(--text-primary);
+    stroke: var(--color-text-primary);
     stroke-width: 2;
     bottom: -10px; /* Pushed further down to avoid cutting text */
     height: 10px;
@@ -1109,7 +1099,7 @@
     margin-top: 0;
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--color-text-secondary);
     line-height: 1.6;
   }
   
@@ -1126,7 +1116,7 @@
     width: 100%;
     height: 52px;
     border-radius: 999px;
-    background: var(--accent-lime);
+    background: #ccff00;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1144,7 +1134,7 @@
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 13px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     letter-spacing: 0.08em;
   }
   
@@ -1152,7 +1142,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--accent-black);
+    background: #101010;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1168,7 +1158,7 @@
   .cta-availability {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 11px;
-    color: var(--text-muted);
+    color: var(--color-text-secondary);
     display: flex;
     align-items: center;
     gap: 8px; /* Increased gap between text and dot */
@@ -1176,7 +1166,7 @@
   }
   
   .cta-availability-dot {
-    color: var(--dot-live);
+    color: var(--color-success);
     font-size: 14px;
   }
   
@@ -1198,9 +1188,9 @@
   }
   
   .service-card {
-    border: 1px dashed var(--border-dashed);
+    border: 1px dashed var(--color-border-strong);
     border-radius: 8px;
-    background: var(--bg);
+    background: var(--color-background-base);
     padding: 10px 12px;
     display: flex;
     flex-direction: column;
@@ -1212,7 +1202,7 @@
   }
   
   .service-card:active {
-    background: var(--bg-card);
+    background: var(--color-surface-card);
     transition: background 150ms ease;
   }
   
@@ -1233,7 +1223,7 @@
   .service-card-icon-wrapper svg {
     width: 16px !important;
     height: 16px !important;
-    color: var(--text-muted) !important;
+    color: var(--color-text-secondary) !important;
   }
   
   .service-card-dot {
@@ -1244,7 +1234,7 @@
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 10px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     line-height: 1.2;
     margin-top: 0;
     margin-bottom: 2px;
@@ -1264,7 +1254,7 @@
   .service-card-desc {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 9px;
-    color: var(--text-muted);
+    color: var(--color-text-secondary);
     line-height: 1.3;
     margin: 0;
   }
@@ -1277,7 +1267,7 @@
   /* Footer bar */
   .footer-bottom-bar {
     border: none;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--color-border-subtle);
     border-radius: 0;
     height: auto;
     margin-top: 12px;
@@ -1321,7 +1311,7 @@
   .copyright-line1 {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 9px;
-    color: var(--text-muted);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     font-weight: 500;
   }
