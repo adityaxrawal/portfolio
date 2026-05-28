@@ -44,3 +44,4 @@ report.md
 github_repos.json
 /docs
 .cursor
+*.stackdump

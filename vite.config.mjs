@@ -1,9 +1,10 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
+// @ts-expect-error - no types for local script
 import { createGitHubStatsDevMiddleware } from './scripts/dev-github-api.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -43,10 +44,10 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'react-core';
             if (id.includes('three') || id.includes('@react-three') || id.includes('@dimforge/rapier')) {
               return '3d-engine';
             }
+            if (id.includes('react')) return 'react-core';
             if (id.includes('framer-motion')) return 'motion';
             if (
               id.includes('gsap') ||
