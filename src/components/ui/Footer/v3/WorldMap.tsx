@@ -1,8 +1,7 @@
 import { geoMercator, geoPath } from 'd3-geo';
+import type { GeoPermissibleObjects } from 'd3-geo';
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
-
-import type { GeoPermissibleObjects } from 'd3-geo';
 
 import worldData from './world.json';
 

@@ -15,6 +15,7 @@ import { WorkHeader } from './WorkHeader';
 import { useSharedState } from '@/app';
 import { useSnapScrollActiveIndex } from '@/components/ui/SnapLayout';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+import { fadeUp } from '@/lib/animations';
 
 import './Work.css';
 
@@ -89,10 +90,14 @@ const Work = ({
   );
 
   return (
-    <div
+    <motion.div
       className={`work-v2-section ${isDarkTheme ? 'dark' : 'light'}`}
       ref={containerRef}
       style={{ width: '100%', height: '100%' }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+      variants={fadeUp}
     >
       <div className="work-v2-mobile-header">
         <div className="work-v2-mobile-header-left">
@@ -153,7 +158,7 @@ const Work = ({
         setActiveJob={setActiveJob}
         setDirection={setDirection}
       />
-    </div>
+    </motion.div>
   );
 };
 

@@ -6,12 +6,15 @@
  *   Right (28%)     — CoreStrengths panel
  */
 
+import { motion } from 'framer-motion';
+
 import { CoreStrengths } from './CoreStrengths';
 import { TechHeader } from './TechHeader';
 import { TechnicalSkillsGrid } from './TechnicalSkillsGrid';
 
 import { useSharedState } from '@/app';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+import { fadeUp, staggerContainer, staggerChild } from '@/lib/animations';
 import './Technology.css';
 
 const Technology = ({
@@ -22,23 +25,35 @@ const Technology = ({
   const { isDarkTheme } = useSharedState();
 
   return (
-    <div
+    <motion.div
       className={`tech-v2-section ${isDarkTheme ? 'dark' : 'light'}`}
       aria-label="My Skills and Expertise section"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+      variants={fadeUp}
     >
-      <div className="tech-v2-container">
+      <motion.div className="tech-v2-container" variants={staggerContainer}>
         {/* ── MAIN LEFT PANEL ──────────────────────────────── */}
-        <main className="tech-v2-main" aria-label="Technical skills">
+        <motion.main
+          className="tech-v2-main"
+          aria-label="Technical skills"
+          variants={staggerChild}
+        >
           <TechHeader />
           <TechnicalSkillsGrid />
-        </main>
+        </motion.main>
 
         {/* ── RIGHT SIDEBAR ────────────────────────────────── */}
-        <aside className="tech-v2-right" aria-label="Core strengths">
+        <motion.aside
+          className="tech-v2-right"
+          aria-label="Core strengths"
+          variants={staggerChild}
+        >
           <CoreStrengths />
-        </aside>
-      </div>
-    </div>
+        </motion.aside>
+      </motion.div>
+    </motion.div>
   );
 };
 

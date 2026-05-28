@@ -7,6 +7,7 @@
  *   Right (26%)  — RightPanel (Impact + TechCloud + FocusAreas + Commits)
  */
 
+import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
 
 import {
@@ -24,6 +25,7 @@ import { RightPanel } from './RightPanel';
 
 import { useSharedState } from '@/app';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+import { fadeUp, staggerContainer, staggerChild } from '@/lib/animations';
 
 import './Project.css';
 
@@ -42,30 +44,48 @@ const Project = ({
   }, [activeFilter]);
 
   return (
-    <div className={`proj-v2-section ${isDarkTheme ? 'dark' : 'light'}`}>
-      <div className="proj-v2-container">
+    <motion.div
+      className={`proj-v2-section ${isDarkTheme ? 'dark' : 'light'}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+      variants={fadeUp}
+    >
+      <motion.div className="proj-v2-container" variants={staggerContainer}>
         {/* ── LEFT SIDEBAR ──────────────────────────────── */}
-        <aside className="proj-v2-sidebar" aria-label="Projects navigation">
+        <motion.aside
+          className="proj-v2-sidebar"
+          aria-label="Projects navigation"
+          variants={staggerChild}
+        >
           <ProjectHeader />
           <FilterTabs
             activeFilter={activeFilter}
             onFilterChange={setActiveFilter}
           />
-        </aside>
+        </motion.aside>
 
         {/* ── CENTER PANEL ──────────────────────────────── */}
-        <main className="proj-v2-center" aria-label="Projects content">
+        <motion.main
+          className="proj-v2-center"
+          aria-label="Projects content"
+          variants={staggerChild}
+        >
           <FeaturedSystems projects={filteredProjects} />
           <AllSystemsTable projects={filteredProjects} />
           <GitHubCTA />
-        </main>
+        </motion.main>
 
         {/* ── RIGHT SIDEBAR ─────────────────────────────── */}
-        <aside className="proj-v2-right" aria-label="Project metrics">
+        <motion.aside
+          className="proj-v2-right"
+          aria-label="Project metrics"
+          variants={staggerChild}
+        >
           <RightPanel />
-        </aside>
-      </div>
-    </div>
+        </motion.aside>
+      </motion.div>
+    </motion.div>
   );
 };
 
