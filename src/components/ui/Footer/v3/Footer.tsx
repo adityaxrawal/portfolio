@@ -1,18 +1,33 @@
+import { motion } from 'framer-motion';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Cloud,
+  Code2,
+  Database,
+  Mail,
+  User2,
+} from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, Cloud, Code2, Database, Mail, User2 } from 'lucide-react';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
-import { SiFramer, SiNextdotjs, SiTailwindcss, SiTypescript } from 'react-icons/si';
-import { ContactInfo } from '@/features/contact';
+import {
+  SiFramer,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+} from 'react-icons/si';
+
 import { WorldMap } from './WorldMap';
+
+import { ContactInfo } from '@/features/contact';
 import { ProjectSparkline } from '@/features/portfolio/components/Project/v2/ProjectSparkline';
 import './Footer.css';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 6 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] }
+  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
 };
 
 const SectionLabel = () => (
@@ -24,11 +39,22 @@ const SectionLabel = () => (
 const Headline = () => (
   <div className="footer-headline">
     <h1>
-      Let&apos;s build<br />
+      Let&apos;s build
+      <br />
       <span className="footer-headline-underline-wrapper">
         what&apos;s next.
-        <svg className="footer-headline-svg" viewBox="0 0 330 10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 0,6 C 40,2 80,9 160,5 C 220,2 270,8 330,5" fill="none" stroke="currentColor" strokeWidth="2" />
+        <svg
+          className="footer-headline-svg"
+          viewBox="0 0 330 10"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M 0,6 C 40,2 80,9 160,5 C 220,2 270,8 330,5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
         </svg>
       </span>
     </h1>
@@ -37,7 +63,8 @@ const Headline = () => (
 
 const Subtitle = () => (
   <p className="footer-subtitle">
-    I&apos;m open to interesting problems,<br />
+    I&apos;m open to interesting problems,
+    <br />
     collaborations and full-time opportunities.
   </p>
 );
@@ -50,9 +77,7 @@ const CTARow = ({ onOpenContact }: { onOpenContact: () => void }) => (
         <ArrowRight size={16} strokeWidth={2} color="currentColor" />
       </div>
     </button>
-    <div className="cta-arrow-desktop">
-      &rarr;
-    </div>
+    <div className="cta-arrow-desktop">&rarr;</div>
     <div className="cta-availability">
       Available for select opportunities
       <span className="cta-availability-dot">&#x25CF;</span>
@@ -60,10 +85,33 @@ const CTARow = ({ onOpenContact }: { onOpenContact: () => void }) => (
   </div>
 );
 
-const ServiceCard = ({ icon: Icon, iconBg, iconColor, title, titleMobile, description }: any) => (
+interface ServiceCardProps {
+  icon: React.ElementType<{
+    size?: number | string;
+    color?: string;
+    strokeWidth?: number | string;
+  }>;
+  iconBg: string;
+  iconColor: string;
+  title: string;
+  titleMobile?: string;
+  description: string;
+}
+
+const ServiceCard = ({
+  icon: Icon,
+  iconBg,
+  iconColor,
+  title,
+  titleMobile,
+  description,
+}: ServiceCardProps) => (
   <div className="service-card">
     <div className="service-card-header">
-      <div className="service-card-icon-wrapper" style={{ backgroundColor: iconBg }}>
+      <div
+        className="service-card-icon-wrapper"
+        style={{ backgroundColor: iconBg }}
+      >
         <Icon size={20} color={iconColor} />
       </div>
       <div className="service-card-dot" />
@@ -149,10 +197,20 @@ const NetworkBlock = () => (
       NETWORK <ArrowUpRight size={12} color="#9A9A9A" />
     </div>
     <div className="social-links-row">
-      <a href="https://github.com/adityaxrawal" target="_blank" rel="noreferrer" className="social-link-btn">
+      <a
+        href="https://github.com/adityaxrawal"
+        target="_blank"
+        rel="noreferrer"
+        className="social-link-btn"
+      >
         <FaGithub size={16} />
       </a>
-      <a href="https://linkedin.com/in/adityaxrawal" target="_blank" rel="noreferrer" className="social-link-btn">
+      <a
+        href="https://linkedin.com/in/adityaxrawal"
+        target="_blank"
+        rel="noreferrer"
+        className="social-link-btn"
+      >
         <FaLinkedinIn size={16} />
       </a>
       <a href="mailto:contact@adityarawal.dev" className="social-link-btn">
@@ -187,106 +245,116 @@ export const Footer = () => {
   return (
     <>
       <footer className="footer-v3-root">
-      
-      {/* Section A — Hero Contact & World Map */}
-      <div className="footer-hero-container">
-        <motion.div 
-          className="footer-hero-left"
+        {/* Section A — Hero Contact & World Map */}
+        <div className="footer-hero-container">
+          <motion.div
+            className="footer-hero-left"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <SectionLabel />
+            <Headline />
+            <Subtitle />
+            <CTARow onOpenContact={() => setIsModalOpen(true)} />
+          </motion.div>
+
+          <div className="footer-map-container">
+            <WorldMap />
+          </div>
+        </div>
+
+        {/* Section B — Service Capability Cards */}
+        <motion.div
+          className="footer-services-grid"
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true }}
-          variants={fadeInUp}
+          viewport={{ once: true, margin: '50px' }}
+          transition={{ staggerChildren: 0.06, delayChildren: 0.15 }}
         >
-          <SectionLabel />
-          <Headline />
-          <Subtitle />
-          <CTARow onOpenContact={() => setIsModalOpen(true)} />
+          <motion.div variants={fadeInUp}>
+            <ServiceCard
+              icon={User2}
+              iconBg="#F0EDE8"
+              iconColor="#555555"
+              title="Product\nEngineering"
+              titleMobile="Product Eng."
+              description="Building for impact"
+            />
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <ServiceCard
+              icon={Code2}
+              iconBg="#E8FFD6"
+              iconColor="#3ED45A"
+              title="Frontend\nSystems"
+              titleMobile="Frontend Sys."
+              description="Scalable interfaces"
+            />
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <ServiceCard
+              icon={Cloud}
+              iconBg="#F0EEFF"
+              iconColor="#8B7CF6"
+              title="Scalable\nBackends"
+              titleMobile="Scalable Backends"
+              description="Reliable & secure"
+            />
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <ServiceCard
+              icon={Database}
+              iconBg="#F0EEFF"
+              iconColor="#8B7CF6"
+              title="Data-driven\nProducts"
+              titleMobile="Data Products"
+              description="Insights that matter"
+            />
+          </motion.div>
+          <motion.div variants={fadeInUp} className="system-status-wrapper">
+            <SystemStatusCard />
+          </motion.div>
         </motion.div>
-        
-        <div className="footer-map-container">
-          <WorldMap />
-        </div>
-      </div>
 
-      {/* Section B — Service Capability Cards */}
-      <motion.div 
-        className="footer-services-grid"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "50px" }}
-        transition={{ staggerChildren: 0.06, delayChildren: 0.15 }}
-      >
-        <motion.div variants={fadeInUp}>
-          <ServiceCard 
-            icon={User2} 
-            iconBg="#F0EDE8" 
-            iconColor="#555555" 
-            title="Product\nEngineering" 
-            titleMobile="Product Eng."
-            description="Building for impact" 
-          />
+        {/* Section C — Bottom Bar */}
+        <motion.div
+          className="footer-bottom-bar"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: '50px' }}
+          variants={{
+            initial: { opacity: 0, y: 6 },
+            animate: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.35,
+                delay: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              },
+            },
+          }}
+        >
+          <div className="footer-bottom-block-left">
+            <CopyrightBlock />
+            <BuiltWithBlock />
+          </div>
+          <div className="footer-bottom-block-right">
+            <NetworkBlock />
+            <DeploymentBlock />
+          </div>
         </motion.div>
-        <motion.div variants={fadeInUp}>
-          <ServiceCard 
-            icon={Code2} 
-            iconBg="#E8FFD6" 
-            iconColor="#3ED45A" 
-            title="Frontend\nSystems" 
-            titleMobile="Frontend Sys."
-            description="Scalable interfaces" 
-          />
-        </motion.div>
-        <motion.div variants={fadeInUp}>
-          <ServiceCard 
-            icon={Cloud} 
-            iconBg="#F0EEFF" 
-            iconColor="#8B7CF6" 
-            title="Scalable\nBackends" 
-            titleMobile="Scalable Backends"
-            description="Reliable & secure" 
-          />
-        </motion.div>
-        <motion.div variants={fadeInUp}>
-          <ServiceCard 
-            icon={Database} 
-            iconBg="#F0EEFF" 
-            iconColor="#8B7CF6" 
-            title="Data-driven\nProducts" 
-            titleMobile="Data Products"
-            description="Insights that matter" 
-          />
-        </motion.div>
-        <motion.div variants={fadeInUp} className="system-status-wrapper">
-          <SystemStatusCard />
-        </motion.div>
-      </motion.div>
-
-      {/* Section C — Bottom Bar */}
-      <motion.div 
-        className="footer-bottom-bar"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, margin: "50px" }}
-        variants={{
-          initial: { opacity: 0, y: 6 },
-          animate: { opacity: 1, y: 0, transition: { duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] } }
-        }}
-      >
-        <div className="footer-bottom-block-left">
-          <CopyrightBlock />
-          <BuiltWithBlock />
-        </div>
-        <div className="footer-bottom-block-right">
-          <NetworkBlock />
-          <DeploymentBlock />
-        </div>
-      </motion.div>
-
-    </footer>
-    {typeof document !== 'undefined' && createPortal(
-      <ContactInfo open={isModalOpen} onClose={() => setIsModalOpen(false)} />,
-      document.body
-    )}
+      </footer>
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <ContactInfo
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />,
+          document.body,
+        )}
     </>
   );
 };

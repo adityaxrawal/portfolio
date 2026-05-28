@@ -305,7 +305,7 @@
   flex-direction: column;
 }
 
-.jc-arch-desktop{
+.jc-arch-desktop {
   height: 100%;
   width: 100%;
 }
@@ -1056,7 +1056,7 @@
     align-items: flex-start;
     gap: 1rem;
     min-height: auto;
-     padding: .5rem .75rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .jc-header-divider {
@@ -1094,14 +1094,13 @@
     white-space: nowrap;
   }
 
-  .jc-arch-section{
+  .jc-arch-section {
     height: 70%;
   }
 
-  .jc-tech-section{
+  .jc-tech-section {
     height: 30%;
   }
-
 }
 
 @media (max-width: 992px) {
@@ -1163,7 +1162,7 @@
     min-height: auto;
     border-radius: 10px;
   }
-  
+
   .jc-header {
     flex-direction: column;
     padding: 4px;
@@ -1171,77 +1170,77 @@
     align-items: flex-start;
     min-height: auto;
   }
-  
+
   .jc-profile {
     align-items: flex-start;
     gap: 10px;
     flex-direction: row;
     width: 100%;
   }
-  
+
   .jc-logo {
     display: none;
     width: 32px;
     height: 32px;
     border-radius: 8px;
   }
-  
+
   .jc-logo-letter {
     font-size: 1.1rem;
   }
-  
+
   .jc-profile-text {
     gap: 2px;
     width: 100%;
   }
-  
+
   .jc-profile-title-row {
     flex-wrap: wrap;
     gap: 6px;
   }
-  
+
   .jc-company-name {
     font-size: 0.9rem;
   }
-  
+
   .jc-subtitle {
     font-size: 0.65rem;
     white-space: normal;
   }
-  
+
   .jc-description {
     font-size: 0.7rem;
     margin-top: 2px;
   }
-  
+
   .jc-header-divider {
     display: none;
   }
-  
+
   .jc-metrics-grid {
     display: none !important;
   }
-  
+
   .jc-main-panel {
     flex-direction: column;
   }
-  
+
   .jc-left-col {
     width: 100%;
     height: auto;
   }
-  
+
   .jc-arch-section,
   .jc-arch-section--detailed {
     height: auto;
     padding: 8px;
     margin: 0;
   }
-  
+
   .jc-arch-desktop {
     display: none;
   }
-  
+
   .jc-arch-mobile {
     display: flex;
     align-items: flex-start;
@@ -1255,93 +1254,93 @@
     color: var(--color-text-muted);
     line-height: 1.4;
   }
-  
+
   .dark .jc-arch-mobile {
     background: var(--color-surface-default);
-    border-color: rgba(63,63,70, 0.4);
+    border-color: rgba(63, 63, 70, 0.4);
     color: var(--color-text-tertiary);
   }
-  
+
   .jc-arch-mobile-icon {
     font-size: 0.8rem;
     margin-top: -1px;
     opacity: 0.7;
   }
-  
+
   .jc-tech-section {
     padding: 6px 8px;
     height: auto;
   }
-  
+
   .jc-tech-pills {
     gap: 4px 6px;
   }
-  
+
   .jc-tech-pill {
     padding: 2px 7px;
     font-size: 0.65rem;
     border-radius: 999px;
   }
-  
+
   .jc-tech-pill-icon,
   .jc-tech-pill-icon svg {
     width: 8px;
     height: 8px;
   }
-  
+
   .jc-vert-divider {
     width: 100%;
     height: 1px;
   }
-  
+
   .jc-impact-section,
   .jc-impact-section--detailed {
     width: 100%;
     padding: 6px 8px;
   }
-  
+
   .jc-impact-item {
     padding: 4px 0;
     gap: 8px;
   }
-  
+
   .jc-impact-icon {
     width: 24px;
     height: 24px;
     border-radius: 6px;
   }
-  
+
   .jc-impact-desc {
     font-size: 0.68rem;
   }
-  
+
   .jc-detailed-info-section {
     padding: 4px 0;
   }
-  
+
   .jc-detailed-info-title {
     font-size: 0.7rem;
   }
-  
+
   .jc-detailed-info-description {
     font-size: 0.68rem;
     line-height: 1.4;
   }
-  
+
   .jc-detailed-check-list {
     gap: 4px;
     padding-left: 2px;
   }
-  
+
   .jc-detailed-check-item {
     font-size: 0.58rem;
     line-height: 1.4;
   }
-  
+
   .jc-domain-chips {
     gap: 4px;
   }
-  
+
   .jc-domain-chip {
     font-size: 0.65rem;
     padding: 2px 6px;
@@ -1359,7 +1358,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .jc-root::-webkit-scrollbar,
   .jc-main-panel::-webkit-scrollbar,
   .jc-left-col::-webkit-scrollbar,

@@ -17,10 +17,7 @@ export function SkillCategory({ category }: SkillCategoryProps) {
     <div className="tech-v2-category">
       {/* Category header */}
       <div className="tech-v2-category-header">
-        <div
-          className="tech-v2-category-label"
-          style={{ color: dotColor }}
-        >
+        <div className="tech-v2-category-label" style={{ color: dotColor }}>
           <span
             className="tech-v2-category-dot"
             style={{ borderColor: dotColor }}
@@ -40,11 +37,7 @@ export function SkillCategory({ category }: SkillCategoryProps) {
       {/* Skill items */}
       {skills.map(({ name, icon: SkillIcon, color }) => (
         <div key={name} className="tech-v2-skill-item">
-          <span
-            className="tech-v2-skill-icon"
-            aria-hidden="true"
-            title={name}
-          >
+          <span className="tech-v2-skill-icon" aria-hidden="true" title={name}>
             <SkillIcon size={32} style={{ color }} />
           </span>
           <span className="tech-v2-skill-name">{name}</span>

@@ -312,7 +312,9 @@
   width: 18px;
   height: 1.5px;
   background: var(--header-text);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .nav-hamburger.is-open .hamburger-line:nth-child(1) {
@@ -413,7 +415,7 @@
     padding: 0 1rem;
     z-index: 1;
   }
-  
+
   /* Hide availability text + separator */
   .nav-separator,
   .nav-availability {
@@ -430,4 +432,3 @@
     display: flex;
   }
 }
-

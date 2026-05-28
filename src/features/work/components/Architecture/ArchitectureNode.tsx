@@ -12,9 +12,8 @@ interface Props {
 export function ArchitectureNode({ node }: Props) {
   const isHighlight = node.highlight === true;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const IconComponent = node.icon
-    ? (ARCHITECTURE_ICONS[node.icon] as ComponentType<any>)
+    ? (ARCHITECTURE_ICONS[node.icon] as ComponentType<{ size?: number }>)
     : null;
 
   const iconColor = node.iconColor ?? '#64748b';

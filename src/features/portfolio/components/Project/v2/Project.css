@@ -241,8 +241,6 @@
   border-color: var(--color-text-primary);
 }
 
-
-
 /* Status panel */
 .proj-status-panel {
   display: flex;
@@ -1317,7 +1315,7 @@
     font-size: 0.45rem;
     padding: 1px 5px;
   }
-  .proj-cloud-tag:nth-child(n+11) {
+  .proj-cloud-tag:nth-child(n + 11) {
     display: none;
   }
 }
@@ -1341,7 +1339,7 @@
   .proj-v2-sidebar {
     padding-bottom: 0.25rem;
   }
-  .proj-featured-card{
+  .proj-featured-card {
     padding: 0.5rem;
   }
   .proj-featured-row {
@@ -1361,7 +1359,7 @@
   .proj-cta-banner {
     display: none;
   }
-  .proj-cloud-tag:nth-child(n+6) {
+  .proj-cloud-tag:nth-child(n + 6) {
     display: none;
   }
 }

@@ -5,8 +5,8 @@ import { LuAsterisk } from 'react-icons/lu';
 import { useSharedState } from '@/app';
 import ContactButton from '@/components/ui/ContactButton';
 import Loader from '@/components/ui/Loader';
-import { LOADER_LOGS } from '@/config';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
+import { LOADER_LOGS } from '@/config';
 import { useGitHubStats } from '@/features/portfolio';
 
 import './HeroSection.css';
@@ -110,7 +110,13 @@ const HeroSection = ({
         {/* ── Lanyard: physics rope + interactive flip card ── */}
         <section className="image-container">
           <Suspense
-            fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.HERO as unknown as string[]} />}
+            fallback={
+              <Loader
+                isFullScreen={false}
+                ignoreSessionStorage={true}
+                logLines={LOADER_LOGS.HERO as unknown as string[]}
+              />
+            }
           >
             <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
           </Suspense>

@@ -111,7 +111,15 @@ const Project = () => (
   <section className="projects-section">
     <h2>My GitHub Projects</h2>
     <ProjectErrorBoundary>
-      <Suspense fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.GITHUB as unknown as string[]} />}>
+      <Suspense
+        fallback={
+          <Loader
+            isFullScreen={false}
+            ignoreSessionStorage={true}
+            logLines={LOADER_LOGS.GITHUB as unknown as string[]}
+          />
+        }
+      >
         <RepoList />
       </Suspense>
     </ProjectErrorBoundary>

@@ -88,8 +88,6 @@ const Work = ({
     [activeJob, lastSnapTime],
   );
 
-
-
   return (
     <div
       className={`work-v2-section ${isDarkTheme ? 'dark' : 'light'}`}
@@ -102,7 +100,8 @@ const Work = ({
           <span className="work-v2-mobile-title">Systems in Production</span>
         </div>
         <div className="work-v2-mobile-header-right">
-          I design, build and ship systems that solve real problems and create measurable impact at scale.
+          I design, build and ship systems that solve real problems and create
+          measurable impact at scale.
         </div>
       </div>
 

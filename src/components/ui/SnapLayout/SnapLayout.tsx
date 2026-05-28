@@ -21,7 +21,6 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({
     <SnapScrollContext.Provider
       value={{ activeIndex, goToSlide, totalSlides: children.length }}
     >
-
       <div style={{ width: '100vw', height: '100dvh', overflow: 'hidden' }}>
         {/* Fixed Header overlay */}
         <Header />

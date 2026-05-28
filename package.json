@@ -167,7 +167,13 @@
         ],
         "rules": {
           "no-unused-vars": "off",
-          "@typescript-eslint/no-unused-vars": "warn",
+          "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+              "argsIgnorePattern": "^_",
+              "varsIgnorePattern": "^_"
+            }
+          ],
           "@typescript-eslint/no-explicit-any": "error",
           "@typescript-eslint/ban-ts-comment": [
             "error",
@@ -179,7 +185,8 @@
       },
       {
         "files": [
-          "src/features/companies/data/*.ts"
+          "src/features/companies/data/*.ts",
+          "src/features/companies/constants/*.ts"
         ],
         "rules": {
           "no-secrets/no-secrets": "off"

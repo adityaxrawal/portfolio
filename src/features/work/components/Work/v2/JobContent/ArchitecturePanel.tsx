@@ -31,7 +31,15 @@ export function ArchitecturePanel({ companyName }: ArchitecturePanelProps) {
   if (!config) return null;
 
   return (
-    <Suspense fallback={<Loader isFullScreen={false} ignoreSessionStorage={true} logLines={LOADER_LOGS.ARCHITECTURE as unknown as string[]} />}>
+    <Suspense
+      fallback={
+        <Loader
+          isFullScreen={false}
+          ignoreSessionStorage={true}
+          logLines={LOADER_LOGS.ARCHITECTURE as unknown as string[]}
+        />
+      }
+    >
       <ArchitectureDiagram config={config} />
     </Suspense>
   );

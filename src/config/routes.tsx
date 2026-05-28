@@ -1,3 +1,4 @@
+import type { ComponentType } from 'react';
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -9,7 +10,9 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let hasBooted = false;
 
-const lazyWithBootDelay = (factory: () => Promise<any>) => {
+const lazyWithBootDelay = <T extends ComponentType<unknown>>(
+  factory: () => Promise<{ default: T }>,
+) => {
   return lazy(async () => {
     if (!hasBooted) {
       hasBooted = true;
@@ -43,7 +46,9 @@ function LazyRoute({ children }: { children: React.ReactNode }) {
           <Loader
             isFullScreen={true}
             logLines={
-              (isFirst ? LOADER_LOGS.GLOBAL_BOOT : LOADER_LOGS.ROUTES) as unknown as string[]
+              (isFirst
+                ? LOADER_LOGS.GLOBAL_BOOT
+                : LOADER_LOGS.ROUTES) as unknown as string[]
             }
           />
         }

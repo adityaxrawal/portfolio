@@ -150,6 +150,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       totalStars,
       projectsShipped: meaningfulRepos.length,
       pullRequests: user.contributionsCollection.totalPullRequestContributions,
+      streak,
+      activeDaysCount,
       updatedAt: new Date().toISOString(),
     });
   } catch (error) {

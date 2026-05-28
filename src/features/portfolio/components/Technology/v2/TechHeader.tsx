@@ -51,8 +51,8 @@ export function TechHeader() {
 
         {/* Description */}
         <p className="tech-v2-header-desc">
-          A blend of full-stack engineering, cloud architecture, and data systems expertise —
-          built to solve real problems at scale.
+          A blend of full-stack engineering, cloud architecture, and data
+          systems expertise — built to solve real problems at scale.
         </p>
       </div>
 

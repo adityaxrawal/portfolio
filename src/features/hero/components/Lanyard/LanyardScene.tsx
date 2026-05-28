@@ -4,10 +4,10 @@
 import { Environment, Lightformer } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
-import { Suspense, useEffect, useState } from 'react';
-import * as THREE from 'three';
 import { motion, useReducedMotion } from 'framer-motion';
+import { Suspense, useEffect, useState } from 'react';
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
+import * as THREE from 'three';
 
 import { LanyardBand } from './LanyardBand';
 import './lanyardSetup';
@@ -31,7 +31,7 @@ export default function LanyardScene({
   const [isMobile, setIsMobile] = useState(
     () => typeof window !== 'undefined' && window.innerWidth <= 1024,
   );
-  
+
   const prefersReducedMotion = useReducedMotion();
   const [lanyardState, setLanyardState] = useState<LanyardState>('entering');
   const [isUserTriggered, setIsUserTriggered] = useState(false);
@@ -83,12 +83,21 @@ export default function LanyardScene({
 
   const getTransition = () => {
     if (lanyardState === 'entering' || lanyardState === 'dropped') {
-      return { type: 'tween' as const, duration: 0.9, ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number] };
+      return {
+        type: 'tween' as const,
+        duration: 0.9,
+        ease: [0.34, 1.56, 0.64, 1] as [number, number, number, number],
+      };
     }
-    return { type: 'tween' as const, duration: 0.5, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] };
+    return {
+      type: 'tween' as const,
+      duration: 0.5,
+      ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
+    };
   };
 
-  const isLanyardDown = lanyardState === 'entering' || lanyardState === 'dropped';
+  const isLanyardDown =
+    lanyardState === 'entering' || lanyardState === 'dropped';
 
   return (
     <>
@@ -116,66 +125,62 @@ export default function LanyardScene({
 
       <motion.div
         className="lanyard-container"
-        animate={
-          isMobile
-            ? { y: isLanyardDown ? 0 : '-120%' }
-            : { y: 0 }
+        animate={isMobile ? { y: isLanyardDown ? 0 : '-120%' } : { y: 0 }}
+        transition={
+          isMobile && !prefersReducedMotion ? getTransition() : { duration: 0 }
         }
-        transition={isMobile && !prefersReducedMotion ? getTransition() : { duration: 0 }}
         aria-hidden="true"
         style={{
-          pointerEvents: isMobile
-            ? (isLanyardDown ? 'auto' : 'none')
-            : 'auto',
+          pointerEvents: isMobile ? (isLanyardDown ? 'auto' : 'none') : 'auto',
         }}
       >
         <div className="lanyard-wrapper">
-      <Canvas
-        camera={{ position: position, fov: fov }}
-        dpr={[1, isMobile ? 1.5 : 2]}
-        gl={{ alpha: transparent }}
-        onCreated={({ gl }) =>
-          gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
-        }
-      >
-        <ambientLight intensity={Math.PI} />
-        <Suspense fallback={null}>
-          <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-            <LanyardBand isMobile={isMobile} />
-          </Physics>
-        </Suspense>
-        <Environment blur={0.75}>
-          <Lightformer
-            intensity={2}
-            color="white"
-            position={[0, -1, 5]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[-1, -1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[1, 1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={10}
-            color="white"
-            position={[-10, 0, 14]}
-            rotation={[0, Math.PI / 2, Math.PI / 3]}
-            scale={[100, 10, 1]}
-          />
-        </Environment>
-      </Canvas>
-    </div>
+          <Canvas
+            camera={{ position: position, fov: fov }}
+            dpr={[1, isMobile ? 1.5 : 2]}
+            gl={{ alpha: transparent }}
+            onCreated={({ gl }) =>
+              gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
+            }
+          >
+            <ambientLight intensity={Math.PI} />
+            <Suspense fallback={null}>
+              <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+                <LanyardBand isMobile={isMobile} />
+              </Physics>
+            </Suspense>
+            <Environment blur={0.75}>
+              <Lightformer
+                intensity={2}
+                color="white"
+                position={[0, -1, 5]}
+                rotation={[0, 0, Math.PI / 3]}
+                scale={[100, 0.1, 1]}
+              />
+              <Lightformer
+                intensity={3}
+                color="white"
+                position={[-1, -1, 1]}
+                rotation={[0, 0, Math.PI / 3]}
+                scale={[100, 0.1, 1]}
+              />
+              <Lightformer
+                intensity={3}
+                color="white"
+                position={[1, 1, 1]}
+                rotation={[0, 0, Math.PI / 3]}
+                scale={[100, 0.1, 1]}
+              />
+              <Lightformer
+                intensity={10}
+                color="white"
+                position={[-10, 0, 14]}
+                rotation={[0, Math.PI / 2, Math.PI / 3]}
+                scale={[100, 10, 1]}
+              />
+            </Environment>
+          </Canvas>
+        </div>
 
         {isMobile && (
           <motion.div

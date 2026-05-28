@@ -5,7 +5,7 @@ import { LOADER_LOGS } from '@/config';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
-  fallback?: ReactNode;
+  fallback?: ReactNode | ((error?: Error) => ReactNode);
 }
 
 interface ErrorBoundaryState {
@@ -33,7 +33,7 @@ export class ErrorBoundary extends Component<
   render() {
     if (this.state.hasError) {
       if (typeof this.props.fallback === 'function') {
-        return (this.props.fallback as any)(this.state.error);
+        return this.props.fallback(this.state.error);
       }
       return (
         this.props.fallback ?? (

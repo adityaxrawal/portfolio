@@ -586,7 +586,6 @@
 }
 
 @media only screen and (max-width: 767px) {
-
   .hero-section {
     flex-direction: column;
     justify-content: flex-start;
@@ -679,9 +678,9 @@
   .system-status {
     display: none;
   }
-  
+
   .impact-snapshot {
-    display: none; 
+    display: none;
   }
 
   .tech-stack {
@@ -759,7 +758,7 @@
   .system-status {
     display: none;
   }
-  
+
   .headline {
     width: 60%;
   }
@@ -776,7 +775,8 @@
     width: 35%; /* Give stats a bit more breathing room on tablet */
   }
 
-  .tech-stack, .impact-snapshot {
+  .tech-stack,
+  .impact-snapshot {
     width: 100%;
   }
 

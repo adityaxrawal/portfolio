@@ -170,7 +170,9 @@ const Header = () => {
 
         {/* Mobile Dropdown Menu */}
         {menuOpen && (
-          <div className={`nav-mobile-menu ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}>
+          <div
+            className={`nav-mobile-menu ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}
+          >
             <a
               href={links.githubLink}
               target="_blank"
@@ -206,7 +208,9 @@ const Header = () => {
               <span>Dark mode</span>
               <label
                 className="container-dark-mode"
-                title={isDarkTheme ? 'Activate light mode' : 'Activate dark mode'}
+                title={
+                  isDarkTheme ? 'Activate light mode' : 'Activate dark mode'
+                }
                 aria-label={
                   isDarkTheme ? 'Activate light mode' : 'Activate dark mode'
                 }

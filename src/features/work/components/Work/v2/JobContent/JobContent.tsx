@@ -112,10 +112,14 @@ function JobContent({ job }: JobContentProps) {
                 </div>
               )}
             </div>
-            
+
             <div className="jc-arch-mobile">
               <span className="jc-arch-mobile-icon">⌘</span>
-              <span>Full architecture diagram available on desktop. Open this portfolio in a desktop browser for the complete interactive system design view.</span>
+              <span>
+                Full architecture diagram available on desktop. Open this
+                portfolio in a desktop browser for the complete interactive
+                system design view.
+              </span>
             </div>
           </div>
 

@@ -8,8 +8,6 @@
  *   - CORE_STRENGTHS       — 6-item right-panel strength list
  */
 
-import type { ComponentType } from 'react';
-
 import {
   Lightbulb,
   Palette,
@@ -28,6 +26,8 @@ import {
   GitBranch,
   Settings2,
 } from 'lucide-react';
+import type { ComponentType } from 'react';
+import { FaAws } from 'react-icons/fa';
 import {
   SiTypescript,
   SiJavascript,
@@ -49,7 +49,6 @@ import {
   SiTerraform,
   SiPostman,
 } from 'react-icons/si';
-import { FaAws } from 'react-icons/fa';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

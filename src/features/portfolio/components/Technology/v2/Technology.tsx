@@ -6,12 +6,12 @@
  *   Right (28%)     — CoreStrengths panel
  */
 
-import { useSharedState } from '@/app';
-import type { SnapSlideProps } from '@/components/ui/SnapLayout';
-
 import { CoreStrengths } from './CoreStrengths';
 import { TechHeader } from './TechHeader';
 import { TechnicalSkillsGrid } from './TechnicalSkillsGrid';
+
+import { useSharedState } from '@/app';
+import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 import './Technology.css';
 
 const Technology = ({

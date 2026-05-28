@@ -34,7 +34,11 @@ export function useWorkSectionScroll({
           const style = window.getComputedStyle(el);
           if (style.overflowY === 'auto' || style.overflowY === 'scroll') {
             // Scrolling down
-            if (deltaY > 0 && Math.ceil(el.scrollTop + el.clientHeight) < el.scrollHeight) return true;
+            if (
+              deltaY > 0 &&
+              Math.ceil(el.scrollTop + el.clientHeight) < el.scrollHeight
+            )
+              return true;
             // Scrolling up
             if (deltaY < 0 && Math.ceil(el.scrollTop) > 0) return true;
           }

@@ -16,7 +16,11 @@ function ChipGrid({ items }: { items: ChipItem[] }) {
   return (
     <div className="tech-v2-chip-grid">
       {items.map(({ name, icon: Icon, color }) => (
-        <div key={name} className="tech-v2-chip" title={name.replace('\n', ' ')}>
+        <div
+          key={name}
+          className="tech-v2-chip"
+          title={name.replace('\n', ' ')}
+        >
           <div
             className="tech-v2-chip-icon-box-light"
             aria-label={name.replace('\n', ' ')}

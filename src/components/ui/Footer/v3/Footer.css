@@ -263,7 +263,9 @@
   border-radius: 9999px;
   background-color: var(--color-accent-green);
   z-index: 0;
-  box-shadow: 0 0 0 4px rgba(62, 212, 90, 0.25), 0 0 0 8px rgba(62, 212, 90, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(62, 212, 90, 0.25),
+    0 0 0 8px rgba(62, 212, 90, 0.1);
   animation: locationPulse 2.2s ease-out infinite;
 }
 
@@ -272,7 +274,7 @@
   background-color: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   padding: 0.5rem;
   width: max-content;
   z-index: 20;
@@ -747,14 +749,29 @@
 
 /* Animations Keyframes */
 @keyframes locationPulse {
-  0% { transform: scale(1); opacity: 0.6; }
-  70% { transform: scale(2.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 @keyframes radarPing {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.4); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
 }
 
 /* TABLET SPECIFIC LAYOUT (768px - 1024px) */
@@ -769,7 +786,7 @@
   }
 
   .footer-v3-root::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image:
@@ -782,7 +799,8 @@
   }
 
   /* Make sure content sits above grid */
-  .footer-hero-container, .footer-bottom-bar {
+  .footer-hero-container,
+  .footer-bottom-bar {
     z-index: 1;
     position: relative;
   }
@@ -975,13 +993,17 @@
     color: var(--color-text-muted);
     letter-spacing: 0.14em;
   }
-  
+
   /* Show tech stack items and text */
-  .tech-item, .tech-item-desktop-only, .tech-item-xl-only {
+  .tech-item,
+  .tech-item-desktop-only,
+  .tech-item-xl-only {
     display: flex !important;
     gap: 6px;
   }
-  .tech-separator, .tech-separator-desktop-only, .tech-separator-xl-only {
+  .tech-separator,
+  .tech-separator-desktop-only,
+  .tech-separator-xl-only {
     display: inline !important;
     margin: 0 4px;
   }
@@ -1014,7 +1036,7 @@
     font-size: 12px;
     color: var(--color-text-primary);
   }
-  
+
   .scroll-indicator-container {
     display: flex;
   }
@@ -1039,7 +1061,7 @@
   }
 
   .footer-v3-root::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image:
@@ -1050,7 +1072,7 @@
     pointer-events: none;
     z-index: 0;
   }
-  
+
   .footer-hero-container {
     padding-top: 24px;
     display: flex;
@@ -1060,24 +1082,24 @@
     position: relative;
     z-index: 1;
   }
-  
+
   .footer-section-label {
     padding: 0 20px;
     margin-bottom: 12px;
   }
-  
+
   .footer-section-label span {
     font-size: 10px;
     color: var(--color-text-secondary);
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     letter-spacing: 0.15em;
   }
-  
+
   .footer-headline {
     padding: 0 20px;
     margin-bottom: 12px;
   }
-  
+
   .footer-headline h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(40px, 10vw, 48px);
@@ -1085,14 +1107,14 @@
     line-height: 1.05;
     color: var(--color-text-primary);
   }
-  
+
   .footer-headline-svg {
     stroke: var(--color-text-primary);
     stroke-width: 2;
     bottom: -10px; /* Pushed further down to avoid cutting text */
     height: 10px;
   }
-  
+
   .footer-subtitle {
     padding: 0 20px;
     margin-bottom: 20px;
@@ -1102,7 +1124,7 @@
     color: var(--color-text-secondary);
     line-height: 1.6;
   }
-  
+
   .footer-cta-row {
     padding: 0 20px;
     display: flex;
@@ -1111,7 +1133,7 @@
     gap: 12px; /* Increased gap */
     margin-top: 0;
   }
-  
+
   .cta-button {
     width: 100%;
     height: 52px;
@@ -1123,20 +1145,20 @@
     padding: 6px 6px 6px 24px;
     box-sizing: border-box;
   }
-  
+
   .cta-button:active {
     transform: scale(0.98);
     filter: brightness(0.92);
     transition: transform 120ms ease;
   }
-  
+
   .cta-button-text {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.08em;
   }
-  
+
   .cta-button-icon {
     width: 40px;
     height: 40px;
@@ -1149,11 +1171,11 @@
     color: #ffffff;
     font-size: 16px;
   }
-  
+
   .cta-arrow-desktop {
     display: none;
   }
-  
+
   .cta-availability {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 11px;
@@ -1163,16 +1185,16 @@
     gap: 8px; /* Increased gap between text and dot */
     padding: 0;
   }
-  
+
   .cta-availability-dot {
     color: var(--color-success);
     font-size: 14px;
   }
-  
+
   .footer-map-container {
     display: none !important;
   }
-  
+
   /* Show service grid on mobile as 2x2 */
   .footer-services-grid {
     display: grid !important;
@@ -1185,7 +1207,7 @@
     position: relative;
     z-index: 1;
   }
-  
+
   .service-card {
     border: 1px dashed var(--color-border-strong);
     border-radius: 8px;
@@ -1199,16 +1221,16 @@
     overflow: hidden;
     box-sizing: border-box;
   }
-  
+
   .service-card:active {
     background: var(--color-surface-card);
     transition: background 150ms ease;
   }
-  
+
   .service-card-header {
     margin-bottom: 6px;
   }
-  
+
   .service-card-icon-wrapper {
     width: 16px;
     height: 16px;
@@ -1218,17 +1240,17 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .service-card-icon-wrapper svg {
     width: 16px !important;
     height: 16px !important;
     color: var(--color-text-secondary) !important;
   }
-  
+
   .service-card-dot {
     display: none;
   }
-  
+
   .service-card-title {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 10px;
@@ -1241,11 +1263,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+
   .service-card-title.desktop-only {
     display: none;
   }
-  
+
   .service-card-title.mobile-only {
     display: block;
   }
@@ -1257,12 +1279,12 @@
     line-height: 1.3;
     margin: 0;
   }
-  
+
   /* Hide System status card on mobile */
   .system-status-wrapper {
     display: none !important;
   }
-  
+
   /* Footer bar */
   .footer-bottom-bar {
     border: none;
@@ -1280,7 +1302,7 @@
     position: relative;
     z-index: 1;
   }
-  
+
   .footer-bottom-block-left {
     display: flex;
     flex-direction: row;
@@ -1289,24 +1311,24 @@
     width: 100%;
     gap: 0;
   }
-  
+
   .footer-bottom-block-right {
-    display: none !important; 
+    display: none !important;
   }
-  
+
   .copyright-container {
     gap: 0;
   }
-  
+
   .copyright-icon-box {
     display: none;
   }
-  
+
   .copyright-text-col {
     display: block;
     gap: 0;
   }
-  
+
   .copyright-line1 {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 9px;
@@ -1314,39 +1336,41 @@
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   .copyright-line2 {
     display: none;
   }
-  
+
   .built-with-container {
     flex-direction: row;
     align-items: center;
     gap: 10px;
   }
-  
+
   .bottom-block-title {
-    display: none; 
+    display: none;
   }
-  
+
   .tech-stack-row {
     gap: 10px;
   }
-  
+
   /* Show all tech items on mobile */
-  .tech-item, .tech-item-desktop-only, .tech-item-xl-only {
+  .tech-item,
+  .tech-item-desktop-only,
+  .tech-item-xl-only {
     display: flex !important;
     gap: 0;
   }
-  
+
   .tech-name {
     display: none !important;
   }
-  
+
   .tech-separator {
     display: none !important;
   }
-  
+
   .tech-item svg {
     width: 14px !important;
     height: 14px !important;
