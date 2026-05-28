@@ -31,7 +31,9 @@ import { useSharedState } from '@/app';
 import mathcoLogoPic from '@/assets/images/companies/mathco_logo.webp';
 import profilePic from '@/assets/images/my/me-2.webp';
 import cardGLB from '@/assets/models/card.glb';
-import './lanyardSetup';
+import { initMeshLine } from './lanyardSetup';
+
+initMeshLine();
 
 const asBodyRef = (ref: RefObject<RapierBody | null>) =>
   ref as RefObject<RapierBody>;
