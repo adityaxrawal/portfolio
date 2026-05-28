@@ -536,7 +536,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 40px;
+  margin-top: 1rem;
 }
 
 @media (min-width: 1280px) {
@@ -756,3 +756,267 @@
   0% { transform: scale(1); opacity: 0.5; }
   100% { transform: scale(1.4); opacity: 0; }
 }
+
+/* TABLET SPECIFIC LAYOUT (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer-v3-root {
+    height: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--color-background-base);
+  }
+
+  .footer-v3-root::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--color-border-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border-grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Make sure content sits above grid */
+  .footer-hero-container, .footer-bottom-bar {
+    z-index: 1;
+    position: relative;
+  }
+
+  /* Make Hero take fixed percentage height */
+  .footer-hero-container {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    height: 50dvh;
+    padding: 0;
+    gap: 0;
+  }
+
+  .footer-hero-left {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .footer-section-label {
+    margin-bottom: 0;
+  }
+  .footer-section-label span {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  .footer-headline {
+    margin-bottom: 0;
+  }
+  .footer-headline h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--color-text-primary);
+  }
+  .footer-headline-svg {
+    stroke: var(--color-text-primary);
+    bottom: -4px;
+    stroke-width: 2;
+  }
+
+  .footer-subtitle {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .footer-cta-row {
+    margin-top: 8px;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .cta-button {
+    background: #ccff00;
+    border-radius: 999px;
+    padding: 12px 20px 12px 28px;
+    min-width: auto;
+    height: auto;
+    gap: 12px;
+  }
+  .cta-button:hover {
+    transform: scale(1.02);
+  }
+  .cta-button-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    color: #101010;
+    letter-spacing: 0;
+  }
+  .cta-button-icon {
+    width: 36px;
+    height: 36px;
+    background: #101010;
+    color: #ccff00;
+  }
+
+  .cta-availability {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    font-weight: normal;
+  }
+  .cta-arrow-desktop {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--color-text-muted);
+  }
+
+  /* Map column */
+  .footer-map-container {
+    height: 100%;
+    overflow: visible;
+  }
+  .world-map-wrapper {
+    height: 100%;
+  }
+  .world-map-svg-container {
+    transform: scale(1.15) translateX(10%) translateY(0%);
+    opacity: 0.5;
+  }
+
+  /* Hide Service Cards Row entirely */
+  .footer-services-grid {
+    display: none !important;
+  }
+
+  /* Footer Bar Layout */
+  .footer-bottom-bar {
+    height: auto;
+    border: 1.5px dotted var(--color-border-strong);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin-top: 0;
+    background: var(--color-surface-card);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom-block-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .footer-bottom-block-right {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+    margin-left: 0;
+  }
+
+  .copyright-container {
+    gap: 16px;
+  }
+  .copyright-icon-box {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-subtle);
+    background-color: var(--color-surface-raised);
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .copyright-icon-dot {
+    display: none; /* Just a blank rounded box like in screenshot */
+  }
+  .copyright-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .copyright-line1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: 0.08em;
+  }
+  .copyright-line2 {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .built-with-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .built-with-title {
+    margin-bottom: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.14em;
+  }
+  
+  /* Show tech stack items and text */
+  .tech-item, .tech-item-desktop-only, .tech-item-xl-only {
+    display: flex !important;
+    gap: 6px;
+  }
+  .tech-separator, .tech-separator-desktop-only, .tech-separator-xl-only {
+    display: inline !important;
+    margin: 0 4px;
+  }
+  .tech-name {
+    display: inline !important;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .tech-item svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .network-block-wrapper {
+    display: block;
+  }
+
+  .deployment-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+  }
+  .deployment-container .bottom-block-title {
+    margin-bottom: 8px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+  .deployment-date {
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: var(--color-text-primary);
+  }
+  
+  .scroll-indicator-container {
+    display: flex;
+  }
+}
+

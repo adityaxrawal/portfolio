@@ -129,7 +129,7 @@ const BuiltWithBlock = () => (
       </div>
       <span className="tech-separator tech-separator-xl-only">•</span>
       <div className="tech-item tech-item-xl-only">
-        <SiFramer size={18} color="#000000" />
+        <SiFramer size={18} color="#8B5CF6" />
         <span className="tech-name">Framer Motion</span>
       </div>
     </div>
@@ -261,8 +261,10 @@ export const Footer = () => {
           animate: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] } }
         }}
       >
-        <CopyrightBlock />
-        <BuiltWithBlock />
+        <div className="footer-bottom-block-left">
+          <CopyrightBlock />
+          <BuiltWithBlock />
+        </div>
         <div className="footer-bottom-block-right">
           <NetworkBlock />
           <DeploymentBlock />
