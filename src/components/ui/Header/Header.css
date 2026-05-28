@@ -12,6 +12,15 @@
   padding: 0 2.5% 0 2.5%;
   transition: all 0.3s ease;
   border-bottom: 1px solid var(--theme-dark-grid);
+  pointer-events: none;
+}
+
+/* Enable pointer events on interactive nav elements */
+.nav-left-group,
+.nav-right-group,
+.nav-hamburger,
+.nav-mobile-menu {
+  pointer-events: auto;
 }
 
 .nav-bar.theme-dark {
@@ -402,13 +411,9 @@
 @media screen and (max-width: 640px) {
   .nav-bar {
     padding: 0 1rem;
-    background-color: var(--theme-light-bg);
+    z-index: 1;
   }
-
-  .nav-bar.theme-dark {
-    background-color: var(--theme-dark-bg);
-  }
-
+  
   /* Hide availability text + separator */
   .nav-separator,
   .nav-availability {

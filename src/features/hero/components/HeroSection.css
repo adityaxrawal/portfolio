@@ -592,8 +592,6 @@
     justify-content: flex-start;
     height: auto;
     padding-bottom: 1.5rem;
-    /* gap: 2rem; */
-    /* background-color: red; */
   }
 
   .image-container {
@@ -604,7 +602,7 @@
     right: 0;
     margin: 0 auto;
     width: 100vw;
-    pointer-events: none; /* Let LanyardScene handle its own pointer events */
+    pointer-events: none;
   }
 
   .headline {
@@ -683,7 +681,7 @@
   }
   
   .impact-snapshot {
-    display: none; /* Default hidden on mobile */
+    display: none; 
   }
 
   .tech-stack {
@@ -691,8 +689,6 @@
     align-self: center;
     margin-left: 0;
   }
-
-
 
   .stats-box {
     padding: 0.5rem 1rem;
