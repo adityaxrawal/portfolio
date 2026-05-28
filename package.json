@@ -21,16 +21,19 @@
     "react": "^19.2.4",
     "react-confetti": "^6.4.0",
     "react-dom": "^19.2.4",
+    "react-error-boundary": "^6.1.2",
     "react-icons": "^5.6.0",
     "react-rough-notation": "^1.0.8",
     "react-router-dom": "^7.13.2",
     "roughjs": "^4.6.6",
     "three": "^0.184.0",
     "tinycolor2": "^1.6.0",
-    "web-vitals": "^5.2.0"
+    "web-vitals": "^5.2.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@babel/plugin-transform-private-property-in-object": "^7.28.6",
+    "@size-limit/preset-app": "^12.1.0",
     "@tailwindcss/vite": "^4.3.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -62,6 +65,7 @@
     "postcss": "^8.5.14",
     "prettier": "^3.5.1",
     "rollup-plugin-visualizer": "latest",
+    "size-limit": "^12.1.0",
     "tailwindcss": "^4.3.0",
     "ts-morph": "^28.0.0",
     "typescript": "^6.0.3",
@@ -91,6 +95,7 @@
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
     "prod": "node scripts/prod-check.js",
     "analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
+    "size": "size-limit",
     "prepare": "husky"
   },
   "lint-staged": {

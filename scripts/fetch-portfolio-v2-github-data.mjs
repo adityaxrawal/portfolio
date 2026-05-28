@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { z } from 'zod';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,15 +58,25 @@ async function fetchRepoData(repoName) {
   let commitActivity = null;
 
   try {
-    repoInfo = await fetchWithRetry(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`);
+    const rawInfo = await fetchWithRetry(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}`);
+    repoInfo = z.object({
+      stargazers_count: z.number().default(0),
+      forks_count: z.number().default(0),
+      updated_at: z.string().optional()
+    }).parse(rawInfo);
   } catch (error) {
-    console.warn(`[Warning] Could not fetch repo info for ${repoName}:`, error.message);
+    console.warn(`[Warning] Could not fetch or validate repo info for ${repoName}:`, error.message);
   }
 
   try {
-    commitActivity = await fetchWithRetry(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/stats/commit_activity`);
+    const rawActivity = await fetchWithRetry(`https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/stats/commit_activity`);
+    commitActivity = z.array(
+      z.object({
+        total: z.number().default(0)
+      }).passthrough()
+    ).parse(rawActivity);
   } catch (error) {
-    console.warn(`[Warning] Could not fetch commit activity for ${repoName}:`, error.message);
+    console.warn(`[Warning] Could not fetch or validate commit activity for ${repoName}:`, error.message);
   }
 
   if (!repoInfo) {
@@ -84,7 +95,18 @@ async function fetchRepoData(repoName) {
 async function fetchRecentCommits() {
   console.log(`[GitHub API] Fetching recent public events for ${GITHUB_USERNAME}...`);
   try {
-    const events = await fetchWithRetry(`https://api.github.com/users/${GITHUB_USERNAME}/events/public`);
+    const rawEvents = await fetchWithRetry(`https://api.github.com/users/${GITHUB_USERNAME}/events/public`);
+    const eventsSchema = z.array(
+      z.object({
+        type: z.string(),
+        created_at: z.string(),
+        repo: z.object({ name: z.string() }),
+        payload: z.object({
+          commits: z.array(z.object({ message: z.string() })).optional()
+        }).optional()
+      }).passthrough()
+    );
+    const events = eventsSchema.parse(rawEvents);
     
     // Filter PushEvents to get commits
     const pushEvents = events.filter(e => e.type === 'PushEvent' && REPOSITORIES.includes(e.repo.name.split('/')[1]));

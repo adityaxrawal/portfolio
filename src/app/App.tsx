@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 import { useCallback, useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import tinycolor from 'tinycolor2';
 
@@ -9,6 +10,7 @@ import { AppProvider, useSharedState } from './providers/AppContext';
 
 import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/ui/EasterEgg';
+import GlobalErrorFallback from '@/components/ui/GlobalErrorFallback';
 import { THEME_COLORS } from '@/config';
 import { AppRoutes } from '@/config/routes';
 import { useKonamiCode } from '@/hooks';
@@ -64,7 +66,9 @@ function ThemedApp() {
     <div className="App" style={appStyles}>
       <div className="grid-background" style={bgStyles} />
       <AppUpdatePrompt />
-      <AppRoutes />
+      <ErrorBoundary FallbackComponent={GlobalErrorFallback}>
+        <AppRoutes />
+      </ErrorBoundary>
     </div>
   );
 }
