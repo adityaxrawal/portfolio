@@ -46,9 +46,6 @@ importers:
       meshline:
         specifier: ^3.3.1
         version: 3.3.1(three@0.184.0)
-      octokit:
-        specifier: ^5.0.5
-        version: 5.0.5
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -164,6 +161,9 @@ importers:
       msw:
         specifier: ^2.7.0
         version: 2.12.14(@types/node@25.8.0)(typescript@6.0.3)
+      octokit:
+        specifier: ^5.0.5
+        version: 5.0.5
       postcss:
         specifier: ^8.5.14
         version: 8.5.14
