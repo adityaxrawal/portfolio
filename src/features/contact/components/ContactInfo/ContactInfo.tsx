@@ -1,17 +1,19 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import './ContactInfo.css';
-import ContactForm from '../ContactForm';
 import {
   DAILY_CONTACT_LIMIT,
   getContactRateStatus,
   recordContactMailSent,
 } from '../../services/contactRateLimit';
+import type { AlertType } from '../../types/contact.types';
+import ContactForm from '../ContactForm';
 
-import { useSharedState } from '@/app/providers/AppContext';
+import { useSharedState } from '@/app';
 import Alert from '@/components/ui/Alert';
-import { useAlert } from '@/hooks/useAlert';
-import { createFormSubmitter } from '@/lib/validation';
+import { useAlert } from '@/hooks';
+import { createFormSubmitter } from '@/utils';
+
+import './ContactInfo.css';
 
 export interface ContactInfoProps {
   open: boolean;
@@ -100,7 +102,7 @@ const ContactInfo = memo(({ open, onClose }: ContactInfoProps) => {
   );
 
   const notify = useCallback(
-    (message: string, type = 'info') => {
+    (message: string, type: AlertType = 'info') => {
       showAlert(message, type);
     },
     [showAlert],

@@ -1,46 +1,23 @@
-// Asset module declarations
-declare module '*.glb' {
-  const src: string;
-  export default src;
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_APP_TITLE?: string;
+  readonly GITHUB_TOKEN?: string;
+  readonly GITHUB_USERNAME?: string;
 }
 
-declare module '*.gltf' {
-  const src: string;
-  export default src;
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
 }
 
-declare module '*.png' {
-  const src: string;
-  export default src;
-}
+import { Object3DNode, MaterialNode } from '@react-three/fiber';
+import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
-declare module '*.jpg' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.jpeg' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.svg' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.webp' {
-  const src: string;
-  export default src;
-}
-
-// MeshLine JSX element augmentation
-import type { Object3DNode } from '@react-three/fiber';
-import type { MeshLineGeometry, MeshLineMaterial } from 'meshline';
-
-declare module '@react-three/fiber' {
-  interface ThreeElements {
-    meshLineGeometry: Object3DNode<MeshLineGeometry, typeof MeshLineGeometry>;
-    meshLineMaterial: Object3DNode<MeshLineMaterial, typeof MeshLineMaterial>;
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      meshLineGeometry: Object3DNode<MeshLineGeometry, typeof MeshLineGeometry>;
+      meshLineMaterial: MaterialNode<MeshLineMaterial, typeof MeshLineMaterial>;
+    }
   }
 }

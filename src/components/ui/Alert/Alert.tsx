@@ -9,14 +9,14 @@ import {
 
 import './Alert.css';
 
-const iconMap = {
+const ICON_MAP: Record<string, typeof FaInfoCircle> = {
   success: FaCheckCircle,
   error: FaTimesCircle,
   warning: FaExclamationTriangle,
   info: FaInfoCircle,
 };
 
-const titleMap: Record<string, string> = {
+const TITLE_MAP: Record<string, string> = {
   success: 'Done',
   error: 'Needs attention',
   warning: 'Small note',
@@ -25,7 +25,7 @@ const titleMap: Record<string, string> = {
 
 interface AlertProps {
   message: string;
-  type?: 'success' | 'error' | 'warning' | 'info' | string;
+  type?: string;
   title?: string;
   theme?: 'dark' | 'light';
   onClose: () => void;
@@ -41,8 +41,7 @@ const Alert = ({
   duration = 3000,
 }: AlertProps) => {
   const [closing, setClosing] = useState(false);
-  const typedIconMap: Record<string, typeof FaInfoCircle> = iconMap;
-  const Icon = typedIconMap[type] || iconMap.info;
+  const Icon = ICON_MAP[type] || ICON_MAP.info;
 
   useEffect(() => {
     setClosing(false);
@@ -76,7 +75,7 @@ const Alert = ({
       <span className="alert__accent" />
       <Icon className="alert__icon" aria-hidden="true" />
       <span className="alert__content">
-        <strong>{title || titleMap[type] || titleMap.info}</strong>
+        <strong>{title || TITLE_MAP[type] || TITLE_MAP.info}</strong>
         <span>{message}</span>
       </span>
       <button

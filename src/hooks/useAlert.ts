@@ -1,19 +1,22 @@
 import { useState, useCallback } from 'react';
 
 import { ALERT_DURATION } from '@/config';
-
-type AlertType = 'info' | 'success' | 'error' | 'warning';
+import type { AlertType } from '@/features/contact';
 
 export const useAlert = () => {
-  const [alert, setAlert] = useState({ message: '', type: '', duration: 3000 });
+  const [alert, setAlert] = useState({
+    message: '',
+    type: '' as AlertType | '',
+    duration: 3000,
+  });
 
   const getAlertDuration = useCallback((type: string) => {
-    const durationMap: Record<string, number> = ALERT_DURATION;
+    const durationMap = ALERT_DURATION as Record<string, number>;
     return durationMap[type.toUpperCase()] || ALERT_DURATION.WARNING;
   }, []);
 
   const showAlert = useCallback(
-    (message: string, type: AlertType | string = 'info', duration?: number) => {
+    (message: string, type: AlertType = 'info', duration?: number) => {
       setAlert({
         message,
         type,

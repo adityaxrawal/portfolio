@@ -67,7 +67,6 @@ export const reportWebVitalsWithAnalytics = () => {
   });
 };
 
-// Custom analytics function - replace with your preferred analytics service
 const sendToAnalytics = (metric: Metric) => {
   // Example: Send to your own analytics endpoint
   const analyticsEndpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
@@ -102,11 +101,13 @@ export const setupPerformanceObserver = () => {
       const longTaskObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
           if (entry.duration > 50) {
-            console.warn('⚠️ Long task detected:', {
-              duration: entry.duration,
-              startTime: entry.startTime,
-              name: entry.name,
-            });
+            if (import.meta.env.DEV) {
+              console.warn('⚠️ Long task detected:', {
+                duration: entry.duration,
+                startTime: entry.startTime,
+                name: entry.name,
+              });
+            }
           }
         });
       });
@@ -123,12 +124,16 @@ export const setupPerformanceObserver = () => {
         });
 
         if (cumulativeScore > 0.1) {
-          console.warn('⚠️ Layout shift detected:', cumulativeScore);
+          if (import.meta.env.DEV) {
+            console.warn('⚠️ Layout shift detected:', cumulativeScore);
+          }
         }
       });
       layoutShiftObserver.observe({ entryTypes: ['layout-shift'] });
     } catch (error) {
-      console.warn('Performance Observer not supported:', error);
+      if (import.meta.env.DEV) {
+        console.warn('Performance Observer not supported:', error);
+      }
     }
   }
 };

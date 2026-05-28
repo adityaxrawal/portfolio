@@ -1,0 +1,434 @@
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 6vh;
+  z-index: 99;
+  padding: 0 2.5% 0 2.5%;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--theme-dark-grid);
+  pointer-events: none;
+}
+
+/* Enable pointer events on interactive nav elements */
+.nav-left-group,
+.nav-right-group,
+.nav-hamburger,
+.nav-mobile-menu {
+  pointer-events: auto;
+}
+
+.nav-bar.theme-dark {
+  border-bottom: 1px solid var(--theme-light-grid);
+}
+
+/* Theme Variables */
+.nav-bar.theme-light {
+  --header-text: var(--theme-light-text);
+  --header-border: var(--theme-light-grid);
+  --header-logo-bg: var(--theme-dark-bg);
+  --header-logo-text: var(--theme-dark-text);
+  --header-separator: rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar.theme-dark {
+  --header-text: var(--theme-dark-text);
+  --header-border: var(--theme-dark-grid);
+  --header-logo-bg: var(--theme-dark-text);
+  --header-logo-text: var(--theme-dark-bg);
+  --header-separator: color-mix(
+    in srgb,
+    var(--theme-dark-text),
+    transparent 80%
+  );
+}
+
+/* --- Left Group --- */
+.nav-left-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.nav-email-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  height: 1.5rem;
+  overflow: hidden;
+}
+
+.nav-icon {
+  color: var(--header-text);
+  opacity: 0.7;
+}
+
+.email-animation-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.animated-letters {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--header-text);
+}
+
+.cube-flip {
+  display: inline-block;
+  position: relative;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.nav-email-section:hover .cube-flip {
+  animation: cube 0.5s forwards;
+}
+
+.nav-email-section:not(:hover) .cube-flip {
+  animation: cube-reverse 0.5s forwards;
+}
+
+@keyframes cube {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-1.5rem);
+  }
+}
+
+@keyframes cube-reverse {
+  0% {
+    transform: translateY(-1.5rem);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.nav-separator {
+  color: var(--header-text);
+  opacity: 0.3;
+}
+
+.nav-availability {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--header-text);
+  opacity: 0.8;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  position: relative;
+}
+
+.availability-dot::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* --- Center Section --- */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.nav-logo-box {
+  width: 40px;
+  height: 40px;
+  background-color: var(--header-logo-bg);
+  color: var(--header-logo-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* --- Right Group --- */
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.nav-social-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--header-text);
+  transition: opacity 0.2s ease;
+}
+
+.nav-social-link:hover {
+  opacity: 0.6;
+}
+
+/* --- Dark Mode Switch --- */
+.nav-switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.container-dark-mode {
+  cursor: pointer;
+}
+
+.container-dark-mode input {
+  display: none;
+}
+
+.container-dark-mode input + div {
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  box-shadow: inset 6px -6px 0 0
+    var(--color-toggle-dark, var(--color-text-primary));
+  transform: scale(1) rotate(-2deg);
+  transition:
+    box-shadow 0.5s ease 0s,
+    transform 0.4s ease 0.1s;
+}
+
+.container-dark-mode input + div::before {
+  content: '';
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: background 0.3s ease;
+}
+
+.container-dark-mode input + div::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: -3px 0 0 -3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow:
+    0 -17px 0 var(--color-toggle-light, var(--color-text-primary)),
+    0 17px 0 var(--color-toggle-light, var(--color-text-primary)),
+    17px 0 0 var(--color-toggle-light, var(--color-text-primary)),
+    -17px 0 0 var(--color-toggle-light, var(--color-text-primary)),
+    12px 12px 0 var(--color-toggle-light, var(--color-text-primary)),
+    -12px 12px 0 var(--color-toggle-light, var(--color-text-primary)),
+    12px -12px 0 var(--color-toggle-light, var(--color-text-primary)),
+    -12px -12px 0 var(--color-toggle-light, var(--color-text-primary));
+  transform: scale(0);
+  transition: all 0.3s ease;
+}
+
+.container-dark-mode input:checked + div {
+  box-shadow: inset 24px -24px 0 0 #fff;
+  transform: scale(0.5) rotate(0deg);
+  transition:
+    transform 0.3s ease 0.1s,
+    box-shadow 0.2s ease 0s;
+}
+
+.container-dark-mode input:checked + div::before {
+  background: var(--color-toggle-light, var(--color-text-primary));
+  transition: background 0.3s ease 0.1s;
+}
+
+.container-dark-mode input:checked + div::after {
+  transform: scale(1.5);
+  transition: transform 0.5s ease 0.15s;
+}
+
+/* --- Hamburger Button --- */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hamburger-line {
+  width: 18px;
+  height: 1.5px;
+  background: var(--header-text);
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.nav-hamburger.is-open .hamburger-line:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+.nav-hamburger.is-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.is-open .hamburger-line:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+/* --- Mobile Dropdown Menu --- */
+.nav-mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 220px;
+  border: 1px solid var(--header-border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 0.5rem 0;
+  z-index: 200;
+  animation: menuSlide 0.2s ease;
+}
+
+.nav-mobile-menu.theme-light {
+  background: var(--theme-light-bg, #fff);
+}
+
+.nav-mobile-menu.theme-dark {
+  background: var(--theme-dark-bg, #111);
+}
+
+@keyframes menuSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--header-text);
+  transition: opacity 0.2s ease;
+}
+
+.nav-mobile-link:hover {
+  opacity: 0.6;
+}
+
+.nav-mobile-divider {
+  height: 1px;
+  background: var(--header-border);
+  margin: 0.4rem 1.25rem;
+  opacity: 0.4;
+}
+
+.nav-mobile-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--header-text);
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 1024px) {
+  .nav-availability span:first-child {
+    white-space: nowrap;
+  }
+  .nav-social-link span {
+    display: none;
+  }
+  .nav-left-group,
+  .nav-right-group {
+    gap: 1rem;
+  }
+  .nav-social-links {
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .nav-bar {
+    padding: 0 1rem;
+    z-index: 1;
+  }
+
+  /* Hide availability text + separator */
+  .nav-separator,
+  .nav-availability {
+    display: none;
+  }
+
+  /* Hide the desktop right group */
+  .nav-desktop-only {
+    display: none;
+  }
+
+  /* Show the hamburger */
+  .nav-hamburger {
+    display: flex;
+  }
+}

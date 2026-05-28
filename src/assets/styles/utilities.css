@@ -1,0 +1,9 @@
+@layer components {
+  .work-accent-serif {
+    @apply font-serif text-text-inverse;
+  }
+
+  .work-accent-serif-bold {
+    @apply font-serif text-text-inverse font-bold text-xl md:text-2xl pt-1;
+  }
+}

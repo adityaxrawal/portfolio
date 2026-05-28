@@ -1,5 +1,4 @@
-// src/hooks/useKonamiCode.js
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 const konamiCodeSequence = [
   'ArrowUp',
@@ -14,39 +13,36 @@ const konamiCodeSequence = [
   'a',
 ];
 
+const MATCH_SEQUENCE = konamiCodeSequence.join('');
+
 export const useKonamiCode = (callback: () => void) => {
-  const [keySequence, setKeySequence] = useState<string[]>([]);
+  const sequenceRef = useRef<string[]>([]);
+  const callbackRef = useRef(callback);
 
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      const { key } = event;
-      let updatedSequence = [...keySequence, key];
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
 
-      // Keep sequence length matching Konami code length
-      if (updatedSequence.length > konamiCodeSequence.length) {
-        updatedSequence = updatedSequence.slice(
-          updatedSequence.length - konamiCodeSequence.length,
-        );
-      }
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    const { key } = event;
+    const next = [...sequenceRef.current, key];
 
-      setKeySequence(updatedSequence);
+    if (next.length > konamiCodeSequence.length) {
+      sequenceRef.current = next.slice(next.length - konamiCodeSequence.length);
+    } else {
+      sequenceRef.current = next;
+    }
 
-      // Check if sequence matches
-      if (updatedSequence.join('') === konamiCodeSequence.join('')) {
-        callback(); // Execute the callback function
-        setKeySequence([]); // Reset sequence after successful entry
-      }
-    },
-    [keySequence, callback],
-  );
+    if (sequenceRef.current.join('') === MATCH_SEQUENCE) {
+      callbackRef.current();
+      sequenceRef.current = [];
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleKeyDown]); // Depend on the memoized handler
-
-  // Optionally return the current sequence state if needed for debugging
-  // return keySequence;
+  }, [handleKeyDown]);
 };

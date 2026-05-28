@@ -1,0 +1,473 @@
+/*
+  Architecture Diagram — Vertical Row Layout
+  ============================================
+  Redesigned to match a layered-row diagram style:
+  - Left sidebar shows layer labels (e.g. "CLIENT LAYER")
+  - Right area holds nodes for that layer
+  - Vertical arrows connect layers top-to-bottom
+  - Single-node rows span full width (wide nodes)
+  - Intra-row dashed arrows show flow within a layer
+  All sizing uses container queries (cqi) — no media queries.
+*/
+
+/* ── Pulse animation for the header indicator dot ─── */
+@keyframes arch-pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+  }
+}
+
+/* ── Outer diagram shell ─────────────────────────── */
+.arch-v-diagram {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  /* background: var(--color-surface-overlay); */
+  border-radius: 10px;
+  border: 1px solid var(--color-border-default);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  box-sizing: border-box;
+  container-type: inline-size;
+  container-name: arch;
+}
+
+.dark .arch-v-diagram {
+  background: var(--color-surface-sunken);
+  border-color: var(--color-border-subtle);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Top bar: ● SYSTEM ARCHITECTURE ─────────────── */
+.arch-v-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+  background: var(--color-surface-raised);
+}
+
+.dark .arch-v-header {
+  background: var(--color-background-inverse);
+  border-bottom-color: var(--color-border-subtle);
+}
+
+.arch-v-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--color-success);
+  border-radius: 50%;
+  animation: arch-pulse-dot 2.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.arch-v-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.dark .arch-v-title {
+  color: var(--color-text-soft);
+}
+
+/* ── Scrollable body ─────────────────────────────── */
+.arch-v-body {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.arch-v-body::-webkit-scrollbar {
+  width: 4px;
+}
+.arch-v-body::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: 4px;
+}
+
+.dark .arch-v-body {
+  scrollbar-color: var(--color-border-subtle) transparent;
+}
+
+/* ── Row: one layer of the diagram ──────────────── */
+.arch-v-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  min-height: 0;
+}
+
+/* ── Layer label sidebar ─────────────────────────── */
+.arch-v-layer-label {
+  width: 80px;
+  min-width: 80px;
+  flex-shrink: 0;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  line-height: 1.45;
+  white-space: pre-line;
+  text-align: right;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+
+.dark .arch-v-layer-label {
+  color: var(--color-text-muted);
+}
+
+/* Thin divider line between label and nodes */
+.arch-v-layer-divider {
+  width: 1.5px;
+  align-self: stretch;
+  background: var(--color-border-subtle);
+  flex-shrink: 0;
+  margin-right: 12px;
+  border-radius: 1px;
+}
+
+.dark .arch-v-layer-divider {
+  background: var(--color-border-subtle);
+}
+
+/* ── Node area ─────────────────────────────────── */
+.arch-v-nodes {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+/* ── Node Wrapper (Equal width slice to align arrows) ── */
+.arch-v-node-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Wide variant (single node spans full row) */
+.arch-v-nodes--wide .arch-v-node-wrapper {
+  flex: 1 1 0;
+}
+
+/* ── Node card ─────────────────────────────────── */
+.arch-v-node {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: var(--color-surface-card);
+  border: 1px dashed var(--color-border-default);
+  border-radius: 7px;
+  padding: 7px 11px;
+  flex: 1 1 0;
+  min-width: 0;
+  box-shadow: var(--shadow-xs);
+  transition:
+    box-shadow 0.18s ease,
+    transform 0.15s ease,
+    border-color 0.18s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.arch-v-node:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1.5px);
+  border-color: var(--color-border-strong);
+}
+
+.dark .arch-v-node {
+  background: var(--color-surface-card);
+  border-color: var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.dark .arch-v-node:hover {
+  background: var(--color-surface-raised);
+  border-color: var(--color-border-default);
+  box-shadow: var(--shadow-md);
+}
+
+/* Highlighted node (primary/core service) */
+.arch-v-node--highlight {
+  border-color: var(--color-success-border);
+  /* box-shadow:
+    0 0 0 2px var(--color-success-bg),
+    var(--shadow-xs); */
+}
+
+.arch-v-node--highlight:hover {
+  /* box-shadow:
+    0 0 0 3px var(--color-success-bg-hover),
+    var(--shadow-md); */
+  border-color: var(--color-success-strong);
+}
+
+.dark .arch-v-node--highlight {
+  border-color: var(--color-success-border);
+  box-shadow:
+    0 0 0 2px var(--color-success-bg),
+    var(--shadow-sm);
+}
+
+/* ── Node icon ───────────────────────────────────── */
+.arch-v-node-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--arch-node-accent, #64748b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-v-node-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Node text group ─────────────────────────── */
+.arch-v-node-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.arch-v-node-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.dark .arch-v-node-label {
+  color: var(--color-text-primary);
+}
+
+.arch-v-node-sublabel {
+  font-size: 9.5px;
+  font-weight: 400;
+  color: var(--color-text-soft);
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.dark .arch-v-node-sublabel {
+  color: var(--color-text-muted);
+}
+
+/* ── Vertical connector between rows — multi-arrow flex layout ── */
+
+/*
+  The connector row uses the SAME flex layout as arch-v-row:
+  - A spacer that matches the label sidebar width
+  - A flex container of arrow items matching arch-v-nodes layout
+  This guarantees arrows land exactly above/below each node.
+*/
+.arch-v-connector-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* Mirror of: label (80px) + divider (1.5px) + divider margin-right (12px) = 93.5px */
+.arch-v-connector-spacer {
+  width: calc(80px + 1.5px + 12px);
+  min-width: calc(80px + 1.5px + 12px);
+  flex-shrink: 0;
+}
+
+/* Same flex layout as .arch-v-nodes so arrows align with nodes */
+.arch-v-connector-arrows {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 8px; /* MUST match .arch-v-nodes gap */
+}
+
+/* Each arrow item occupies the same horizontal space as a node */
+.arch-v-connector-arrow-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical connector line */
+.arch-v-connector-line {
+  width: 1.5px;
+  height: 10px;
+  background: var(--color-border-default);
+}
+
+.dark .arch-v-connector-line {
+  background: var(--color-border-subtle);
+}
+
+/* Dashed variant */
+.arch-v-connector-row--dashed .arch-v-connector-line {
+  background: none;
+  border-left: 1.5px dashed var(--color-border-default);
+}
+
+.dark .arch-v-connector-row--dashed .arch-v-connector-line {
+  border-left-color: var(--color-border-subtle);
+}
+
+.arch-v-connector-arrowhead {
+  font-size: 10px;
+  line-height: 1;
+  color: var(--color-text-soft);
+  margin-top: -2px;
+  user-select: none;
+}
+
+.dark .arch-v-connector-arrowhead {
+  color: var(--color-text-muted);
+}
+
+/* ── Intra-row horizontal arrow (e.g. Airflow → AWS Glue) ──── */
+.arch-v-intra-arrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 20px;
+  max-width: 36px;
+  gap: 0;
+}
+
+.arch-v-intra-arrow-line {
+  flex: 1;
+  height: 1.5px;
+  background: var(--color-border-default);
+}
+
+.arch-v-intra-arrow--dashed .arch-v-intra-arrow-line {
+  background: none;
+  border-top: 1.5px dashed var(--color-border-default);
+  height: 0;
+}
+
+.dark .arch-v-intra-arrow-line {
+  background: var(--color-border-subtle);
+}
+
+.dark .arch-v-intra-arrow--dashed .arch-v-intra-arrow-line {
+  background: none;
+  border-top-color: var(--color-border-subtle);
+}
+
+.arch-v-intra-arrow-head {
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-text-soft);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.dark .arch-v-intra-arrow-head {
+  color: var(--color-text-muted);
+}
+
+/* ── Container queries ───────────────────────────── */
+
+/* Compact: hide sublabels, reduce gaps */
+@container arch (max-width: 520px) {
+  .arch-v-layer-label {
+    width: 60px;
+    min-width: 60px;
+    font-size: 7.5px;
+  }
+  .arch-v-connector-spacer {
+    width: calc(60px + 1.5px + 10px);
+    min-width: calc(60px + 1.5px + 10px);
+  }
+  .arch-v-nodes {
+    gap: 5px;
+  }
+  .arch-v-connector-arrows {
+    gap: 5px;
+  }
+  .arch-v-node {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+  .arch-v-node-label {
+    font-size: 10px;
+  }
+  .arch-v-node-sublabel {
+    display: none;
+  }
+  .arch-v-node-icon {
+    width: 13px;
+    height: 13px;
+  }
+  .arch-v-layer-divider {
+    margin-right: 10px;
+  }
+}
+
+/* Very compact: hide sidebar labels, stack vertically */
+@container arch (max-width: 360px) {
+  .arch-v-layer-label {
+    display: none;
+  }
+  .arch-v-layer-divider {
+    display: none;
+  }
+  .arch-v-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .arch-v-nodes {
+    flex-wrap: wrap;
+  }
+  .arch-v-connector-spacer {
+    display: none;
+  }
+}

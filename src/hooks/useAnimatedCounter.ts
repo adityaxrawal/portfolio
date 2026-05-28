@@ -1,3 +1,6 @@
+/**
+ * @deprecated Prefer inline count-up in consuming components. Retained for tests.
+ */
 import { useState, useEffect } from 'react';
 
 // Custom hook for animated counter with cleanup to prevent memory leaks and overlapping loops

@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'tailwindcss';
+@import './utilities.css';
+
+/* ─────────────────────────────────────────────────────────────────────────
+   COLOR SYSTEM — Warm Cinematic Editorial
+   Source of truth: /color-palette.json
+   Naming: light.<group>.<token> → --color-<group>-<token>
+   ───────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* ── Background ── */
+    --color-background-base: #f3f0eb;
+    --color-background-secondary: #dddad6;
+    --color-background-tertiary: #ccc9c4;
+    --color-background-inverse: #1c1c1b;
+
+    /* ── Surface ── */
+    --color-surface-default: #ece8e2;
+    --color-surface-raised: #f7f4f0;
+    --color-surface-overlay: #ffffff;
+    --color-surface-sunken: #e2ded8;
+    --color-surface-card: #edeae4;
+    --color-surface-tooltip: #2b2a28;
+    --color-surface-popover: #ffffff;
+
+    /* ── Border ── */
+    --color-border-subtle: #e0ddd8;
+    --color-border-default: #bdbcb9;
+    --color-border-strong: #9c9a96;
+    --color-border-focus: #8b7355;
+    --color-border-card: #d6d3ce;
+    --color-border-grid: #ebe8e3;
+    --color-border-divider: #e5e2dd;
+    --color-border-inverse: #4a4845;
+
+    /* ── Text ── */
+    --color-text-primary: #101010;
+    --color-text-secondary: #2e2e2e;
+    --color-text-tertiary: #4a4a4a;
+    --color-text-muted: #545351;
+    --color-text-soft: #777674;
+    --color-text-disabled: #c4c2bf;
+    --color-text-inverse: #f4f1e8;
+    --color-text-link: #8b7355;
+    --color-text-link-hover: #6b5540;
+
+    /* ── Typography ── */
+    --color-typography-heading: #0d0d0d;
+    --color-typography-body: #1e1e1e;
+    --color-typography-caption: #777674;
+    --color-typography-label: #4a4a4a;
+    --color-typography-code: #5c4b32;
+    --color-typography-quote: #6b5540;
+
+    /* ── Brand Primary ── */
+    --color-brand-primary: #8b7355;
+    --color-brand-primary-hover: #7a6347;
+    --color-brand-primary-active: #6b5540;
+    --color-brand-primary-subtle: #f0eae0;
+    --color-brand-primary-muted: #e8ddd0;
+
+    /* ── Brand Accent ── */
+    --color-brand-accent: #c4956a;
+    --color-brand-accent-hover: #b5825a;
+    --color-brand-accent-active: #a6714c;
+    --color-brand-accent-subtle: #faf0e6;
+    --color-brand-accent-muted: #f5e6d5;
+    --color-accent-focus-ring: #c4956a;
+
+    /* ── Semantic — Success ── */
+    --color-success-bg: #edfaf3;
+    --color-success-bg-hover: #d8f4e8;
+    --color-success-border: #6fcf97;
+    --color-success: #27ae60;
+    --color-success-strong: #1e8449;
+    --color-success-text: #1a5e36;
+
+    /* ── Semantic — Error ── */
+    --color-error-bg: #fef0f0;
+    --color-error-bg-hover: #fddddd;
+    --color-error-border: #f28b82;
+    --color-error: #eb5757;
+    --color-error-strong: #c0392b;
+    --color-error-text: #7b1f1f;
+
+    /* ── Semantic — Warning ── */
+    --color-warning-bg: #fff8ed;
+    --color-warning-bg-hover: #feefd6;
+    --color-warning-border: #f2a65a;
+    --color-warning: #e67e22;
+    --color-warning-strong: #ca6f1e;
+    --color-warning-text: #784212;
+
+    /* ── Semantic — Info ── */
+    --color-info-bg: #eff6ff;
+    --color-info-bg-hover: #dbeafe;
+    --color-info-border: #93c5fd;
+    --color-info: #3b82f6;
+    --color-info-strong: #1d4ed8;
+    --color-info-text: #1e3a8a;
+
+    /* ── Interactive ── */
+    --color-interactive-primary: #8b7355;
+    --color-interactive-primary-hover: #7a6347;
+    --color-interactive-primary-active: #6b5540;
+    --color-interactive-secondary: #ece8e2;
+    --color-interactive-secondary-hover: #e2ded8;
+    --color-interactive-ghost: transparent;
+    --color-interactive-ghost-hover: #f0eae0;
+    --color-interactive-focus-ring: #8b7355;
+    --color-interactive-disabled: #d6d3ce;
+    --color-interactive-disabled-text: #a3a19e;
+
+    /* ── Shadows ── */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.04);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+    /* ── Data Visualization ── */
+    --color-data-series-1: #8b7355;
+    --color-data-series-2: #c4956a;
+    --color-data-series-3: #6b9e8a;
+    --color-data-series-4: #5b8fb9;
+    --color-data-series-5: #a07bc4;
+    --color-data-series-6: #c46b6b;
+    --color-data-series-7: #7ba882;
+    --color-data-series-8: #b8a060;
+    --color-data-axis: #9c9a96;
+    --color-data-grid-line: #e0ddd8;
+    --color-data-label: #777674;
+
+    /* ── Badge — Neutral ── */
+    --color-badge-neutral-bg: #edeae4;
+    --color-badge-neutral-text: #4a4a4a;
+    --color-badge-neutral-border: #d6d3ce;
+    /* ── Badge — Primary ── */
+    --color-badge-primary-bg: #f0eae0;
+    --color-badge-primary-text: #6b5540;
+    --color-badge-primary-border: #c4b49a;
+    /* ── Badge — Accent ── */
+    --color-badge-accent-bg: #faf0e6;
+    --color-badge-accent-text: #a6714c;
+    --color-badge-accent-border: #deb896;
+    /* ── Badge — Success ── */
+    --color-badge-success-bg: #edfaf3;
+    --color-badge-success-text: #1a5e36;
+    --color-badge-success-border: #a3d9b8;
+    /* ── Badge — Error ── */
+    --color-badge-error-bg: #fef0f0;
+    --color-badge-error-text: #7b1f1f;
+    --color-badge-error-border: #f2aaaa;
+    /* ── Badge — Warning ── */
+    --color-badge-warning-bg: #fff8ed;
+    --color-badge-warning-text: #784212;
+    --color-badge-warning-border: #f5c98a;
+    /* ── Badge — Info ── */
+    --color-badge-info-bg: #eff6ff;
+    --color-badge-info-text: #1e3a8a;
+    --color-badge-info-border: #bfdbfe;
+
+    /* ── Input ── */
+    --color-input-bg: #ffffff;
+    --color-input-bg-disabled: #f3f0eb;
+    --color-input-border: #bdbcb9;
+    --color-input-border-hover: #9c9a96;
+    --color-input-border-focus: #8b7355;
+    --color-input-text: #101010;
+    --color-input-placeholder: #a3a19e;
+    --color-input-label: #2e2e2e;
+    --color-input-helper: #777674;
+    --color-input-error-border: #eb5757;
+    --color-input-success-border: #27ae60;
+
+    /* ── Skeleton ── */
+    --color-skeleton-base: #e2ded8;
+    --color-skeleton-highlight: #f0ede8;
+
+    /* ── Misc ── */
+    --color-misc-overlay: rgba(16, 16, 16, 0.5);
+    --color-misc-scrollbar: #bdbcb9;
+    --color-misc-selection: rgba(139, 115, 85, 0.2);
+
+    /* ── Legacy compatibility aliases (referenced by Header, App.css) ── */
+    --theme-light-grid: var(--color-border-grid);
+    --theme-light-text: var(--color-text-primary);
+    --theme-light-bg: var(--color-background-base);
+    --theme-dark-grid: #232321;
+    --theme-dark-text: #f4f1e8;
+    --theme-dark-bg: #1c1c1b;
+  }
+
+  .dark {
+    /* ── Background ── */
+    --color-background-base: #1c1c1b;
+    --color-background-secondary: #232321;
+    --color-background-tertiary: #2b2a28;
+    --color-background-inverse: #f3f0eb;
+
+    /* ── Surface ── */
+    --color-surface-default: #2b2a28;
+    --color-surface-raised: #333230;
+    --color-surface-overlay: #3a3937;
+    --color-surface-sunken: #1a1918;
+    --color-surface-card: #2a2927;
+    --color-surface-tooltip: #ece8e2;
+    --color-surface-popover: #2e2d2b;
+
+    /* ── Border ── */
+    --color-border-subtle: #2e2d2b;
+    --color-border-default: #4a4845;
+    --color-border-strong: #6b6866;
+    --color-border-focus: #c4956a;
+    --color-border-card: #3a3936;
+    --color-border-grid: #242423;
+    --color-border-divider: #333231;
+    --color-border-inverse: #bdbcb9;
+
+    /* ── Text ── */
+    --color-text-primary: #f4f1e8;
+    --color-text-secondary: #e7e1d3;
+    --color-text-tertiary: #c8c1b3;
+    --color-text-muted: #77736d;
+    --color-text-soft: #b5aea1;
+    --color-text-disabled: #4a4845;
+    --color-text-inverse: #101010;
+    --color-text-link: #c4956a;
+    --color-text-link-hover: #deb896;
+
+    /* ── Typography ── */
+    --color-typography-heading: #f4f1e8;
+    --color-typography-body: #e7e1d3;
+    --color-typography-caption: #77736d;
+    --color-typography-label: #c8c1b3;
+    --color-typography-code: #c4956a;
+    --color-typography-quote: #b5aea1;
+
+    /* ── Brand Primary ── */
+    --color-brand-primary: #c4956a;
+    --color-brand-primary-hover: #deb896;
+    --color-brand-primary-active: #b5825a;
+    --color-brand-primary-subtle: #2e2620;
+    --color-brand-primary-muted: #3a3028;
+
+    /* ── Brand Accent ── */
+    --color-brand-accent: #e8a87c;
+    --color-brand-accent-hover: #f0bf97;
+    --color-brand-accent-active: #d4956a;
+    --color-brand-accent-subtle: #2e2418;
+    --color-brand-accent-muted: #3a2e20;
+    --color-accent-focus-ring: #e8a87c;
+
+    /* ── Semantic — Success ── */
+    --color-success-bg: #0d2818;
+    --color-success-bg-hover: #12361f;
+    --color-success-border: #3ddc84;
+    --color-success: #3ddc84;
+    --color-success-strong: #6fe8a8;
+    --color-success-text: #a8f0cc;
+
+    /* ── Semantic — Error ── */
+    --color-error-bg: #2a0d0d;
+    --color-error-bg-hover: #3a1212;
+    --color-error-border: #ff6b6b;
+    --color-error: #ff6b6b;
+    --color-error-strong: #ff9494;
+    --color-error-text: #ffbebe;
+
+    /* ── Semantic — Warning ── */
+    --color-warning-bg: #2a1a08;
+    --color-warning-bg-hover: #3a2410;
+    --color-warning-border: #ff9f43;
+    --color-warning: #ff9f43;
+    --color-warning-strong: #ffbc70;
+    --color-warning-text: #ffd9a8;
+
+    /* ── Semantic — Info ── */
+    --color-info-bg: #0a1628;
+    --color-info-bg-hover: #0f1e38;
+    --color-info-border: #5da9ff;
+    --color-info: #5da9ff;
+    --color-info-strong: #8fc5ff;
+    --color-info-text: #bdd9ff;
+
+    /* ── Interactive ── */
+    --color-interactive-primary: #c4956a;
+    --color-interactive-primary-hover: #deb896;
+    --color-interactive-primary-active: #b5825a;
+    --color-interactive-secondary: #2b2a28;
+    --color-interactive-secondary-hover: #333230;
+    --color-interactive-ghost: transparent;
+    --color-interactive-ghost-hover: #2e2620;
+    --color-interactive-focus-ring: #c4956a;
+    --color-interactive-disabled: #2e2d2b;
+    --color-interactive-disabled-text: #4a4845;
+
+    /* ── Shadows ── */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5), 0 8px 10px rgba(0, 0, 0, 0.24);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+
+    /* ── Data Visualization ── */
+    --color-data-series-1: #c4956a;
+    --color-data-series-2: #e8a87c;
+    --color-data-series-3: #6db89a;
+    --color-data-series-4: #5da9ff;
+    --color-data-series-5: #b47fd4;
+    --color-data-series-6: #ff6b6b;
+    --color-data-series-7: #7bcf90;
+    --color-data-series-8: #d4b86a;
+    --color-data-axis: #6b6866;
+    --color-data-grid-line: #2e2d2b;
+    --color-data-label: #77736d;
+
+    /* ── Badge — Neutral ── */
+    --color-badge-neutral-bg: #2b2a28;
+    --color-badge-neutral-text: #c8c1b3;
+    --color-badge-neutral-border: #4a4845;
+    /* ── Badge — Primary ── */
+    --color-badge-primary-bg: #2e2620;
+    --color-badge-primary-text: #deb896;
+    --color-badge-primary-border: #6b5540;
+    /* ── Badge — Accent ── */
+    --color-badge-accent-bg: #2e2418;
+    --color-badge-accent-text: #e8a87c;
+    --color-badge-accent-border: #7a5540;
+    /* ── Badge — Success ── */
+    --color-badge-success-bg: #0d2818;
+    --color-badge-success-text: #a8f0cc;
+    --color-badge-success-border: #1e6840;
+    /* ── Badge — Error ── */
+    --color-badge-error-bg: #2a0d0d;
+    --color-badge-error-text: #ffbebe;
+    --color-badge-error-border: #6b1f1f;
+    /* ── Badge — Warning ── */
+    --color-badge-warning-bg: #2a1a08;
+    --color-badge-warning-text: #ffd9a8;
+    --color-badge-warning-border: #6b3e10;
+    /* ── Badge — Info ── */
+    --color-badge-info-bg: #0a1628;
+    --color-badge-info-text: #bdd9ff;
+    --color-badge-info-border: #1a3a6b;
+
+    /* ── Input ── */
+    --color-input-bg: #2b2a28;
+    --color-input-bg-disabled: #1c1c1b;
+    --color-input-border: #4a4845;
+    --color-input-border-hover: #6b6866;
+    --color-input-border-focus: #c4956a;
+    --color-input-text: #f4f1e8;
+    --color-input-placeholder: #4a4845;
+    --color-input-label: #e7e1d3;
+    --color-input-helper: #77736d;
+    --color-input-error-border: #ff6b6b;
+    --color-input-success-border: #3ddc84;
+
+    /* ── Skeleton ── */
+    --color-skeleton-base: #2b2a28;
+    --color-skeleton-highlight: #333230;
+
+    /* ── Misc ── */
+    --color-misc-overlay: rgba(0, 0, 0, 0.7);
+    --color-misc-scrollbar: #4a4845;
+    --color-misc-selection: rgba(196, 149, 106, 0.3);
+
+    /* ── Legacy compatibility aliases ── */
+    --theme-light-grid: var(--color-border-grid);
+    --theme-light-text: var(--color-text-primary);
+    --theme-light-bg: var(--color-background-base);
+    --theme-dark-grid: var(--color-background-secondary);
+    --theme-dark-text: var(--color-text-primary);
+    --theme-dark-bg: var(--color-background-base);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TAILWIND v4 THEME — exposes all tokens as utility classes
+   e.g. bg-background-base, text-text-primary, shadow-md, etc.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Background */
+  --color-background-base: var(--color-background-base);
+  --color-background-secondary: var(--color-background-secondary);
+  --color-background-tertiary: var(--color-background-tertiary);
+  --color-background-inverse: var(--color-background-inverse);
+
+  /* Surface */
+  --color-surface-default: var(--color-surface-default);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-surface-overlay: var(--color-surface-overlay);
+  --color-surface-sunken: var(--color-surface-sunken);
+  --color-surface-card: var(--color-surface-card);
+  --color-surface-tooltip: var(--color-surface-tooltip);
+  --color-surface-popover: var(--color-surface-popover);
+
+  /* Border */
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-default: var(--color-border-default);
+  --color-border-strong: var(--color-border-strong);
+  --color-border-focus: var(--color-border-focus);
+  --color-border-card: var(--color-border-card);
+  --color-border-grid: var(--color-border-grid);
+  --color-border-divider: var(--color-border-divider);
+  --color-border-inverse: var(--color-border-inverse);
+
+  /* Text */
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-soft: var(--color-text-soft);
+  --color-text-disabled: var(--color-text-disabled);
+  --color-text-inverse: var(--color-text-inverse);
+  --color-text-link: var(--color-text-link);
+  --color-text-link-hover: var(--color-text-link-hover);
+
+  /* Brand */
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-primary-hover: var(--color-brand-primary-hover);
+  --color-brand-primary-active: var(--color-brand-primary-active);
+  --color-brand-primary-subtle: var(--color-brand-primary-subtle);
+  --color-brand-primary-muted: var(--color-brand-primary-muted);
+  --color-brand-accent: var(--color-brand-accent);
+  --color-brand-accent-hover: var(--color-brand-accent-hover);
+  --color-brand-accent-active: var(--color-brand-accent-active);
+  --color-brand-accent-subtle: var(--color-brand-accent-subtle);
+  --color-brand-accent-muted: var(--color-brand-accent-muted);
+
+  /* Semantic */
+  --color-success-bg: var(--color-success-bg);
+  --color-success-bg-hover: var(--color-success-bg-hover);
+  --color-success-border: var(--color-success-border);
+  --color-success: var(--color-success);
+  --color-success-strong: var(--color-success-strong);
+  --color-success-text: var(--color-success-text);
+  --color-error-bg: var(--color-error-bg);
+  --color-error-bg-hover: var(--color-error-bg-hover);
+  --color-error-border: var(--color-error-border);
+  --color-error: var(--color-error);
+  --color-error-strong: var(--color-error-strong);
+  --color-error-text: var(--color-error-text);
+  --color-warning-bg: var(--color-warning-bg);
+  --color-warning-bg-hover: var(--color-warning-bg-hover);
+  --color-warning-border: var(--color-warning-border);
+  --color-warning: var(--color-warning);
+  --color-warning-strong: var(--color-warning-strong);
+  --color-warning-text: var(--color-warning-text);
+  --color-info-bg: var(--color-info-bg);
+  --color-info-bg-hover: var(--color-info-bg-hover);
+  --color-info-border: var(--color-info-border);
+  --color-info: var(--color-info);
+  --color-info-strong: var(--color-info-strong);
+  --color-info-text: var(--color-info-text);
+
+  /* Data Viz */
+  --color-data-series-1: var(--color-data-series-1);
+  --color-data-series-2: var(--color-data-series-2);
+  --color-data-series-3: var(--color-data-series-3);
+  --color-data-series-4: var(--color-data-series-4);
+  --color-data-series-5: var(--color-data-series-5);
+  --color-data-series-6: var(--color-data-series-6);
+  --color-data-series-7: var(--color-data-series-7);
+  --color-data-series-8: var(--color-data-series-8);
+  --color-data-axis: var(--color-data-axis);
+  --color-data-grid-line: var(--color-data-grid-line);
+  --color-data-label: var(--color-data-label);
+
+  /* Badge */
+  --color-badge-neutral-bg: var(--color-badge-neutral-bg);
+  --color-badge-neutral-text: var(--color-badge-neutral-text);
+  --color-badge-neutral-border: var(--color-badge-neutral-border);
+  --color-badge-primary-bg: var(--color-badge-primary-bg);
+  --color-badge-primary-text: var(--color-badge-primary-text);
+  --color-badge-primary-border: var(--color-badge-primary-border);
+  --color-badge-accent-bg: var(--color-badge-accent-bg);
+  --color-badge-accent-text: var(--color-badge-accent-text);
+  --color-badge-accent-border: var(--color-badge-accent-border);
+  --color-badge-success-bg: var(--color-badge-success-bg);
+  --color-badge-success-text: var(--color-badge-success-text);
+  --color-badge-success-border: var(--color-badge-success-border);
+  --color-badge-error-bg: var(--color-badge-error-bg);
+  --color-badge-error-text: var(--color-badge-error-text);
+  --color-badge-error-border: var(--color-badge-error-border);
+  --color-badge-warning-bg: var(--color-badge-warning-bg);
+  --color-badge-warning-text: var(--color-badge-warning-text);
+  --color-badge-warning-border: var(--color-badge-warning-border);
+  --color-badge-info-bg: var(--color-badge-info-bg);
+  --color-badge-info-text: var(--color-badge-info-text);
+  --color-badge-info-border: var(--color-badge-info-border);
+
+  /* Input */
+  --color-input-bg: var(--color-input-bg);
+  --color-input-bg-disabled: var(--color-input-bg-disabled);
+  --color-input-border: var(--color-input-border);
+  --color-input-border-hover: var(--color-input-border-hover);
+  --color-input-border-focus: var(--color-input-border-focus);
+  --color-input-text: var(--color-input-text);
+  --color-input-placeholder: var(--color-input-placeholder);
+  --color-input-label: var(--color-input-label);
+  --color-input-helper: var(--color-input-helper);
+  --color-input-error-border: var(--color-input-error-border);
+  --color-input-success-border: var(--color-input-success-border);
+
+  /* Skeleton */
+  --color-skeleton-base: var(--color-skeleton-base);
+  --color-skeleton-highlight: var(--color-skeleton-highlight);
+
+  /* Shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-inner: var(--shadow-inner);
+}
+
+/* ── Dark mode: class strategy for Tailwind v4 ── */
+@variant dark (&:where(.dark, .dark *));
+
+/* ── CRITICAL: Kill all native scroll for Reels-style snap ───────────────── */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden; /* Hard kill — snap system owns all scroll */
+  scroll-behavior: auto; /* Disable browser smooth scroll */
+}
+
+/* ── Hide scrollbars everywhere ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Accessibility: Visible Focus Indicators ── */
+:focus-visible {
+  outline: 2.5px solid var(--color-brand-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.dark :focus-visible {
+  outline: 2.5px solid var(--color-brand-primary-hover);
+}
+
+/* ── Screen Reader Only Utility ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

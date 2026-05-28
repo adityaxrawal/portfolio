@@ -1,96 +1,104 @@
 {
-	"name": "portfolio",
-	"version": "0.1.0",
-	"private": true,
-	"engines": {
-		"node": ">=20.0.0"
-	},
-	"sideEffects": false,
-	"dependencies": {
-		"@gsap/react": "^2.1.2",
-		"@react-three/drei": "^10.7.7",
-		"@react-three/fiber": "^9.6.1",
-		"@react-three/rapier": "^2.2.0",
-		"@vercel/analytics": "^2.0.1",
-		"framer-motion": "^12.38.0",
-		"gsap": "^3.14.2",
-		"lenis": "^1.3.21",
-		"lucide-react": "^1.16.0",
-		"meshline": "^3.3.1",
-		"octokit": "^5.0.5",
-		"react": "^19.2.4",
-		"react-confetti": "^6.4.0",
-		"react-dom": "^19.2.4",
-		"react-icons": "^5.6.0",
-		"react-rough-notation": "^1.0.8",
-		"react-router-dom": "^7.13.2",
-		"roughjs": "^4.6.6",
-		"three": "^0.184.0",
-		"tinycolor2": "^1.6.0",
-		"web-vitals": "^5.2.0"
-	},
-	"devDependencies": {
-		"@babel/plugin-transform-private-property-in-object": "^7.28.6",
-		"@testing-library/dom": "^10.4.1",
-		"@testing-library/jest-dom": "^6.9.1",
-		"@testing-library/react": "^16.3.2",
-		"@testing-library/user-event": "^14.6.1",
-		"@types/node": "^25.8.0",
-		"@types/react": "^19.2.14",
-		"@types/react-dom": "^19.2.3",
-		"@types/three": "^0.184.1",
-		"@types/tinycolor2": "^1.4.6",
-		"@typescript-eslint/eslint-plugin": "^8.59.3",
-		"@typescript-eslint/parser": "^8.59.3",
-		"@vercel/node": "^5.8.2",
-		"@vitejs/plugin-react": "^6.0.1",
-		"eslint": "^8.57.1",
-		"eslint-plugin-import": "^2.31.0",
-		"eslint-plugin-jsx-a11y": "^6.10.2",
-		"eslint-plugin-no-secrets": "^1.0.2",
-		"eslint-plugin-react": "^7.37.4",
-		"eslint-plugin-react-hooks": "^5.1.0",
-		"husky": "^9.1.7",
-		"jsdom": "^29.0.1",
-		"jsrepo": "^3.7.0",
-		"lint-staged": "^15.4.1",
-		"msw": "^2.7.0",
-		"prettier": "^3.5.1",
-		"rollup-plugin-visualizer": "latest",
-		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.59.3",
-		"vite": "^8.0.10",
-		"vitest": "^4.1.2"
-	},
-	"pnpm": {
-		"overrides": {
-			"fast-uri": "^3.1.2",
-			"minimatch": "^3.1.2",
-			"undici": "^7.1.2"
-		}
-	},
-	"scripts": {
-		"start": "vite",
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"test": "vitest",
-		"test:coverage": "vitest run --coverage",
-		"test:ci": "vitest run --passWithNoTests",
-		"type-check": "tsc --noEmit",
-		"lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives",
-		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
-		"format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
-		"prod": "node scripts/prod-check.js",
-		"analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
-		"prepare": "husky"
-	},
-	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx,css}": [
-			"eslint --fix",
-			"prettier --write"
-		]
-	},
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/rapier": "^2.2.0",
+    "@vercel/analytics": "^2.0.1",
+    "d3-geo": "^3.1.1",
+    "framer-motion": "^12.38.0",
+    "gsap": "^3.14.2",
+    "lenis": "^1.3.21",
+    "lucide-react": "^1.16.0",
+    "meshline": "^3.3.1",
+    "octokit": "^5.0.5",
+    "react": "^19.2.4",
+    "react-confetti": "^6.4.0",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.6.0",
+    "react-rough-notation": "^1.0.8",
+    "react-router-dom": "^7.13.2",
+    "roughjs": "^4.6.6",
+    "three": "^0.184.0",
+    "tinycolor2": "^1.6.0",
+    "web-vitals": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "^7.28.6",
+    "@tailwindcss/vite": "^4.3.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/d3-geo": "^3.1.0",
+    "@types/node": "^25.8.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.184.1",
+    "@types/tinycolor2": "^1.4.6",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
+    "@typescript-eslint/parser": "^8.59.3",
+    "@vercel/node": "^5.8.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-no-secrets": "^1.0.2",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "husky": "^9.1.7",
+    "jsdom": "^29.0.1",
+    "jsrepo": "^3.7.0",
+    "lint-staged": "^15.4.1",
+    "msw": "^2.7.0",
+    "postcss": "^8.5.14",
+    "prettier": "^3.5.1",
+    "rollup-plugin-visualizer": "latest",
+    "tailwindcss": "^4.3.0",
+    "ts-morph": "^28.0.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.3",
+    "vite": "^8.0.10",
+    "vitest": "^4.1.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "fast-uri": "^3.1.2",
+      "minimatch": "^3.1.2",
+      "undici": "^7.1.2"
+    }
+  },
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "prebuild": "node scripts/fetch-portfolio-v2-github-data.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ci": "vitest run --passWithNoTests",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+    "prod": "node scripts/prod-check.js",
+    "analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,css}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "eslintConfig": {
     "env": {
       "browser": true,
@@ -159,8 +167,14 @@
         ],
         "rules": {
           "no-unused-vars": "off",
-          "@typescript-eslint/no-unused-vars": "warn",
-          "@typescript-eslint/no-explicit-any": "warn",
+          "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+              "argsIgnorePattern": "^_",
+              "varsIgnorePattern": "^_"
+            }
+          ],
+          "@typescript-eslint/no-explicit-any": "error",
           "@typescript-eslint/ban-ts-comment": [
             "error",
             {
@@ -171,7 +185,8 @@
       },
       {
         "files": [
-          "src/features/companies/data/*.ts"
+          "src/features/companies/data/*.ts",
+          "src/features/companies/constants/*.ts"
         ],
         "rules": {
           "no-secrets/no-secrets": "off"
@@ -195,16 +210,16 @@
       }
     ]
   },
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	}
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

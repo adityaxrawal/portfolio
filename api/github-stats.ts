@@ -61,7 +61,9 @@ interface GitHubGraphQLResponse {
   };
 }
 
-function calculateStreak(weeks: any[]) {
+function calculateStreak(
+  weeks: Array<{ contributionDays: Array<{ contributionCount: number; date: string }> }>,
+) {
   const days = weeks
     .flatMap((w) => w.contributionDays)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -148,6 +150,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       totalStars,
       projectsShipped: meaningfulRepos.length,
       pullRequests: user.contributionsCollection.totalPullRequestContributions,
+      streak,
+      activeDaysCount,
       updatedAt: new Date().toISOString(),
     });
   } catch (error) {

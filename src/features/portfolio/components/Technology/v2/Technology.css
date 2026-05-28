@@ -1,0 +1,868 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Technology v2 — Full CSS
+   Layout: 2-column (main panel | right sidebar)
+   Prefix: tech-v2-
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────
+   1. ROOT SECTION & 2-COLUMN LAYOUT
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+  box-sizing: border-box;
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+
+.dark .tech-v2-section {
+  background-color: transparent !important;
+}
+
+.tech-v2-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+/* Main left panel */
+.tech-v2-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+}
+
+.tech-v2-main::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+/* Right panel */
+.tech-v2-right {
+  width: 26%;
+  min-width: 220px;
+  max-width: 290px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  padding: 1rem;
+  overflow-y: auto;
+  flex-shrink: 0;
+  background-color: var(--color-surface-card);
+  box-sizing: border-box;
+}
+
+.tech-v2-right::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+.dark .tech-v2-right {
+  background-color: var(--color-surface-default);
+  border-color: var(--color-border-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────
+   2. SHARED LABEL PATTERN (label + colored dot)
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.dark .tech-v2-label-row {
+  color: var(--color-text-tertiary);
+}
+
+.tech-v2-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  background-color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.tech-v2-dot-black {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: var(--color-text-primary);
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-dot-black {
+  background-color: var(--color-text-inverse);
+}
+
+/* ─────────────────────────────────────────────────────────
+   3. TOP HEADER AREA
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-header-outer {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  border: none;
+  background-color: transparent;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-header-outer {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* Left half — tagline + description */
+.tech-v2-header-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  padding: 0;
+  align-items: flex-start;
+}
+
+.tech-v2-header-tagline-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  min-width: 180px;
+}
+
+.tech-v2-header-divider-v {
+  width: 1px;
+  background-color: var(--color-border-subtle);
+  margin: 0 2.5rem;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-header-divider-v {
+  background-color: var(--color-border-subtle);
+}
+
+/* "My Skills. My Edge." serif heading */
+.tech-v2-tagline {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Playfair Display', serif;
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0.25rem 0 0;
+}
+
+.dark .tech-v2-tagline {
+  color: var(--color-text-primary);
+}
+
+.tech-v2-tagline-line {
+  font-size: var(--font-size-subHeading);
+}
+
+.tech-v2-tagline-highlight {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.tech-v2-tagline-underline {
+  position: absolute;
+  left: 5rem;
+  width: 30%;
+  height: 0.45rem;
+  color: var(--color-text-primary);
+}
+
+.dark .tech-v2-tagline-underline {
+  color: var(--color-text-primary);
+}
+
+/* Description text — right of the vertical divider */
+.tech-v2-header-desc {
+  font-family: monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+  flex: 1;
+  padding-top: 0.25rem;
+}
+
+.dark .tech-v2-header-desc {
+  color: var(--color-text-tertiary);
+}
+
+/* Vertical separator between left and right header halves */
+.tech-v2-header-sep {
+  display: none;
+}
+
+.dark .tech-v2-header-sep {
+  display: none;
+}
+
+/* Right half — approach flow */
+.tech-v2-header-right {
+  width: 40%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  background-color: var(--color-surface-card);
+}
+
+.dark .tech-v2-header-right {
+  background-color: var(--color-surface-default);
+  border-color: var(--color-border-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────
+   4. APPROACH FLOW (4 steps with arrows)
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-approach-steps {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  flex-wrap: nowrap;
+}
+
+.tech-v2-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.tech-v2-step-icon-wrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-surface-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-step-icon-wrap {
+  background-color: var(--color-surface-card);
+  border-color: var(--color-border-subtle);
+  color: var(--color-text-soft);
+}
+
+/* Colored badge dot in top-right corner of icon box */
+.tech-v2-step-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 9999px;
+  border: 2px solid var(--color-surface-card);
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-step-badge {
+  border-color: var(--color-surface-default);
+}
+
+.tech-v2-step-label {
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: center;
+  white-space: pre-line;
+  line-height: 1.4;
+}
+
+.dark .tech-v2-step-label {
+  color: var(--color-text-tertiary);
+}
+
+/* Arrow — aligned vertically to the icon box center (52px / 2 - 8px ≈ 18px margin-top) */
+.tech-v2-step-arrow {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--color-border-default);
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 1.1rem; /* ~18px = center of 52px icon box */
+  padding: 0 0.125rem;
+}
+
+.dark .tech-v2-step-arrow {
+  color: var(--color-border-default);
+}
+
+/* ─────────────────────────────────────────────────────────
+   5. TECHNICAL SKILLS SECTION
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-skills-outer-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 1;
+  background-color: var(--color-surface-card);
+  margin-top: 1rem;
+}
+
+.dark .tech-v2-skills-outer-card {
+  background-color: var(--color-surface-default);
+  border-color: var(--color-border-subtle);
+}
+
+.tech-v2-skills-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem 1rem;
+}
+
+/* 4-column grid */
+.tech-v2-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 0 1.75rem 1.5rem;
+  min-height: 0;
+}
+
+/* ─────────────────────────────────────────────────────────
+   6. SKILL CATEGORY COLUMN
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-category {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.25rem;
+  gap: 0.5rem;
+  background-color: var(--color-background-base);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+}
+
+.tech-v2-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.tech-v2-category-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tech-v2-category-dot {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  background-color: transparent !important;
+  border: 2px solid;
+}
+
+.tech-v2-category-icon {
+  display: flex;
+  align-items: center;
+}
+
+.dark .tech-v2-category-icon {
+  opacity: 0.7;
+}
+
+/* Skill item row */
+.tech-v2-skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--color-border-subtle);
+}
+
+.tech-v2-skill-item:last-child {
+  border-bottom: none;
+}
+
+.tech-v2-skill-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tech-v2-skill-name {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark .tech-v2-skill-name {
+  color: var(--color-text-primary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   7. BOTTOM ROW: CLOUD & DEVOPS + TOOLS & PRACTICES
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-skills-divider-h {
+  height: 1px;
+  background-color: var(--color-border-subtle);
+  width: 100%;
+  margin-top: auto;
+}
+
+.dark .tech-v2-skills-divider-h {
+  background-color: var(--color-border-subtle);
+}
+
+.tech-v2-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-shrink: 0;
+}
+
+.tech-v2-bottom-section {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.75rem;
+  gap: 1rem;
+}
+
+.tech-v2-bottom-section:first-child {
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.tech-v2-bottom-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.dark .tech-v2-bottom-section-header {
+  color: var(--color-text-tertiary);
+}
+
+.tech-v2-bottom-section-icon {
+  color: var(--color-text-soft);
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Chip grid */
+.tech-v2-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+/* Individual chip: icon on top, label below */
+.tech-v2-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 52px;
+}
+
+.tech-v2-chip-icon-box-light {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-background-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.tech-v2-chip-icon-box-light:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-default);
+}
+
+.dark .tech-v2-chip-icon-box-light {
+  background-color: var(--color-surface-default);
+  border-color: var(--color-border-subtle);
+}
+
+.dark .tech-v2-chip-icon-box-light:hover {
+  border-color: var(--color-border-default);
+}
+
+.tech-v2-chip-label {
+  font-family: monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-align: center;
+  white-space: pre-line;
+  line-height: 1.3;
+}
+
+.dark .tech-v2-chip-label {
+  color: var(--color-text-tertiary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   8. CORE STRENGTHS (right panel)
+   ───────────────────────────────────────────────────────── */
+
+.tech-v2-strengths-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.625rem;
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-strengths-header {
+  color: var(--color-text-tertiary);
+}
+
+.tech-v2-strengths-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tech-v2-strength-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.tech-v2-strength-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tech-v2-strength-icon-bare {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.dark .tech-v2-strength-icon-bare {
+  color: var(--color-text-soft);
+}
+
+.tech-v2-strength-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.tech-v2-strength-title {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.dark .tech-v2-strength-title {
+  color: var(--color-text-primary);
+}
+
+.tech-v2-strength-desc {
+  font-family: monospace;
+  font-size: 0.65rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.dark .tech-v2-strength-desc {
+  color: var(--color-text-tertiary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   9. RESPONSIVE / TABLET OVERRIDES (max-width: 1024px)
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* Approach steps shrink */
+  .tech-v2-header-right {
+    padding: 1rem;
+  }
+  .tech-v2-step-icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+  .tech-v2-step-icon-wrap svg {
+    width: 18px;
+    height: 18px;
+  }
+  .tech-v2-step-label {
+    font-size: 0.55rem;
+  }
+  .tech-v2-step-arrow {
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Core strengths shrink */
+  .tech-v2-right {
+    min-width: 180px;
+    width: 20%;
+    padding: 0.75rem;
+  }
+  .tech-v2-strength-item {
+    padding: 0.75rem 0;
+  }
+  .tech-v2-strength-title {
+    font-size: 0.7rem;
+  }
+  .tech-v2-strength-desc {
+    font-size: 0.6rem;
+  }
+  .tech-v2-strength-icon-bare {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+  }
+  .tech-v2-strength-icon-bare svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Grid shrink */
+  .tech-v2-skills-header {
+    padding: 1rem 1rem 0.5rem;
+  }
+  .tech-v2-category-grid {
+    gap: 0.5rem;
+    padding: 0 1rem 1rem;
+  }
+  .tech-v2-category {
+    padding: 0.75rem;
+    gap: 0.35rem;
+  }
+  .tech-v2-skill-item {
+    padding: 0.4rem 0;
+    gap: 0.5rem;
+  }
+  .tech-v2-skill-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .tech-v2-skill-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .tech-v2-skill-name {
+    font-size: 0.7rem;
+  }
+
+  /* Bottom section */
+  .tech-v2-bottom-section {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .tech-v2-chip-icon-box-light {
+    width: 36px;
+    height: 36px;
+  }
+  .tech-v2-chip-icon-box-light svg {
+    width: 18px;
+    height: 18px;
+  }
+  .tech-v2-chip-label {
+    font-size: 0.55rem;
+  }
+  .tech-v2-chip-grid {
+    gap: 0.5rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   10. RESPONSIVE / MOBILE OVERRIDES (max-width: 768px)
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hide 'My Approach' in header */
+  .tech-v2-header-right {
+    display: none !important;
+  }
+
+  /* Hide 'Core Strengths' sidebar */
+  .tech-v2-right {
+    display: none !important;
+  }
+
+  /* Hide header description and divider */
+  .tech-v2-header-desc,
+  .tech-v2-header-divider-v {
+    display: none !important;
+  }
+
+  /* Reduce main container padding */
+  .tech-v2-container {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Shrink outer card margin */
+  .tech-v2-skills-outer-card {
+    border-radius: 8px;
+  }
+
+  /* Header of technical skills */
+  .tech-v2-skills-header {
+    padding: 0.5rem 0.75rem 0.25rem;
+  }
+
+  .tech-v2-skills-header .tech-v2-label-row {
+    font-size: 0.55rem;
+  }
+
+  /* Change grid from 4 columns to 2x2 */
+  .tech-v2-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+    padding: 0 0.5rem 0.5rem;
+  }
+
+  /* Reduce category card padding */
+  .tech-v2-category {
+    padding: 0.4rem 0.35rem;
+    gap: 0.15rem;
+    border-radius: 8px;
+  }
+
+  .tech-v2-category-label {
+    font-size: 0.5rem;
+  }
+
+  /* Reduce skill item sizes */
+  .tech-v2-skill-item {
+    padding: 0.2rem 0;
+    gap: 0.3rem;
+  }
+
+  /* Smaller skill icons */
+  .tech-v2-skill-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .tech-v2-skill-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Smaller skill font */
+  .tech-v2-skill-name {
+    font-size: 0.55rem;
+  }
+
+  /* Bottom row adjustments */
+  .tech-v2-bottom-section {
+    padding: 0.4rem 0.5rem;
+    gap: 0.4rem;
+  }
+
+  .tech-v2-bottom-section-header {
+    font-size: 0.5rem;
+  }
+
+  /* Smaller chips */
+  .tech-v2-chip-grid {
+    gap: 0.25rem;
+  }
+  .tech-v2-chip-icon-box-light {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+  }
+  .tech-v2-chip-icon-box-light svg {
+    width: 12px;
+    height: 12px;
+  }
+  .tech-v2-chip-label {
+    font-size: 0.45rem;
+  }
+}
