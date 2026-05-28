@@ -83,6 +83,18 @@ function buildStatsPayload(user) {
   };
 }
 
+function getFallbackData() {
+  return {
+    totalContributions: 0,
+    totalStars: 0,
+    projectsShipped: 0,
+    pullRequests: 0,
+    streak: 0,
+    activeDaysCount: 0,
+    updatedAt: new Date().toISOString(),
+  };
+}
+
 export function createGitHubStatsDevMiddleware(mode) {
   return async (req, res, next) => {
     if (
@@ -99,12 +111,10 @@ export function createGitHubStatsDevMiddleware(mode) {
     const GITHUB_USERNAME = env.GITHUB_USERNAME;
 
     if (!GITHUB_TOKEN || !GITHUB_USERNAME) {
-      res.statusCode = 500;
-      res.end(
-        JSON.stringify({
-          error: 'GitHub credentials not configured in .env',
-        }),
-      );
+      console.error('GitHub credentials not configured in .env');
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(getFallbackData()));
       return;
     }
 
@@ -123,16 +133,20 @@ export function createGitHubStatsDevMiddleware(mode) {
 
       const json = await response.json();
       if (!json.data || !json.data.user) {
-        res.statusCode = 502;
-        res.end(JSON.stringify({ error: 'Failed to fetch from GitHub' }));
+        console.error('GitHub API error:', json);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(getFallbackData()));
         return;
       }
 
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(buildStatsPayload(json.data.user)));
-    } catch {
-      res.statusCode = 500;
-      res.end(JSON.stringify({ error: 'Internal server error' }));
+    } catch (e) {
+      console.error('Error fetching GitHub stats:', e);
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(getFallbackData()));
     }
   };
 }

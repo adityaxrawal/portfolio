@@ -36,8 +36,8 @@ const Loader = ({
   } as React.CSSProperties;
 
   useEffect(() => {
-    // Total cycle duration is 3s (3000ms)
-    const logInterval = 3000 / logLines.length;
+    // Total cycle duration is 2s (2000ms)
+    const logInterval = 2000 / logLines.length;
 
     // Start infinite logs sequence
     const intervalId = setInterval(() => {

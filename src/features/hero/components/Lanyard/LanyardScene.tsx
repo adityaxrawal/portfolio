@@ -10,7 +10,9 @@ import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import * as THREE from 'three';
 
 import { LanyardBand } from './LanyardBand';
-import './lanyardSetup';
+import { initMeshLine } from './lanyardSetup';
+
+initMeshLine();
 import './Lanyard.css';
 
 export interface LanyardSceneProps {

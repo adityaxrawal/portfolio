@@ -106,8 +106,19 @@ function calculateStreak(
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const fallbackData = {
+    totalContributions: 0,
+    totalStars: 0,
+    projectsShipped: 0,
+    pullRequests: 0,
+    streak: 0,
+    activeDaysCount: 0,
+    updatedAt: new Date().toISOString(),
+  };
+
   if (!GITHUB_TOKEN || !GITHUB_USERNAME) {
-    return res.status(500).json({ error: 'GitHub credentials not configured' });
+    console.error('GitHub credentials not configured');
+    return res.status(200).json(fallbackData);
   }
 
   try {
@@ -127,7 +138,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (!json.data || !json.data.user) {
       console.error('GitHub API error:', json);
-      return res.status(502).json({ error: 'Failed to fetch data from GitHub' });
+      return res.status(200).json(fallbackData);
     }
 
     const { user } = json.data;
@@ -156,6 +167,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   } catch (error) {
     console.error('Error fetching GitHub stats:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(200).json(fallbackData);
   }
 }
