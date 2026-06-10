@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-private-property-in-object": "^7.28.6",
+    "@playwright/test": "^1.60.0",
     "@size-limit/preset-app": "^12.1.0",
     "@tailwindcss/vite": "^4.3.0",
     "@testing-library/dom": "^10.4.1",
@@ -62,12 +63,14 @@
     "lint-staged": "^15.4.1",
     "msw": "^2.7.0",
     "octokit": "^5.0.5",
+    "playwright": "^1.60.0",
     "postcss": "^8.5.14",
     "prettier": "^3.5.1",
     "rollup-plugin-visualizer": "latest",
     "size-limit": "^12.1.0",
     "tailwindcss": "^4.3.0",
     "ts-morph": "^28.0.0",
+    "tsx": "^4.22.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
     "vite": "^8.0.10",
@@ -96,6 +99,7 @@
     "prod": "node scripts/prod-check.js",
     "analyze": "vite build && rollup-plugin-visualizer dist/stats.html",
     "size": "size-limit",
+    "screenshots": "tsx scripts/screenshots.ts",
     "prepare": "husky"
   },
   "lint-staged": {
