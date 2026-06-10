@@ -600,7 +600,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 100vw;
+    width: 100%;
     pointer-events: none;
   }
 
@@ -784,6 +784,63 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 100vw;
+    width: 100%;
+  }
+}
+
+/* --- ADDITIVE FIXES FOR VERTICAL OVERFLOW (SHORT SCREENS) --- */
+
+/* Fix for landscape mobile (e.g. iPhone 15 Pro Landscape: 852x393) */
+@media only screen and (max-height: 500px) and (orientation: landscape) {
+  .headline-header {
+    gap: 0.5rem;
+  }
+  .headline-title {
+    font-size: calc(var(--font-size-hero-heading, 4rem) * 0.45);
+  }
+  .image-container {
+    display: none;
+  }
+  .stats-container {
+    display: none;
+  }
+  .hero-section-scroll-container {
+    height: 15vh;
+  }
+}
+
+/* Fix for short desktop/tablets (e.g. iPad Mini Landscape: 1133x744) */
+@media only screen and (min-width: 1025px) and (max-height: 800px) {
+  .headline-header {
+    gap: 1.5rem;
+  }
+  .headline-title {
+    font-size: calc(var(--font-size-hero-heading, 4rem) * 0.7);
+  }
+  .stats-container {
+    gap: 0.5rem;
+  }
+  .stats-box {
+    padding: 0.4rem 1rem;
+  }
+  .impact-value {
+    font-size: 1.25rem;
+  }
+  .hero-section-scroll-container {
+    height: 10vh;
+  }
+}
+
+/* Fix for short portrait mobile (e.g. Min-Width 320x568) */
+@media only screen and (max-width: 767px) and (max-height: 600px) {
+  .headline-header {
+    gap: 0.5rem;
+  }
+  .headline-title {
+    font-size: calc(var(--font-size-hero-heading, 4rem) * 0.45);
+  }
+  .hero-section-scroll-container {
+    height: 10vh;
+    padding: 0.5rem 1rem;
   }
 }

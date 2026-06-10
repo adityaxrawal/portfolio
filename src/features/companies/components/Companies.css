@@ -109,3 +109,10 @@
     grid-template-columns: 1fr;
   }
 }
+
+@supports (min-height: 100dvh) {
+  .companies-page {
+    min-height: 100dvh;
+  }
+}
+

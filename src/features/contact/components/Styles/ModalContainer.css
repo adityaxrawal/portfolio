@@ -115,3 +115,12 @@
     border-radius: 12px;
   }
 }
+
+@supports (height: 100dvh) {
+  @media (max-width: 480px) {
+    .contact-info-modal {
+      height: calc(100dvh - 40px);
+    }
+  }
+}
+

@@ -7,3 +7,57 @@
     @apply font-serif text-text-inverse font-bold text-xl md:text-2xl pt-1;
   }
 }
+
+@layer utilities {
+  /* Section container */
+  .section-responsive {
+    width: 100%;
+    margin-block: var(--spacing-lg, clamp(2rem, 5vw, 4rem));
+  }
+
+  .section-responsive:first-child { margin-block-start: 0; }
+  .section-responsive:last-child  { margin-block-end: 0; }
+
+  /* Inner content width cap */
+  .section-inner {
+    max-width: var(--max-content-width, 1200px);
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* Intrinsic auto-wrapping grid (for card groups) */
+  .grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--spacing-md, clamp(1rem, 3vw, 2rem));
+  }
+
+  /* Chip/icon grid */
+  .grid-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 80px), 1fr));
+    gap: var(--spacing-sm, clamp(0.75rem, 1.5vw, 1rem));
+  }
+
+  /* Flex row that wraps gracefully */
+  .flex-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm, clamp(0.75rem, 1.5vw, 1rem));
+    align-items: center;
+  }
+
+  /* Column-to-row switcher at tablet width */
+  .flex-switcher {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md, clamp(1rem, 3vw, 2rem));
+  }
+
+  @media (min-width: 768px) {
+    .flex-switcher {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}

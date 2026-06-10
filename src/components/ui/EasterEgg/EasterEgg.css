@@ -43,3 +43,10 @@
     padding: 15px 20px;
   }
 }
+
+@supports (height: 100dvh) {
+  .easter-egg-container {
+    height: 100dvh;
+  }
+}
+
