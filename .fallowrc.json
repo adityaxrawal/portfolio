@@ -1,0 +1,29 @@
+{
+  "entry": [
+    ".size-limit.js",
+    "api/**/*.ts",
+    "jsrepo.config.mts",
+    "public/sw.js",
+    "scripts/**/*.ts",
+    "scripts/**/*.mjs"
+  ],
+  "ignorePatterns": [
+    "src/features/companies/constants/hrList.ts",
+    "src/features/work/constants/*.architecture.ts",
+    "src/features/work/constants/architecture.icons.ts",
+    "api/github-stats.ts",
+    "scripts/dev-github-api.mjs",
+    "src/features/hero/components/Lanyard/lanyardCardDrawing.ts"
+  ],
+  "ignoreDependencies": [
+    "@vercel/node"
+  ],
+  "health": {
+    "maxCyclomatic": 30,
+    "maxCognitive": 40,
+    "maxCrap": 500
+  },
+  "rules": {
+    "unused-files": "off"
+  }
+}

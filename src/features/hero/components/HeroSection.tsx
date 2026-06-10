@@ -8,7 +8,7 @@ import ContactButton from '@/components/ui/ContactButton';
 import Loader from '@/components/ui/Loader';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
 import { LOADER_LOGS } from '@/config';
-import { useGitHubStats } from '@/features/portfolio';
+import { useGitHubStats } from '@/features/portfolio/hooks/useGitHubStats';
 import {
   fadeUp,
   staggerContainer,
