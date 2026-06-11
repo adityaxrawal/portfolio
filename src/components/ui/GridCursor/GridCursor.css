@@ -1,0 +1,93 @@
+/* Custom cursor SVG was removed, so we retain the native cursor */
+
+.grid-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Canvas for the glowing grid cells */
+.grid-cursor-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Precision SVG Reticle Wrapper */
+.grid-cursor-reticle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  will-change: transform, width, height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cursor-text {
+  position: absolute;
+  font-size: 8px;
+  font-weight: 600;
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ==================================================
+   THEME STYLES (Light & Dark)
+================================================= */
+
+/* Dark Theme (Light Accent) */
+.theme-dark .grid-cursor-canvas {
+  mix-blend-mode: screen;
+}
+.theme-dark .grid-cursor-reticle {
+  mix-blend-mode: screen;
+}
+.theme-dark .grid-cursor-text {
+  color: var(--color-text-primary);
+  text-shadow: 0 0 8px var(--color-text-primary);
+}
+
+/* Light Theme (Dark Accent) */
+.theme-light .grid-cursor-canvas {
+  mix-blend-mode: multiply;
+}
+.theme-light .grid-cursor-reticle {
+  mix-blend-mode: multiply;
+}
+.theme-light .grid-cursor-text {
+  color: var(--color-text-primary);
+  text-shadow: none;
+}
+
+/* ==================================================
+   MOBILE / RESPONSIVE
+================================================= */
+
+@media (max-width: 768px) {
+  .grid-cursor-container {
+    display: none !important;
+  }
+  
+  /* Restore cursor on mobile */
+  body, a, button, input, textarea, select, [role="button"], .orbit-point, .featured-card {
+    cursor: auto !important;
+  }
+  a, button, [role="button"], .orbit-point, .featured-card {
+    cursor: pointer !important;
+  }
+}
