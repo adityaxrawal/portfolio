@@ -10,7 +10,7 @@ interface ScrollRevealProps {
   className?: string;
   staggerChildren?: boolean;
   blur?: boolean;
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: React.ElementType;
 }
 
 export const ScrollReveal = ({

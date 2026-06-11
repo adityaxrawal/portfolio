@@ -11,9 +11,6 @@ import { LOADER_LOGS } from '@/config';
 import { useGitHubStats } from '@/features/portfolio/hooks/useGitHubStats';
 import {
   fadeUp,
-  staggerContainer,
-  staggerChild,
-  textReveal,
   ease,
 } from '@/lib/animations';
 import { gsap, gsapEase } from '@/lib/gsap';
@@ -146,7 +143,7 @@ const HeroSection = ({
               </RevealHeading>
             </div>
             <section className="headline-content">
-              <RevealTextBody className="timeline-item" delay={0.4}>
+              <RevealTextBody className="timeline-item" delay={0.4} as="div">
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">CURRENTLY</span>
                 <p className="timeline-text">
@@ -154,7 +151,7 @@ const HeroSection = ({
                   high-impact analytics platform serving Mars Inc.
                 </p>
               </RevealTextBody>
-              <RevealTextBody className="timeline-item" delay={0.5}>
+              <RevealTextBody className="timeline-item" delay={0.5} as="div">
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">PREVIOUSLY</span>
                 <p className="timeline-text">
@@ -162,7 +159,7 @@ const HeroSection = ({
                   handling ~500K monthly API requests.
                 </p>
               </RevealTextBody>
-              <RevealTextBody className="timeline-item" delay={0.6}>
+              <RevealTextBody className="timeline-item" delay={0.6} as="div">
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">ALSO</span>
                 <p className="timeline-text">

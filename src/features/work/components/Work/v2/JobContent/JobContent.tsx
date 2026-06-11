@@ -162,7 +162,7 @@ function JobContent({ job }: JobContentProps) {
               <div className="jc-impact-list">
                 {config.impacts.map((item, i) => (
                   <Fragment key={item.text.slice(0, 30)}>
-                    <RevealTextBody delay={0.4 + i * 0.1}>
+                    <RevealTextBody delay={0.4 + i * 0.1} as="div">
                       <ImpactItem {...item} />
                     </RevealTextBody>
                     {i < config.impacts.length - 1 && (

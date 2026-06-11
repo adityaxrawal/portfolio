@@ -1,4 +1,3 @@
-import type { ComponentType } from 'react';
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
