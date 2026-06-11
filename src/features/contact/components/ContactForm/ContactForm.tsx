@@ -131,7 +131,7 @@ const ContactForm = ({
     setInsertValue('');
     setInsertTextValue('');
     setSelectedLinkText('');
-  }, []);
+  }, [setInsertPanel, setInsertTextValue, setInsertValue, setSelectedLinkText]);
 
   const restoreEditorSelection = useCallback(() => {
     if (!savedRangeRef.current) {
@@ -143,7 +143,7 @@ const ContactForm = ({
     if (!selection) return;
     selection.removeAllRanges();
     selection.addRange(savedRangeRef.current!);
-  }, []);
+  }, [editorRef, savedRangeRef]);
 
   const runEditorCommand = useCallback(
     (command: string, value: string | null = null) => {
@@ -152,7 +152,7 @@ const ContactForm = ({
       document.execCommand(command, false, value ?? undefined);
       syncMessageState();
     },
-    [restoreEditorSelection, syncMessageState],
+    [editorRef, restoreEditorSelection, syncMessageState],
   );
 
   const insertText = useCallback(
@@ -161,7 +161,7 @@ const ContactForm = ({
       document.execCommand('insertText', false, text);
       syncMessageState();
     },
-    [syncMessageState],
+    [editorRef, syncMessageState],
   );
 
   const handleUnavailableAction = useCallback(
@@ -199,7 +199,7 @@ const ContactForm = ({
         );
       }
     },
-    [showLimitedWarning],
+    [setSubject, showLimitedWarning],
   );
 
   const handleEditorBeforeInput = useCallback(
@@ -237,7 +237,7 @@ const ContactForm = ({
         );
       }
     },
-    [insertText, showLimitedWarning],
+    [editorRef, insertText, showLimitedWarning],
   );
 
   const handleEditorInput = useCallback(() => {
@@ -251,7 +251,7 @@ const ContactForm = ({
     }
 
     setMessageLength(Math.min(length, MESSAGE_LIMIT));
-  }, [showLimitedWarning]);
+  }, [editorRef, setMessageLength, showLimitedWarning]);
 
   const handleEditorPaste = useCallback(
     (event: React.ClipboardEvent) => {
@@ -278,7 +278,7 @@ const ContactForm = ({
         );
       }
     },
-    [insertText, showLimitedWarning],
+    [editorRef, insertText, showLimitedWarning],
   );
 
   const handleOpenInsertPanel = useCallback(
@@ -292,7 +292,7 @@ const ContactForm = ({
       setSelectedLinkText(selectedText);
       setInsertPanel((currentPanel) => (currentPanel === panel ? null : panel));
     },
-    [getMessageSelection],
+    [getMessageSelection, savedRangeRef, setInsertPanel, setInsertTextValue, setInsertValue, setSelectedLinkText],
   );
 
   const handleInsertPanelSubmit = useCallback(
@@ -350,6 +350,7 @@ const ContactForm = ({
     },
     [
       clearInsertPanel,
+      editorRef,
       insertTextValue,
       insertValue,
       notify,
@@ -364,7 +365,7 @@ const ContactForm = ({
   const handleCloseInsertPanel = useCallback(() => {
     clearInsertPanel();
     editorRef.current?.focus();
-  }, [clearInsertPanel]);
+  }, [clearInsertPanel, editorRef]);
 
   const handleToolbarMouseDown = useCallback((event: React.MouseEvent) => {
     const target = event.target as Element;
@@ -399,7 +400,7 @@ const ContactForm = ({
         formattedMessage: editorRef.current?.innerHTML || messageText,
       });
     },
-    [notify, onSubmit, subject],
+    [editorRef, notify, onSubmit, subject],
   );
 
   return (
