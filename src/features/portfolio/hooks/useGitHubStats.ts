@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { fetchGitHubStats } from '../services/githubStats.service';
 import type { GitHubStatsResponse } from '../types/github.types';
+import { useLoading } from '@/app/providers/LoadingContext';
 
 export interface UseGitHubStatsOptions {
   /** When true, surfaces fetch errors as a user-facing message (GithubMetrics). */
@@ -13,6 +14,8 @@ export function useGitHubStats(options: UseGitHubStatsOptions = {}) {
   const [stats, setStats] = useState<GitHubStatsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  const { resolveTask } = useLoading();
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -31,7 +34,8 @@ export function useGitHubStats(options: UseGitHubStatsOptions = {}) {
     }
 
     setLoading(false);
-  }, [reportError]);
+    resolveTask('github-stats');
+  }, [reportError, resolveTask]);
 
   useEffect(() => {
     void load();

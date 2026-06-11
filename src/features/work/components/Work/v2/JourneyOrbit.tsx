@@ -1,5 +1,7 @@
+import { useInView } from 'framer-motion';
+import gsap from 'gsap';
 import { Rocket, Flag } from 'lucide-react';
-import { Fragment, type FC } from 'react';
+import { Fragment, type FC, useRef, useEffect } from 'react';
 
 import { WorkExperience } from '../../../constants/workExperience';
 
@@ -16,6 +18,31 @@ const JourneyOrbit: FC<JourneyOrbitProps> = ({
   setActiveJob,
   setDirection,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: '-50px' });
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (isInView && !hasAnimated.current && containerRef.current) {
+      hasAnimated.current = true;
+      const elements = containerRef.current.querySelectorAll(
+        '.orbit-point, .orbit-connector, .orbit-center-point'
+      );
+      
+      gsap.fromTo(
+        elements,
+        { scale: 0.5, opacity: 0 },
+        { 
+          scale: 1, 
+          opacity: 1, 
+          duration: 0.6, 
+          stagger: 0.1, 
+          ease: 'back.out(1.5)',
+        }
+      );
+    }
+  }, [isInView]);
+
   // Sort jobs in ascending chronological order (oldest to newest)
   const chronologicalJobs = [...WorkExperience].reverse();
   const totalJobs = WorkExperience.length;
@@ -191,7 +218,7 @@ const JourneyOrbit: FC<JourneyOrbitProps> = ({
   items.push(renderNextMissionNode());
 
   return (
-    <div className="journey-orbit-wrapper">
+    <div className="journey-orbit-wrapper" ref={containerRef}>
       <div className="journey-orbit-header">
         <span className="journey-orbit-label">MY JOURNEY ORBIT</span>
       </div>
