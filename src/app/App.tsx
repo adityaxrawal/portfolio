@@ -7,13 +7,16 @@ import tinycolor from 'tinycolor2';
 import './App.css';
 
 import { AppProvider, useSharedState } from './providers/AppContext';
+import { LoadingProvider, useLoading } from './providers/LoadingContext';
 
 import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/ui/EasterEgg';
 import GlobalErrorFallback from '@/components/ui/GlobalErrorFallback';
+import Loader from '@/components/ui/Loader';
 import { THEME_COLORS } from '@/config';
 import { AppRoutes } from '@/config/routes';
 import { useKonamiCode } from '@/hooks';
+import { useFontsReady } from '@/hooks/useFontsReady';
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
@@ -26,11 +29,13 @@ function App() {
 
   return (
     <Router>
-      <AppProvider>
-        <Analytics />
-        {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
-        <ThemedApp />
-      </AppProvider>
+      <LoadingProvider>
+        <AppProvider>
+          <Analytics />
+          {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
+          <ThemedApp />
+        </AppProvider>
+      </LoadingProvider>
     </Router>
   );
 }
@@ -62,12 +67,18 @@ function ThemedApp() {
       : THEME_COLORS.LIGHT_GRID,
   };
 
+  // Font readiness hook
+  useFontsReady();
+  const { isAppReady } = useLoading();
+
   return (
     <div className="App" style={appStyles}>
       <div className="grid-background" style={bgStyles} />
       <AppUpdatePrompt />
       <ErrorBoundary FallbackComponent={GlobalErrorFallback}>
         <AppRoutes />
+        {/* Global initial loader */}
+        <Loader isFullScreen={true} isAppReady={isAppReady} />
       </ErrorBoundary>
     </div>
   );

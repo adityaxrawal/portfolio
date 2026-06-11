@@ -11,6 +11,7 @@ import * as THREE from 'three';
 
 import { LanyardBand } from './LanyardBand';
 import { initMeshLine } from './lanyardSetup';
+import { useLoading } from '@/app/providers/LoadingContext';
 
 initMeshLine();
 import './Lanyard.css';
@@ -37,6 +38,7 @@ export default function LanyardScene({
   const prefersReducedMotion = useReducedMotion();
   const [lanyardState, setLanyardState] = useState<LanyardState>('entering');
   const [isUserTriggered, setIsUserTriggered] = useState(false);
+  const { isAppReady, resolveTask } = useLoading();
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -57,9 +59,13 @@ export default function LanyardScene({
 
     if (lanyardState === 'entering') {
       if (!isUserTriggered) {
-        timeout = setTimeout(() => {
-          setLanyardState('retracting');
-        }, 2400); // 900ms animation + 1500ms pause
+        // Wait until app is completely ready before dropping the lanyard
+        if (isAppReady) {
+          // A tiny delay to let the loader start fading out
+          timeout = setTimeout(() => {
+            setLanyardState('retracting');
+          }, 300);
+        }
       } else {
         timeout = setTimeout(() => {
           setLanyardState('dropped');
@@ -72,7 +78,7 @@ export default function LanyardScene({
     }
 
     return () => clearTimeout(timeout);
-  }, [lanyardState, isMobile, prefersReducedMotion, isUserTriggered]);
+  }, [lanyardState, isMobile, prefersReducedMotion, isUserTriggered, isAppReady]);
 
   const handlePullTabClick = () => {
     setIsUserTriggered(true);
@@ -141,9 +147,11 @@ export default function LanyardScene({
             camera={{ position: position, fov: fov }}
             dpr={[1, isMobile ? 1.5 : 2]}
             gl={{ alpha: transparent }}
-            onCreated={({ gl }) =>
-              gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
-            }
+            onCreated={({ gl }) => {
+              gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1);
+              // Report readiness when WebGL context is created and ready
+              resolveTask('lanyard');
+            }}
           >
             <ambientLight intensity={Math.PI} />
             <Suspense fallback={null}>

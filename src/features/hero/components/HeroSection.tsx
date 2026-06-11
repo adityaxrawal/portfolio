@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { lazy, Suspense } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { HiLocationMarker, HiArrowDown } from 'react-icons/hi';
 import { LuAsterisk } from 'react-icons/lu';
 
@@ -14,11 +14,15 @@ import {
   staggerContainer,
   staggerChild,
   textReveal,
+  ease,
 } from '@/lib/animations';
+import { gsap, gsapEase } from '@/lib/gsap';
 
+import { RevealHeading, RevealTextBody, RevealBox, RevealHighlight, RevealButton } from '@/components/ui/Animations';
 import './HeroSection.css';
 
-// Lazy load the heavy 3D component
+
+// Lazy load the heavy 3D Lanyard component
 const Lanyard = lazy(() => import('./Lanyard/Lanyard'));
 
 const TECH_STACK_TAGS = [
@@ -38,28 +42,75 @@ const HeroSection = ({
   slideIndex: _slideIndex,
 }: Partial<SnapSlideProps> = {}) => {
   const { isDarkTheme } = useSharedState();
+  const prefersReducedMotion = useReducedMotion();
+  const headlineRef = useRef<HTMLDivElement>(null);
 
   const { stats, loading: loadingStats } = useGitHubStats();
+
+  // ── GSAP character-by-character headline reveal ──────────────────────────
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const container = headlineRef.current;
+    if (!container) return;
+
+    // Select only the English lines (not the Hindi नमस्ते)
+    const line2 = container.querySelector('.headline-text-2') as HTMLElement | null;
+    const line3 = container.querySelector('.headline-text-3') as HTMLElement | null;
+
+    if (!line2 || !line3) return;
+
+    // Helper: wrap each word in a span to preserve safe splitting
+    const wrapWords = (el: HTMLElement) => {
+      // Save the original HTML to restore structure on cleanup
+      const originalHTML = el.innerHTML;
+      const words = el.innerText.split(' ').filter(Boolean);
+      el.innerHTML = words
+        .map((w) => `<span class="gsap-word" style="display:inline-block;overflow:hidden;">${w}</span>`)
+        .join(' ');
+      return { el, originalHTML };
+    };
+
+    const saved2 = wrapWords(line2);
+    // For line3, the highlight span complicates things — just animate the whole line
+    const tl = gsap.timeline({ delay: 0.35 });
+    tl.fromTo(
+      line2.querySelectorAll('.gsap-word'),
+      { y: '105%', opacity: 0 },
+      { y: '0%', opacity: 1, duration: 0.65, stagger: 0.06, ease: gsapEase.smooth },
+    ).fromTo(
+      line3,
+      { y: 28, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: gsapEase.smooth },
+      '-=0.3',
+    );
+
+    return () => {
+      tl.kill();
+      // Restore original HTML to avoid stale DOM on re-renders
+      saved2.el.innerHTML = saved2.originalHTML;
+    };
+  }, [prefersReducedMotion]);
 
   return (
     <motion.section
       className="hero-section-wrapper"
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '100%', height: '100%', position: 'relative' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       variants={fadeUp}
     >
+
+
       <div className={`hero-section ${isDarkTheme ? 'dark' : ''}`}>
-        <div className="headline">
+        <div ref={headlineRef} className="headline">
           {/* --- ORIGINAL TEXT CONTENT BELOW --- */}
           <section className="headline-header">
             <motion.div
               className="headline-pre-title"
-              variants={textReveal}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8, ease: ease.smooth }}
             >
               <span className="headline-pre-title-text">
                 Full Stack Engineer / Frontend Systems
@@ -68,79 +119,65 @@ const HeroSection = ({
                 Bengaluru, India <HiLocationMarker className="location-icon" />
               </span>
             </motion.div>
-            <motion.div
-              className="headline-title"
-              variants={textReveal}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.2 }}
-            >
-              <span className="headline-text-1">नमस्ते.</span>
-              <span className="headline-text-2">I build software</span>
-              <span className="headline-text-3">
+            <div className="headline-title">
+              <RevealHeading delay={0.2} as="h1" className="headline-text-1">नमस्ते.</RevealHeading>
+              <RevealHeading delay={0.25} as="h1" className="headline-text-2">I build software</RevealHeading>
+              <RevealHeading delay={0.3} as="h1" className="headline-text-3">
                 people{' '}
-                <span className="headline-text-highlight">
-                  actually
-                  <svg
-                    className="underline-svg"
-                    viewBox="0 0 100 12"
-                    preserveAspectRatio="none"
-                  >
-                    <path
-                      d="M 2 11 C 30 0.5, 70 0.5, 98 11"
-                      stroke="currentColor"
-                      strokeWidth="3.5"
-                      strokeLinecap="round"
-                      fill="none"
-                    />
-                  </svg>
-                </span>{' '}
-                use
-              </span>
-            </motion.div>
-            <motion.section
-              className="headline-content"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              transition={{ delayChildren: 0.3 }}
-            >
-              <motion.div className="timeline-item" variants={staggerChild}>
+                <RevealHighlight delay={0.6}>
+                  <span className="headline-text-highlight">
+                    actually
+                    <svg
+                      className="underline-svg"
+                      viewBox="0 0 100 12"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M 2 11 C 30 0.5, 70 0.5, 98 11"
+                        stroke="currentColor"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        fill="none"
+                      />
+                    </svg>
+                  </span>
+                </RevealHighlight>
+                {' '}use
+              </RevealHeading>
+            </div>
+            <section className="headline-content">
+              <RevealTextBody className="timeline-item" delay={0.4}>
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">CURRENTLY</span>
                 <p className="timeline-text">
                   Leading frontend engineering at <strong>MathCo</strong> for a
                   high-impact analytics platform serving Mars Inc.
                 </p>
-              </motion.div>
-              <motion.div className="timeline-item" variants={staggerChild}>
+              </RevealTextBody>
+              <RevealTextBody className="timeline-item" delay={0.5}>
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">PREVIOUSLY</span>
                 <p className="timeline-text">
                   Built serverless architecture at <strong>LeadSquared</strong>{' '}
                   handling ~500K monthly API requests.
                 </p>
-              </motion.div>
-              <motion.div className="timeline-item" variants={staggerChild}>
+              </RevealTextBody>
+              <RevealTextBody className="timeline-item" delay={0.6}>
                 <div className="timeline-dot"></div>
                 <span className="timeline-label">ALSO</span>
                 <p className="timeline-text">
                   Built a Resume Builder platform adopted by 5,000+ users in
                   under a year.
                 </p>
-              </motion.div>
-            </motion.section>
-            <motion.section
-              className="headline-buttons"
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.6 }}
-            >
-              <ContactButton>Let&apos;s Build Together</ContactButton>
-            </motion.section>
+              </RevealTextBody>
+            </section>
+            <section className="headline-buttons">
+              <RevealButton delay={0.7}>
+                <ContactButton>Let&apos;s Build Together</ContactButton>
+              </RevealButton>
+            </section>
           </section>
-        </div>
+        </div> {/* end headline ref div */}
 
         {/* ── Lanyard: physics rope + interactive flip card ── */}
         <section className="image-container">
@@ -156,18 +193,9 @@ const HeroSection = ({
             <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
           </Suspense>
         </section>
-        <motion.section
-          className="stats-container"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <section className="stats-container">
           {/* Box 1: System Status */}
-          <motion.div
-            className="stats-box system-status"
-            variants={staggerChild}
-          >
+          <RevealBox delay={0.4} className="stats-box system-status">
             <div className="stats-box-header">
               <span>SYSTEM STATUS</span>
               <span className="terminal-icon">{`>_`}</span>
@@ -186,27 +214,26 @@ const HeroSection = ({
                 <span>Learning</span>
               </div>
             </div>
-          </motion.div>
+          </RevealBox>
 
           {/* Box 2: Tech Stack */}
-          <motion.div className="stats-box tech-stack" variants={staggerChild}>
+          <RevealBox delay={0.6} className="stats-box tech-stack">
             <div className="stats-box-header">
               <span>TECH STACK</span>
             </div>
             <div className="tech-tags">
-              {TECH_STACK_TAGS.map((tech) => (
-                <span key={tech} className="tech-tag">
-                  {tech}
-                </span>
+              {TECH_STACK_TAGS.map((tech, i) => (
+                <div key={i} className="tech-tag-reveal-wrapper">
+                  <span className="tech-tag">
+                    {tech}
+                  </span>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </RevealBox>
 
           {/* Box 3: Impact Snapshot */}
-          <motion.div
-            className="stats-box impact-snapshot"
-            variants={staggerChild}
-          >
+          <RevealBox delay={0.8} className="stats-box impact-snapshot">
             <div className="stats-box-header">
               <span>IMPACT SNAPSHOT</span>
             </div>
@@ -240,8 +267,8 @@ const HeroSection = ({
                 <span className="impact-label">Pull Requests</span>
               </div>
             </div>
-          </motion.div>
-        </motion.section>
+          </RevealBox>
+        </section>
       </div>
       <div
         className={`hero-section-scroll-container ${isDarkTheme ? 'dark' : ''}`}
