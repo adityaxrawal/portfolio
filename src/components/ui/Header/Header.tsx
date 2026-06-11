@@ -1,12 +1,13 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Mail, FileText } from 'lucide-react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 import { useSharedState } from '@/app';
 import Alert from '@/components/ui/Alert';
 import { darkModeColorList, lightModeColorList, links } from '@/config';
 import { hoverSpring } from '@/lib/animations';
+import gsap from '@/lib/gsap';
 
 import './Header.css';
 
@@ -18,6 +19,8 @@ const Header = () => {
     type: '',
   });
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -40,6 +43,21 @@ const Header = () => {
     }));
   }, []);
 
+  // GSAP stagger entrance for nav items
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const nav = navRef.current;
+    if (!nav) return;
+    const items = nav.querySelectorAll('.nav-social-link, .nav-email-section, .nav-availability, .nav-switch-wrapper');
+    if (!items.length) return;
+
+    gsap.fromTo(
+      items,
+      { y: -14, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, stagger: 0.07, ease: 'power3.out', delay: 0.15 },
+    );
+  }, [prefersReducedMotion]);
+
   return (
     <>
       {alert.message && (
@@ -57,10 +75,11 @@ const Header = () => {
         />
       )}
       <motion.nav
+        ref={navRef}
         className={`nav-bar ${isDarkTheme ? 'theme-dark' : 'theme-light'}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Left Section: Email + Availability */}
         <div className="nav-left-group">

@@ -5,39 +5,30 @@ import { Route, Routes } from 'react-router-dom';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Loader from '@/components/ui/Loader';
 import { LOADER_LOGS } from '@/config';
+import { useLoading } from '@/app/providers/LoadingContext';
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-let hasBooted = false;
-
-const lazyWithBootDelay = <T extends ComponentType<unknown>>(
-  factory: () => Promise<{ default: T }>,
-) => {
-  return lazy(async () => {
-    if (!hasBooted) {
-      hasBooted = true;
-      const [module] = await Promise.all([factory(), delay(3000)]);
-      return module;
-    }
-    return factory();
-  });
-};
-
-const PortfolioPage = lazyWithBootDelay(
+const PortfolioPage = lazy(
   () => import('@/features/portfolio/components/PortfolioPage/PortfolioPage'),
 );
-const Companies = lazyWithBootDelay(() => import('@/features/companies'));
+const Companies = lazy(() => import('@/features/companies'));
 
 let isFirstRoute = true;
 
 function LazyRoute({ children }: { children: React.ReactNode }) {
   const [isFirst] = useState(isFirstRoute);
+  const { resolveTask } = useLoading();
 
   useEffect(() => {
     if (isFirst) {
       isFirstRoute = false;
     }
   }, [isFirst]);
+
+  useEffect(() => {
+    // Once this wrapper mounts (meaning Suspense is resolved or resolving), 
+    // we can signal that the initial component chunk has loaded.
+    resolveTask('portfolio-chunk');
+  }, [resolveTask]);
 
   return (
     <ErrorBoundary>

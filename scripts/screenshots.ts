@@ -1,6 +1,8 @@
-import { chromium, Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
+
+import { chromium, Page } from 'playwright';
+
 import { config } from './screenshot.config';
 
 /**
