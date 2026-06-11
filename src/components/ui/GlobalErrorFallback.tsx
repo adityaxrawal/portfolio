@@ -17,7 +17,7 @@ export default function GlobalErrorFallback({
         We encountered an unexpected error while loading the application. Our team has been notified.
       </p>
       
-      {process.env.NODE_ENV === 'development' && (
+      {import.meta.env.DEV && (
         <div className="mb-8 max-h-48 w-full max-w-2xl overflow-auto rounded border border-error-border bg-surface-raised p-4 text-left font-mono text-sm text-text-primary">
           <p className="font-bold text-error">{(error as Error).name}: {(error as Error).message}</p>
           <pre className="mt-2 text-text-muted">{(error as Error).stack}</pre>

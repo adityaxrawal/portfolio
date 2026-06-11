@@ -46,7 +46,11 @@ function ThemedApp() {
   // ── Sync .dark class on <html> for CSS custom properties + Tailwind v4 dark: ──
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkTheme);
-    localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+    try {
+      localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+    } catch {
+      console.warn('LocalStorage is not available');
+    }
   }, [isDarkTheme]);
 
   const getContrastColor = (bgColor: string) => {

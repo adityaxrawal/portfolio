@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 
-import { lightModeColorList } from '@/config';
+import { lightModeColorList, darkModeColorList } from '@/config';
 
 interface SharedState {
   isDarkTheme: boolean;
@@ -20,8 +20,23 @@ export const SharedStateContext = createContext<SharedState | undefined>(
 );
 export const ViewContext = createContext<ViewState | undefined>(undefined);
 
-// Initial values
-const initialBackgroundColor = lightModeColorList[0];
+// Initial values loader
+const getInitialTheme = () => {
+  if (typeof window !== 'undefined') {
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme) return theme === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch {
+      return false;
+    }
+  }
+  return false;
+};
+
+const getInitialBackgroundColor = (isDark: boolean) => {
+  return isDark ? darkModeColorList[0] : lightModeColorList[0];
+};
 
 interface AppProviderProps {
   children: ReactNode;
@@ -29,9 +44,9 @@ interface AppProviderProps {
 
 // Combined provider component
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [isDarkTheme, setDarkTheme] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState(
-    initialBackgroundColor,
+  const [isDarkTheme, setDarkTheme] = useState<boolean>(() => getInitialTheme());
+  const [backgroundColor, setBackgroundColor] = useState<string>(() =>
+    getInitialBackgroundColor(getInitialTheme())
   );
   const [currentClassName, setCurrentClassName] = useState('');
 

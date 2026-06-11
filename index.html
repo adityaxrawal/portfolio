@@ -113,7 +113,21 @@
       body {
         background-color: #f4f1ec; /* Matches THEME_COLORS.LIGHT_BG */
       }
+      html.dark body {
+        background-color: #1C1C1B; /* Matches THEME_COLORS.DARK_BG */
+      }
     </style>
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          var isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
