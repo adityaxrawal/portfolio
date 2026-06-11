@@ -20,6 +20,7 @@ export function useCardTexture(
     if (!ctx) return null;
     drawCard(ctx);
     return setupCardTexture(new THREE.CanvasTexture(canvas), uvRect);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drawCard, uvRect, ...deps]);
 
   useEffect(() => {

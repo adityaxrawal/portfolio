@@ -23,7 +23,7 @@ export interface LanyardSceneProps {
   transparent?: boolean;
 }
 
-type LanyardState = 'entering' | 'dropped' | 'retracting' | 'retracted';
+type LanyardState = 'waiting' | 'entering' | 'dropped' | 'retracting' | 'retracted';
 
 export default function LanyardScene({
   position = [0, 0, 30],
@@ -36,7 +36,7 @@ export default function LanyardScene({
   );
 
   const prefersReducedMotion = useReducedMotion();
-  const [lanyardState, setLanyardState] = useState<LanyardState>('entering');
+  const [lanyardState, setLanyardState] = useState<LanyardState>('waiting');
   const [isUserTriggered, setIsUserTriggered] = useState(false);
   const { isAppReady, resolveTask } = useLoading();
 
@@ -57,15 +57,18 @@ export default function LanyardScene({
 
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (lanyardState === 'entering') {
+    if (lanyardState === 'waiting') {
+      if (isAppReady) {
+        // Wait briefly after loader fades before dropping
+        timeout = setTimeout(() => {
+          setLanyardState('entering');
+        }, 500);
+      }
+    } else if (lanyardState === 'entering') {
       if (!isUserTriggered) {
-        // Wait until app is completely ready before dropping the lanyard
-        if (isAppReady) {
-          // A tiny delay to let the loader start fading out
-          timeout = setTimeout(() => {
-            setLanyardState('retracting');
-          }, 300);
-        }
+        timeout = setTimeout(() => {
+          setLanyardState('retracting');
+        }, 2400); // 900ms animation + 1500ms pause
       } else {
         timeout = setTimeout(() => {
           setLanyardState('dropped');
@@ -155,7 +158,7 @@ export default function LanyardScene({
           >
             <ambientLight intensity={Math.PI} />
             <Suspense fallback={null}>
-              <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+              <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60} paused={!isAppReady}>
                 <LanyardBand isMobile={isMobile} />
               </Physics>
             </Suspense>

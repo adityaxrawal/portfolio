@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef, useMemo } from 'react';
 import gsap from 'gsap';
 
 import type { ArchitectureDiagramConfig } from '../../types/architecture.types';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function ArchitectureDiagram({ config }: Props) {
-  const rows = config.rows ?? [];
+  const rows = useMemo(() => config.rows ?? [], [config.rows]);
   const containerRef = useRef<HTMLDivElement>(null);
   const isSlideActive = useIsSlideActive();
 
