@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { Fragment } from 'react';
 
 import { useSharedState } from '../../../../../../app';
+import { RevealBox, RevealTextBody } from '../../../../../../components/ui/Animations';
 import type { WorkExperienceItem } from '../../../../constants/workExperience';
 
 import { ArchitecturePanel } from './ArchitecturePanel';
@@ -12,7 +13,6 @@ import { detailedSections, jobConfigs } from './jobConfigs';
 import { MetricCard } from './MetricCard';
 import { TechStack } from './TechStack';
 
-import { RevealBox, RevealTextBody } from '../../../../../../components/ui/Animations';
 
 import '../JobContent.css';
 

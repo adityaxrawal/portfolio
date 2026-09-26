@@ -11,6 +11,7 @@ import * as THREE from 'three';
 
 import { LanyardBand } from './LanyardBand';
 import { initMeshLine } from './lanyardSetup';
+
 import { useLoading } from '@/app/providers/LoadingContext';
 
 initMeshLine();

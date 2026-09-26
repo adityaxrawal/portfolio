@@ -1,7 +1,9 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, ElementType, ReactNode } from 'react';
-import { ease } from '@/lib/animations';
+
 import { useIsSlideActive } from '../SnapLayout/SlideActiveContext';
+
+import { ease } from '@/lib/animations';
 import './Animations.css';
 
 interface Props {
@@ -19,6 +21,7 @@ export const RevealHeading = ({ children, delay = 0, className = '', as: Tag = '
   const shouldAnimate = isInView && isSlideActive;
 
   // Fallback to div if Tag can't be wrapped by motion directly cleanly, but standard HTML tags work fine
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- framer-motion dynamic tag
   const MotionTag: any = (motion as any)[Tag as any] || motion.h2;
 
   return (

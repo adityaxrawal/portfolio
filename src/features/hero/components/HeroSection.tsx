@@ -4,6 +4,7 @@ import { HiLocationMarker, HiArrowDown } from 'react-icons/hi';
 import { LuAsterisk } from 'react-icons/lu';
 
 import { useSharedState } from '@/app';
+import { RevealHeading, RevealTextBody, RevealBox, RevealHighlight, RevealButton } from '@/components/ui/Animations';
 import ContactButton from '@/components/ui/ContactButton';
 import Loader from '@/components/ui/Loader';
 import type { SnapSlideProps } from '@/components/ui/SnapLayout';
@@ -15,7 +16,6 @@ import {
 } from '@/lib/animations';
 import { gsap, gsapEase } from '@/lib/gsap';
 
-import { RevealHeading, RevealTextBody, RevealBox, RevealHighlight, RevealButton } from '@/components/ui/Animations';
 import './HeroSection.css';
 
 

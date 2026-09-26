@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
+
 import { useIsSlideActive } from '../SnapLayout/SlideActiveContext';
 import './Animations.css';
 

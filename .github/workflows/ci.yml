@@ -5,10 +5,16 @@ on:
     branches:
       - main
       - development
+      - dev-fe
+      - dev-fe-v2
+      - prod-fe
   pull_request:
     branches:
       - main
       - development
+      - dev-fe
+      - dev-fe-v2
+      - prod-fe
 
 # CRITICAL: Enforce least privilege to prevent token hijacking
 permissions:
@@ -21,7 +27,7 @@ concurrency:
 
 env:
   NODE_VERSION: '20.x'
-  PNPM_VERSION: '10'
+  PNPM_VERSION: '12'
 
 jobs:
   quality-and-types:

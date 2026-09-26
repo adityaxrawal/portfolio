@@ -2,7 +2,6 @@
  * @deprecated Use `Footer/v2` instead.
  */
 import { useState } from 'react';
-
 // App Context
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 

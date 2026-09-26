@@ -2,8 +2,8 @@ import { useCompaniesFilter } from '../hooks/useCompaniesFilter';
 import type { Company } from '../types';
 
 import { useSharedState } from '@/app';
-import { THEME_COLORS } from '@/config';
 import { RevealHeading, RevealTextBody, RevealBox } from '@/components/ui/Animations';
+import { THEME_COLORS } from '@/config';
 
 import './Companies.css';
 

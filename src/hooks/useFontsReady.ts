@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useLoading } from '@/app/providers/LoadingContext';
 
 export function useFontsReady() {

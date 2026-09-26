@@ -1,6 +1,7 @@
 import { memo, type ReactNode } from 'react';
-import { useSnapScrollActiveIndex } from './SnapScrollContext';
+
 import { SlideActiveContext } from './SlideActiveContext';
+import { useSnapScrollActiveIndex } from './SnapScrollContext';
 
 export interface SnapSlideProps {
   children: ReactNode;

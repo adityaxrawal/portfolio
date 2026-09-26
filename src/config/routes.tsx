@@ -1,10 +1,10 @@
 import { lazy, Suspense, useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { useLoading } from '@/app/providers/LoadingContext';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import Loader from '@/components/ui/Loader';
 import { LOADER_LOGS } from '@/config';
-import { useLoading } from '@/app/providers/LoadingContext';
 
 const PortfolioPage = lazy(
   () => import('@/features/portfolio/components/PortfolioPage/PortfolioPage'),

@@ -56,6 +56,7 @@ export const RevealText = ({
   // Split by words
   const words = text.split(' ');
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- framer-motion dynamic tag
   const MotionTag = (motion as any)[tag as any] || motion.div;
 
   return (

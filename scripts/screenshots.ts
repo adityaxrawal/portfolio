@@ -112,7 +112,7 @@ async function runScreenshots() {
           await page.goto(config.url, { waitUntil: 'networkidle', timeout: 30000 });
           loaded = true;
           break;
-        } catch (e) {
+        } catch {
           console.warn(`  Attempt ${attempt} failed to load URL. Retrying...`);
         }
       }

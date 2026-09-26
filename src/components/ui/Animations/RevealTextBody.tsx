@@ -1,13 +1,16 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
-import { ease } from '@/lib/animations';
+
 import { useIsSlideActive } from '../SnapLayout/SlideActiveContext';
+
+import { ease } from '@/lib/animations';
 import './Animations.css';
 
 interface Props {
   children: ReactNode;
   delay?: number;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic motion element type
   as?: any;
 }
 
@@ -18,6 +21,7 @@ export const RevealTextBody = ({ children, delay = 0, className = '', as = 'p' }
 
   const shouldAnimate = isInView && isSlideActive;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- framer-motion dynamic tag
   const MotionTag: any = (motion as any)[as as any] || motion.p;
 
   return (

@@ -4,6 +4,7 @@
  */
 
 import { CORE_STRENGTHS } from '../../../constants/technologyV2.constants';
+
 import { RevealTextBody } from '@/components/ui/Animations';
 
 export function CoreStrengths() {

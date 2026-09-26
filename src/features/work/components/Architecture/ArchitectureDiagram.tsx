@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useRef, useMemo } from 'react';
 import gsap from 'gsap';
+import { Fragment, useEffect, useRef, useMemo } from 'react';
 
+import { useIsSlideActive } from '../../../../components/ui/SnapLayout/SlideActiveContext';
 import type { ArchitectureDiagramConfig } from '../../types/architecture.types';
 
 import { ArchitectureRow } from './ArchitectureRow';
 import { ArchitectureVerticalConnector } from './ArchitectureVerticalConnector';
-import { useIsSlideActive } from '../../../../components/ui/SnapLayout/SlideActiveContext';
 import './Architecture.css';
 
 interface Props {

@@ -59,6 +59,7 @@ export const ScrollReveal = ({
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- framer-motion dynamic tag
   const MotionTag = motion[tag as keyof typeof motion] as any;
 
   return (

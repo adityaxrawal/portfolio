@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { fetchGitHubStats } from '../services/githubStats.service';
 import type { GitHubStatsResponse } from '../types/github.types';
+
 import { useLoading } from '@/app/providers/LoadingContext';
 
 export interface UseGitHubStatsOptions {

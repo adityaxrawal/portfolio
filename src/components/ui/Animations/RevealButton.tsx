@@ -1,5 +1,6 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, type MotionProps } from 'framer-motion';
 import { useRef, ReactNode, ElementType } from 'react';
+
 import { useIsSlideActive } from '../SnapLayout/SlideActiveContext';
 import './Animations.css';
 
@@ -17,7 +18,7 @@ export const RevealButton = ({ children, delay = 0, className = '', as = 'div' }
 
   const shouldAnimate = isInView && isSlideActive;
 
-  const MotionTag: any = (motion as any)[as as any] || motion.div;
+  const MotionTag = motion.create(as as Parameters<typeof motion.create>[0]) as React.ComponentType<MotionProps & { className?: string; ref?: React.Ref<HTMLElement> }>;
 
   return (
     <MotionTag
