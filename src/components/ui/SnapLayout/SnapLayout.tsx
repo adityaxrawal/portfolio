@@ -35,9 +35,25 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({
     [goToSlide],
   );
 
+  // Expose for testing/automation
+  React.useEffect(() => {
+    (
+      window as unknown as { __portfolioGoToSlide?: (i: number) => void }
+    ).__portfolioGoToSlide = handleGoToSlide;
+    return () => {
+      delete (
+        window as unknown as { __portfolioGoToSlide?: (i: number) => void }
+      ).__portfolioGoToSlide;
+    };
+  }, [handleGoToSlide]);
+
   return (
     <SnapScrollContext.Provider
-      value={{ activeIndex, goToSlide: handleGoToSlide, totalSlides: children.length }}
+      value={{
+        activeIndex,
+        goToSlide: handleGoToSlide,
+        totalSlides: children.length,
+      }}
     >
       {/* Custom grid-based architectural cursor */}
       <GridCursor />
@@ -60,7 +76,9 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({
           }}
         >
           {children.map((child, idx) => (
-            <SnapSlide key={idx} slideIndex={idx}>{child}</SnapSlide>
+            <SnapSlide key={idx} slideIndex={idx}>
+              {child}
+            </SnapSlide>
           ))}
         </div>
       </div>

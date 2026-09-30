@@ -47,4 +47,5 @@ github_repos.json
 *.stackdump
 test/
 test-results/
+playwright-report/
 screenshots
