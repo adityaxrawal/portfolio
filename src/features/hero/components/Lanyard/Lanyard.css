@@ -1,6 +1,7 @@
 .lanyard-container {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 }
 
 .lanyard-wrapper {
@@ -25,16 +26,23 @@
     pointer-events: none;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
   }
 
   .lanyard-wrapper {
     pointer-events: auto;
-    /* transform: scale(0.7); */
     transform-origin: top center;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     left: 0;
     right: 0;
+  }
+
+  @media (max-width: 767.98px) {
+    .lanyard-wrapper {
+      transform: scale(0.85);
+    }
   }
 
   .lanyard-pull-tab {
@@ -85,9 +93,4 @@
   }
 }
 
-@supports (height: 100dvh) {
-  .lanyard-container {
-    height: 100dvh;
-  }
-}
-
+/* dvh already applied as progressive enhancement above — @supports block removed */
