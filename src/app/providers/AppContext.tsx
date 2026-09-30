@@ -20,18 +20,15 @@ export const SharedStateContext = createContext<SharedState | undefined>(
 );
 export const ViewContext = createContext<ViewState | undefined>(undefined);
 
-// Initial values loader
-const getInitialTheme = () => {
-  if (typeof window !== 'undefined') {
-    try {
-      const theme = localStorage.getItem('theme');
-      if (theme) return theme === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    } catch {
-      return false;
-    }
+// Initial values loader: defaults to dark theme unless explicitly set to 'light'
+const getInitialTheme = (): boolean => {
+  try {
+    return (
+      typeof window === 'undefined' || localStorage.getItem('theme') !== 'light'
+    );
+  } catch {
+    return true;
   }
-  return false;
 };
 
 const getInitialBackgroundColor = (isDark: boolean) => {
@@ -44,9 +41,9 @@ interface AppProviderProps {
 
 // Combined provider component
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [isDarkTheme, setDarkTheme] = useState<boolean>(() => getInitialTheme());
+  const [isDarkTheme, setDarkTheme] = useState<boolean>(getInitialTheme);
   const [backgroundColor, setBackgroundColor] = useState<string>(() =>
-    getInitialBackgroundColor(getInitialTheme())
+    getInitialBackgroundColor(isDarkTheme),
   );
   const [currentClassName, setCurrentClassName] = useState('');
 

@@ -46,6 +46,13 @@ function ThemedApp() {
   // ── Sync .dark class on <html> for CSS custom properties + Tailwind v4 dark: ──
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkTheme);
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute(
+        'content',
+        isDarkTheme ? THEME_COLORS.DARK_BG : THEME_COLORS.LIGHT_BG,
+      );
+    }
     try {
       localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
     } catch {
