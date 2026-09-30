@@ -1,24 +1,35 @@
 import { memo, type ReactNode } from 'react';
 
+import { SlideActiveContext } from './SlideActiveContext';
+import { useSnapScrollActiveIndex } from './SnapScrollContext';
+
 export interface SnapSlideProps {
   children: ReactNode;
   isActive?: boolean;
   goToSlide?: (index: number) => void;
-  slideIndex?: number;
+  slideIndex: number;
 }
 
-export const SnapSlide = memo(function SnapSlide({ children }: SnapSlideProps) {
+export const SnapSlide = memo(function SnapSlide({
+  children,
+  slideIndex,
+}: SnapSlideProps) {
+  const activeIndex = useSnapScrollActiveIndex();
+  const isSlideActive = activeIndex === slideIndex;
+
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100dvh',
-        boxSizing: 'border-box',
-        flexShrink: 0,
-        paddingTop: '6vh',
-      }}
-    >
-      {children}
-    </div>
+    <SlideActiveContext.Provider value={isSlideActive}>
+      <div
+        style={{
+          width: '100%',
+          height: '100dvh',
+          boxSizing: 'border-box',
+          flexShrink: 0,
+          paddingTop: 'max(3rem, 6dvh)',
+        }}
+      >
+        {children}
+      </div>
+    </SlideActiveContext.Provider>
   );
 });

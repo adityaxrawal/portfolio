@@ -52,7 +52,11 @@ const writeStore = (store: RateLimitStore) => {
     return;
   }
 
-  window.localStorage.setItem(CONTACT_RATE_LIMIT_KEY, JSON.stringify(store));
+  try {
+    window.localStorage.setItem(CONTACT_RATE_LIMIT_KEY, JSON.stringify(store));
+  } catch {
+    console.warn('LocalStorage is not available');
+  }
 };
 
 const getStoredDeviceId = () => {
@@ -60,19 +64,23 @@ const getStoredDeviceId = () => {
     return 'server-render';
   }
 
-  const existingDeviceId = window.localStorage.getItem(CONTACT_DEVICE_KEY);
+  try {
+    const existingDeviceId = window.localStorage.getItem(CONTACT_DEVICE_KEY);
 
-  if (existingDeviceId) {
-    return existingDeviceId;
+    if (existingDeviceId) {
+      return existingDeviceId;
+    }
+
+    const nextDeviceId =
+      window.crypto?.randomUUID?.() ||
+      `device-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+    window.localStorage.setItem(CONTACT_DEVICE_KEY, nextDeviceId);
+
+    return nextDeviceId;
+  } catch {
+    return 'fallback-device-id';
   }
-
-  const nextDeviceId =
-    window.crypto?.randomUUID?.() ||
-    `device-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-
-  window.localStorage.setItem(CONTACT_DEVICE_KEY, nextDeviceId);
-
-  return nextDeviceId;
 };
 
 const fetchJsonWithTimeout = async (url: string) => {

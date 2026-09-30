@@ -12,6 +12,8 @@ import * as THREE from 'three';
 import { LanyardBand } from './LanyardBand';
 import { initMeshLine } from './lanyardSetup';
 
+import { useLoading } from '@/app/providers/LoadingContext';
+
 initMeshLine();
 import './Lanyard.css';
 
@@ -22,7 +24,7 @@ export interface LanyardSceneProps {
   transparent?: boolean;
 }
 
-type LanyardState = 'entering' | 'dropped' | 'retracting' | 'retracted';
+type LanyardState = 'waiting' | 'entering' | 'dropped' | 'retracting' | 'retracted';
 
 export default function LanyardScene({
   position = [0, 0, 30],
@@ -35,8 +37,9 @@ export default function LanyardScene({
   );
 
   const prefersReducedMotion = useReducedMotion();
-  const [lanyardState, setLanyardState] = useState<LanyardState>('entering');
+  const [lanyardState, setLanyardState] = useState<LanyardState>('waiting');
   const [isUserTriggered, setIsUserTriggered] = useState(false);
+  const { isAppReady, resolveTask } = useLoading();
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -55,7 +58,14 @@ export default function LanyardScene({
 
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (lanyardState === 'entering') {
+    if (lanyardState === 'waiting') {
+      if (isAppReady) {
+        // Wait briefly after loader fades before dropping
+        timeout = setTimeout(() => {
+          setLanyardState('entering');
+        }, 500);
+      }
+    } else if (lanyardState === 'entering') {
       if (!isUserTriggered) {
         timeout = setTimeout(() => {
           setLanyardState('retracting');
@@ -72,7 +82,7 @@ export default function LanyardScene({
     }
 
     return () => clearTimeout(timeout);
-  }, [lanyardState, isMobile, prefersReducedMotion, isUserTriggered]);
+  }, [lanyardState, isMobile, prefersReducedMotion, isUserTriggered, isAppReady]);
 
   const handlePullTabClick = () => {
     setIsUserTriggered(true);
@@ -141,13 +151,15 @@ export default function LanyardScene({
             camera={{ position: position, fov: fov }}
             dpr={[1, isMobile ? 1.5 : 2]}
             gl={{ alpha: transparent }}
-            onCreated={({ gl }) =>
-              gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
-            }
+            onCreated={({ gl }) => {
+              gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1);
+              // Report readiness when WebGL context is created and ready
+              resolveTask('lanyard');
+            }}
           >
             <ambientLight intensity={Math.PI} />
             <Suspense fallback={null}>
-              <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60}>
+              <Physics gravity={gravity} timeStep={isMobile ? 1 / 30 : 1 / 60} paused={!isAppReady}>
                 <LanyardBand isMobile={isMobile} />
               </Physics>
             </Suspense>

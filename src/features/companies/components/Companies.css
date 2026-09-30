@@ -1,6 +1,7 @@
 .companies-page {
   min-height: 100vh;
-  padding: 4rem 10% 8rem 10%;
+  min-height: 100dvh;
+  padding: 4rem clamp(1rem, 10%, 8rem) 8rem;
   transition: background-color 0.5s ease;
 }
 
@@ -109,3 +110,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* dvh already applied as progressive enhancement above */

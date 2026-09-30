@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/dark_sunglasses.png" />
@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, interactive-widget=resizes-content"
     />
-    <meta name="theme-color" content="#667eea" />
+    <meta name="theme-color" content="#1C1C1B" />
 
     <!-- Primary Meta Tags -->
     <title>Aditya Rawal | Full Stack Engineer</title>
@@ -111,9 +111,25 @@
 
     <style>
       body {
+        background-color: #1c1c1b; /* Matches THEME_COLORS.DARK_BG (default) */
+      }
+      html:not(.dark) body {
         background-color: #f4f1ec; /* Matches THEME_COLORS.LIGHT_BG */
       }
     </style>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('theme');
+          var isDark = theme ? theme === 'dark' : true;
+          if (!isDark) {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

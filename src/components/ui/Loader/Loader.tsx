@@ -10,6 +10,7 @@ interface LoaderProps {
   isFullScreen?: boolean;
   ignoreSessionStorage?: boolean;
   systemMessage?: { pending: string[]; done: string[] };
+  isAppReady?: boolean;
 }
 
 const Loader = ({
@@ -22,8 +23,15 @@ const Loader = ({
     ],
     done: ['// SYSTEMS SYNCHRONIZED.', '// WELCOME ABOARD.'],
   },
+  isAppReady = false,
 }: LoaderProps) => {
-  const [isVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    if (isAppReady) {
+      setIsVisible(false);
+    }
+  }, [isAppReady]);
   const [activeLogIndex, setActiveLogIndex] = useState(0);
   const shouldReduceMotion = useReducedMotion();
   const { backgroundColor } = useSharedState();

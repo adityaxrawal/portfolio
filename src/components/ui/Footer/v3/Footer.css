@@ -7,11 +7,15 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1rem, 2vh, 2rem) clamp(1rem, 2vw, 2.5rem);
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   .footer-v3-root {
     padding: 64px 24px 40px 24px;
   }
@@ -23,6 +27,9 @@
   grid-template-columns: 2fr 3fr;
   gap: 0;
   position: relative;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
 }
 
 @media (max-width: 1280px) {
@@ -214,6 +221,7 @@
   position: relative;
   width: 100%;
   height: 380px;
+  overflow: hidden;
 }
 @media (min-width: 768px) {
   .footer-map-container {
@@ -297,14 +305,14 @@
 .location-card-city {
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.5rem;
+  font-size: 11px;
   color: var(--color-text-primary);
 }
 
 .location-card-timezone {
   font-family: var(--font-mono);
   font-weight: 400;
-  font-size: 0.35rem;
+  font-size: 9.5px;
   color: var(--color-text-muted);
   margin-top: 2px;
 }
@@ -344,7 +352,9 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  margin-top: 64px;
+  margin-top: clamp(1rem, 2vh, 2rem);
+  margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
@@ -533,12 +543,13 @@
   background-color: var(--color-surface-card);
   border: 1.5px dotted var(--color-border-strong);
   border-radius: 12px;
-  padding: 1rem 1.5rem;
+  padding: clamp(0.75rem, 1.2vh, 1.15rem) clamp(1rem, 1.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 1rem;
+  margin-top: 0;
+  flex-shrink: 0;
 }
 
 @media (min-width: 1280px) {
@@ -1046,14 +1057,14 @@
   display: none;
 }
 
-/* MOBILE SPECIFIC LAYOUT (max-width: 767px) */
-@media (max-width: 767px) {
+/* MOBILE SPECIFIC LAYOUT (max-width: 767.98px) */
+@media (max-width: 767.98px) {
   .footer-v3-root {
     height: 100%;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: hidden;
-    padding: 2vh 0 0 0; /* Add top padding for fixed 6vh navbar */
+    padding: 2vh 0 env(safe-area-inset-bottom, 0px) 0; /* Add top padding for fixed 6vh navbar and safe-area inset */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1374,5 +1385,187 @@
   .tech-item svg {
     width: 14px !important;
     height: 14px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4K & HIGH-RESOLUTION DESKTOP ENHANCEMENTS
+   Applies to 4K displays (3840x2160, 2560x1440 tall viewports, ultrawide tall)
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1921px), (min-height: 1100px) and (min-width: 1280px) {
+  .footer-v3-root {
+    padding: clamp(2rem, 3.5vh, 4rem) clamp(2rem, 3vw, 4rem);
+  }
+
+  .footer-hero-container {
+    gap: clamp(32px, 3vw, 64px);
+  }
+
+  .footer-section-label span {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+  }
+
+  .footer-headline h1 {
+    font-size: clamp(68px, 4.8vw, 102px);
+    line-height: 1.05;
+  }
+
+  .footer-subtitle {
+    font-size: clamp(16px, 1vw, 21px);
+    line-height: 1.65;
+    margin-bottom: clamp(36px, 3.5vh, 52px);
+  }
+
+  .cta-button {
+    min-width: 260px;
+    height: 64px;
+    padding: 0 0.6rem 0 2.2rem;
+    gap: 1.8rem;
+  }
+
+  .cta-button-text {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+  }
+
+  .cta-button-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+
+  .cta-availability {
+    font-size: 15px;
+    gap: 10px;
+  }
+
+  .footer-map-container,
+  .world-map-wrapper {
+    height: clamp(460px, 34vh, 640px);
+  }
+
+  .world-map-svg-container {
+    transform: scale(1.3) translateX(12%) translateY(-4%);
+  }
+
+  .location-card {
+    padding: 0.8rem 1.1rem;
+    border-radius: 12px;
+  }
+
+  .location-card-city {
+    font-size: 13.5px;
+  }
+
+  .location-card-timezone {
+    font-size: 11.5px;
+  }
+
+  .footer-services-grid {
+    gap: 20px;
+    margin-top: clamp(1.5rem, 3vh, 3.5rem);
+    margin-bottom: clamp(1rem, 2vh, 2rem);
+  }
+
+  .service-card {
+    height: clamp(155px, 11vh, 190px);
+    padding: clamp(22px, 1.6vw, 28px);
+    border-radius: 14px;
+  }
+
+  .service-card-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .service-card-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .service-card-title {
+    font-size: clamp(17px, 1.1vw, 20px);
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+
+  .service-card-desc {
+    font-size: clamp(13px, 0.8vw, 14.5px);
+  }
+
+  .system-status-card {
+    height: clamp(155px, 11vh, 190px);
+    padding: clamp(22px, 1.6vw, 28px);
+    border-radius: 14px;
+  }
+
+  .system-status-title {
+    font-size: 12px;
+  }
+
+  .system-status-active {
+    font-size: 28px;
+  }
+
+  .system-status-desc {
+    font-size: 12.5px;
+  }
+
+  .radar-container {
+    width: 72px;
+    height: 72px;
+  }
+
+  .radar-circle-outer {
+    width: 72px;
+    height: 72px;
+  }
+
+  .radar-circle-mid {
+    width: 52px;
+    height: 52px;
+  }
+
+  .radar-circle-inner {
+    width: 24px;
+    height: 24px;
+  }
+
+  .footer-bottom-bar {
+    padding: clamp(1.2rem, 1.5vh, 1.6rem) clamp(1.6rem, 2vw, 2.4rem);
+    border-radius: 14px;
+  }
+
+  .bottom-block-title {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .copyright-line1 {
+    font-size: 12.5px;
+  }
+
+  .copyright-line2 {
+    font-size: 11.5px;
+  }
+
+  .tech-name {
+    font-size: 13px;
+  }
+
+  .tech-item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .deployment-date {
+    font-size: 13px;
+  }
+
+  .social-link-btn {
+    width: 38px;
+    height: 38px;
   }
 }

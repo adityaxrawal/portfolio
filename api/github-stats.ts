@@ -68,7 +68,7 @@ function calculateStreak(
     .flatMap((w) => w.contributionDays)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  let streak = 0;
+  let currentStreak = 0;
   let activeDaysCount = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -88,10 +88,10 @@ function calculateStreak(
         const diff = Math.floor((today.getTime() - dayDate.getTime()) / (1000 * 60 * 60 * 24));
         if (diff <= 1) {
           foundStart = true;
-          streak = 1;
+          currentStreak = 1;
         }
       } else {
-        streak++;
+        currentStreak++;
       }
     } else {
       if (foundStart) break; // End of streak
@@ -102,7 +102,7 @@ function calculateStreak(
     }
   }
 
-  return { streak, activeDaysCount };
+  return { streak: currentStreak, activeDaysCount };
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {

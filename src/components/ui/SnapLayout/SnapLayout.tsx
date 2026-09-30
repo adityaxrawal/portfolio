@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
 
 import { SnapScrollContext } from './SnapScrollContext';
 import { SnapSlide } from './SnapSlide';
 
 import { useSharedState } from '@/app';
+import GridCursor from '@/components/ui/GridCursor/GridCursor';
 import Header from '@/components/ui/Header';
+import ScrollProgress from '@/components/ui/ScrollProgress/ScrollProgress';
+import SlideTransition, {
+  type SlideTransitionHandle,
+} from '@/components/ui/SlideTransition/SlideTransition';
 import { useReelsScroll } from '@/hooks';
 
 import './SnapLayout.css';
@@ -16,12 +21,50 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({
   const { activeIndex, containerRef, goToSlide } = useReelsScroll(
     children.length,
   );
+  const transitionRef = useRef<SlideTransitionHandle | null>(null);
+
+  // Intercept goToSlide to play wipe transition animation first
+  const handleGoToSlide = useCallback(
+    (index: number) => {
+      if (transitionRef.current) {
+        transitionRef.current.trigger(() => goToSlide(index));
+      } else {
+        goToSlide(index);
+      }
+    },
+    [goToSlide],
+  );
+
+  // Expose for testing/automation
+  React.useEffect(() => {
+    (
+      window as unknown as { __portfolioGoToSlide?: (i: number) => void }
+    ).__portfolioGoToSlide = handleGoToSlide;
+    return () => {
+      delete (
+        window as unknown as { __portfolioGoToSlide?: (i: number) => void }
+      ).__portfolioGoToSlide;
+    };
+  }, [handleGoToSlide]);
 
   return (
     <SnapScrollContext.Provider
-      value={{ activeIndex, goToSlide, totalSlides: children.length }}
+      value={{
+        activeIndex,
+        goToSlide: handleGoToSlide,
+        totalSlides: children.length,
+      }}
     >
-      <div style={{ width: '100vw', height: '100dvh', overflow: 'hidden' }}>
+      {/* Custom grid-based architectural cursor */}
+      <GridCursor />
+
+      {/* Slide wipe transition overlay */}
+      <SlideTransition handleRef={transitionRef} isDark={isDarkTheme} />
+
+      {/* Top scroll progress bar */}
+      <ScrollProgress activeIndex={activeIndex} totalSlides={children.length} />
+
+      <div style={{ width: '100%', height: '100dvh', overflow: 'hidden' }}>
         {/* Fixed Header overlay */}
         <Header />
         <div
@@ -33,7 +76,9 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({
           }}
         >
           {children.map((child, idx) => (
-            <SnapSlide key={idx}>{child}</SnapSlide>
+            <SnapSlide key={idx} slideIndex={idx}>
+              {child}
+            </SnapSlide>
           ))}
         </div>
       </div>
@@ -46,7 +91,7 @@ export const SnapLayout: React.FC<{ children: React.ReactNode[] }> = ({
         {children.map((_, i) => (
           <button
             key={i}
-            onClick={() => goToSlide(i)}
+            onClick={() => handleGoToSlide(i)}
             aria-label={`Navigate to slide ${i + 1}`}
             className={`snap-dot-btn ${activeIndex === i ? 'active' : ''}`}
           />

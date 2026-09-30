@@ -762,9 +762,9 @@
 }
 
 /* ─────────────────────────────────────────────────────────
-   10. RESPONSIVE / MOBILE OVERRIDES (max-width: 768px)
+   10. RESPONSIVE / MOBILE OVERRIDES (max-width: 767.98px)
    ───────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   /* Hide 'My Approach' in header */
   .tech-v2-header-right {
     display: none !important;
@@ -864,5 +864,11 @@
   }
   .tech-v2-chip-label {
     font-size: 0.45rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .tech-v2-category-grid {
+    grid-template-columns: 1fr;
   }
 }

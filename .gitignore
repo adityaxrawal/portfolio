@@ -45,3 +45,7 @@ github_repos.json
 /docs
 .cursor
 *.stackdump
+test/
+test-results/
+playwright-report/
+screenshots

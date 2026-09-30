@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { Fragment } from 'react';
 
 import { useSharedState } from '../../../../../../app';
+import { RevealBox, RevealTextBody } from '../../../../../../components/ui/Animations';
 import type { WorkExperienceItem } from '../../../../constants/workExperience';
 
 import { ArchitecturePanel } from './ArchitecturePanel';
@@ -11,6 +12,7 @@ import { ImpactItem } from './ImpactItem';
 import { detailedSections, jobConfigs } from './jobConfigs';
 import { MetricCard } from './MetricCard';
 import { TechStack } from './TechStack';
+
 
 import '../JobContent.css';
 
@@ -42,7 +44,7 @@ function JobContent({ job }: JobContentProps) {
   return (
     <div className={`jc-root ${isDarkTheme ? 'dark' : 'light'}`}>
       <div className="jc-header">
-        <div className="jc-profile">
+        <RevealBox className="jc-profile">
           <div className="jc-logo">
             <span className="jc-logo-letter">{config.logoLetter}</span>
           </div>
@@ -56,13 +58,15 @@ function JobContent({ job }: JobContentProps) {
             <span className="jc-subtitle">{config.subtitle}</span>
             <span className="jc-description">{config.description}</span>
           </div>
-        </div>
+        </RevealBox>
 
         <div className="jc-header-divider" />
 
         <div className="jc-metrics-grid">
-          {config.metrics.map((m) => (
-            <MetricCard key={m.label} {...m} />
+          {config.metrics.map((m, idx) => (
+            <RevealBox key={m.label} delay={0.2 + idx * 0.1}>
+              <MetricCard {...m} />
+            </RevealBox>
           ))}
         </div>
       </div>
@@ -125,7 +129,7 @@ function JobContent({ job }: JobContentProps) {
 
           <div className="jc-col-divider" />
 
-          <div className="jc-tech-section">
+          <RevealBox delay={0.3} className="jc-tech-section">
             <div className="jc-section-header">
               <span
                 className="jc-section-dot"
@@ -134,7 +138,7 @@ function JobContent({ job }: JobContentProps) {
               <span className="jc-section-label">TECH STACK</span>
             </div>
             <TechStack labels={config.techStack} />
-          </div>
+          </RevealBox>
         </div>
 
         <div className="jc-vert-divider" />
@@ -158,7 +162,9 @@ function JobContent({ job }: JobContentProps) {
               <div className="jc-impact-list">
                 {config.impacts.map((item, i) => (
                   <Fragment key={item.text.slice(0, 30)}>
-                    <ImpactItem {...item} />
+                    <RevealTextBody delay={0.4 + i * 0.1} as="div">
+                      <ImpactItem {...item} />
+                    </RevealTextBody>
                     {i < config.impacts.length - 1 && (
                       <div className="jc-impact-divider" />
                     )}

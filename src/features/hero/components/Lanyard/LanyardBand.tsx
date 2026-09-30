@@ -64,10 +64,10 @@ export function LanyardBand({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
       maxDistance: 0,
     });
 
-  const vec = new THREE.Vector3(),
-    ang = new THREE.Vector3(),
-    rot = new THREE.Vector3(),
-    dir = new THREE.Vector3();
+  const vec = useMemo(() => new THREE.Vector3(), []),
+    ang = useMemo(() => new THREE.Vector3(), []),
+    rot = useMemo(() => new THREE.Vector3(), []),
+    dir = useMemo(() => new THREE.Vector3(), []);
 
   const segmentProps = {
     type: 'dynamic' as const,

@@ -294,7 +294,7 @@ export const Footer = () => {
               icon={User2}
               iconBg="#F0EDE8"
               iconColor="#555555"
-              title="Product\nEngineering"
+              title="Product Engineering"
               titleMobile="Product Eng."
               description="Building for impact"
             />
@@ -304,7 +304,7 @@ export const Footer = () => {
               icon={Code2}
               iconBg="#E8FFD6"
               iconColor="#3ED45A"
-              title="Frontend\nSystems"
+              title="Frontend Systems"
               titleMobile="Frontend Sys."
               description="Scalable interfaces"
             />
@@ -314,7 +314,7 @@ export const Footer = () => {
               icon={Cloud}
               iconBg="#F0EEFF"
               iconColor="#8B7CF6"
-              title="Scalable\nBackends"
+              title="Scalable Backends"
               titleMobile="Scalable Backends"
               description="Reliable & secure"
             />
@@ -324,7 +324,7 @@ export const Footer = () => {
               icon={Database}
               iconBg="#F0EEFF"
               iconColor="#8B7CF6"
-              title="Data-driven\nProducts"
+              title="Data-driven Products"
               titleMobile="Data Products"
               description="Insights that matter"
             />

@@ -1,17 +1,22 @@
 import { Analytics } from '@vercel/analytics/react';
 import { useCallback, useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import tinycolor from 'tinycolor2';
 
 import './App.css';
 
 import { AppProvider, useSharedState } from './providers/AppContext';
+import { LoadingProvider, useLoading } from './providers/LoadingContext';
 
 import AppUpdatePrompt from '@/components/ui/AppUpdatePrompt';
 import EasterEgg from '@/components/ui/EasterEgg';
+import GlobalErrorFallback from '@/components/ui/GlobalErrorFallback';
+import Loader from '@/components/ui/Loader';
 import { THEME_COLORS } from '@/config';
 import { AppRoutes } from '@/config/routes';
 import { useKonamiCode } from '@/hooks';
+import { useFontsReady } from '@/hooks/useFontsReady';
 
 function App() {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
@@ -24,11 +29,13 @@ function App() {
 
   return (
     <Router>
-      <AppProvider>
-        <Analytics />
-        {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
-        <ThemedApp />
-      </AppProvider>
+      <LoadingProvider>
+        <AppProvider>
+          <Analytics />
+          {showEasterEgg && <EasterEgg onComplete={handleEasterEggComplete} />}
+          <ThemedApp />
+        </AppProvider>
+      </LoadingProvider>
     </Router>
   );
 }
@@ -39,7 +46,18 @@ function ThemedApp() {
   // ── Sync .dark class on <html> for CSS custom properties + Tailwind v4 dark: ──
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkTheme);
-    localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute(
+        'content',
+        isDarkTheme ? THEME_COLORS.DARK_BG : THEME_COLORS.LIGHT_BG,
+      );
+    }
+    try {
+      localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+    } catch {
+      console.warn('LocalStorage is not available');
+    }
   }, [isDarkTheme]);
 
   const getContrastColor = (bgColor: string) => {
@@ -60,11 +78,19 @@ function ThemedApp() {
       : THEME_COLORS.LIGHT_GRID,
   };
 
+  // Font readiness hook
+  useFontsReady();
+  const { isAppReady } = useLoading();
+
   return (
     <div className="App" style={appStyles}>
       <div className="grid-background" style={bgStyles} />
       <AppUpdatePrompt />
-      <AppRoutes />
+      <ErrorBoundary FallbackComponent={GlobalErrorFallback}>
+        <AppRoutes />
+        {/* Global initial loader */}
+        <Loader isFullScreen={true} isAppReady={isAppReady} />
+      </ErrorBoundary>
     </div>
   );
 }

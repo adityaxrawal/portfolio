@@ -25,7 +25,7 @@ export function useSnapScrollSelector<T>(
   const context = useSnapScroll();
   return useMemo(
     () => selector(context),
-    [context, context.activeIndex, context.totalSlides, selector],
+    [context, selector],
   );
 }
 

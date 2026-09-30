@@ -1,0 +1,44 @@
+.reveal-heading-wrapper {
+  overflow: hidden;
+  display: block; /* ensure block level so masking works */
+}
+
+.reveal-heading-content {
+  display: block;
+  transform-origin: bottom left;
+  will-change: transform, opacity;
+}
+
+.reveal-highlight-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.reveal-highlight-bg {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -4px;
+  right: -4px;
+  z-index: -1;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.reveal-highlight-text {
+  position: relative;
+  z-index: 1;
+}
+
+.reveal-box-wrapper {
+  will-change: transform, opacity;
+}
+
+.reveal-text-wrapper {
+  will-change: opacity, filter, transform;
+}
+
+.reveal-btn-wrapper {
+  display: inline-block;
+  will-change: transform, opacity;
+}

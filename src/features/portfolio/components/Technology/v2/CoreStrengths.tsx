@@ -5,6 +5,8 @@
 
 import { CORE_STRENGTHS } from '../../../constants/technologyV2.constants';
 
+import { RevealTextBody } from '@/components/ui/Animations';
+
 export function CoreStrengths() {
   return (
     <>
@@ -19,8 +21,13 @@ export function CoreStrengths() {
 
       {/* Strength list */}
       <ul className="tech-v2-strengths-list">
-        {CORE_STRENGTHS.map(({ icon: Icon, title, desc }) => (
-          <li key={title} className="tech-v2-strength-item">
+        {CORE_STRENGTHS.map(({ icon: Icon, title, desc }, idx) => (
+          <RevealTextBody 
+            key={title} 
+            delay={0.3 + idx * 0.1} 
+            as="li" 
+            className="tech-v2-strength-item"
+          >
             {/* Icon square */}
             <div className="tech-v2-strength-icon-bare" aria-hidden="true">
               <Icon size={24} strokeWidth={1.5} />
@@ -31,7 +38,7 @@ export function CoreStrengths() {
               <span className="tech-v2-strength-title">{title}</span>
               <span className="tech-v2-strength-desc">{desc}</span>
             </div>
-          </li>
+          </RevealTextBody>
         ))}
       </ul>
     </>
