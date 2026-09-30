@@ -10,7 +10,10 @@ export interface SnapSlideProps {
   slideIndex: number;
 }
 
-export const SnapSlide = memo(function SnapSlide({ children, slideIndex }: SnapSlideProps) {
+export const SnapSlide = memo(function SnapSlide({
+  children,
+  slideIndex,
+}: SnapSlideProps) {
   const activeIndex = useSnapScrollActiveIndex();
   const isSlideActive = activeIndex === slideIndex;
 
@@ -22,7 +25,7 @@ export const SnapSlide = memo(function SnapSlide({ children, slideIndex }: SnapS
           height: '100dvh',
           boxSizing: 'border-box',
           flexShrink: 0,
-          paddingTop: '6vh',
+          paddingTop: 'max(3rem, 6dvh)',
         }}
       >
         {children}

@@ -101,37 +101,9 @@
 }
 
 /* ── APPENDED: Width-based responsive enhancements ──
-   These complement the existing orientation query above.
-   They only add padding adjustments — they do NOT change layout structure.
+   The snap-scroll layout fills 100% width — section-level padding is handled
+   within each component. We only apply layout-level centering on ultrawide screens.
 ── */
-
-/* Large phones landscape, small tablets */
-@media (min-width: 640px) {
-  .App {
-    padding-inline: clamp(0.75rem, 3vw, 1.5rem);
-  }
-}
-
-/* Tablets portrait */
-@media (min-width: 768px) {
-  .App {
-    padding-inline: clamp(1rem, 4vw, 2rem);
-  }
-}
-
-/* Landscape tablets, small laptops */
-@media (min-width: 1024px) {
-  .App {
-    padding-inline: clamp(1.5rem, 4vw, 3rem);
-  }
-}
-
-/* Standard desktops */
-@media (min-width: 1280px) {
-  .App {
-    padding-inline: clamp(2rem, 5vw, 4rem);
-  }
-}
 
 /* Ultra-wide: center content, add breathing room */
 @media (min-width: 1920px) {

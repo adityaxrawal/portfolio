@@ -3,8 +3,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  height: 100dvh;
   z-index: 9999; /* Highest z-index */
   pointer-events: none; /* Allow clicks through */
   opacity: 0;
@@ -49,4 +50,3 @@
     height: 100dvh;
   }
 }
-

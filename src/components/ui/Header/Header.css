@@ -8,6 +8,8 @@
   align-items: center;
   width: 100%;
   height: 6vh;
+  height: 6dvh;
+  min-height: 3rem;
   z-index: 99;
   padding: 0 2.5% 0 2.5%;
   transition: all 0.3s ease;
@@ -430,5 +432,19 @@
   /* Show the hamburger */
   .nav-hamburger {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .nav-bar {
+    padding: 0 0.5rem;
+  }
+
+  .animated-letters {
+    font-size: clamp(0.7rem, 3.2vw, 0.85rem);
+  }
+
+  .nav-email-section {
+    gap: 0.35rem;
   }
 }
