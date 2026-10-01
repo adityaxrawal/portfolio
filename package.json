@@ -72,7 +72,7 @@
     "overrides": {
       "@vercel/node>undici": ">=7.30.0 <8",
       "tar": ">=7.5.21",
-      "brace-expansion@": "1.1.18",
+      "brace-expansion@": "1.1.21",
       "minimatch@": "10.2.3",
       "postcss": ">=8.5.28",
       "nanoid": ">=3.3.18",
