@@ -26,7 +26,7 @@ concurrency:
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: '24.x'
   PNPM_VERSION: '12'
 
 jobs:
